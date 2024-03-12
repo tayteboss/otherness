@@ -6,9 +6,13 @@ export const GlobalStyles = createGlobalStyle`
 	:root {
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
-		--colour-system-white-50: ${theme.colours.systemWhite.grey50};
-		--colour-system-black-50: ${theme.colours.systemBlack.grey50};
-		--font-default: ${theme.fonts.default};
+		--colour-beige-light: ${theme.colours.beigeLight};
+		--colour-beige-dark: ${theme.colours.beigeDark};
+		--colour-beige-medium: ${theme.colours.beigeMedium};
+		--font-baryton: ${theme.fonts.baryton};
+		--font-classic-grotesque-regular: ${theme.fonts.classicGrotesqueRegular};
+		--font-classic-grotesque-book: ${theme.fonts.classicGrotesqueBook};
+		--font-classic-grotesque-light: ${theme.fonts.classicGrotesqueLight};
 		--transition-speed-default: ${theme.transitionSpeed.default};
 		--transition-speed-fast: ${theme.transitionSpeed.fast};
 		--transition-speed-extra-fast: ${theme.transitionSpeed.extraFast};
@@ -60,7 +64,7 @@ export const GlobalStyles = createGlobalStyle`
 	button,
 	label,
 	body {
-		font-family: var(--font-default);
+		font-family: var(--font-classic-grotesque-regular);
 		color: var(--colour-black);
 		line-height: normal;
 	}
@@ -85,66 +89,66 @@ export const GlobalStyles = createGlobalStyle`
 
 	h1,
 	.type-h1 {
-		font-size: ${pxToRem(48)};
-		line-height: normal;
+		font-family: var(--font-baryton);
+		font-size: ${pxToRem(130)};
+		line-height: ${pxToRem(156)};
+		letter-spacing: -2.6px;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait} {
-			font-size: ${pxToRem(38)};
-			line-height: normal;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile} {
-			font-size: ${pxToRem(28)};
-			line-height: normal;
+			font-size: ${pxToRem(76)};
+			line-height: ${pxToRem(91)};
+			letter-spacing: -1.52px;
 		}
 	}
 
 	h2,
 	.type-h2 {
-		font-size: ${pxToRem(48)};
-		line-height: normal;
+		font-family: var(--font-baryton);
+		font-size: ${pxToRem(86)};
+		line-height: ${pxToRem(106)};
+		letter-spacing: -1.72px;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait} {
-			font-size: ${pxToRem(38)};
-			line-height: normal;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile} {
-			font-size: ${pxToRem(28)};
-			line-height: normal;
+			font-size: ${pxToRem(46)};
+			line-height: ${pxToRem(59)};
+			letter-spacing: -0.69px;
 		}
 	}
 
 	h3,
 	.type-h3 {
-		font-size: ${pxToRem(48)};
-		line-height: normal;
+		font-family: var(--font-baryton);
+		font-size: ${pxToRem(40)};
+		line-height: ${pxToRem(51)};
+		letter-spacing: -0.4px;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait} {
-			font-size: ${pxToRem(38)};
-			line-height: normal;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile} {
-			font-size: ${pxToRem(28)};
-			line-height: normal;
+			font-size: ${pxToRem(30)};
+			line-height: ${pxToRem(38)};
+			letter-spacing: -0.3px;
 		}
 	}
 
 	h4,
 	.type-h4 {
-		font-size: ${pxToRem(48)};
-		line-height: normal;
+		font-family: var(--font-baryton);
+		font-size: ${pxToRem(30)};
+		line-height: ${pxToRem(38)};
+		letter-spacing: -0.3px;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait} {
-			font-size: ${pxToRem(38)};
-			line-height: normal;
+			font-size: ${pxToRem(24)};
+			line-height: ${pxToRem(31)};
+			letter-spacing: -0.24px;
 		}
+	}
 
-		@media ${theme.mediaBreakpoints.mobile} {
-			font-size: ${pxToRem(28)};
-			line-height: normal;
-		}
+	h5,
+	.type-h5 {
+		font-family: var(--font-baryton);
+		font-size: ${pxToRem(20)};
+		line-height: ${pxToRem(26)};
+		letter-spacing: -0.2px;
 	}
 
 	p,
@@ -152,8 +156,60 @@ export const GlobalStyles = createGlobalStyle`
 	a,
 	button,
 	div {
-		font-size: ${pxToRem(16)};
-		line-height: normal;
+		font-family: var(--font-classic-grotesque-regular);
+		font-size: ${pxToRem(10)};
+		line-height: ${pxToRem(15)};
+		letter-spacing: 0.12px;
+	}
+
+	.type-p-medium {
+		font-family: var(--font-classic-grotesque-regular);
+		font-size: ${pxToRem(14)};
+		line-height: ${pxToRem(21)};
+		letter-spacing: 0.14px;
+	}
+
+	.type-p-large {
+		font-family: var(--font-classic-grotesque-regular);
+		font-size: ${pxToRem(18)};
+		line-height: ${pxToRem(27)};
+		letter-spacing: 0.18px;
+	}
+
+	.type-secondary-heading-large {
+		font-family: var(--font-classic-grotesque-regular);
+		font-size: ${pxToRem(30)};
+		line-height: ${pxToRem(42)};
+		letter-spacing: 2.1px;
+		text-transform: uppercase;
+
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(22)};
+			line-height: ${pxToRem(31)};
+			letter-spacing: 1.32px;
+		}
+	}
+
+	.type-secondary-heading-medium {
+		font-family: var(--font-classic-grotesque-regular);
+		font-size: ${pxToRem(18)};
+		line-height: ${pxToRem(25)};
+		letter-spacing: 0.9px;
+		text-transform: uppercase;
+
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(16)};
+			line-height: ${pxToRem(22)};
+			letter-spacing: 0.64px;
+		}
+	}
+
+	.type-secondary-heading-small {
+		font-family: var(--font-classic-grotesque-regular);
+		font-size: ${pxToRem(14)};
+		line-height: ${pxToRem(21)};
+		letter-spacing: 0.56px;
+		text-transform: uppercase;
 	}
 
 	mux-player {
@@ -277,5 +333,25 @@ export const GlobalStyles = createGlobalStyle`
 	iframe {
 		max-width: 100%;
 		display: block;
+	}
+
+	html.lenis {
+		height: auto;
+	}
+
+	.lenis.lenis-smooth {
+		scroll-behavior: auto !important;
+	}
+
+	.lenis.lenis-smooth [data-lenis-prevent] {
+		overscroll-behavior: contain;
+	}
+
+	.lenis.lenis-stopped {
+		overflow: hidden;
+	}
+
+	.lenis.lenis-scrolling iframe {
+		pointer-events: none;
 	}
 `;

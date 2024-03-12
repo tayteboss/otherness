@@ -1,5 +1,23 @@
-/* @font-face {
-	font-family: 'HaasGrot';
-	src: url('/fonts/HaasGrotDisp-55Roman.woff2') format('woff2'), url('/fonts/HaasGrotDisp-55Roman.woff') format('woff'), url('/fonts/HaasGrotDisp-55Roman.ttf') format('truetype'), url('/fonts/HaasGrotDisp-55Roman.otf') format('opentype');
+@font-face {
+	font-family: 'Baryton Regular';
+	src: url('/fonts/Baryton-Regular.woff2') format('woff2'), url('/fonts/Baryton-Regular.woff') format('woff'), url('/fonts/Baryton-Regular.ttf') format('truetype');
 	font-display: swap;
-} */
+}
+
+@font-face {
+	font-family: 'Classic Grotesque Pro Regular';
+	src: url('/fonts/ClassicGrotesquePro-Regular.ttf') format('truetype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Classic Grotesque Pro Book';
+	src: url('/fonts/ClassicGrotesquePro-Book.ttf') format('truetype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Classic Grotesque Pro Light';
+	src: url('/fonts/ClassicGrotesquePro-Light.ttf') format('truetype');
+	font-display: swap;
+}
