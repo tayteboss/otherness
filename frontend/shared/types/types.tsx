@@ -11,6 +11,7 @@ export type MediaType = {
 	mediaType: 'video' | 'image';
 	video?: string;
 	image?: string;
+	caption?: string;
 };
 
 export type TransitionsType = {
@@ -48,32 +49,63 @@ export type ConversationsType = {
 	thumbnailMedia: MediaType;
 };
 
+export type StatisticType = {
+	title: string;
+	description: string;
+	size: 'small' | 'medium';
+	image: {
+		asset: {
+			url: string;
+		};
+	};
+	video: {
+		asset: {
+			playbackId: string;
+		};
+	};
+};
+
+export type TestimonialType = {
+	credit: string;
+	testimonial: string;
+	theme: 'dark' | 'light';
+};
+
 export type HomeComponentOneHalfProjectType = {
-	project: {
-		selectPosition: 'left' | 'right';
-		selectSize: 'small' | 'large';
+	projectOne: {
+		tagline: string;
+		thumbnailMedia: MediaType;
+		title: string;
+	};
+	projectTwo: {
+		tagline: string;
+		thumbnailMedia: MediaType;
+		title: string;
 	};
 };
 
 export type HomeComponentOneProjectType = {
 	project: {
-		selectPosition: 'left' | 'right';
-		selectSize: 'small' | 'large';
+		project: {
+			tagline: string;
+			thumbnailMedia: MediaType;
+			title: string;
+		};
 	};
 };
 
-export type HomeComponentHomeStatisticType = {
-	project: {
-		selectPosition: 'left' | 'right';
-		selectSize: 'small' | 'large';
-	};
+export type HomeComponentHomeOneStatisticType = {
+	selectPosition:
+		| 'leftOutside'
+		| 'rightOutside'
+		| 'leftInside'
+		| 'rightInside';
+	statistic: StatisticType;
 };
 
 export type HomeComponentOneTestimonialOneStatisticType = {
-	project: {
-		selectPosition: 'left' | 'right';
-		selectSize: 'small' | 'large';
-	};
+	statistic: StatisticType;
+	testimonialBlock: TestimonialType;
 };
 
 export type HomeComponentTwoHalfProjectsType = {
@@ -87,7 +119,7 @@ export type HomeBlocksType = {
 	component: (typeof homeBlocksComponentList)[number];
 	homeComponentOneHalfProjects: HomeComponentOneHalfProjectType;
 	homeComponentOneProject: HomeComponentOneProjectType;
-	homeComponentOneStatistic: HomeComponentHomeStatisticType;
+	homeComponentOneStatistic: HomeComponentHomeOneStatisticType;
 	homeComponentOneTestimonialOneStatistic: HomeComponentOneTestimonialOneStatisticType;
 	homeComponentTwoHalfProjects: HomeComponentTwoHalfProjectsType;
 };
@@ -98,6 +130,13 @@ export type NoticedType = {
 	thumbnailImage: string;
 	url?: string;
 	year: string;
+};
+
+export type FurtherReadingType = {
+	pageReference: {
+		_ref: string;
+	};
+	title: string;
 };
 
 export type HomePageType = {
@@ -115,4 +154,134 @@ export type HomePageType = {
 	whatToExpectButton: ButtonType;
 	whatToExpectContent: string;
 	whatToExpectTitle: string;
+};
+
+export type SiteSettingsType = {
+	footerConsulationCta: string;
+	instagramUrl: string;
+	linkedInUrl: string;
+	tagline: string;
+	twitterUrl: string;
+};
+
+export type ImageMultiColumnContentType = {
+	columns: { description: string; title: string }[];
+	media: MediaType;
+	title: string;
+	_type: string;
+};
+
+export type ProcessListType = {
+	title: string;
+	description: string;
+	columns: { listContent: any[]; title: string }[];
+};
+
+export type CtaBannerType = {
+	title: string;
+	link: ButtonType;
+	media: MediaType;
+};
+
+export type ImageOneColumnContentType = {
+	media: MediaType;
+	title: string;
+	content: [];
+};
+
+export type WhatToExpectType = {
+	heroTitle: string;
+	pageBuilder: (
+		| ImageMultiColumnContentType
+		| ProcessListType
+		| CtaBannerType
+		| ImageOneColumnContentType
+	)[];
+	seoDescription: string;
+	seoTitle: string;
+	furtherReading: FurtherReadingType;
+};
+
+export type ConversationsPageType = {
+	heroTitle: string;
+	seoDescription: string;
+	seoTitle: string;
+	furtherReading: FurtherReadingType;
+};
+
+export type WorkPageType = {
+	heroTitle: string;
+	seoDescription: string;
+	seoTitle: string;
+	ctaBannerLink: ButtonType;
+	ctaBannerMedia: MediaType;
+	ctaBannerTitle: string;
+};
+
+export type TwoColumnHeroType = {
+	leftBlock: MediaType;
+	rightBlock: MediaType;
+};
+
+export type ProjectType = {
+	title: string;
+	tagline: string;
+	slug: SlugType;
+	thumbnailMedia: MediaType;
+	collaborators: {
+		title: string;
+		url?: string;
+	}[];
+	description: string;
+	excerpt: string;
+	fullWidthHero?: MediaType;
+	heroLayoutType: 'fullWidth' | 'twoColumn';
+	imageBlocks: any;
+	mood:
+		| 'all'
+		| 'artsy'
+		| 'bombastic'
+		| 'bookish'
+		| 'luxxy'
+		| 'technical'
+		| 'profesh'
+		| 'vivacious';
+	relatedProject: ProjectType;
+	twoColumnHero: TwoColumnHeroType;
+	type:
+		| 'all'
+		| 'strategy'
+		| 'branding'
+		| 'packaging'
+		| 'art-direction'
+		| 'digital';
+};
+
+export type ArticleRichTextType = {
+	content: [];
+	title: string;
+};
+
+export type ArticleMediaType = {
+	thumbnailMedia: MediaType;
+	title: string;
+};
+
+export type ArticleTestimonialType = {
+	testimonial: string;
+};
+
+export type ArticleType = {
+	title: string;
+	author: string;
+	excerpt: string;
+	pageBuilder:
+		| ArticleRichTextType
+		| ArticleMediaType
+		| ArticleTestimonialType;
+	relatedArticle: ArticleType[];
+	slug: SlugType;
+	tag: string;
+	theme: 'dark' | 'light';
+	thumbnailMedia: MediaType;
 };

@@ -4,10 +4,132 @@ export const siteSettingsQueryString = `
 	}
 `;
 
+export const whatToExpectQueryString = `
+	*[_type == "whatToExpectPage"] {
+		...,
+		furtherReading {
+			...,
+		},
+		seoTitle,
+		seoDescription,
+		heroTitle,
+		pageBuilder[] {
+			...,
+		}
+	}
+`;
+
+export const conversationsPageQueryString = `
+	*[_type == "conversationsPage"] {
+		...,
+		furtherReading {
+			...,
+		},
+		seoTitle,
+		seoDescription,
+		heroTitle,
+	}
+`;
+
+export const workPageQueryString = `
+	*[_type == "workPage"] {
+		...,
+		seoTitle,
+		seoDescription,
+		heroTitle,
+	}
+`;
+
+export const projectsQueryString = `
+	*[_type == 'project'] | order(orderRank) [0...100] {
+		...,
+		fullWidthHero {
+			mediaType,
+			image {
+				asset-> {
+					url,
+				},
+			},
+			video {
+				asset-> {
+					playbackId,
+				},
+			},
+		},
+		twoColumnHero {
+			leftBlock {
+				mediaType,
+				image {
+					asset-> {
+						url,
+					},
+				},
+				video {
+					asset-> {
+						playbackId,
+					},
+				},
+			},
+			rightBlock {
+				mediaType,
+				image {
+					asset-> {
+						url,
+					},
+				},
+				video {
+					asset-> {
+						playbackId,
+					},
+				},
+			},
+		},
+	}
+`;
+
+export const conversationsQueryString = `
+	*[_type == 'article'] | order(orderRank) [0...100] {
+		...,
+		thumbnailMedia {
+			mediaType,
+			image {
+				asset-> {
+					url,
+				},
+			},
+			video {
+				asset-> {
+					playbackId,
+				},
+			},
+		},
+		relatedArticle[]-> {
+			author,
+			excerpt,
+			slug,
+			tag,
+			theme,
+			thumbnailMedia {
+				mediaType,
+				image {
+					asset-> {
+						url,
+					},
+				},
+				video {
+					asset-> {
+						playbackId,
+					},
+				},
+			},
+			title
+		},
+	}
+`;
+
 export const homePageQueryString = `
 	*[_type == "homePage"] {
 		...,
-		referenceTitle,
 		seoTitle,
 		seoDescription,
 		heroTitle,

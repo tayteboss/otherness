@@ -1,30 +1,29 @@
 import styled from 'styled-components';
+import client from '../../client';
+import { motion } from 'framer-motion';
+import {
+	ProjectType,
+	TransitionsType,
+	WorkPageType
+} from '../../shared/types/types';
 import { NextSeo } from 'next-seo';
 import {
-	HomePageType,
-	SiteSettingsType,
-	TransitionsType
-} from '../shared/types/types';
-import { motion } from 'framer-motion';
-import client from '../client';
-import {
-	homePageQueryString,
-	siteSettingsQueryString
-} from '../lib/sanityQueries';
+	projectsQueryString,
+	workPageQueryString
+} from '../../lib/sanityQueries';
 
 const PageWrapper = styled(motion.div)``;
 
 type Props = {
-	data: HomePageType;
-	siteSettings: SiteSettingsType;
+	data: WorkPageType;
+	projects: ProjectType[];
 	pageTransitionVariants: TransitionsType;
 };
 
 const Page = (props: Props) => {
-	const { data, siteSettings, pageTransitionVariants } = props;
+	const { data, projects, pageTransitionVariants } = props;
 
-	console.log('data', data);
-	console.log('siteSettings', siteSettings);
+	console.log('projects', projects);
 
 	return (
 		<PageWrapper
@@ -37,19 +36,18 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Otherness'}
 				description={data?.seoDescription || ''}
 			/>
-			Home
 		</PageWrapper>
 	);
 };
 
 export async function getStaticProps() {
-	const siteSettings = await client.fetch(siteSettingsQueryString);
-	const data = await client.fetch(homePageQueryString);
+	const data = await client.fetch(workPageQueryString);
+	const projects = await client.fetch(projectsQueryString);
 
 	return {
 		props: {
 			data,
-			siteSettings
+			projects
 		}
 	};
 }
