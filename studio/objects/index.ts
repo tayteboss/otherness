@@ -12,6 +12,86 @@ const selectMediaTypeObject = {
 	initialValue: 'image'
 };
 
+const selectPosition4 = {
+	title: 'Select Position',
+	name: 'selectPosition',
+	type: 'string',
+	options: {
+		list: [
+			{ title: 'Left Outside', value: 'leftOutside' },
+			{ title: 'Left Inside', value: 'leftInside' },
+			{ title: 'Right Inside', value: 'rightInside' },
+			{ title: 'Right Outside', value: 'rightOutside' }
+		],
+		layout: 'dropdown'
+	},
+	initialValue: 'leftOutside'
+};
+
+const selectPosition2 = {
+	title: 'Select Position',
+	name: 'selectPosition',
+	type: 'string',
+	options: {
+		list: [
+			{ title: 'Left', value: 'left' },
+			{ title: 'Right', value: 'right' },
+		],
+		layout: 'dropdown'
+	},
+	initialValue: 'left'
+};
+
+const selectPosition3 = {
+	title: 'Select Position',
+	name: 'selectPosition',
+	type: 'string',
+	options: {
+		list: [
+			{ title: 'Left', value: 'left' },
+			{ title: 'Middle', value: 'middle' },
+			{ title: 'Right', value: 'right' },
+		],
+		layout: 'dropdown'
+	},
+	initialValue: 'left'
+};
+
+const selectSmallOrMediumSize = {
+	title: 'Select Size',
+	name: 'selectSize',
+	type: 'string',
+	options: {
+		list: [
+			{ title: 'Small', value: 'small' },
+			{ title: 'Medium', value: 'medium' },
+		],
+		layout: 'dropdown'
+	},
+	initialValue: 'small'
+};
+
+const selectPositionTextAndImage = {
+	title: 'Select Position of Text',
+	name: 'selectPosition',
+	type: 'string',
+	options: {
+		list: [
+			{ title: 'Left', value: 'left' },
+			{ title: 'Right', value: 'right' },
+		],
+		layout: 'dropdown'
+	},
+	initialValue: 'left'
+};
+
+const referenceTitle = {
+	title: 'Reference Title',
+	name: 'referenceTitle',
+	type: 'string',
+	description: 'This is an internal reference title.'
+};
+
 const imageObject = {
 	title: 'Image',
 	name: 'image',
@@ -226,9 +306,674 @@ const furtherReadingObject = {
 			to: pageReferencesList,
 		}
 	]
+};
+
+const imageBlockList = [
+	{ title: 'One Half One XSmall', value: 'imageComponentOneHalfOneXSmall' },
+	{ title: 'One XSmall', value: 'imageComponentOneXSmall' },
+	{ title: 'Two XSmall', value: 'imageComponentTwoXSmall' },
+	{ title: 'One Half', value: 'imageComponentOneHalf' },
+	{ title: 'Editorial Big', value: 'imageComponentEditorialBig' },
+	{ title: 'Landscape', value: 'imageComponentLandscape' },
+	{ title: 'One Big Two Small', value: 'imageComponentOneBigTwoSmall' },
+	{ title: 'One Editorial', value: 'imageComponentOneEditorial' },
+	{ title: 'One Portrait', value: 'imageComponentOnePortrait' },
+	{ title: 'Two Small', value: 'imageComponentTwoSmall' },
+	{ title: 'Full', value: 'imageComponentFull' },
+	{ title: 'One Portrait One Medium', value: 'imageComponentOnePortraitOneMedium' },
+	{ title: 'One Big', value: 'imageComponentOneBig' },
+	{ title: 'One Small One Big Landscape', value: 'imageComponentOneSmallOneBigLandscape' },
+	{ title: 'One Big One XSmall', value: 'imageComponentOneBigOneXSmall' },
+	{ title: 'Two Half', value: 'imageComponentTwoHalf' },
+	{ title: 'One Testimonial One XSmall', value: 'imageComponentOneTestimonialOneXSmall' },
+];
+
+const editorialBlock = {
+	title: "Editorial Block",
+	name: "editorialBlock",
+	type: "object",
+	fields: [
+		{
+			title: 'Title',
+			name: 'title',
+			type: 'string',
+		},
+		{
+			title: 'Description',
+			name: 'description',
+			type: 'text',
+		},
+		{
+			title: 'Theme',
+			name: 'theme',
+			type: 'string',
+			options: {
+				list: [
+					{ title: 'Light', value: 'light' },
+					{ title: 'Dark', value: 'dark' },
+				],
+				layout: 'dropdown'
+			},
+		}
+	],
+}
+
+const testimonialBlock = {
+	title: "Testimonial Block",
+	name: "testimonialBlock",
+	type: "object",
+	fields: [
+		{
+			title: 'Testimonial',
+			name: 'testimonial',
+			type: 'text',
+		},
+		{
+			title: 'Credit',
+			name: 'credit',
+			type: 'text',
+		},
+		{
+			title: 'Theme',
+			name: 'theme',
+			type: 'string',
+			options: {
+				list: [
+					{ title: 'Light', value: 'light' },
+					{ title: 'Dark', value: 'dark' },
+				],
+				layout: 'dropdown'
+			},
+		}
+	],
+}
+
+const projectImageBlocks = {
+	title: 'Image Blocks',
+	name: 'imageBlocks',
+	type: 'array',
+	of: [
+		{
+			type: 'object',
+			preview: {
+				select: {
+					imageComponent: 'imageComponent',
+				},
+				prepare: ({ imageComponent }: any) => {
+					let componentName = '';
+
+					if (imageComponent === 'imageComponentOneHalfOneXSmall') {
+						componentName = 'One Half One XSmall';
+					} else if (imageComponent === 'imageComponentOneXSmall') {
+						componentName = 'One XSmall';
+					} else if (imageComponent === 'imageComponentTwoXSmall') {
+						componentName = 'Two XSmall';
+					} else if (imageComponent === 'imageComponentOneHalf') {
+						componentName = 'One Half';
+					} else if (imageComponent === 'imageComponentEditorialBig') {
+						componentName = 'Editorial Big';
+					} else if (imageComponent === 'imageComponentLandscape') {
+						componentName = 'One Landscape';
+					} else if (imageComponent === 'imageComponentOneBigTwoSmall') {
+						componentName = 'One Big Two Small';
+					} else if (imageComponent === 'imageComponentOneEditorial') {
+						componentName = 'One Editorial';
+					} else if (imageComponent === 'imageComponentOnePortrait') {
+						componentName = 'One Portrait';
+					} else if (imageComponent === 'imageComponentTwoSmall') {
+						componentName = 'Two Small';
+					} else if (imageComponent === 'imageComponentFull') {
+						componentName = 'Full';
+					} else if (imageComponent === 'imageComponentOnePortraitOneMedium') {
+						componentName = 'One Portrait One Medium';
+					} else if (imageComponent === 'imageComponentOneBig') {
+						componentName = 'One Big';
+					} else if (imageComponent === 'imageComponentOneSmallOneBigLandscape') {
+						componentName = 'One Small One Big Landscape';
+					} else if (imageComponent === 'imageComponentOneBigOneXSmall') {
+						componentName = 'One Big One XSmall';
+					} else if (imageComponent === 'imageComponentTwoHalf') {
+						componentName = 'Two Half';
+					} else if (imageComponent === 'imageComponentOneTestimonialOneXSmall') {
+						componentName = 'One Editorial One XSmall';
+					} else {
+						componentName = 'Unknown';
+					}
+
+					return {
+						title: componentName,
+					}
+				}
+			},
+			fields: [
+				{
+					title: 'Select Image Component',
+					name: 'imageComponent',
+					type: 'string',
+					options: {
+						list: imageBlockList,
+						layout: 'dropdown'
+					}
+				},
+				{
+					name: 'imageComponentOneHalfOneXSmall',
+					title: 'One Half One XSmall',
+					type: 'object',
+					fields: [
+						{
+							title: "Half",
+							name: "half",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+						{
+							title: "X-Small",
+							name: "xSmall",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOneHalfOneXSmall',
+				},
+				{
+					name: 'imageComponentOneXSmall',
+					title: 'One XSmall',
+					type: 'object',
+					fields: [
+						selectPosition4,
+						selectMediaTypeObject,
+						{
+							...imageObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+						},
+						{
+							...videoObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+						}
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOneXSmall',
+				},
+				{
+					name: 'imageComponentTwoXSmall',
+					title: 'Two XSmall',
+					type: 'object',
+					fields: [
+						selectPosition2,
+						{
+							title: "LHS",
+							name: "lhs",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+						{
+							title: "RHS",
+							name: "rhs",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentTwoXSmall',
+				},
+				{
+					name: 'imageComponentOneHalf',
+					title: 'One Half',
+					type: 'object',
+					fields: [
+						selectPosition2,
+						selectMediaTypeObject,
+						{
+							...imageObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+						},
+						{
+							...videoObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+						}
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOneHalf',
+				},
+				{
+					name: 'imageComponentEditorialBig',
+					title: 'Editorial Big',
+					type: 'object',
+					fields: [
+						selectPositionTextAndImage,
+						editorialBlock,
+						{
+							title: "Media",
+							name: "media",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentEditorialBig'
+				},
+				{
+					name: 'imageComponentLandscape',
+					title: 'Landscape',
+					type: 'object',
+					fields: [
+						selectPosition2,
+						selectMediaTypeObject,
+						{
+							...imageObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+						},
+						{
+							...videoObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+						}
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentLandscape',
+				},
+				{
+					name: 'imageComponentOneBigTwoSmall',
+					title: 'One Big Two Small',
+					type: 'object',
+					fields: [
+						{
+							title: "Big",
+							name: "big",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+						{
+							title: "Small 1",
+							name: "small1",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+						{
+							title: "Small 2",
+							name: "small2",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOneBigTwoSmall',
+				},
+				{
+					name: 'imageComponentOneEditorial',
+					title: 'One Editorial',
+					type: 'object',
+					fields: [
+						selectPosition4,
+						editorialBlock,
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOneEditorial',
+				},
+				{
+					name: 'imageComponentOnePortrait',
+					title: 'One Portrait',
+					type: 'object',
+					fields: [
+						selectPosition3,
+						selectSmallOrMediumSize,
+						selectMediaTypeObject,
+						{
+							...imageObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+						},
+						{
+							...videoObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+						}
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOnePortrait',
+				},
+				{
+					name: 'imageComponentTwoSmall',
+					title: 'Two Small',
+					type: 'object',
+					fields: [
+						selectPosition2,
+						{
+							title: "Small 1",
+							name: "small1",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+						{
+							title: "Small 2",
+							name: "small2",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentTwoSmall',
+				},
+				{
+					name: 'imageComponentFull',
+					title: 'Full',
+					type: 'object',
+					fields: [
+						selectMediaTypeObject,
+						{
+							...imageObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+						},
+						{
+							...videoObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+						}
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentFull',
+				},
+				{
+					name: 'imageComponentOnePortraitOneMedium',
+					title: 'One Portrait One Medium',
+					type: 'object',
+					fields: [
+						selectPosition2,
+						{
+							title: "Portrait",
+							name: "portrait",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+						{
+							title: "Medium",
+							name: "medium",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOnePortraitOneMedium',
+				},
+				{
+					name: 'imageComponentOneBig',
+					title: 'One Big',
+					type: 'object',
+					fields: [
+						selectPosition3,
+						selectMediaTypeObject,
+						{
+							...imageObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+						},
+						{
+							...videoObject,
+							hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+						}
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOneBig',
+				},
+				{
+					name: 'imageComponentOneSmallOneBigLandscape',
+					title: 'One Small One Big Landscape',
+					type: 'object',
+					fields: [
+						selectPosition2,
+						{
+							title: "Small",
+							name: "small",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+						{
+							title: "Landscape",
+							name: "landscape",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOneSmallOneBigLandscape',
+				},
+				{
+					name: 'imageComponentOneBigOneXSmall',
+					title: 'One Small One XSmall',
+					type: 'object',
+					fields: [
+						selectPosition2,
+						{
+							title: "Big",
+							name: "big",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+						{
+							title: "Small",
+							name: "small",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOneBigOneXSmall',
+				},
+				{
+					name: 'imageComponentTwoHalf',
+					title: 'Two Half',
+					type: 'object',
+					fields: [
+						{
+							title: "LHS",
+							name: "lhs",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+						{
+							title: "RHS",
+							name: "rhs",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentTwoHalf',
+				},
+				{
+					name: 'imageComponentOneTestimonialOneXSmall',
+					title: 'One Testimonial One XSmall',
+					type: 'object',
+					fields: [
+						selectPosition2,
+						testimonialBlock,
+						{
+							title: "XSmall",
+							name: "xSmall",
+							type: "object",
+							fields: [
+								selectMediaTypeObject,
+								{
+									...imageObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+								},
+								{
+									...videoObject,
+									hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+								}
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.imageComponent !== 'imageComponentOneTestimonialOneXSmall',
+				},
+			],
+		}
+	]
 }
 
 export {
+	projectImageBlocks,
+	imageBlockList,
 	selectMediaTypeObject,
 	imageObject,
 	videoObject,
@@ -247,5 +992,12 @@ export {
 	imageComponentOneSmallLandscape,
 	pageReferences,
 	linkObject,
-	furtherReadingObject
+	furtherReadingObject,
+	referenceTitle,
+	selectPosition4,
+	selectPosition2,
+	selectPositionTextAndImage,
+	editorialBlock,
+	selectPosition3,
+	selectSmallOrMediumSize
 };

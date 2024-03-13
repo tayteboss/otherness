@@ -79,7 +79,7 @@ export default {
 		{
 			title: 'What to Expect Content',
 			name: 'whatToExpectContent',
-			type: 'array',
+			type: 'text',
 			of: [
 				{
 					type: "block",
