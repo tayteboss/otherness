@@ -1,5 +1,5 @@
 import { HomeIcon } from '@sanity/icons';
-import { imageObject, selectMediaTypeObject, videoObject } from '../objects';
+import { imageObject, linkObject, pageReferences, selectMediaTypeObject, videoObject } from '../objects';
 
 export default {
 	title: "Home Page",
@@ -58,7 +58,6 @@ export default {
 			title: 'Hero Media',
 			name: 'heroMedia',
 			type: 'object',
-			hidden: ({ document }: any) => document?.heroLayoutType !== 'fullWidth',
 			fields: [
 				selectMediaTypeObject,
 				{
@@ -71,6 +70,143 @@ export default {
 					hidden: ({ document }: any) => document?.heroMedia?.mediaType !== 'video',
 				}
 			],
-		}
+		},
+		{
+			title: 'What to Expect Title',
+			name: 'whatToExpectTitle',
+			type: 'string'
+		},
+		{
+			title: 'What to Expect Content',
+			name: 'whatToExpectContent',
+			type: 'array',
+			of: [
+				{
+					type: "block",
+					styles: [],
+					lists: [],
+					marks: {
+						decorators: [],
+					}
+				},
+			]
+		},
+		{
+			title: 'What to Expect Button',
+			name: 'whatToExpectButton',
+			type: 'object',
+			fields: linkObject
+		},
+		{
+			title: 'Services List',
+			name: 'servicesList',
+			type: 'array',
+			of: [
+				{
+					type: 'string',
+				}
+			]
+		},
+		// an array of blocks where the user can select between either a statisticBlock, testimonialBlock or project relationship
+		{
+			type: 'object',
+			name: 'blocks',
+			fields: [
+				{
+					type: 'array',
+					name: 'items',
+					of: [
+						{
+							type: 'object',
+							fields: [
+								{
+									title: 'Reference Title',
+									type: 'string',
+									name: 'referenceTitle'
+								},
+								{
+									title: 'Alignment',
+									name: 'alignment',
+									type: 'string',
+									options: {
+										list: [
+											{ title: 'Left', value: 'left' },
+											{ title: 'Center', value: 'center' },
+											{ title: 'Right', value: 'right' }
+										]
+									},
+									description: "Alignment of block inside of it's column (if using two blocks) or row (if using one block). You can leave this empty if you're using two Project blocks."
+								},
+								{
+									type: 'array',
+									name: 'items',
+									title: 'Blocks',
+									description: 'Select up to 2 blocks.',
+									of: [
+										{
+											type: 'reference',
+											to: [{ type: 'statisticBlock' }, { type: 'testimonialBlock' }, { type: 'project' }],
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+			],
+		},
+		{
+			title: 'Featured Conversations',
+			name: 'featuredConversations',
+			type: 'array',
+			of: [
+				{
+					type: 'reference',
+					to: [{ type: 'article' }],
+				}
+			],
+			description: 'Select up to 2 articles. Leave blank if you would like the latest 2 conversations',
+			validation: (Rule: any) => Rule.max(2),
+		},
+		{
+			title: 'Noticed List',
+			name: 'noticedList',
+			type: 'array',
+			of: [
+				{
+					type: 'object',
+					fields: [
+						{
+							title: 'Title',
+							name: 'title',
+							type: 'string',
+						},
+						{
+							title: 'Source',
+							name: 'source',
+							type: 'string',
+						},
+						{
+							title: 'Year',
+							name: 'year',
+							type: 'string',
+						},
+						{
+							title: 'Thumbnail Image',
+							name: 'thumbnailImage',
+							type: 'image',
+						},
+						{
+							title: 'External URL',
+							name: 'url',
+							type: 'url',
+							validation: (Rule: any) => Rule.uri({ allowRelative: true }),
+							description: 'Please use either a page reference or an external URL.'
+						},
+						pageReferences
+					],
+				},
+			],
+		},
 	]
 }

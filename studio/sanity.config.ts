@@ -40,28 +40,28 @@ export default defineConfig({
                 .documentId('homePage')
             ),
           S.listItem()
-            .title('Work Page')
+            .title('What to Expect Page')
+            .icon(DocumentIcon)
+            .child(
+              S.editor()
+                .schemaType('whatToExpectPage')
+                .documentId('whatToExpectPage')
+            ),
+            S.listItem()
+            .title('Work We Do Page')
             .icon(DocumentIcon)
             .child(
               S.editor()
                 .schemaType('workPage')
                 .documentId('workPage')
             ),
-          S.listItem()
-            .title('About Page')
+            S.listItem()
+            .title('Conversations Page')
             .icon(DocumentIcon)
             .child(
               S.editor()
-                .schemaType('aboutPage')
-                .documentId('aboutPage')
-            ),
-          S.listItem()
-            .title('Contact Page')
-            .icon(DocumentIcon)
-            .child(
-              S.editor()
-                .schemaType('contactPage')
-                .documentId('contactPage')
+                .schemaType('conversationsPage')
+                .documentId('conversationsPage')
             ),
           S.divider(),
           S.listItem()
@@ -72,6 +72,15 @@ export default defineConfig({
                 .title('Projects')
                 .schemaType('project')
                 .filter('_type == "project"')
+            ),
+          S.listItem()
+            .title('Articles')
+            .icon(CaseIcon)
+            .child(
+              S.documentList()
+                .title('Articles')
+                .schemaType('article')
+                .filter('_type == "article"')
             ),
           S.divider(),
         ])

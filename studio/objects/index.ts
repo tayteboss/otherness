@@ -180,6 +180,54 @@ const imageComponentOneSmallLandscape = {
 	]
 }
 
+const pageReferencesList = [
+	{ type: 'homePage' }, { type: 'workPage' }, { type: 'conversationsPage' }, { type: 'whatToExpectPage' }
+]
+
+const pageReferences = {
+	title: 'Page Reference',
+	name: 'pageReference',
+	type: 'reference',
+	to: pageReferencesList,
+	description: 'Please use either a page reference or an external URL.'
+};
+
+const linkObject = [
+	{
+		title: 'Title',
+		name: 'title',
+		type: 'string',
+		validation: (Rule: any) => Rule.required(),
+	},
+	{
+		title: 'External URL',
+		name: 'url',
+		type: 'url',
+		validation: (Rule: any) => Rule.uri({ allowRelative: true }),
+		description: 'Please use either a page reference or an external URL.'
+	},
+	pageReferences
+];
+
+const furtherReadingObject = {
+	title: 'Further Reading',
+	name: 'furtherReading',
+	type: 'object',
+	fields: [
+		{
+			title: 'Title',
+			name: 'title',
+			type: 'string',
+		},
+		{
+			title: 'Page Reference',
+			name: 'pageReference',
+			type: 'reference',
+			to: pageReferencesList,
+		}
+	]
+}
+
 export {
 	selectMediaTypeObject,
 	imageObject,
@@ -196,5 +244,8 @@ export {
 	imageComponentTwoSmall,
 	imageComponentSmallPortrait,
 	imageComponentFull,
-	imageComponentOneSmallLandscape
+	imageComponentOneSmallLandscape,
+	pageReferences,
+	linkObject,
+	furtherReadingObject
 };

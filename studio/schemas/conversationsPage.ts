@@ -1,8 +1,9 @@
 import { HomeIcon } from '@sanity/icons';
+import { furtherReadingObject } from '../objects';
 
 export default {
-	title: "About Page",
-	name: "aboutPage",
+	title: "Conversations Page",
+	name: "conversationsPage",
 	type: "document",
 	icon: HomeIcon,
 	fields: [
@@ -24,5 +25,11 @@ export default {
 			type: 'string',
 			description: 'This is the SEO description that appears in search engines.'
 		},
+		{
+			title: 'Hero Title',
+			name: 'heroTitle',
+			type: 'string',
+		},
+		furtherReadingObject
 	]
 }

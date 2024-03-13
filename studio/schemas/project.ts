@@ -1,11 +1,19 @@
 import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list';
-import { imageComponentEditorialBig, imageComponentFull, imageComponentLandscape, imageComponentOneBigTwoSmall, imageComponentOneEditorial, imageComponentOneHalf, imageComponentOneHalfOneXSmall, imageComponentOneSmallLandscape, imageComponentOneSmallPortraitMedium, imageComponentOneXSmall, imageComponentSmallPortrait, imageComponentTwoSmall, imageComponentTwoXSmall, imageObject, selectMediaTypeObject, videoObject } from '../objects';
+import { CaseIcon } from '@sanity/icons';
+import { imageObject, selectMediaTypeObject, videoObject } from '../objects';
 
 export default {
 	title: 'Project',
 	name: 'project',
 	type: 'document',
+	icon: CaseIcon,
 	orderings: [orderRankOrdering],
+	preview: {
+		select: {
+			subtitle: 'tagline',
+			title: 'title',
+		},
+	},
 	fields: [
 		orderRankField({ type: "project" }),
 		{
@@ -28,9 +36,20 @@ export default {
 			validation: (Rule: any) => Rule.required()
 		},
 		{
-			title: 'Thumbnail Image',
-			name: 'thumbnailImage',
-			type: 'image',
+			title: 'Thumbnail Media',
+			name: 'thumbnailMedia',
+			type: 'object',
+			fields: [
+				selectMediaTypeObject,
+				{
+					...imageObject,
+					hidden: ({ document }: any) => document?.thumbnailMedia?.mediaType !== 'image',
+				},
+				{
+					...videoObject,
+					hidden: ({ document }: any) => document?.thumbnailMedia?.mediaType !== 'video',
+				}
+			],
 		},
 		{
 			title: 'Tagline',
