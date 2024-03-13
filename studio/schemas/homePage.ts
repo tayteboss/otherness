@@ -1,5 +1,5 @@
 import { HomeIcon } from '@sanity/icons';
-import { imageObject, linkObject, pageReferences, selectMediaTypeObject, videoObject } from '../objects';
+import { homeBlocks, imageObject, linkObject, pageReferences, selectMediaTypeObject, videoObject } from '../objects';
 
 export default {
 	title: "Home Page",
@@ -107,54 +107,7 @@ export default {
 				}
 			]
 		},
-		// an array of blocks where the user can select between either a statisticBlock, testimonialBlock or project relationship
-		{
-			type: 'object',
-			name: 'blocks',
-			fields: [
-				{
-					type: 'array',
-					name: 'items',
-					of: [
-						{
-							type: 'object',
-							fields: [
-								{
-									title: 'Reference Title',
-									type: 'string',
-									name: 'referenceTitle'
-								},
-								{
-									title: 'Alignment',
-									name: 'alignment',
-									type: 'string',
-									options: {
-										list: [
-											{ title: 'Left', value: 'left' },
-											{ title: 'Center', value: 'center' },
-											{ title: 'Right', value: 'right' }
-										]
-									},
-									description: "Alignment of block inside of it's column (if using two blocks) or row (if using one block). You can leave this empty if you're using two Project blocks."
-								},
-								{
-									type: 'array',
-									name: 'items',
-									title: 'Blocks',
-									description: 'Select up to 2 blocks.',
-									of: [
-										{
-											type: 'reference',
-											to: [{ type: 'statisticBlock' }, { type: 'testimonialBlock' }, { type: 'project' }],
-										},
-									],
-								},
-							],
-						},
-					],
-				},
-			],
-		},
+		homeBlocks,
 		{
 			title: 'Featured Conversations',
 			name: 'featuredConversations',

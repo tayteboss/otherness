@@ -1,4 +1,5 @@
 import { NumberIcon } from '@sanity/icons';
+import { imageObject, selectMediaTypeObject, videoObject } from '../objects';
 
 export default {
 	title: "Statistic Block",
@@ -6,12 +7,6 @@ export default {
 	type: "document",
 	icon: NumberIcon,
 	fields: [
-		{
-			title: 'Reference Title',
-			name: 'referenceTitle',
-			type: 'string',
-			description: 'This is an internal reference title.'
-		},
 		{
 			title: 'Statistic Title',
 			name: 'statisticTitle',
@@ -30,9 +25,17 @@ export default {
 				list: [
 					{ title: 'Small', value: 'small' },
 					{ title: 'Medium', value: 'medium' },
-					{ title: 'Large', value: 'large' }
 				]
 			}
 		},
+		selectMediaTypeObject,
+		{
+			...imageObject,
+			hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+		},
+		{
+			...videoObject,
+			hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+		}
 	]
 }

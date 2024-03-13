@@ -157,16 +157,16 @@ export const GlobalStyles = createGlobalStyle`
 	button,
 	div {
 		font-family: var(--font-classic-grotesque-regular);
-		font-size: ${pxToRem(10)};
-		line-height: ${pxToRem(15)};
-		letter-spacing: 0.12px;
-	}
-
-	.type-p-medium {
-		font-family: var(--font-classic-grotesque-regular);
 		font-size: ${pxToRem(14)};
 		line-height: ${pxToRem(21)};
 		letter-spacing: 0.14px;
+	}
+
+	.type-p-small {
+		font-family: var(--font-classic-grotesque-regular);
+		font-size: ${pxToRem(10)};
+		line-height: ${pxToRem(15)};
+		letter-spacing: 0.12px;
 	}
 
 	.type-p-large {

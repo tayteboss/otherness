@@ -71,6 +71,20 @@ const selectSmallOrMediumSize = {
 	initialValue: 'small'
 };
 
+const selectHalfOrLargeSize = {
+	title: 'Select Size',
+	name: 'selectSize',
+	type: 'string',
+	options: {
+		list: [
+			{ title: 'Half', value: 'half' },
+			{ title: 'Large', value: 'large' },
+		],
+		layout: 'dropdown'
+	},
+	initialValue: 'small'
+};
+
 const selectPositionTextAndImage = {
 	title: 'Select Position of Text',
 	name: 'selectPosition',
@@ -328,6 +342,13 @@ const imageBlockList = [
 	{ title: 'One Testimonial One XSmall', value: 'imageComponentOneTestimonialOneXSmall' },
 ];
 
+const homeBlockList = [
+	{ title: 'One Project', value: 'homeComponentOneProject' },
+	{ title: 'Two Half Projects', value: 'homeComponentTwoHalfProjects' },
+	{ title: 'One Testimonial One Statistic', value: 'homeComponentOneTestimonialOneStatistic' },
+	{ title: 'One Statistic', value: 'homeComponentOneStatistic' },
+];
+
 const editorialBlock = {
 	title: "Editorial Block",
 	name: "editorialBlock",
@@ -384,6 +405,44 @@ const testimonialBlock = {
 				],
 				layout: 'dropdown'
 			},
+		}
+	],
+};
+
+const statisticBlock = {
+	title: 'Statistic',
+	name: 'statistic',
+	type: 'object',
+	fields: [
+		{
+			title: 'Statistic Title',
+			name: 'statisticTitle',
+			type: 'string',
+		},
+		{
+			title: 'Description',
+			name: 'description',
+			type: 'string',
+		},
+		{
+			title: 'Size',
+			name: 'size',
+			type: 'string',
+			options: {
+				list: [
+					{ title: 'Small', value: 'small' },
+					{ title: 'Medium', value: 'medium' },
+				]
+			}
+		},
+		selectMediaTypeObject,
+		{
+			...imageObject,
+			hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+		},
+		{
+			...videoObject,
+			hidden: ({ parent }: any) => parent?.mediaType !== 'video',
 		}
 	],
 }
@@ -971,6 +1030,115 @@ const projectImageBlocks = {
 	]
 }
 
+const homeBlocks = {
+	title: 'Home Blocks',
+	name: 'homeBlocks',
+	type: 'array',
+	of: [
+		{
+			type: 'object',
+			preview: {
+				select: {
+					component: 'component',
+				},
+				prepare: ({ component }: any) => {
+					let componentName = '';
+
+					if (component === 'homeComponentOneProject') {
+						componentName = 'One Project';
+					} else if (component === 'homeComponentTwoHalfProjects') {
+						componentName = 'Two Half Projects';
+					} else if (component === 'homeComponentOneTestimonialOneStatistic') {
+						componentName = 'One Testimonial One Statistic';
+					} else if (component === 'homeComponentOneStatistic') {
+						componentName = 'One Statistic';
+					}  else {
+						componentName = 'Unknown';
+					}
+
+					return {
+						title: componentName,
+					}
+				}
+			},
+			fields: [
+				{
+					title: 'Select Image Component',
+					name: 'component',
+					type: 'string',
+					options: {
+						list: homeBlockList,
+						layout: 'dropdown'
+					}
+				},
+				{
+					name: 'homeComponentOneProject',
+					title: 'One Project',
+					type: 'object',
+					fields: [
+						{
+							title: "Project",
+							name: "project",
+							type: "object",
+							fields: [
+								selectPosition2,
+								selectHalfOrLargeSize,
+								{
+									title: "Project",
+									name: "project",
+									type: "reference",
+									to: [{ type: 'project' }],
+								},
+							],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.component !== 'homeComponentOneProject',
+				},
+				{
+					name: 'homeComponentTwoHalfProjects',
+					title: 'Two Half Projects',
+					type: 'object',
+					fields: [
+						{
+							title: "Project One",
+							name: "projectOne",
+							type: "reference",
+							to: [{ type: 'project' }],
+						},
+						{
+							title: "Project Two",
+							name: "projectTwo",
+							type: "reference",
+							to: [{ type: 'project' }],
+						},
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.component !== 'homeComponentTwoHalfProjects',
+				},
+				{
+					name: 'homeComponentOneTestimonialOneStatistic',
+					title: 'One Testimonial One Statistic',
+					type: 'object',
+					fields: [
+						testimonialBlock,
+						statisticBlock
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.component !== 'homeComponentOneTestimonialOneStatistic',
+				},
+				{
+					name: 'homeComponentOneStatistic',
+					title: 'One Statistic',
+					type: 'object',
+					fields: [
+						selectPosition4,
+						statisticBlock
+					],
+					hidden: ({ parent }: { parent: any }) => parent?.component !== 'homeComponentOneStatistic',
+				},
+			],
+		}
+	]
+}
+
 export {
 	projectImageBlocks,
 	imageBlockList,
@@ -999,5 +1167,6 @@ export {
 	selectPositionTextAndImage,
 	editorialBlock,
 	selectPosition3,
-	selectSmallOrMediumSize
+	selectSmallOrMediumSize,
+	homeBlocks
 };
