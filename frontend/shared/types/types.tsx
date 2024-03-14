@@ -162,6 +162,10 @@ export type SiteSettingsType = {
 	linkedInUrl: string;
 	tagline: string;
 	twitterUrl: string;
+	footerConsultationButtonTitle: string;
+	footerConsultationButtonUrl: string;
+	mobileMenuConsultationCta: string;
+	mobileMenuConsultationButtonTitle: string;
 };
 
 export type ImageMultiColumnContentType = {
@@ -237,7 +241,7 @@ export type ProjectType = {
 	fullWidthHero?: MediaType;
 	heroLayoutType: 'fullWidth' | 'twoColumn';
 	imageBlocks: any;
-	mood:
+	mood: (
 		| 'all'
 		| 'artsy'
 		| 'bombastic'
@@ -245,16 +249,18 @@ export type ProjectType = {
 		| 'luxxy'
 		| 'technical'
 		| 'profesh'
-		| 'vivacious';
+		| 'vivacious'
+	)[];
 	relatedProject: ProjectType;
 	twoColumnHero: TwoColumnHeroType;
-	type:
+	type: (
 		| 'all'
 		| 'strategy'
 		| 'branding'
 		| 'packaging'
 		| 'art-direction'
-		| 'digital';
+		| 'digital'
+	)[];
 };
 
 export type ArticleRichTextType = {

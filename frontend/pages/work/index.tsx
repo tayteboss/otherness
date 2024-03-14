@@ -23,6 +23,7 @@ type Props = {
 const Page = (props: Props) => {
 	const { data, projects, pageTransitionVariants } = props;
 
+	console.log('data', data);
 	console.log('projects', projects);
 
 	return (
@@ -36,13 +37,16 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Otherness'}
 				description={data?.seoDescription || ''}
 			/>
+			Work
 		</PageWrapper>
 	);
 };
 
 export async function getStaticProps() {
-	const data = await client.fetch(workPageQueryString);
+	let data = await client.fetch(workPageQueryString);
 	const projects = await client.fetch(projectsQueryString);
+
+	data = data[0];
 
 	return {
 		props: {

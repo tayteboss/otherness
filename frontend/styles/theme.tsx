@@ -1,16 +1,16 @@
 export const theme = {
 	colours: {
 		black: '#1A1715',
-		white: '#F2F3EF',
+		white: '#FFFFFF',
 		beigeLight: '#EFEAE3',
 		beigeDark: '#67605A',
 		beigeMedium: '#D8B9A4'
 	},
 	fonts: {
 		baryton: 'Baryton Regular',
-		classicGrotesqueRegular: 'Classic Grotesque Regular',
-		classicGrotesqueBook: 'Classic Grotesque Book',
-		classicGrotesqueLight: 'Classic Grotesque Light'
+		classicGrotesqueRegular: 'Classic Grotesque Pro Default',
+		classicGrotesqueBook: 'Classic Grotesque Pro Book',
+		classicGrotesqueLight: 'Classic Grotesque Pro Light'
 	},
 	size: {
 		small: '1rem',
@@ -45,7 +45,7 @@ export const theme = {
 		mobile: '(max-width: 550px)'
 	},
 	layout: {
-		innerWrapper: '1680px'
+		innerWrapper: '1440px'
 	},
 	transitionSpeed: {
 		default: '300ms',

@@ -41,7 +41,6 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	html {
-		scroll-behavior: smooth;
 		background: var(--colour-white);
 		font-size: 16px;
 
@@ -67,6 +66,7 @@ export const GlobalStyles = createGlobalStyle`
 		font-family: var(--font-classic-grotesque-regular);
 		color: var(--colour-black);
 		line-height: normal;
+		font-weight: 400;
 	}
 
 	strong,
@@ -79,7 +79,7 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	a {
-		text-decoration: underline;
+		text-decoration: none;
 		color: var(--colour-black);
 	}
 
@@ -93,6 +93,7 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${pxToRem(130)};
 		line-height: ${pxToRem(156)};
 		letter-spacing: -2.6px;
+		font-weight: 200;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(76)};
@@ -107,6 +108,7 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${pxToRem(86)};
 		line-height: ${pxToRem(106)};
 		letter-spacing: -1.72px;
+		font-weight: 200;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(46)};
@@ -121,6 +123,7 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${pxToRem(40)};
 		line-height: ${pxToRem(51)};
 		letter-spacing: -0.4px;
+		font-weight: 200;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(30)};
@@ -135,6 +138,7 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${pxToRem(30)};
 		line-height: ${pxToRem(38)};
 		letter-spacing: -0.3px;
+		font-weight: 200;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(24)};
