@@ -157,7 +157,7 @@ export type HomePageType = {
 };
 
 export type SiteSettingsType = {
-	footerConsulationCta: string;
+	footerConsultationCta: string;
 	instagramUrl: string;
 	linkedInUrl: string;
 	tagline: string;

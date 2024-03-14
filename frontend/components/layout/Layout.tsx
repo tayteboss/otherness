@@ -5,6 +5,9 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import MobileMenu from '../blocks/MobileMenu';
 import { ReactLenis, useLenis } from '@studio-freight/react-lenis';
+import { SiteSettingsType } from '../../shared/types/types';
+
+const siteSettings: SiteSettingsType = require('../../json/siteSettings.json');
 
 const Main = styled.main``;
 
@@ -14,6 +17,18 @@ type Props = {
 
 const Layout = (props: Props) => {
 	const { children } = props;
+
+	const {
+		footerConsultationCta,
+		instagramUrl,
+		linkedInUrl,
+		tagline,
+		twitterUrl,
+		footerConsultationButtonTitle,
+		footerConsultationButtonUrl,
+		mobileMenuConsultationCta,
+		mobileMenuConsultationButtonTitle
+	} = siteSettings;
 
 	const [hideLayoutHeader, setHideLayoutHeader] = useState(true);
 	const [mobileMenuIsActive, setMobileMenuIsActive] = useState(false);
@@ -53,11 +68,22 @@ const Layout = (props: Props) => {
 			<MobileMenu
 				isActive={mobileMenuIsActive}
 				setMobileMenuIsActive={setMobileMenuIsActive}
+				cta={mobileMenuConsultationCta}
+				buttonTitle={mobileMenuConsultationButtonTitle}
+				buttonUrl={footerConsultationButtonUrl}
 			/>
 			<ReactLenis root>
 				<Main>{children}</Main>
 			</ReactLenis>
-			<Footer />
+			<Footer
+				footerConsultationCta={footerConsultationCta}
+				instagramUrl={instagramUrl}
+				linkedInUrl={linkedInUrl}
+				tagline={tagline}
+				twitterUrl={twitterUrl}
+				footerConsultationButtonTitle={footerConsultationButtonTitle}
+				footerConsultationButtonUrl={footerConsultationButtonUrl}
+			/>
 		</>
 	);
 };

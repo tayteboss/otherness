@@ -1,9 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import Link from 'next/link';
-import LayoutWrapper from '../../common/LayoutWrapper';
 import PrimaryButton from '../../elements/PrimaryButton';
 
 type Props = {
