@@ -2,43 +2,32 @@ import styled from 'styled-components';
 import { useInView } from 'react-intersection-observer';
 import ImageComponent from './ImageComponent';
 import VideoComponent from './VideoComponent';
+import { MediaType } from '../../../shared/types/types';
 
-const MediaStackWrapper = styled.div`
-	overflow: hidden;
-`;
+const MediaStackWrapper = styled.div``;
 
 type Props = {
-	data: {
-		useVideo: boolean,
-		video: {
-			url: string
-		},
-		image: {
-			url: string
-		},
-	};
-	isPriority?: boolean
+	data: MediaType;
+	isPriority?: boolean;
 };
 
 const MediaStack = (props: Props) => {
-	const {
-		data,
-		isPriority = false
-	} = props;
+	const { data, isPriority = false } = props;
 
-	const useVideo = data?.useVideo && data?.video?.url;
-	const useImage = !data?.useVideo && data?.image?.url;
+	const useVideo = (data.mediaType = 'video');
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
-		rootMargin: '-5%',
+		rootMargin: '-5%'
 	});
 
 	return (
 		<MediaStackWrapper ref={ref}>
-			{useVideo && <VideoComponent data={data.video} inView={inView} />}
-			{useImage && <ImageComponent data={data.image} isPriority={false} />}
+			{useVideo && <VideoComponent data={data} inView={inView} />}
+			{!useVideo && (
+				<ImageComponent data={data.image} isPriority={false} />
+			)}
 		</MediaStackWrapper>
 	);
 };

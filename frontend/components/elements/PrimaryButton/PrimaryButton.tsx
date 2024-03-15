@@ -28,11 +28,13 @@ const PrimaryButton = (props: Props) => {
 	const { children, link, target = '_self' } = props;
 
 	return (
-		<Link href={link} passHref legacyBehavior>
-			<LinkTag className="primary-button" target={target}>
-				<Inner>{children}</Inner>
-			</LinkTag>
-		</Link>
+		<>
+			<Link href={link} passHref legacyBehavior>
+				<LinkTag className="primary-button" target={target}>
+					<Inner>{children}</Inner>
+				</LinkTag>
+			</Link>
+		</>
 	);
 };
 

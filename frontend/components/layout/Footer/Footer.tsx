@@ -186,8 +186,6 @@ const Footer = (props: Props) => {
 		}
 	];
 
-	console.log('footerConsultationCta', footerConsultationCta);
-
 	return (
 		<FooterWrapper>
 			<LayoutWrapper>

@@ -23,10 +23,6 @@ const MobileMenuTriggerWrapper = styled.button`
 const MobileMenuTrigger = (props: Props) => {
 	const { mobileMenuIsActive, setMobileMenuIsActive } = props;
 
-	console.log('setMobileMenuIsActive', setMobileMenuIsActive);
-	console.log('mobileMenuIsActive', mobileMenuIsActive);
-	console.log('props', props);
-
 	return (
 		<MobileMenuTriggerWrapper
 			onClick={() => setMobileMenuIsActive(!mobileMenuIsActive)}

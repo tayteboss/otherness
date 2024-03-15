@@ -9,8 +9,8 @@ const homeBlocksComponentList = [
 
 export type MediaType = {
 	mediaType: 'video' | 'image';
-	video?: string;
-	image?: string;
+	video?: { asset: { playbackId: string } };
+	image?: { asset: { url: string } };
 	caption?: string;
 };
 
@@ -31,8 +31,8 @@ export type TransitionsType = {
 };
 
 export type ButtonType = {
-	url?: string;
-	pageReference?: string;
+	url: string;
+	pageReference: string;
 	title: string;
 };
 
@@ -154,6 +154,7 @@ export type HomePageType = {
 	whatToExpectButton: ButtonType;
 	whatToExpectContent: string;
 	whatToExpectTitle: string;
+	heroLink: ButtonType;
 };
 
 export type SiteSettingsType = {

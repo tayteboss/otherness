@@ -23,8 +23,6 @@ type Props = {
 const Page = (props: Props) => {
 	const { data, conversations, pageTransitionVariants } = props;
 
-	console.log('conversations', conversations);
-
 	return (
 		<PageWrapper
 			variants={pageTransitionVariants}

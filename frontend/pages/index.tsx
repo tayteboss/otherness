@@ -91,7 +91,12 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Otherness'}
 				description={data?.seoDescription || ''}
 			/>
-			<HomeHero />
+			<HomeHero
+				title={data?.heroTitle}
+				description={data?.heroDescription}
+				media={data?.heroMedia}
+				link={data?.heroLink}
+			/>
 			<Header
 				isHomeVersion
 				mobileMenuIsActive={mobileMenuIsActive}
@@ -111,7 +116,9 @@ const Page = (props: Props) => {
 
 export async function getStaticProps() {
 	const siteSettings = await client.fetch(siteSettingsQueryString);
-	const data = await client.fetch(homePageQueryString);
+	let data = await client.fetch(homePageQueryString);
+
+	data = data[0];
 
 	return {
 		props: {
