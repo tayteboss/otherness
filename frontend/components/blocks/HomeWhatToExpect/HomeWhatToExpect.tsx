@@ -14,12 +14,24 @@ type Props = {
 
 const HomeWhatToExpectWrapper = styled.section`
 	background: var(--colour-black);
-	height: 200vh;
 	padding: ${pxToRem(136)} 0;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: ${pxToRem(80)} 0;
+	}
 `;
 
 const TitleWrapper = styled.div`
 	grid-column: 3 / 11;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		grid-column: 1 / 12;
+	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		grid-column: 1 / -1;
+		margin-bottom: ${pxToRem(24)};
+	}
 `;
 
 const Title = styled.h3`
@@ -32,6 +44,15 @@ const ContentWrapper = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	gap: ${pxToRem(40)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		grid-column: 13 / -1;
+	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		grid-column: 1 / -1;
+		gap: ${pxToRem(32)};
+	}
 `;
 
 const RichTextWrapper = styled.div`

@@ -53,6 +53,8 @@ const HeaderWrapper = styled(motion.header)<StyledProps>`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(21)} 0;
 		top: 0;
+		background: rgba(0, 0, 0, 0.2);
+		backdrop-filter: blur(5px);
 	}
 `;
 
@@ -69,6 +71,7 @@ const Inner = styled.div<{ $isHidden: boolean }>`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		flex-direction: row;
 		justify-content: space-between;
+		transform: ${(props) => props.$isHidden && 'translateY(0)'};
 	}
 `;
 

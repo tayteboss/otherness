@@ -11,7 +11,7 @@ const siteSettings: SiteSettingsType = require('../../json/siteSettings.json');
 
 const Main = styled.main`
 	position: relative;
-	z-index: 2;
+	z-index: 3;
 	background: var(--colour-white);
 `;
 
