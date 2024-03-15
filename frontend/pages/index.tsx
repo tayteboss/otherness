@@ -18,6 +18,7 @@ import MobileMenu from '../components/blocks/MobileMenu';
 import { useEffect, useState } from 'react';
 import { useLenis } from '@studio-freight/react-lenis';
 import { useRouter } from 'next/router';
+import OurServicesBanner from '../components/blocks/OurServicesBanner';
 
 const PageWrapper = styled(motion.div)``;
 
@@ -114,6 +115,7 @@ const Page = (props: Props) => {
 				content={data?.whatToExpectContent}
 				button={data?.whatToExpectButton}
 			/>
+			<OurServicesBanner services={data?.servicesList} />
 		</PageWrapper>
 	);
 };

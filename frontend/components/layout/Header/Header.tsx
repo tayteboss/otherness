@@ -112,10 +112,7 @@ const Header = (props: Props) => {
 		const windowHeight = window.innerHeight;
 		const documentHeight = document.body.clientHeight;
 
-		if (
-			currentScrollPos >
-			documentHeight - windowHeight - windowHeight / 2
-		) {
+		if (currentScrollPos > documentHeight - windowHeight) {
 			setIsHidden(true);
 		} else {
 			setIsHidden(false);
