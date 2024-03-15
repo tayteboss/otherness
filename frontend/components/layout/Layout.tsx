@@ -9,7 +9,11 @@ import { SiteSettingsType } from '../../shared/types/types';
 
 const siteSettings: SiteSettingsType = require('../../json/siteSettings.json');
 
-const Main = styled.main``;
+const Main = styled.main`
+	position: relative;
+	z-index: 2;
+	background: var(--colour-white);
+`;
 
 type Props = {
 	children: ReactNode;
@@ -83,6 +87,12 @@ const Layout = (props: Props) => {
 				twitterUrl={twitterUrl}
 				footerConsultationButtonTitle={footerConsultationButtonTitle}
 				footerConsultationButtonUrl={footerConsultationButtonUrl}
+			/>
+			<Header
+				isActive
+				mobileMenuIsActive={mobileMenuIsActive}
+				setMobileMenuIsActive={setMobileMenuIsActive}
+				isFooterVersion
 			/>
 		</>
 	);

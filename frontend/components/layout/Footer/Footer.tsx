@@ -20,9 +20,13 @@ type Props = {
 const FooterWrapper = styled.footer`
 	background: var(--colour-black);
 	padding: ${pxToRem(56)} 0 ${pxToRem(40)};
+	margin-bottom: var(--header-h);
+	position: relative;
+	z-index: 2;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(40)} 0 ${pxToRem(24)};
+		margin-bottom: 0;
 	}
 
 	.layout-grid {
