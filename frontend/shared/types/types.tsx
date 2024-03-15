@@ -32,7 +32,9 @@ export type TransitionsType = {
 
 export type ButtonType = {
 	url: string;
-	pageReference: string;
+	pageReference: {
+		_ref: string;
+	};
 	title: string;
 };
 
@@ -152,7 +154,7 @@ export type HomePageType = {
 	seoTitle: string;
 	servicesList: string[];
 	whatToExpectButton: ButtonType;
-	whatToExpectContent: string;
+	whatToExpectContent: [];
 	whatToExpectTitle: string;
 	heroLink: ButtonType;
 };

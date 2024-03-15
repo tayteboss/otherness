@@ -216,6 +216,23 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: uppercase;
 	}
 
+	.rich-text {
+		h1,
+		h2,
+		h3 {
+			margin-bottom: ${pxToRem(24)};
+		}
+
+		h4,
+		h5 {
+			margin-bottom: ${pxToRem(24)};
+		}
+
+		p:not(:last-child) {
+			margin-bottom: ${pxToRem(16)};
+		}
+	}
+
 	mux-player {
 		--media-object-fit: contain;
 		--media-object-position: center;

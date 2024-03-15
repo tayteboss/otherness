@@ -109,7 +109,11 @@ const Page = (props: Props) => {
 				buttonTitle={siteSettings?.mobileMenuConsultationButtonTitle}
 				buttonUrl={siteSettings?.footerConsultationButtonUrl}
 			/>
-			<HomeWhatToExpect />
+			<HomeWhatToExpect
+				title={data?.whatToExpectTitle}
+				content={data?.whatToExpectContent}
+				button={data?.whatToExpectButton}
+			/>
 		</PageWrapper>
 	);
 };

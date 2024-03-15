@@ -100,9 +100,7 @@ const HomeHero = (props: Props) => {
 				</TitleWrapper>
 				{link && (
 					<ButtonWrapper>
-						<PrimaryButton link={link.url} target="_blank">
-							{link.title}
-						</PrimaryButton>
+						<PrimaryButton data={link}>{link.title}</PrimaryButton>
 					</ButtonWrapper>
 				)}
 			</ContentWrapper>

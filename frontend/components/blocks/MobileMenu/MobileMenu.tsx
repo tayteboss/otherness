@@ -163,7 +163,7 @@ const MobileMenu = (props: Props) => {
 						<CtaWrapper>
 							{cta && <CtaTitle>{cta}</CtaTitle>}
 							{buttonUrl && buttonTitle && (
-								<PrimaryButton link={buttonUrl} target="_blank">
+								<PrimaryButton url={buttonUrl}>
 									{buttonTitle}
 								</PrimaryButton>
 							)}

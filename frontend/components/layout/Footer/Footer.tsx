@@ -208,7 +208,7 @@ const Footer = (props: Props) => {
 								{footerConsultationButtonTitle &&
 									footerConsultationButtonUrl && (
 										<PrimaryButton
-											link={footerConsultationButtonUrl}
+											url={footerConsultationButtonUrl}
 											target="_blank"
 										>
 											{footerConsultationButtonTitle}
@@ -246,7 +246,7 @@ const Footer = (props: Props) => {
 						{footerConsultationButtonTitle &&
 							footerConsultationButtonUrl && (
 								<PrimaryButton
-									link={footerConsultationButtonUrl}
+									url={footerConsultationButtonUrl}
 									target="_blank"
 								>
 									{footerConsultationButtonTitle}
