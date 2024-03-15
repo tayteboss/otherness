@@ -19,7 +19,8 @@ const MediaWrapper = styled.div`
 	position: relative;
 	z-index: 1;
 
-	.video-component-wrapper {
+	.video-component-wrapper,
+	.image-component-wrapper {
 		height: calc(100vh - var(--header-h));
 	}
 `;
@@ -83,12 +84,10 @@ const ButtonWrapper = styled.div`
 const HomeHero = (props: Props) => {
 	const { title, description, media, link } = props;
 
-	console.log('link', link);
-
 	return (
 		<HomeHeroWrapper>
 			<MediaWrapper>
-				<MediaStack data={media} />
+				<MediaStack data={media} isPriority />
 			</MediaWrapper>
 			<ContentWrapper>
 				<TitleWrapper>

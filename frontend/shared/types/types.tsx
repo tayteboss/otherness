@@ -9,8 +9,8 @@ const homeBlocksComponentList = [
 
 export type MediaType = {
 	mediaType: 'video' | 'image';
-	video?: { asset: { playbackId: string } };
-	image?: { asset: { url: string } };
+	video: { asset: { playbackId: string } };
+	image: { asset: { url: string; metadata: { lqip: string } }; alt: string };
 	caption?: string;
 };
 

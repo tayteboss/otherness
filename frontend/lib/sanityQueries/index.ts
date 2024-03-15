@@ -48,7 +48,11 @@ export const projectsQueryString = `
 			image {
 				asset-> {
 					url,
+					metadata {
+						lqip
+					}
 				},
+				alt
 			},
 			video {
 				asset-> {
@@ -62,7 +66,11 @@ export const projectsQueryString = `
 				image {
 					asset-> {
 						url,
+						metadata {
+							lqip
+						}
 					},
+					alt
 				},
 				video {
 					asset-> {
@@ -75,7 +83,11 @@ export const projectsQueryString = `
 				image {
 					asset-> {
 						url,
+						metadata {
+							lqip
+						}
 					},
+					alt
 				},
 				video {
 					asset-> {
@@ -95,7 +107,11 @@ export const conversationsQueryString = `
 			image {
 				asset-> {
 					url,
+					metadata {
+						lqip
+					}
 				},
+				alt
 			},
 			video {
 				asset-> {
@@ -114,7 +130,11 @@ export const conversationsQueryString = `
 				image {
 					asset-> {
 						url,
+						metadata {
+							lqip
+						}
 					},
+					alt
 				},
 				video {
 					asset-> {
@@ -140,7 +160,11 @@ export const homePageQueryString = `
 			image {
 				asset-> {
 					url,
+					metadata {
+						lqip
+					}
 				},
+				alt
 			},
 			video {
 				asset-> {
@@ -165,7 +189,11 @@ export const homePageQueryString = `
 							image {
 								asset-> {
 									url,
+									metadata {
+										lqip
+									}
 								},
+								alt
 							},
 							video {
 								asset-> {
@@ -185,7 +213,11 @@ export const homePageQueryString = `
 						image {
 							asset-> {
 								url,
+								metadata {
+									lqip
+								}
 							},
+							alt
 						},
 						video {
 							asset-> {
@@ -202,7 +234,11 @@ export const homePageQueryString = `
 						image {
 							asset-> {
 								url,
+								metadata {
+									lqip
+								}
 							},
+							alt
 						},
 						video {
 							asset-> {
@@ -220,7 +256,11 @@ export const homePageQueryString = `
 					image {
 						asset-> {
 							url,
+							metadata {
+								lqip
+							}
 						},
+						alt
 					},
 					video {
 						asset-> {
@@ -237,7 +277,11 @@ export const homePageQueryString = `
 					image {
 						asset-> {
 							url,
+							metadata {
+								lqip
+							}
 						},
+						alt
 					},
 					video {
 						asset-> {

@@ -9,7 +9,6 @@ const selectMediaTypeObject = {
 		],
 		layout: 'dropdown'
 	},
-	initialValue: 'image'
 };
 
 const selectPosition4 = {

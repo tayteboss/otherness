@@ -24,9 +24,19 @@ const MediaStack = (props: Props) => {
 
 	return (
 		<MediaStackWrapper ref={ref}>
-			{useVideo && <VideoComponent data={data} inView={inView} />}
+			{useVideo && (
+				<VideoComponent
+					data={data}
+					inView={inView}
+					isPriority={isPriority}
+				/>
+			)}
 			{!useVideo && (
-				<ImageComponent data={data.image} isPriority={false} />
+				<ImageComponent
+					data={data}
+					isPriority={isPriority}
+					inView={inView}
+				/>
 			)}
 		</MediaStackWrapper>
 	);
