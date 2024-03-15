@@ -19,6 +19,12 @@ const LinkTag = styled.a`
 	text-transform: uppercase;
 	color: var(--colour-white);
 	background: rgba(255, 255, 255, 0.2);
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.4);
+	}
 `;
 
 const FooterSocialLinks = (props: Props) => {

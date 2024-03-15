@@ -148,7 +148,7 @@ export type HomePageType = {
 	heroDescription: string;
 	heroMedia: MediaType;
 	heroTitle: string;
-	homeBlocks: HomeBlocksType[];
+	homeBlocks: PageBuilderType[];
 	noticedList: NoticedType[];
 	seoDescription: string;
 	seoTitle: string;
@@ -293,4 +293,9 @@ export type ArticleType = {
 	tag: string;
 	theme: 'dark' | 'light';
 	thumbnailMedia: MediaType;
+};
+
+export type HomeComponentTwoHalfProjects = {
+	component: string;
+	title: string;
 };

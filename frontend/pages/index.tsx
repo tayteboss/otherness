@@ -19,6 +19,9 @@ import { useEffect, useState } from 'react';
 import { useLenis } from '@studio-freight/react-lenis';
 import { useRouter } from 'next/router';
 import OurServicesBanner from '../components/blocks/OurServicesBanner';
+import OthernessPageBuilder from '../components/common/OthernessPageBuilder';
+import FeaturedConversations from '../components/blocks/FeaturedConversations';
+import NoticedList from '../components/blocks/NoticedList';
 
 const PageWrapper = styled(motion.div)``;
 
@@ -116,6 +119,9 @@ const Page = (props: Props) => {
 				button={data?.whatToExpectButton}
 			/>
 			<OurServicesBanner services={data?.servicesList} />
+			<OthernessPageBuilder data={data?.homeBlocks} />
+			<FeaturedConversations data={data?.featuredConversations} />
+			<NoticedList data={data?.noticedList} />
 		</PageWrapper>
 	);
 };

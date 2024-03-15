@@ -1,0 +1,3 @@
+import HomeComponentOneTestimonialOneStatistic from './HomeComponentOneTestimonialOneStatistic';
+
+export default HomeComponentOneTestimonialOneStatistic;

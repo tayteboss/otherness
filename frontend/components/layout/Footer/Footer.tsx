@@ -150,6 +150,10 @@ const SubDetailLink = styled.a`
 	font-size: ${pxToRem(12)};
 	line-height: ${pxToRem(15)};
 	letter-spacing: 0.12px;
+
+	&:hover {
+		text-decoration: underline;
+	}
 `;
 
 const MobileWrapper = styled.div`
