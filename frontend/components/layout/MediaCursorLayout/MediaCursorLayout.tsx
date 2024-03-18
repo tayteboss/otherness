@@ -25,7 +25,7 @@ const MediaCursorLayout = (props: Props) => {
 
 	const position = useMousePosition();
 
-	let mouseXPosition = isOdd ? position.x / 2.4 : position.x * 0.8;
+	let mouseXPosition = isOdd ? position.x / 2.4 : position.x * 1.05;
 	let mouseYPosition = position.y;
 
 	const wrapperVariants = {
