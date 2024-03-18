@@ -184,6 +184,7 @@ export const homePageQueryString = `
 					project-> {
 						title,
 						tagline,
+						slug,
 						thumbnailMedia {
 							mediaType,
 							image {
@@ -208,6 +209,7 @@ export const homePageQueryString = `
 				projectOne-> {
 					title,
 					tagline,
+					slug,
 					thumbnailMedia {
 						mediaType,
 						image {
@@ -229,6 +231,7 @@ export const homePageQueryString = `
 				projectTwo-> {
 					title,
 					tagline,
+					slug,
 					thumbnailMedia {
 						mediaType,
 						image {

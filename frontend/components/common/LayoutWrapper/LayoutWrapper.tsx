@@ -1,23 +1,32 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import pxToRem from '../../../utils/pxToRem';
 
 type Props = {
 	children: ReactNode;
+	useGalleryLayout?: boolean;
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $useGalleryLayout: boolean }>`
 	margin: 0 auto;
-	max-width: ${(props) => props.theme.layout.innerWrapper};
-	padding: 0 ${pxToRem(24)};
+	max-width: ${(props) => (props.$useGalleryLayout ? '100%' : '1440px')};
+	padding: ${(props) => (props.$useGalleryLayout ? '0 8px' : '0 24px')};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding: 0 ${pxToRem(16)};
+		padding: ${(props) => (props.$useGalleryLayout ? '0 8px' : '0 16px')};
 	}
 `;
 
-const LayoutWrapper = (props: Props) => (
-	<Wrapper className="layout-wrapper">{props.children}</Wrapper>
-);
+const LayoutWrapper = (props: Props) => {
+	const { useGalleryLayout = false } = props;
+
+	return (
+		<Wrapper
+			className="layout-wrapper"
+			$useGalleryLayout={useGalleryLayout}
+		>
+			{props.children}
+		</Wrapper>
+	);
+};
 
 export default LayoutWrapper;

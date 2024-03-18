@@ -153,6 +153,7 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${pxToRem(20)};
 		line-height: ${pxToRem(26)};
 		letter-spacing: -0.2px;
+		font-weight: 200;
 	}
 
 	p,

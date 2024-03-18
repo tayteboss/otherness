@@ -1,11 +1,19 @@
+import styled from 'styled-components';
 import HomeComponentOneProject from '../../blocks/HomeComponentOneProject';
 import HomeComponentOneStatistic from '../../blocks/HomeComponentOneStatistic';
 import HomeComponentOneTestimonialOneStatistic from '../../blocks/HomeComponentOneTestimonialOneStatistic';
 import HomeComponentTwoHalfProjects from '../../blocks/HomeComponentTwoHalfProjects';
+import pxToRem from '../../../utils/pxToRem';
 
 type Props = {
 	data: any;
 };
+
+const PageBuilderWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: ${pxToRem(8)};
+`;
 
 const OthernessPageBuilder = (props: Props) => {
 	const { data } = props;
@@ -18,8 +26,10 @@ const OthernessPageBuilder = (props: Props) => {
 		homeComponentOneStatistic: HomeComponentOneStatistic
 	};
 
+	console.log('data', data);
+
 	return (
-		<>
+		<PageBuilderWrapper>
 			{data &&
 				data.map((section: any, i: number) => {
 					{
@@ -32,7 +42,7 @@ const OthernessPageBuilder = (props: Props) => {
 						);
 					}
 				})}
-		</>
+		</PageBuilderWrapper>
 	);
 };
 

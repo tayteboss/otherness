@@ -13,9 +13,23 @@ const VideoComponentWrapper = styled.div`
 		height: 100%;
 		object-fit: cover;
 	}
+
+	mux-player,
+	img {
+		transition: all var(--transition-speed-extra-slow)
+			var(--transition-ease);
+	}
 `;
 
 const InnerBlur = styled(motion.div)`
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+`;
+
+const Inner = styled.div`
 	position: absolute;
 	inset: 0;
 	height: 100%;
@@ -74,18 +88,20 @@ const VideoComponent = (props: Props) => {
 				)}
 			</AnimatePresence>
 			{data?.video?.asset?.playbackId && (
-				<MuxPlayer
-					streamType="on-demand"
-					playbackId={data?.video?.asset?.playbackId}
-					autoPlay="muted"
-					loop={true}
-					thumbnailTime={1}
-					loading="page"
-					preload="auto"
-					muted
-					playsInline={true}
-					poster={`https://image.mux.com/${data?.video?.asset?.playbackId}/thumbnail.png?width=214&height=121&time=1`}
-				/>
+				<Inner>
+					<MuxPlayer
+						streamType="on-demand"
+						playbackId={data?.video?.asset?.playbackId}
+						autoPlay="muted"
+						loop={true}
+						thumbnailTime={1}
+						loading="page"
+						preload="auto"
+						muted
+						playsInline={true}
+						poster={`https://image.mux.com/${data?.video?.asset?.playbackId}/thumbnail.png?width=214&height=121&time=1`}
+					/>
+				</Inner>
 			)}
 		</VideoComponentWrapper>
 	);

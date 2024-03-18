@@ -299,3 +299,10 @@ export type HomeComponentTwoHalfProjects = {
 	component: string;
 	title: string;
 };
+
+export type ProjectCardType = {
+	title: string;
+	tagline: string;
+	thumbnailMedia: MediaType;
+	slug: SlugType;
+};

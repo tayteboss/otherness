@@ -127,7 +127,7 @@ const wrapperVariants = {
 const childVariants = {
 	hidden: {
 		opacity: 0,
-		x: -5,
+		x: -2,
 		transition: {
 			duration: 0.3,
 			ease: 'easeInOut'
