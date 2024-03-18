@@ -52,7 +52,7 @@ export type ConversationsType = {
 };
 
 export type StatisticType = {
-	title: string;
+	statisticTitle: string;
 	description: string;
 	size: 'small' | 'medium';
 	image: {
@@ -65,6 +65,7 @@ export type StatisticType = {
 			playbackId: string;
 		};
 	};
+	mediaType: 'video' | 'image';
 };
 
 export type TestimonialType = {

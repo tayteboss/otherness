@@ -20,14 +20,6 @@ const HomeComponentOneTestimonialOneStatisticWrapper = styled.section`
 			grid-column: 1 / -1;
 		}
 	}
-
-	.statistic-card {
-		grid-column: span 6;
-
-		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-			grid-column: 1 / -1;
-		}
-	}
 `;
 
 const HomeComponentOneTestimonialOneStatistic = (props: Props) => {
@@ -45,11 +37,12 @@ const HomeComponentOneTestimonialOneStatistic = (props: Props) => {
 						theme={testimonialBlock?.theme}
 					/>
 					<StatisticCard
-						title={statistic?.title}
+						statisticTitle={statistic?.statisticTitle}
 						description={statistic?.description}
 						size={statistic?.size}
 						image={statistic?.image}
 						video={statistic?.video}
+						mediaType={statistic?.mediaType}
 					/>
 				</LayoutGrid>
 			</LayoutWrapper>

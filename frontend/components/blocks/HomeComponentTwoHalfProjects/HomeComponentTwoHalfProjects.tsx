@@ -20,10 +20,6 @@ const HomeComponentTwoHalfProjectsWrapper = styled.section`
 			grid-column: 1 / -1;
 		}
 	}
-
-	.layout-grid {
-		gap: ${pxToRem(8)};
-	}
 `;
 
 const HomeComponentTwoHalfProjects = (props: Props) => {

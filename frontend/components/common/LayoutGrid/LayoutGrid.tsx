@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import pxToRem from '../../../utils/pxToRem';
 
 type Props = {
 	children: ReactNode;
@@ -11,6 +12,7 @@ const Grid = styled.div<{ $useGalleryGrid: boolean }>`
 	grid-template-columns: repeat(24, minmax(0, 1fr));
 	grid-column-gap: ${(props) => (props.$useGalleryGrid ? '8px' : '24px')};
 	align-items: start;
+	gap: ${pxToRem(8)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		grid-template-columns: repeat(8, minmax(0, 1fr));
