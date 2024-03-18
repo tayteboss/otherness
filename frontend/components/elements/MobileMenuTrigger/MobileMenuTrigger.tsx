@@ -13,7 +13,7 @@ const MobileMenuTriggerWrapper = styled.button`
 	text-transform: uppercase;
 	padding: ${pxToRem(8)};
 	display: none;
-	color: var(--colour-white);
+	color: var(--colour-black);
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		display: block;

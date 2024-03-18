@@ -52,8 +52,8 @@ const HeaderWrapper = styled(motion.header)<StyledProps>`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(21)} 0;
 		top: 0;
-		background: rgba(0, 0, 0, 0.2);
 		backdrop-filter: blur(5px);
+		background: rgba(255, 255, 255, 0.8);
 	}
 `;
 
