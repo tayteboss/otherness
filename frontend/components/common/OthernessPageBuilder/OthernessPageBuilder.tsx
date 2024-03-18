@@ -26,10 +26,8 @@ const OthernessPageBuilder = (props: Props) => {
 		homeComponentOneStatistic: HomeComponentOneStatistic
 	};
 
-	console.log('data', data);
-
 	return (
-		<PageBuilderWrapper>
+		<PageBuilderWrapper className="page-builder">
 			{data &&
 				data.map((section: any, i: number) => {
 					{

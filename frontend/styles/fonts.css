@@ -6,7 +6,7 @@
 
 @font-face {
 	font-family: 'Classic Grotesque Pro Default';
-	src: url('/fonts/classic-grot.woff2') format('woff2'), url('/fonts/classic-grot.woff') format('woff'), url('/fonts/classic-grot.ttf') format('truetype');
+	src: url('/fonts/ClassicGrotesquePro-ExBk.woff2') format('woff2'), url('/fonts/ClassicGrotesquePro-ExBk.woff') format('woff');
 	font-display: swap;
 }
 

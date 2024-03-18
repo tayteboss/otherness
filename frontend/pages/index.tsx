@@ -22,8 +22,17 @@ import OurServicesBanner from '../components/blocks/OurServicesBanner';
 import OthernessPageBuilder from '../components/common/OthernessPageBuilder';
 import FeaturedConversations from '../components/blocks/FeaturedConversations';
 import NoticedList from '../components/blocks/NoticedList';
+import pxToRem from '../utils/pxToRem';
 
-const PageWrapper = styled(motion.div)``;
+const PageWrapper = styled(motion.div)`
+	.page-builder {
+		margin-bottom: ${pxToRem(40)};
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			margin-bottom: ${pxToRem(48)};
+		}
+	}
+`;
 
 type Props = {
 	data: HomePageType;

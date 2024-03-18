@@ -83,7 +83,7 @@ const CtaWrapper = styled.div`
 	grid-column: 11 / -1;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
-		grid-column: 11 / -1;
+		grid-column: 12 / -1;
 	}
 `;
 

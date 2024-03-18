@@ -69,7 +69,7 @@ const Title = styled.h1`
 `;
 
 const Description = styled.h3`
-	max-width: ${pxToRem(900)};
+	max-width: ${pxToRem(946)};
 	margin: 0 auto;
 	color: var(--colour-white);
 `;

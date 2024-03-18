@@ -35,7 +35,7 @@ const HomeComponentOneProject = (props: Props) => {
 	let gridColumn = '';
 
 	if (isLarge && isRHS) {
-		gridColumn = '8 / -1';
+		gridColumn = '10 / -1';
 	} else if (isLarge && !isRHS) {
 		gridColumn = '1 / 16';
 	} else if (!isLarge && isRHS) {
