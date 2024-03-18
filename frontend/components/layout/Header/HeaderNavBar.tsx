@@ -31,7 +31,8 @@ const BackdropBar = styled.div`
 	left: 0;
 	width: 100%;
 	height: 100%;
-	backdrop-filter: blur(42px);
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(5px);
 	z-index: 1;
 `;
 
@@ -41,12 +42,12 @@ const LinkTag = styled.a`
 	letter-spacing: 0.96px;
 	text-transform: uppercase;
 	padding: ${pxToRem(8)} ${pxToRem(16)};
-	backdrop-filter: blur(17px);
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(5px);
 	position: relative;
 	z-index: 2;
 	white-space: pre;
-	color: var(--colour-white);
-	mix-blend-mode: difference;
+	color: var(--colour-black);
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
 		padding: ${pxToRem(8)};

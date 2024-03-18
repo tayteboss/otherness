@@ -48,7 +48,6 @@ const HeaderWrapper = styled(motion.header)<StyledProps>`
 	left: 0;
 	width: 100%;
 	z-index: ${(props) => (props.$isFooterVersion ? 1 : 1000)};
-	mix-blend-mode: difference;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(21)} 0;
@@ -146,7 +145,7 @@ const Header = (props: Props) => {
 						<Inner $isHidden={isHidden && !isFooterVersion}>
 							<Link href="/" passHref legacyBehavior>
 								<LogoWrapper>
-									<LogoWordMarkSvg colour="#FFFFFF" />
+									<LogoWordMarkSvg colour="var(--colour-black)" />
 								</LogoWrapper>
 							</Link>
 							<HeaderNavBar />
