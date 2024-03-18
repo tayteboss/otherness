@@ -98,11 +98,7 @@ export type HomeComponentOneProjectType = {
 };
 
 export type HomeComponentHomeOneStatisticType = {
-	selectPosition:
-		| 'leftOutside'
-		| 'rightOutside'
-		| 'leftInside'
-		| 'rightInside';
+	selectPosition: 'left' | 'middle' | 'right';
 	statistic: StatisticType;
 };
 
