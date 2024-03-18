@@ -181,6 +181,8 @@ export const homePageQueryString = `
 			homeComponentOneProject {
 				...,
 				project {
+					selectPosition,
+					selectSize,
 					project-> {
 						title,
 						tagline,

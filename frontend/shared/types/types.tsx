@@ -306,4 +306,5 @@ export type ProjectCardType = {
 	tagline: string;
 	thumbnailMedia: MediaType;
 	slug: SlugType;
+	isLarge?: boolean;
 };

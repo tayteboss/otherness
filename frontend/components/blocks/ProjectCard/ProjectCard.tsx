@@ -16,10 +16,14 @@ const ProjectCardWrapper = styled.a`
 	}
 `;
 
-const MediaWrapper = styled.div`
+const MediaWrapper = styled.div<{ $isLarge: boolean }>`
 	.video-component-wrapper,
 	.image-component-wrapper {
-		padding-top: 87%;
+		padding-top: ${(props) => (props.$isLarge ? '71%' : '87%')};
+
+		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+			padding-top: ${(props) => (props.$isLarge ? '142%' : '125%')};
+		}
 	}
 `;
 
@@ -54,7 +58,7 @@ const Tagline = styled.h5`
 `;
 
 const ProjectCard = (props: ProjectCardType) => {
-	const { title, tagline, thumbnailMedia, slug } = props;
+	const { title, tagline, thumbnailMedia, slug, isLarge } = props;
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -75,7 +79,7 @@ const ProjectCard = (props: ProjectCardType) => {
 				}`}
 				ref={ref}
 			>
-				<MediaWrapper>
+				<MediaWrapper $isLarge={isLarge}>
 					<MediaStack data={thumbnailMedia} />
 				</MediaWrapper>
 				<ContentWrapper>
