@@ -28,15 +28,29 @@ const ContentWrapper = styled.div`
 	justify-content: space-between;
 	align-items: flex-end;
 	padding: ${pxToRem(16)} 0 ${pxToRem(24)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: ${pxToRem(8)};
+	}
 `;
 
 const Title = styled.h4`
 	width: 30%;
 	padding-right: ${pxToRem(8)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		width: 100%;
+	}
 `;
 
 const Tagline = styled.h5`
 	width: 70%;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		width: 100%;
+	}
 `;
 
 const ProjectCard = (props: ProjectCardType) => {
