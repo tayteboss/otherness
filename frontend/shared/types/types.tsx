@@ -49,6 +49,8 @@ export type ConversationsType = {
 	tag: string;
 	theme: 'dark' | 'light';
 	thumbnailMedia: MediaType;
+	author?: string;
+	authorUrl?: string;
 };
 
 export type StatisticType = {

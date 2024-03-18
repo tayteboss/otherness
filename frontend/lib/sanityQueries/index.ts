@@ -297,7 +297,30 @@ export const homePageQueryString = `
 			},
 		},
 		"featuredConversations": featuredConversations[]->{
-			...,
+			excerpt,
+			slug,
+			tag,
+			author,
+			authorUrl,
+			theme,
+			title,
+			thumbnailMedia {
+				mediaType,
+				image {
+					asset-> {
+						url,
+						metadata {
+							lqip
+						}
+					},
+					alt
+				},
+				video {
+					asset-> {
+						playbackId,
+					},
+				}
+			}
 		},
 		noticedList[]{
 			title,

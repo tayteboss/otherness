@@ -234,6 +234,32 @@ export const GlobalStyles = createGlobalStyle`
 		}
 	}
 
+	.conversations-card {
+		&:nth-child(odd) {
+			grid-column: 3 / 13;
+
+			@media ${theme.mediaBreakpoints.tabletMedium} {
+				grid-column: 1 / 13;
+			}
+
+			@media ${theme.mediaBreakpoints.tabletPortrait} {
+				grid-column: 1 / -1;
+			}
+		}
+
+		&:nth-child(even) {
+			grid-column: 13 / 23;
+
+			@media ${theme.mediaBreakpoints.tabletMedium} {
+				grid-column: 13 / -1;
+			}
+
+			@media ${theme.mediaBreakpoints.tabletPortrait} {
+				grid-column: 1 / -1;
+			}
+		}
+	}
+
 	mux-player {
 		--media-object-fit: contain;
 		--media-object-position: center;

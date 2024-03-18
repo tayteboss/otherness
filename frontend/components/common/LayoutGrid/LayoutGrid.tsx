@@ -13,6 +13,7 @@ const Grid = styled.div<{ $useGalleryGrid: boolean }>`
 	grid-column-gap: ${(props) => (props.$useGalleryGrid ? '8px' : '24px')};
 	align-items: start;
 	gap: ${pxToRem(8)};
+	position: relative;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		grid-template-columns: repeat(8, minmax(0, 1fr));

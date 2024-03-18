@@ -46,8 +46,6 @@ const HomeComponentOneProject = (props: Props) => {
 		gridColumn = '1 / 13';
 	}
 
-	console.log('gridColumn', gridColumn);
-
 	return (
 		<HomeComponentOneProjectWrapper $gridColumn={gridColumn}>
 			<LayoutWrapper useGalleryLayout>
