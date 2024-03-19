@@ -20,7 +20,7 @@ type Props = {
 };
 
 const ExpectMultiColumnContentWrapper = styled.section`
-	padding: ${pxToRem(56)} 0 ${pxToRem(150)};
+	padding: ${pxToRem(56)} 0 ${pxToRem(140)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(56)} 0;

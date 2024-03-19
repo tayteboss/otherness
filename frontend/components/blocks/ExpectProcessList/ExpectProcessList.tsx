@@ -11,7 +11,13 @@ type Props = {
 	title: string;
 };
 
-const ExpectProcessListWrapper = styled.section``;
+const ExpectProcessListWrapper = styled.section`
+	padding: ${pxToRem(32)} 0;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: ${pxToRem(23)} 0;
+	}
+`;
 
 const TitleWrapper = styled.div`
 	grid-column: 2 / 13;
