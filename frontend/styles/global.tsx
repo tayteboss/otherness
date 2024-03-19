@@ -66,7 +66,7 @@ export const GlobalStyles = createGlobalStyle`
 		font-family: var(--font-classic-grotesque-regular);
 		color: var(--colour-black);
 		line-height: normal;
-		font-weight: 400;
+		font-weight: 500;
 	}
 
 	strong,

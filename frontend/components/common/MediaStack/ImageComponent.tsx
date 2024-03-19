@@ -55,8 +55,6 @@ type Props = {
 const ImageComponent = (props: Props) => {
 	const { data, isPriority, inView } = props;
 
-	console.log('image', data);
-
 	return (
 		<ImageComponentWrapper className="image-component-wrapper">
 			<AnimatePresence initial={false}>

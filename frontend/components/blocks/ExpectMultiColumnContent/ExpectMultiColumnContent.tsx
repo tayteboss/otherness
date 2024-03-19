@@ -7,7 +7,6 @@ import { useInView } from 'react-intersection-observer';
 import MediaStack from '../../common/MediaStack';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
-import useViewportWidth from '../../../hooks/useViewportWidth';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 
 type CardProps = {
@@ -21,7 +20,7 @@ type Props = {
 };
 
 const ExpectMultiColumnContentWrapper = styled.section`
-	padding: ${pxToRem(56)} 0 ${pxToRem(64)};
+	padding: ${pxToRem(56)} 0 ${pxToRem(150)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(56)} 0;
