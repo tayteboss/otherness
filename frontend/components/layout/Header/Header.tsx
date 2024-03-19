@@ -41,17 +41,48 @@ const wrapperVariants = {
 
 const HeaderWrapper = styled(motion.header)<StyledProps>`
 	background: transparent;
-	padding: ${pxToRem(32)} 0 ${pxToRem(16)};
+	padding: ${(props) =>
+		props.$isHomeVersion || props.$isFooterVersion
+			? `${pxToRem(32)} 0 ${pxToRem(16)}`
+			: '0'};
 	position: ${(props) => (props.$isHomeVersion ? 'sticky' : 'fixed')};
-	top: ${(props) => (props.$isFooterVersion ? 'unset' : '-115px')};
+	top: ${(props) =>
+		props.$isHomeVersion
+			? '-115px'
+			: props.$isFooterVersion
+			? 'unset'
+			: '2%'};
 	bottom: ${(props) => (props.$isFooterVersion ? '0' : 'unset')};
+	transform: ${(props) =>
+		props.$isHomeVersion || props.$isFooterVersion
+			? 'unset'
+			: 'translateY(-50%)'};
 	left: 0;
 	width: 100%;
 	z-index: ${(props) => (props.$isFooterVersion ? 1 : 1000)};
 
+	@media ${(props) => props.theme.mediaBreakpoints.tabletLandscape} {
+		top: ${(props) =>
+			props.$isHomeVersion
+				? '-115px'
+				: props.$isFooterVersion
+				? 'unset'
+				: '3%'};
+	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		top: ${(props) =>
+			props.$isHomeVersion
+				? '-115px'
+				: props.$isFooterVersion
+				? 'unset'
+				: '3.5%'};
+	}
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(21)} 0;
 		top: 0;
+		transform: unset;
 		backdrop-filter: blur(5px);
 		background: rgba(255, 255, 255, 0.8);
 	}
@@ -79,7 +110,7 @@ const LogoWrapper = styled.a`
 	align-items: center;
 
 	.logo {
-		width: 90vw;
+		width: 85vw;
 		height: auto;
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
@@ -87,7 +118,7 @@ const LogoWrapper = styled.a`
 		}
 
 		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
-			width: 73vw;
+			width: 70vw;
 		}
 	}
 `;

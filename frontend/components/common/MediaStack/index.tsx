@@ -14,13 +14,16 @@ type Props = {
 const MediaStack = (props: Props) => {
 	const { data, isPriority = false } = props;
 
-	const useVideo = (data.mediaType = 'video');
+	const useVideo = data.mediaType === 'video';
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
 		rootMargin: '-5%'
 	});
+
+	console.log('useVideo', useVideo);
+	console.log('media stack data', data);
 
 	return (
 		<MediaStackWrapper ref={ref}>

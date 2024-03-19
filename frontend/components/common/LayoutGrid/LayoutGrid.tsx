@@ -12,7 +12,7 @@ const Grid = styled.div<{ $useGalleryGrid: boolean }>`
 	grid-template-columns: repeat(24, minmax(0, 1fr));
 	grid-column-gap: ${(props) => (props.$useGalleryGrid ? '8px' : '24px')};
 	align-items: start;
-	gap: ${pxToRem(8)};
+	grid-row-gap: ${pxToRem(8)};
 	position: relative;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {

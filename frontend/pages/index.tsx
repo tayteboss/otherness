@@ -48,9 +48,6 @@ const Page = (props: Props) => {
 	const lenis = useLenis(({ scroll }) => {});
 	const router = useRouter();
 
-	console.log('data', data);
-	// console.log('siteSettings', siteSettings);
-
 	const handleMobileMenuTrigger = () => {
 		const windowHeight = window.innerHeight;
 		const scrollPosition = window.scrollY;

@@ -4,8 +4,13 @@ import { TransitionsType, WhatToExpectType } from '../shared/types/types';
 import { motion } from 'framer-motion';
 import client from '../client';
 import { whatToExpectQueryString } from '../lib/sanityQueries';
+import PageHeader from '../components/blocks/PageHeader';
+import OthernessPageBuilder from '../components/common/OthernessPageBuilder';
 
-const PageWrapper = styled(motion.div)``;
+const PageWrapper = styled(motion.div)`
+	min-height: 100vh;
+	padding-top: var(--header-h);
+`;
 
 type Props = {
 	data: WhatToExpectType;
@@ -14,6 +19,8 @@ type Props = {
 
 const Page = (props: Props) => {
 	const { data, pageTransitionVariants } = props;
+
+	console.log('data', data);
 
 	return (
 		<PageWrapper
@@ -26,13 +33,15 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Otherness'}
 				description={data?.seoDescription || ''}
 			/>
-			What to expect
+			<PageHeader data={data?.heroTitle} />
+			<OthernessPageBuilder data={data?.pageBuilder} useType />
 		</PageWrapper>
 	);
 };
 
 export async function getStaticProps() {
-	const data = await client.fetch(whatToExpectQueryString);
+	let data = await client.fetch(whatToExpectQueryString);
+	data = data[0];
 
 	return {
 		props: {

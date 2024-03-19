@@ -15,6 +15,23 @@ export const whatToExpectQueryString = `
 		heroTitle,
 		pageBuilder[] {
 			...,
+			media {
+				mediaType,
+				image {
+					asset-> {
+						url,
+						metadata {
+							lqip
+						}
+					},
+					alt
+				},
+				video {
+					asset-> {
+						playbackId,
+					},
+				},
+			},
 		}
 	}
 `;
