@@ -105,7 +105,12 @@ const ConversationCard = (props: ConversationsType & { index: number }) => {
 	});
 
 	return (
-		<Link href={`/conversations/${slug.current}`} passHref legacyBehavior>
+		<Link
+			href={`/conversations/${slug.current}`}
+			passHref
+			legacyBehavior
+			scroll={false}
+		>
 			<ConversationCardWrapper
 				$isDarkTheme={theme === 'dark'}
 				ref={ref}

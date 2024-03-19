@@ -174,7 +174,12 @@ const Header = (props: Props) => {
 				>
 					<LayoutWrapper>
 						<Inner $isHidden={isHidden && !isFooterVersion}>
-							<Link href="/" passHref legacyBehavior>
+							<Link
+								href="/"
+								passHref
+								legacyBehavior
+								scroll={false}
+							>
 								<LogoWrapper>
 									<LogoWordMarkSvg colour="var(--colour-black)" />
 								</LogoWrapper>

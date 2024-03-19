@@ -220,13 +220,14 @@ export const GlobalStyles = createGlobalStyle`
 	.rich-text {
 		h1,
 		h2,
-		h3 {
-			margin-bottom: ${pxToRem(24)};
-		}
-
+		h3,
 		h4,
 		h5 {
 			margin-bottom: ${pxToRem(24)};
+
+			@media ${theme.mediaBreakpoints.tabletPortrait} {
+				margin-bottom: ${pxToRem(16)};
+			}
 		}
 
 		p:not(:last-child) {

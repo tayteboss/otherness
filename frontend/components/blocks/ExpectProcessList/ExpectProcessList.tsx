@@ -15,7 +15,11 @@ const ExpectProcessListWrapper = styled.section`
 	padding: ${pxToRem(32)} 0;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding: ${pxToRem(23)} 0;
+		padding: ${pxToRem(28)} 0;
+	}
+
+	.layout-grid {
+		grid-row-gap: 0;
 	}
 `;
 

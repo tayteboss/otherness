@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { ButtonType } from '../../../shared/types/types';
 import ArrowSvg from '../../svgs/ArrowSvg';
 import { AnimatePresence, motion } from 'framer-motion';
+import getPageReferenceHref from '../../../utils/getPageReferenceHref';
 
 type StyledProps = {
 	$isWhite: boolean;
@@ -105,22 +106,8 @@ const PrimaryButton = (props: Props) => {
 	let href = '';
 	let target = '_self';
 
-	const setPageReferenceHref = () => {
-		if (data?.pageReference._ref === 'whatToExpectPage') {
-			return '/what-to-expect';
-		} else if (data?.pageReference._ref === 'contactPage') {
-			return '/contact';
-		} else if (data?.pageReference._ref === 'conversationsPage') {
-			return '/conversations';
-		} else if (data?.pageReference._ref === 'workPage') {
-			return '/work';
-		} else {
-			return '/';
-		}
-	};
-
 	if (data?.pageReference) {
-		href = setPageReferenceHref();
+		href = getPageReferenceHref(data?.pageReference?._ref);
 	} else if (data?.url) {
 		href = data?.url;
 		target = '_blank';
@@ -133,7 +120,7 @@ const PrimaryButton = (props: Props) => {
 
 	return (
 		<>
-			<Link href={href} passHref legacyBehavior>
+			<Link href={href} passHref legacyBehavior scroll={false}>
 				<LinkTag
 					className="primary-button"
 					target={target}

@@ -120,7 +120,12 @@ const MobileMenu = (props: Props) => {
 				>
 					<Inner variants={childVariants}>
 						<ListWrapper>
-							<Link href="/" passHref legacyBehavior>
+							<Link
+								href="/"
+								passHref
+								legacyBehavior
+								scroll={false}
+							>
 								<LinkTag
 									onClick={() => setMobileMenuIsActive(false)}
 								>
@@ -131,6 +136,7 @@ const MobileMenu = (props: Props) => {
 								href="/what-to-expect"
 								passHref
 								legacyBehavior
+								scroll={false}
 							>
 								<LinkTag
 									onClick={() => setMobileMenuIsActive(false)}
@@ -138,21 +144,36 @@ const MobileMenu = (props: Props) => {
 									Things You Can Expect
 								</LinkTag>
 							</Link>
-							<Link href="/" passHref legacyBehavior>
+							<Link
+								href="/"
+								passHref
+								legacyBehavior
+								scroll={false}
+							>
 								<LinkTag
 									onClick={() => setMobileMenuIsActive(false)}
 								>
 									Things We Understand
 								</LinkTag>
 							</Link>
-							<Link href="/work" passHref legacyBehavior>
+							<Link
+								href="/work"
+								passHref
+								legacyBehavior
+								scroll={false}
+							>
 								<LinkTag
 									onClick={() => setMobileMenuIsActive(false)}
 								>
 									Work We Do
 								</LinkTag>
 							</Link>
-							<Link href="/conversations" passHref legacyBehavior>
+							<Link
+								href="/conversations"
+								passHref
+								legacyBehavior
+								scroll={false}
+							>
 								<LinkTag
 									onClick={() => setMobileMenuIsActive(false)}
 								>

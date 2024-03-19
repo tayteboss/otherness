@@ -8,7 +8,7 @@ type Props = {
 
 const Wrapper = styled.div<{ $useGalleryLayout: boolean }>`
 	margin: 0 auto;
-	max-width: ${(props) => (props.$useGalleryLayout ? '100%' : '1440px')};
+	max-width: ${(props) => (props.$useGalleryLayout ? '100%' : '1880px')};
 	padding: ${(props) => (props.$useGalleryLayout ? '0 8px' : '0 24px')};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {

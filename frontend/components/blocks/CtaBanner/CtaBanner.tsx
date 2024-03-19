@@ -14,6 +14,10 @@ type Props = {
 
 const CtaBannerWrapper = styled.section`
 	padding: ${pxToRem(32)} 0;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: ${pxToRem(28)} 0;
+	}
 `;
 
 const Inner = styled.div`

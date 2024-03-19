@@ -36,7 +36,13 @@ const FooterSocialLinks = (props: Props) => {
 		<FooterSocialLinksWrapper>
 			{hasData &&
 				data.map((item, i) => (
-					<Link key={i} href={item.url} passHref legacyBehavior>
+					<Link
+						key={i}
+						href={item.url}
+						passHref
+						legacyBehavior
+						scroll={false}
+					>
 						<LinkTag key={i} target="_blank">
 							{item.title}
 						</LinkTag>

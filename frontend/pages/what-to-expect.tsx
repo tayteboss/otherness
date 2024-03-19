@@ -6,6 +6,7 @@ import client from '../client';
 import { whatToExpectQueryString } from '../lib/sanityQueries';
 import PageHeader from '../components/blocks/PageHeader';
 import OthernessPageBuilder from '../components/common/OthernessPageBuilder';
+import ExploreFurther from '../components/blocks/ExploreFurther';
 
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
@@ -35,6 +36,10 @@ const Page = (props: Props) => {
 			/>
 			<PageHeader data={data?.heroTitle} />
 			<OthernessPageBuilder data={data?.pageBuilder} useType />
+			<ExploreFurther
+				title={data?.furtherReading?.title}
+				pageReference={data?.furtherReading.pageReference}
+			/>
 		</PageWrapper>
 	);
 };

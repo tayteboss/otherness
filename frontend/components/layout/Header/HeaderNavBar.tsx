@@ -59,16 +59,26 @@ const HeaderNavBar = () => {
 		<HeaderNavBarWrapper>
 			<Inner>
 				<BackdropBar />
-				<Link href="/what-to-expect" passHref legacyBehavior>
+				<Link
+					href="/what-to-expect"
+					passHref
+					legacyBehavior
+					scroll={false}
+				>
 					<LinkTag>Things You Can Expect</LinkTag>
 				</Link>
-				<Link href="/" passHref legacyBehavior>
+				<Link href="/" passHref legacyBehavior scroll={false}>
 					<LinkTag>Things We Understand</LinkTag>
 				</Link>
-				<Link href="/work" passHref legacyBehavior>
+				<Link href="/work" passHref legacyBehavior scroll={false}>
 					<LinkTag>Work We Do</LinkTag>
 				</Link>
-				<Link href="/conversations" passHref legacyBehavior>
+				<Link
+					href="/conversations"
+					passHref
+					legacyBehavior
+					scroll={false}
+				>
 					<LinkTag>Conversations We Need To Have</LinkTag>
 				</Link>
 			</Inner>

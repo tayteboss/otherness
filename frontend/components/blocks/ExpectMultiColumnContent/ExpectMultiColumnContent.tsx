@@ -23,7 +23,7 @@ const ExpectMultiColumnContentWrapper = styled.section`
 	padding: ${pxToRem(56)} 0 ${pxToRem(140)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding: ${pxToRem(56)} 0;
+		padding: ${pxToRem(28)} 0;
 	}
 
 	.layout-grid {
@@ -77,7 +77,7 @@ const BottomColumnLayout = styled.div`
 	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		grid-column: span 12;
+		grid-column: 1 / -1;
 	}
 `;
 
@@ -85,16 +85,29 @@ const MediaWrapper = styled(motion.div)`
 	grid-column: 1 / 13;
 	width: calc(100% + 50px);
 	margin-left: -50px;
+	position: sticky;
+	top: 100px;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		grid-column: span 12;
 		width: calc(100% + 64px);
 		margin-left: -32px;
+		position: relative;
+		top: unset;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			width: calc(100% + 32px);
+			margin-left: -16px;
+		}
 	}
 
 	.image-component-wrapper,
 	.video-component-wrapper {
 		padding-top: 100%;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			padding-top: 125%;
+		}
 	}
 `;
 

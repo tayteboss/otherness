@@ -229,6 +229,7 @@ const Footer = (props: Props) => {
 									href="/privacy-policy"
 									passHref
 									legacyBehavior
+									scroll={false}
 								>
 									<SubDetailLink>Privacy</SubDetailLink>
 								</Link>

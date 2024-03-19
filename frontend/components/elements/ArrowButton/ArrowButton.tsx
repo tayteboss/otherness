@@ -5,6 +5,7 @@ import Link from 'next/link';
 import pxToRem from '../../../utils/pxToRem';
 import ArrowSvg from '../../svgs/ArrowSvg';
 import { motion } from 'framer-motion';
+import getPageReferenceHref from '../../../utils/getPageReferenceHref';
 
 type Props = {
 	data?: ButtonType;
@@ -51,22 +52,8 @@ const ArrowButton = (props: Props) => {
 	let href = '';
 	let target = '_self';
 
-	const setPageReferenceHref = () => {
-		if (data?.pageReference._ref === 'whatToExpectPage') {
-			return '/what-to-expect';
-		} else if (data?.pageReference._ref === 'contactPage') {
-			return '/contact';
-		} else if (data?.pageReference._ref === 'conversationsPage') {
-			return '/conversations';
-		} else if (data?.pageReference._ref === 'workPage') {
-			return '/work';
-		} else {
-			return '/';
-		}
-	};
-
 	if (data?.pageReference) {
-		href = setPageReferenceHref();
+		href = getPageReferenceHref(data?.pageReference?._ref);
 	} else if (data?.url) {
 		href = data?.url;
 		target = '_blank';
@@ -78,7 +65,7 @@ const ArrowButton = (props: Props) => {
 	}
 
 	return (
-		<Link href={href} passHref legacyBehavior>
+		<Link href={href} passHref legacyBehavior scroll={false}>
 			<LinkTag
 				className="primary-button"
 				target={target}
