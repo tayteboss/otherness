@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
 	:root {
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
+		--colour-inactive: rgba(26, 23, 21, 0.40);
 		--colour-beige-light: ${theme.colours.beigeLight};
 		--colour-beige-dark: ${theme.colours.beigeDark};
 		--colour-beige-medium: ${theme.colours.beigeMedium};

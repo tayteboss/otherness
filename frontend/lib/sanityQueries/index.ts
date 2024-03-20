@@ -57,10 +57,30 @@ export const workPageQueryString = `
 	}
 `;
 
-export const projectsQueryString = `
-	*[_type == 'project'] | order(orderRank) [0...100] {
-		...,
-		fullWidthHero {
+export const projectsQueryDefault = `
+{
+	...,
+	mood,
+	type,
+	fullWidthHero {
+		mediaType,
+		image {
+			asset-> {
+				url,
+				metadata {
+					lqip
+				}
+			},
+			alt
+		},
+		video {
+			asset-> {
+				playbackId,
+			},
+		},
+	},
+	twoColumnHero {
+		leftBlock {
 			mediaType,
 			image {
 				asset-> {
@@ -77,43 +97,29 @@ export const projectsQueryString = `
 				},
 			},
 		},
-		twoColumnHero {
-			leftBlock {
-				mediaType,
-				image {
-					asset-> {
-						url,
-						metadata {
-							lqip
-						}
-					},
-					alt
+		rightBlock {
+			mediaType,
+			image {
+				asset-> {
+					url,
+					metadata {
+						lqip
+					}
 				},
-				video {
-					asset-> {
-						playbackId,
-					},
-				},
+				alt
 			},
-			rightBlock {
-				mediaType,
-				image {
-					asset-> {
-						url,
-						metadata {
-							lqip
-						}
-					},
-					alt
-				},
-				video {
-					asset-> {
-						playbackId,
-					},
+			video {
+				asset-> {
+					playbackId,
 				},
 			},
 		},
-	}
+	},
+}
+`;
+
+export const projectsQueryString = `
+	*[_type == 'project'] | order(orderRank) [0...100] ${projectsQueryDefault}
 `;
 
 export const conversationsQueryString = `

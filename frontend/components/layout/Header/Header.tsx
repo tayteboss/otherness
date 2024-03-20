@@ -8,6 +8,7 @@ import MobileMenuTrigger from '../../elements/MobileMenuTrigger';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import throttle from 'lodash.throttle';
+import { useRouter } from 'next/router';
 
 type StyledProps = {
 	$isHomeVersion?: boolean;
@@ -135,6 +136,7 @@ const Header = (props: Props) => {
 	const [isHidden, setIsHidden] = useState(false);
 
 	const prevScrollPosRef = useRef(0);
+	const router = useRouter();
 
 	const handleScroll = () => {
 		const currentScrollPos = window.pageYOffset;
@@ -150,6 +152,10 @@ const Header = (props: Props) => {
 
 		prevScrollPosRef.current = currentScrollPos;
 	};
+
+	useEffect(() => {
+		setIsHidden(false);
+	}, [router]);
 
 	useEffect(() => {
 		const throttledHandleScroll = throttle(handleScroll, 100);
