@@ -22,6 +22,7 @@ const FilterTabWrapper = styled.div<{ $isMoodFilter: boolean }>`
 
 const Title = styled.span`
 	white-space: nowrap;
+	padding-bottom: ${pxToRem(2)};
 `;
 
 const Divider = styled.div`

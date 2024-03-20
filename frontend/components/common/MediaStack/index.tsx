@@ -14,7 +14,7 @@ type Props = {
 const MediaStack = (props: Props) => {
 	const { data, isPriority = false } = props;
 
-	const useVideo = data.mediaType === 'video';
+	const useVideo = data?.mediaType === 'video';
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,

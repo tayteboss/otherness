@@ -8,6 +8,8 @@ import {
 } from '../../shared/types/types';
 import { NextSeo } from 'next-seo';
 import {
+	basicProjectsQueryDefault,
+	basicProjectsQueryString,
 	projectsQueryDefault,
 	projectsQueryString,
 	workPageQueryString
@@ -15,10 +17,11 @@ import {
 import PageHeader from '../../components/blocks/PageHeader';
 import { useEffect, useState } from 'react';
 import FiltersBar from '../../components/blocks/FiltersBar';
+import ProjectsList from '../../components/blocks/ProjectsList';
 
 const PageWrapper = styled(motion.div)`
 	padding-top: var(--header-h);
-	min-height: 100vh;
+	min-height: 150vh;
 `;
 
 type Props = {
@@ -33,10 +36,15 @@ const Page = (props: Props) => {
 	const [activeMood, setActiveMood] = useState('all');
 	const [activeWork, setActiveWork] = useState('all');
 	const [isLoading, setIsLoading] = useState(false);
-	const [fetchedProjects, setfetchedProjects] = useState(projects);
+	const [fetchedProjects, setfetchedProjects] =
+		useState<ProjectType[]>(projects);
 	const [firstRenderCheck, setFirstRenderCheck] = useState(0);
 	const [projectCount, setProjectCount] = useState(0);
 	const [cantLoadMore, setCantLoadMore] = useState(false);
+
+	// TODO:
+	// PAGINATION
+	// MOBILE FILTERING FRONTEND
 
 	const projectSkip = 10;
 
@@ -49,7 +57,7 @@ const Page = (props: Props) => {
 			activeWork === 'all' ? '' : ` && "${activeWork}" in type[]`;
 
 		const query = `
-			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [0...${projectSkip}] ${projectsQueryDefault}
+			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [0...${projectSkip}] ${basicProjectsQueryDefault}
 		`;
 
 		try {
@@ -61,7 +69,11 @@ const Page = (props: Props) => {
 				setCantLoadMore(true);
 			}
 
-			setIsLoading(false);
+			const timer = setTimeout(() => {
+				setIsLoading(false);
+			}, 1000);
+
+			return () => clearTimeout(timer);
 		} catch (error) {
 			console.error('Error fetching site data:', error);
 			setIsLoading(false);
@@ -80,7 +92,7 @@ const Page = (props: Props) => {
 		const query = `
 			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${projectCount}...${
 			projectCount + projectSkip
-		}] ${projectsQueryDefault}
+		}] ${basicProjectsQueryDefault}
 		`;
 
 		try {
@@ -110,6 +122,8 @@ const Page = (props: Props) => {
 		handleFiltering(activeMood, activeWork);
 	}, [activeMood, activeWork]);
 
+	console.log('data', data);
+
 	return (
 		<PageWrapper
 			variants={pageTransitionVariants}
@@ -121,12 +135,19 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Otherness'}
 				description={data?.seoDescription || ''}
 			/>
-			<PageHeader data={data?.heroTitle} />
+			<PageHeader data={data?.heroTitle} isLoading={isLoading} />
 			<FiltersBar
 				setActiveMood={setActiveMood}
 				setActiveWork={setActiveWork}
 				activeWork={activeWork}
 				activeMood={activeMood}
+			/>
+			<ProjectsList
+				data={fetchedProjects}
+				isLoading={isLoading}
+				ctaBannerTitle={data?.ctaBannerTitle}
+				ctaBannerMedia={data?.ctaBannerMedia}
+				ctaBannerLink={data?.ctaBannerLink}
 			/>
 		</PageWrapper>
 	);
@@ -134,7 +155,7 @@ const Page = (props: Props) => {
 
 export async function getStaticProps() {
 	let data = await client.fetch(workPageQueryString);
-	const projects = await client.fetch(projectsQueryString);
+	const projects = await client.fetch(basicProjectsQueryString);
 
 	data = data[0];
 

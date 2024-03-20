@@ -7,6 +7,12 @@ const ImageComponentWrapper = styled.div`
 	position: relative;
 	background-color: gray;
 	overflow: hidden;
+
+	mux-player,
+	img {
+		transition: all var(--transition-speed-extra-slow)
+			var(--transition-ease);
+	}
 `;
 
 const InnerBlur = styled(motion.div)`

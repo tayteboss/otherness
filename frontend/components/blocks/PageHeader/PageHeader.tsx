@@ -2,9 +2,12 @@ import styled from 'styled-components';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
+import BarLoader from 'react-spinners/BarLoader';
+import { AnimatePresence, motion } from 'framer-motion';
 
 type Props = {
 	data: string;
+	isLoading: boolean;
 };
 
 const PageHeaderWrapper = styled.section``;
@@ -38,8 +41,37 @@ const Title = styled.h1`
 	}
 `;
 
+const LoadingWrapper = styled(motion.div)`
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: 2;
+
+	& > span {
+		width: 100% !important;
+	}
+`;
+
+const wrapperVariants = {
+	hidden: {
+		opacity: 0,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	},
+	visible: {
+		opacity: 0.75,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	}
+};
+
 const PageHeader = (props: Props) => {
-	const { data } = props;
+	const { data, isLoading } = props;
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -57,6 +89,23 @@ const PageHeader = (props: Props) => {
 			<LayoutWrapper>
 				<Inner $inView={inView}>
 					<Title>{data || ''}</Title>
+					<AnimatePresence>
+						{isLoading && (
+							<LoadingWrapper
+								variants={wrapperVariants}
+								initial="hidden"
+								animate="visible"
+								exit="hidden"
+							>
+								<BarLoader
+									color={'var(--colour-beige-dark)'}
+									loading={true}
+									height={1}
+									speedMultiplier={0.5}
+								/>
+							</LoadingWrapper>
+						)}
+					</AnimatePresence>
 				</Inner>
 			</LayoutWrapper>
 		</PageHeaderWrapper>

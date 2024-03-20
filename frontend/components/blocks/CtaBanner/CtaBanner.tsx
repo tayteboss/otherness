@@ -85,7 +85,7 @@ const CtaBanner = (props: Props) => {
 	});
 
 	return (
-		<CtaBannerWrapper ref={ref}>
+		<CtaBannerWrapper ref={ref} className="cta-banner">
 			<Inner>
 				<LayoutGrid>
 					<MediaWrapper>

@@ -50,10 +50,55 @@ export const conversationsPageQueryString = `
 
 export const workPageQueryString = `
 	*[_type == "workPage"] {
-		...,
 		seoTitle,
 		seoDescription,
 		heroTitle,
+		ctaBannerTitle,
+		ctaBannerLink,
+		ctaBannerMedia {
+			mediaType,
+			image {
+				asset-> {
+					url,
+					metadata {
+						lqip
+					}
+				},
+				alt
+			},
+			video {
+				asset-> {
+					playbackId,
+				},
+			},
+		},
+	}
+`;
+
+export const basicProjectsQueryDefault = `
+	{
+		mood,
+		type,
+		title,
+		tagline,
+		slug,
+		thumbnailMedia {
+			mediaType,
+			image {
+				asset-> {
+					url,
+					metadata {
+						lqip
+					}
+				},
+				alt
+			},
+			video {
+				asset-> {
+					playbackId,
+				},
+			}
+		}
 	}
 `;
 
@@ -116,6 +161,10 @@ export const projectsQueryDefault = `
 		},
 	},
 }
+`;
+
+export const basicProjectsQueryString = `
+	*[_type == 'project'] | order(orderRank) [0...100] ${basicProjectsQueryDefault}
 `;
 
 export const projectsQueryString = `

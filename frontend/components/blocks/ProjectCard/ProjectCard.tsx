@@ -57,6 +57,23 @@ const Tagline = styled.h5`
 	}
 `;
 
+const childVariants = {
+	hidden: {
+		opacity: 0,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	}
+};
+
 const ProjectCard = (props: ProjectCardType) => {
 	const { title, tagline, thumbnailMedia, slug, isLarge } = props;
 
@@ -78,6 +95,7 @@ const ProjectCard = (props: ProjectCardType) => {
 					inView ? 'view-element-fade-in--in-view' : ''
 				}`}
 				ref={ref}
+				variants={childVariants}
 			>
 				<MediaWrapper $isLarge={isLarge}>
 					<MediaStack data={thumbnailMedia} />
