@@ -50,8 +50,6 @@ const ImageComponentOnePortrait = (props: Props) => {
 		}
 	}
 
-	console.log('mediaData', mediaData);
-
 	return (
 		<ImageComponentOnePortraitWrapper>
 			<LayoutWrapper useGalleryLayout>
