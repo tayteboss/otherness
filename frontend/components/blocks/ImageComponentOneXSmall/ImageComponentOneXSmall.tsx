@@ -3,6 +3,12 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
 import MediaStack from '../../common/MediaStack';
 import getThreePositionGridColumn from '../../../utils/getThreePositionGridColumn';
+import getMobileThreePositionGridColumn from '../../../utils/getMobileThreePositionGridColumn';
+
+type StyledProps = {
+	$gridColumn: string;
+	$mobileGridColumn: string;
+};
 
 type Props = {
 	imageComponentOneXSmall: any;
@@ -10,8 +16,12 @@ type Props = {
 
 const ImageComponentOneXSmallWrapper = styled.section``;
 
-const XSmallWrapper = styled.div<{ $gridColumn: string }>`
+const XSmallWrapper = styled.div<StyledProps>`
 	grid-column: ${(props) => props.$gridColumn};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		grid-column: ${(props) => props.$mobileGridColumn};
+	}
 
 	.image-component-wrapper,
 	.video-component-wrapper {
@@ -30,12 +40,16 @@ const ImageComponentOneXSmall = (props: Props) => {
 	};
 
 	let gridColumn = getThreePositionGridColumn(selectPosition);
+	let mobileGridColumn = getMobileThreePositionGridColumn(selectPosition);
 
 	return (
 		<ImageComponentOneXSmallWrapper>
-			<LayoutWrapper>
-				<LayoutGrid>
-					<XSmallWrapper $gridColumn={gridColumn}>
+			<LayoutWrapper useGalleryLayout>
+				<LayoutGrid useGalleryGrid>
+					<XSmallWrapper
+						$gridColumn={gridColumn}
+						$mobileGridColumn={mobileGridColumn}
+					>
 						<MediaStack data={mediaData} />
 					</XSmallWrapper>
 				</LayoutGrid>

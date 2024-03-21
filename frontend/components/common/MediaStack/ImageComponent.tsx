@@ -6,7 +6,7 @@ import useViewportWidth from '../../../hooks/useViewportWidth';
 
 const ImageComponentWrapper = styled.div`
 	position: relative;
-	background-color: gray;
+	background-color: rgba(0, 0, 0, 0.1);
 	overflow: hidden;
 
 	mux-player,
@@ -25,7 +25,7 @@ const InnerBlur = styled(motion.div)`
 	z-index: 1;
 `;
 
-const Inner = styled.div`
+const Inner = styled(motion.div)`
 	position: absolute;
 	inset: 0;
 	height: 100%;
@@ -50,6 +50,27 @@ const wrapperVariants = {
 			duration: 2,
 			ease: 'easeInOut',
 			delay: 0.2
+		}
+	}
+};
+
+const defaultVariants = {
+	hidden: {
+		opacity: 0,
+		filter: 'blur(10px)',
+		scale: 1.05,
+		transition: {
+			duration: 2,
+			ease: 'easeInOut'
+		}
+	},
+	visible: {
+		opacity: 1,
+		filter: 'blur(0px)',
+		scale: 1,
+		transition: {
+			duration: 2,
+			ease: 'easeInOut'
 		}
 	}
 };
@@ -95,7 +116,11 @@ const ImageComponent = (props: Props) => {
 					</InnerBlur>
 				)}
 			</AnimatePresence>
-			<Inner>
+			<Inner
+				variants={defaultVariants}
+				initial="hidden"
+				animate={inView ? 'visible' : 'hidden'}
+			>
 				{imageUrl && (
 					<Image
 						src={imageUrl}

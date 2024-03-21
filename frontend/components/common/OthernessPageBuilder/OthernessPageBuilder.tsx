@@ -35,6 +35,10 @@ const PageBuilderWrapper = styled.div`
 	flex-direction: column;
 	gap: ${pxToRem(8)};
 	overflow: hidden;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		gap: ${pxToRem(16)};
+	}
 `;
 
 const OthernessPageBuilder = (props: Props) => {

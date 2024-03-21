@@ -119,6 +119,9 @@ export async function getStaticProps({ params }: any) {
 			alt,
 			asset-> {
 				url,
+				metadata {
+					lqip
+				}
 			},
 		},
 		video {
@@ -130,6 +133,9 @@ export async function getStaticProps({ params }: any) {
 			alt,
 			asset-> {
 				url,
+				metadata {
+					lqip
+				}
 			},
 		},
 		mobileVideo {
@@ -214,12 +220,12 @@ export async function getStaticProps({ params }: any) {
 					selectSize,
 					${mediaTypeString}
 				},
-				imageComponentTwoSmall {
+				imageComponentTwoXSmall {
 					selectPosition,
-					small1 {
+					lhs {
 						${mediaTypeString}
 					},
-					small2 {
+					rhs {
 						${mediaTypeString}
 					}
 				},
