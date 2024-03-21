@@ -8,6 +8,20 @@ import ExpectMultiColumnContent from '../../blocks/ExpectMultiColumnContent';
 import ExpectProcessList from '../../blocks/ExpectProcessList';
 import CtaBanner from '../../blocks/CtaBanner';
 import ExpectImageOneColumnContent from '../../blocks/ExpectImageOneColumnContent';
+import ImageComponentEditorialBig from '../../blocks/ImageComponentEditorialBig';
+import ImageComponentFull from '../../blocks/ImageComponentFull';
+import ImageComponentLandscape from '../../blocks/ImageComponentLandscape';
+import ImageComponentOneBig from '../../blocks/ImageComponentOneBig';
+import ImageComponentOneBigOneXSmall from '../../blocks/ImageComponentOneBigOneXSmall';
+import ImageComponentOneBigTwoSmall from '../../blocks/ImageComponentOneBigTwoSmall';
+import ImageComponentOneEditorial from '../../blocks/ImageComponentOneEditorial';
+import ImageComponentOneHalf from '../../blocks/ImageComponentOneHalf';
+import ImageComponentOneHalfOneXSmall from '../../blocks/ImageComponentOneHalfOneXSmall';
+import ImageComponentOnePortrait from '../../blocks/ImageComponentOnePortrait';
+import ImageComponentOnePortraitOneMedium from '../../blocks/ImageComponentOnePortraitOneMedium';
+import ImageComponentOneSmallOneBigLandscape from '../../blocks/ImageComponentOneSmallOneBigLandscape';
+import ImageComponentOneXSmall from '../../blocks/ImageComponentOneXSmall';
+import ImageComponentTwoXSmall from '../../blocks/ImageComponentTwoXSmall';
 
 type Props = {
 	data: any;
@@ -40,11 +54,49 @@ const OthernessPageBuilder = (props: Props) => {
 		pbImageMultiColumnContent: ExpectMultiColumnContent,
 		pbProcessList: ExpectProcessList,
 		pbCtaBanner: CtaBanner,
-		pbImageOneColumnContent: ExpectImageOneColumnContent
+		pbImageOneColumnContent: ExpectImageOneColumnContent,
+		imageComponentEditorialBig: ImageComponentEditorialBig,
+		imageComponentFull: ImageComponentFull,
+		imageComponentLandscape: ImageComponentLandscape,
+		imageComponentOneBig: ImageComponentOneBig,
+		imageComponentOneBigOneXSmall: ImageComponentOneBigOneXSmall,
+		imageComponentOneBigTwoSmall: ImageComponentOneBigTwoSmall,
+		imageComponentOneEditorial: ImageComponentOneEditorial,
+		imageComponentOneHalf: ImageComponentOneHalf,
+		imageComponentOneHalfOneXSmall: ImageComponentOneHalfOneXSmall,
+		imageComponentOnePortrait: ImageComponentOnePortrait,
+		imageComponentOnePortraitOneMedium: ImageComponentOnePortraitOneMedium,
+		imageComponentOneSmallOneBigLandscape:
+			ImageComponentOneSmallOneBigLandscape,
+		imageComponentOneXSmall: ImageComponentOneXSmall,
+		imageComponentTwoXSmall: ImageComponentTwoXSmall
 	};
 
 	return (
 		<PageBuilderWrapper className="page-builder">
+			{useImageComponent &&
+				data &&
+				data.map((section: any, i: number) => {
+					{
+						if (!sections[section.imageComponent]) {
+							return (
+								<div key={Math.random() * 10000}>
+									No section found for{' '}
+									{section.imageComponent}
+								</div>
+							);
+						} else {
+							const Component = sections[section.imageComponent];
+							return (
+								<Component
+									key={`${section.imageComponent}-${i}`}
+									{...section}
+								/>
+							);
+						}
+					}
+				})}
+
 			{useType &&
 				data &&
 				data.map((section: any, i: number) => {

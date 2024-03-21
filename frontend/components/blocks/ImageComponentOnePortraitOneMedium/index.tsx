@@ -1,0 +1,3 @@
+import ImageComponentOnePortraitOneMedium from './ImageComponentOnePortraitOneMedium';
+
+export default ImageComponentOnePortraitOneMedium;
