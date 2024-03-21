@@ -38,7 +38,7 @@ type Props = {
 const Page = (props: Props) => {
 	const { data, projects, pageTransitionVariants, hasMoreProject } = props;
 
-	const projectSkip = 3;
+	const projectSkip = 10;
 
 	const [activeMood, setActiveMood] = useState('all');
 	const [activeWork, setActiveWork] = useState('all');

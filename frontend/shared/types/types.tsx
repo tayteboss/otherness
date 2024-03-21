@@ -281,6 +281,12 @@ export type ArticleTestimonialType = {
 	testimonial: string;
 };
 
+export type EditorialBlockType = {
+	description: string;
+	theme: 'light' | 'dark';
+	title: string;
+};
+
 export type ArticleType = {
 	title: string;
 	author: string;

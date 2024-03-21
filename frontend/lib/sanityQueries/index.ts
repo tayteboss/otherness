@@ -164,11 +164,11 @@ export const projectsQueryDefault = `
 `;
 
 export const basicProjectsQueryString = `
-	*[_type == 'project'] | order(orderRank) [0...3] ${basicProjectsQueryDefault}
+	*[_type == 'project'] | order(orderRank) [0...10] ${basicProjectsQueryDefault}
 `;
 
 export const overflowProjectsQueryString = `
-	*[_type == 'project'] | order(orderRank) [3...100] ${basicProjectsQueryDefault}
+	*[_type == 'project'] | order(orderRank) [10...100] ${basicProjectsQueryDefault}
 `;
 
 export const projectsQueryString = `

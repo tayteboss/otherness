@@ -19,7 +19,7 @@ const useHeaderHeight = () => {
 
 		const timer = setTimeout(() => {
 			setHeaderHeight();
-		}, 1000);
+		}, 100);
 
 		window.addEventListener('resize', setHeaderHeight);
 
