@@ -3,6 +3,7 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
 import { EditorialBlockType } from '../../../shared/types/types';
 import EditorialCard from '../EditorialCard';
+import getThreePositionGridColumn from '../../../utils/getThreePositionGridColumn';
 
 type StyledProps = {
 	$gridColumn: string;
@@ -29,15 +30,7 @@ const ImageComponentOneEditorial = (props: Props) => {
 	const { imageComponentOneEditorial } = props;
 	const { editorialBlock, selectPosition } = imageComponentOneEditorial;
 
-	let gridColumn = '';
-
-	if (selectPosition === 'left') {
-		gridColumn = '1 / span 8';
-	} else if (selectPosition === 'middle') {
-		gridColumn = '9 / -9';
-	} else if (selectPosition === 'right') {
-		gridColumn = '-9 / span 8';
-	}
+	let gridColumn = getThreePositionGridColumn(selectPosition);
 
 	return (
 		<ImageComponentOneEditorialWrapper $gridColumn={gridColumn}>

@@ -256,6 +256,10 @@ export async function getStaticProps({ params }: any) {
 					small {
 						${mediaTypeString}
 					}
+				},
+				imageComponentOneXSmall {
+					selectPosition,
+					${mediaTypeString}
 				}
 			},
 			relatedProject-> {
