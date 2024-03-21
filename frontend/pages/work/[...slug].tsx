@@ -77,6 +77,7 @@ const Page = (props: Props) => {
 			<WorkHero
 				heroLayoutType={heroLayoutType}
 				twoColumnHero={twoColumnHero}
+				fullWidthHero={fullWidthHero}
 			/>
 			<WorkDetails
 				client={title}
@@ -130,6 +131,17 @@ export async function getStaticProps({ params }: any) {
 	const projectQuery = `
 		*[_type == 'project' && slug.current == "${params.slug[0]}"][0] {
 			...,
+			fullWidthHero {
+				${mediaTypeString}
+			},
+			twoColumnHero {
+				leftBlock {
+					${mediaTypeString}
+				},
+				rightBlock {
+					${mediaTypeString}
+				},
+			},
 			imageBlocks[] {
 				...,
 				imageComponentOneHalfOneXSmall {

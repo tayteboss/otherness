@@ -10,6 +10,7 @@ const ImageComponentWrapper = styled.div`
 
 	mux-player,
 	img {
+		object-fit: cover;
 		transition: all var(--transition-speed-extra-slow)
 			var(--transition-ease);
 	}

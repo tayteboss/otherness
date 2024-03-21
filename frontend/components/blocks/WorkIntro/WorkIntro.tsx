@@ -4,7 +4,9 @@ import LayoutGrid from '../../common/LayoutGrid';
 import { useInView } from 'react-intersection-observer';
 import WorkServicesList from '../WorkServicesList';
 import pxToRem from '../../../utils/pxToRem';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import useWindowDimensions from '../../../hooks/useWindowDimensions';
 
 type Props = {
 	excerpt: string;
@@ -12,7 +14,7 @@ type Props = {
 	types: string[];
 };
 
-const WorkIntroWrapper = styled.section`
+const WorkIntroWrapper = styled(motion.section)`
 	margin-bottom: ${pxToRem(72)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
@@ -39,6 +41,51 @@ const Excerpt = styled(motion.h5)`
 const WorkIntro = (props: Props) => {
 	const { excerpt, tagline, types } = props;
 
+	const [windowHeight, setWindowHeight] = useState(0);
+	const [distanceToTop, setDistanceToTop] = useState(0);
+
+	const windowDimensions = useWindowDimensions();
+	const isTabletMobile = windowDimensions.width < 768;
+
+	const wrapperRef = useRef<HTMLAnchorElement>(null);
+
+	const { scrollY } = useScroll();
+
+	const transform = useTransform(
+		scrollY,
+		[0, distanceToTop + windowHeight * 2],
+		[
+			'translateY(0)',
+			isTabletMobile ? 'translateY(0)' : 'translateY(250px)'
+		]
+	);
+
+	const opacity = useTransform(scrollY, [0, windowHeight], [1, 0]);
+
+	useEffect(() => {
+		if (wrapperRef?.current) {
+			setDistanceToTop(
+				window.pageYOffset +
+					wrapperRef.current.getBoundingClientRect().top
+			);
+		}
+
+		setWindowHeight(window.innerHeight);
+
+		const timer = setTimeout(() => {
+			if (wrapperRef?.current) {
+				setDistanceToTop(
+					window.pageYOffset +
+						wrapperRef.current.getBoundingClientRect().top
+				);
+			}
+
+			setWindowHeight(window.innerHeight);
+		}, 1000);
+
+		return () => clearTimeout(timer);
+	}, [distanceToTop]);
+
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
@@ -46,7 +93,7 @@ const WorkIntro = (props: Props) => {
 	});
 
 	return (
-		<WorkIntroWrapper ref={ref}>
+		<WorkIntroWrapper ref={ref} style={{ transform, opacity }}>
 			<LayoutWrapper>
 				<LayoutGrid>
 					<Inner>
