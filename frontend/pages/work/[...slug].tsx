@@ -14,6 +14,7 @@ import WorkIntro from '../../components/blocks/WorkIntro';
 import WorkHero from '../../components/blocks/WorkHero';
 import WorkDetails from '../../components/blocks/WorkDetails/WorkDetails';
 import { workPageQueryString } from '../../lib/sanityQueries';
+import { useEffect } from 'react';
 
 type Props = {
 	data: ProjectType;
@@ -25,6 +26,10 @@ const PageWrapper = styled(motion.div)`
 	padding-top: var(--header-h);
 	min-height: 150vh;
 	background: var(--colour-white);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding-top: calc(var(--header-h) + 16px);
+	}
 `;
 
 const Page = (props: Props) => {
@@ -33,7 +38,7 @@ const Page = (props: Props) => {
 	const {
 		collaborators,
 		description,
-		exerpt,
+		excerpt,
 		fullWidthHero,
 		heroLayoutType,
 		imageBlocks,
@@ -46,11 +51,16 @@ const Page = (props: Props) => {
 		title,
 		twoColumnHero,
 		type
-	} = props;
+	} = data;
 
 	const { ctaBannerTitle, ctaBannerLink, ctaBannerMedia } = workPageData;
 
 	console.log('data', data);
+	console.log('workPageData', workPageData);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<PageWrapper
@@ -63,7 +73,7 @@ const Page = (props: Props) => {
 				title={data?.title || 'Ultra'}
 				description={data?.excerpt || ''}
 			/>
-			<WorkIntro exerpt={exerpt} tagline={tagline} types={type} />
+			<WorkIntro excerpt={excerpt} tagline={tagline} types={type} />
 			<WorkHero
 				heroLayoutType={heroLayoutType}
 				twoColumnHero={twoColumnHero}
@@ -315,9 +325,9 @@ export async function getStaticProps({ params }: any) {
 		}
 	`;
 
-	const workPageData = await client.fetch(workPageQueryString);
-
+	let workPageData = await client.fetch(workPageQueryString);
 	const data = await client.fetch(projectQuery);
+	workPageData = workPageData[0];
 
 	return {
 		props: {

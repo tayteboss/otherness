@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 const useHeaderHeight = () => {
 	useEffect(() => {
 		const setHeaderHeight = (): void => {
-			const header: HTMLElement | null = document.querySelector('.header');
+			const header: HTMLElement | null =
+				document.querySelector('.header');
 
 			if (!header) return;
 			const headerHeight = header.offsetHeight;
@@ -16,10 +17,15 @@ const useHeaderHeight = () => {
 
 		setHeaderHeight();
 
+		const timer = setTimeout(() => {
+			setHeaderHeight();
+		}, 1000);
+
 		window.addEventListener('resize', setHeaderHeight);
 
 		return () => {
 			window.removeEventListener('resize', setHeaderHeight);
+			clearTimeout(timer);
 		};
 	}, []);
 };
