@@ -9,6 +9,7 @@ import LayoutGrid from '../../common/LayoutGrid';
 import ProjectCard from '../ProjectCard';
 import { AnimatePresence, motion } from 'framer-motion';
 import CtaBanner from '../CtaBanner';
+import LoadMore from '../../elements/LoadMore';
 
 type Props = {
 	data: ProjectType[];
@@ -16,13 +17,17 @@ type Props = {
 	ctaBannerTitle: string;
 	ctaBannerMedia: MediaType;
 	ctaBannerLink: ButtonType;
+	cantLoadMore: boolean;
+	handleNextProjects: () => void;
 };
 
 const ProjectsListWrapper = styled(motion.section)`
 	min-height: 100vh;
 `;
 
-const Title = styled.h3``;
+const Title = styled.h3`
+	margin-bottom: 75vh;
+`;
 
 const FirstListWrapper = styled.div`
 	.project-card {
@@ -99,8 +104,15 @@ const wrapperVariants = {
 };
 
 const ProjectsList = (props: Props) => {
-	const { data, isLoading, ctaBannerTitle, ctaBannerMedia, ctaBannerLink } =
-		props;
+	const {
+		data,
+		isLoading,
+		ctaBannerTitle,
+		ctaBannerMedia,
+		ctaBannerLink,
+		cantLoadMore,
+		handleNextProjects
+	} = props;
 
 	const first5Projects = data.slice(0, 5);
 	const restOfProjects = data.slice(5);
@@ -109,61 +121,71 @@ const ProjectsList = (props: Props) => {
 
 	return (
 		<AnimatePresence>
-			{!isLoading && (
-				<ProjectsListWrapper
-					variants={wrapperVariants}
-					initial="hidden"
-					animate="visible"
-					exit="hidden"
-				>
-					<FirstListWrapper>
-						<LayoutWrapper useGalleryLayout>
-							{!hasFirst5Projects && (
-								<Title>No projects found...</Title>
-							)}
-							<LayoutGrid useGalleryGrid>
-								{hasFirst5Projects &&
-									first5Projects.map((item, i) => (
-										<ProjectCard
-											key={i}
-											title={item?.title}
-											tagline={item?.tagline}
-											thumbnailMedia={
-												item?.thumbnailMedia
-											}
-											slug={item?.slug}
-											isLarge={i % 6 === 4}
-										/>
-									))}
-							</LayoutGrid>
-						</LayoutWrapper>
-					</FirstListWrapper>
-					<CtaBanner
-						title={ctaBannerTitle}
-						media={ctaBannerMedia}
-						link={ctaBannerLink}
+			{/* {!isLoading && ( */}
+			<ProjectsListWrapper
+				variants={wrapperVariants}
+				initial="hidden"
+				animate="visible"
+				exit="hidden"
+			>
+				<FirstListWrapper>
+					<LayoutWrapper useGalleryLayout>
+						{!hasFirst5Projects && (
+							<Title>No projects found...</Title>
+						)}
+						<LayoutGrid useGalleryGrid>
+							{hasFirst5Projects &&
+								first5Projects.map((item, i) => (
+									<ProjectCard
+										key={i}
+										title={item?.title}
+										tagline={item?.tagline}
+										thumbnailMedia={item?.thumbnailMedia}
+										slug={item?.slug}
+										isLarge={i % 6 === 4}
+									/>
+								))}
+						</LayoutGrid>
+					</LayoutWrapper>
+				</FirstListWrapper>
+				{!hasRestOfProjects && (
+					<LoadMore
+						title="Load more projects"
+						handleLoadMore={handleNextProjects}
+						isActive={!cantLoadMore}
 					/>
-					<RestListWrapper>
-						<LayoutWrapper>
-							<LayoutGrid>
-								{hasRestOfProjects &&
-									restOfProjects.map((item, i) => (
-										<ProjectCard
-											key={i}
-											title={item?.title}
-											tagline={item?.tagline}
-											thumbnailMedia={
-												item?.thumbnailMedia
-											}
-											slug={item?.slug}
-											isLarge={i % 6 === 4}
-										/>
-									))}
-							</LayoutGrid>
-						</LayoutWrapper>
-					</RestListWrapper>
-				</ProjectsListWrapper>
-			)}
+				)}
+				<CtaBanner
+					title={ctaBannerTitle}
+					media={ctaBannerMedia}
+					link={ctaBannerLink}
+				/>
+				<RestListWrapper>
+					<LayoutWrapper>
+						<LayoutGrid>
+							{hasRestOfProjects &&
+								restOfProjects.map((item, i) => (
+									<ProjectCard
+										key={i}
+										title={item?.title}
+										tagline={item?.tagline}
+										thumbnailMedia={item?.thumbnailMedia}
+										slug={item?.slug}
+										isLarge={i % 6 === 4}
+									/>
+								))}
+						</LayoutGrid>
+					</LayoutWrapper>
+				</RestListWrapper>
+				{hasRestOfProjects && (
+					<LoadMore
+						title={isLoading ? 'Loading' : 'Load more projects'}
+						handleLoadMore={handleNextProjects}
+						isActive={!cantLoadMore}
+					/>
+				)}
+			</ProjectsListWrapper>
+			{/* )} */}
 		</AnimatePresence>
 	);
 };

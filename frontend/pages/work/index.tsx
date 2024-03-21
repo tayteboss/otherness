@@ -10,28 +10,35 @@ import { NextSeo } from 'next-seo';
 import {
 	basicProjectsQueryDefault,
 	basicProjectsQueryString,
-	projectsQueryDefault,
-	projectsQueryString,
+	overflowProjectsQueryString,
 	workPageQueryString
 } from '../../lib/sanityQueries';
 import PageHeader from '../../components/blocks/PageHeader';
 import { useEffect, useState } from 'react';
 import FiltersBar from '../../components/blocks/FiltersBar';
 import ProjectsList from '../../components/blocks/ProjectsList';
+import LoadMore from '../../components/elements/LoadMore';
+import pxToRem from '../../utils/pxToRem';
+import { check } from 'prettier';
 
 const PageWrapper = styled(motion.div)`
 	padding-top: var(--header-h);
 	min-height: 150vh;
+	padding-bottom: ${pxToRem(80)};
+	background: var(--colour-white);
 `;
 
 type Props = {
 	data: WorkPageType;
 	projects: ProjectType[];
 	pageTransitionVariants: TransitionsType;
+	hasMoreProject: boolean;
 };
 
 const Page = (props: Props) => {
-	const { data, projects, pageTransitionVariants } = props;
+	const { data, projects, pageTransitionVariants, hasMoreProject } = props;
+
+	const projectSkip = 3;
 
 	const [activeMood, setActiveMood] = useState('all');
 	const [activeWork, setActiveWork] = useState('all');
@@ -39,14 +46,11 @@ const Page = (props: Props) => {
 	const [fetchedProjects, setfetchedProjects] =
 		useState<ProjectType[]>(projects);
 	const [firstRenderCheck, setFirstRenderCheck] = useState(0);
-	const [projectCount, setProjectCount] = useState(0);
-	const [cantLoadMore, setCantLoadMore] = useState(false);
+	const [projectCount, setProjectCount] = useState(projectSkip);
+	const [cantLoadMore, setCantLoadMore] = useState(!hasMoreProject);
 
 	// TODO:
-	// PAGINATION
 	// MOBILE FILTERING FRONTEND
-
-	const projectSkip = 10;
 
 	const handleFiltering = async (activeMood: string, activeWork: string) => {
 		setIsLoading(true);
@@ -60,13 +64,28 @@ const Page = (props: Props) => {
 			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [0...${projectSkip}] ${basicProjectsQueryDefault}
 		`;
 
+		const moreProjectsQuery = `
+			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${
+			projectSkip + 1
+		}...${projectSkip + 2}] ${basicProjectsQueryDefault}
+		`;
+
+		console.log('query', query);
+		console.log('moreProjectsQuery', moreProjectsQuery);
+
 		try {
 			const data = await client.fetch(query);
+			const moreData = await client.fetch(moreProjectsQuery);
+
+			console.log('moreData filtered', moreData);
 
 			setfetchedProjects(data);
+			setProjectCount(projectCount + projectSkip);
 
-			if (data?.length < projectSkip) {
+			if (moreData.length === 0) {
 				setCantLoadMore(true);
+			} else {
+				setCantLoadMore(false);
 			}
 
 			const timer = setTimeout(() => {
@@ -94,18 +113,30 @@ const Page = (props: Props) => {
 			projectCount + projectSkip
 		}] ${basicProjectsQueryDefault}
 		`;
+		const moreProjectsQuery = `
+			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${
+			projectCount + projectSkip + 1
+		}...${projectCount + projectSkip + 2}] ${basicProjectsQueryDefault}
+		`;
 
 		try {
 			const data = await client.fetch(query);
+			const moreData = await client.fetch(moreProjectsQuery);
 
 			setfetchedProjects([...fetchedProjects, ...data]);
 			setProjectCount(projectCount + projectSkip);
 
-			if (data?.length < projectSkip) {
+			if (moreData.length === 0) {
 				setCantLoadMore(true);
+			} else {
+				setCantLoadMore(false);
 			}
 
-			setIsLoading(false);
+			const timer = setTimeout(() => {
+				setIsLoading(false);
+			}, 1000);
+
+			return () => clearTimeout(timer);
 		} catch (error) {
 			console.error('Error fetching site data:', error);
 			setIsLoading(false);
@@ -121,8 +152,6 @@ const Page = (props: Props) => {
 		setProjectCount(0);
 		handleFiltering(activeMood, activeWork);
 	}, [activeMood, activeWork]);
-
-	console.log('data', data);
 
 	return (
 		<PageWrapper
@@ -148,6 +177,8 @@ const Page = (props: Props) => {
 				ctaBannerTitle={data?.ctaBannerTitle}
 				ctaBannerMedia={data?.ctaBannerMedia}
 				ctaBannerLink={data?.ctaBannerLink}
+				handleNextProjects={handleNextProjects}
+				cantLoadMore={cantLoadMore}
 			/>
 		</PageWrapper>
 	);
@@ -156,13 +187,16 @@ const Page = (props: Props) => {
 export async function getStaticProps() {
 	let data = await client.fetch(workPageQueryString);
 	const projects = await client.fetch(basicProjectsQueryString);
+	const overflowProjects = await client.fetch(overflowProjectsQueryString);
+	const hasMoreProject = overflowProjects.length > 0;
 
 	data = data[0];
 
 	return {
 		props: {
 			data,
-			projects
+			projects,
+			hasMoreProject
 		}
 	};
 }
