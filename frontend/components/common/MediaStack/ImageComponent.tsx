@@ -2,6 +2,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { MediaType } from '../../../shared/types/types';
 import { AnimatePresence, motion } from 'framer-motion';
+import useViewportWidth from '../../../hooks/useViewportWidth';
 
 const ImageComponentWrapper = styled.div`
 	position: relative;
@@ -62,6 +63,18 @@ type Props = {
 const ImageComponent = (props: Props) => {
 	const { data, isPriority, inView } = props;
 
+	const viewport = useViewportWidth();
+	const isMobile = viewport === 'mobile';
+
+	const imageUrl =
+		isMobile && data?.mobileImage?.asset?.url
+			? data.mobileImage.asset.url
+			: data?.image?.asset?.url;
+	const blurDataURL =
+		isMobile && data?.mobileImage?.asset?.metadata?.lqip
+			? data.mobileImage.asset.metadata.lqip
+			: data?.image?.asset?.metadata?.lqip;
+
 	return (
 		<ImageComponentWrapper className="image-component-wrapper">
 			<AnimatePresence initial={false}>
@@ -73,23 +86,23 @@ const ImageComponent = (props: Props) => {
 						exit="hidden"
 					>
 						<Image
-							src={data?.image?.asset?.metadata?.lqip}
+							src={blurDataURL}
 							alt={data?.image?.alt || ''}
 							fill
 							priority={isPriority}
-							blurDataURL={data?.image?.asset?.metadata?.lqip}
+							blurDataURL={blurDataURL}
 						/>
 					</InnerBlur>
 				)}
 			</AnimatePresence>
 			<Inner>
-				{data?.image?.asset?.url && (
+				{imageUrl && (
 					<Image
-						src={data.image.asset?.url}
+						src={imageUrl}
 						alt={data?.image?.alt || ''}
 						fill
 						priority={isPriority}
-						blurDataURL={data?.image?.asset?.metadata?.lqip}
+						blurDataURL={blurDataURL}
 					/>
 				)}
 			</Inner>

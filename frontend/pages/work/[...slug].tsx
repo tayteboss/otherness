@@ -56,7 +56,7 @@ const Page = (props: Props) => {
 	const { ctaBannerTitle, ctaBannerLink, ctaBannerMedia } = workPageData;
 
 	console.log('data', data);
-	console.log('workPageData', workPageData);
+	// console.log('workPageData', workPageData);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -122,6 +122,17 @@ export async function getStaticProps({ params }: any) {
 			},
 		},
 		video {
+			asset-> {
+				playbackId,
+			},
+		},
+		mobileImage {
+			alt,
+			asset-> {
+				url,
+			},
+		},
+		mobileVideo {
 			asset-> {
 				playbackId,
 			},
@@ -246,47 +257,6 @@ export async function getStaticProps({ params }: any) {
 						${mediaTypeString}
 					}
 				}
-			},
-			fullWidthHero {
-				mediaType,
-				image {
-					asset-> {
-						url,
-					},
-				},
-				video {
-					asset-> {
-						playbackId,
-					},
-				},
-			},
-			twoColumnHero {
-				leftBlock {
-					mediaType,
-					image {
-						asset-> {
-							url,
-						},
-					},
-					video {
-						asset-> {
-							playbackId,
-						},
-					},
-				},
-				rightBlock {
-					mediaType,
-					image {
-						asset-> {
-							url,
-						},
-					},
-					video {
-						asset-> {
-							playbackId,
-						},
-					},
-				},
 			},
 			relatedProject-> {
 				slug,

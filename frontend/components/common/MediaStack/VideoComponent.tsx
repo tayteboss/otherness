@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MediaType } from '../../../shared/types/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
+import useViewportWidth from '../../../hooks/useViewportWidth';
 
 const VideoComponentWrapper = styled.div`
 	position: relative;
@@ -68,10 +69,22 @@ type Props = {
 const VideoComponent = (props: Props) => {
 	const { data, inView, isPriority } = props;
 
+	const viewport = useViewportWidth();
+	const isMobile = viewport === 'mobile';
+
+	const playbackId =
+		isMobile && data?.mobileVideo?.asset?.playbackId
+			? data.mobileVideo.asset.playbackId
+			: data?.video?.asset?.playbackId;
+	const posterUrl =
+		isMobile && data?.mobileVideo?.asset?.playbackId
+			? `https://image.mux.com/${data.mobileVideo.asset.playbackId}/thumbnail.png?width=214&height=121&time=1`
+			: `https://image.mux.com/${data?.video?.asset?.playbackId}/thumbnail.png?width=214&height=121&time=1`;
+
 	return (
 		<VideoComponentWrapper className="video-component-wrapper">
 			<AnimatePresence initial={false}>
-				{inView && data?.video?.asset?.playbackId && (
+				{inView && playbackId && (
 					<InnerBlur
 						variants={wrapperVariants}
 						initial="hidden"
@@ -79,7 +92,7 @@ const VideoComponent = (props: Props) => {
 						exit="hidden"
 					>
 						<Image
-							src={`https://image.mux.com/${data?.video?.asset?.playbackId}/thumbnail.png?width=214&height=121&time=1`}
+							src={`${posterUrl}`}
 							alt={''}
 							fill
 							priority={isPriority}
@@ -87,11 +100,11 @@ const VideoComponent = (props: Props) => {
 					</InnerBlur>
 				)}
 			</AnimatePresence>
-			{data?.video?.asset?.playbackId && (
+			{playbackId && (
 				<Inner>
 					<MuxPlayer
 						streamType="on-demand"
-						playbackId={data?.video?.asset?.playbackId}
+						playbackId={playbackId}
 						autoPlay="muted"
 						loop={true}
 						thumbnailTime={1}
@@ -99,7 +112,7 @@ const VideoComponent = (props: Props) => {
 						preload="auto"
 						muted
 						playsInline={true}
-						poster={`https://image.mux.com/${data?.video?.asset?.playbackId}/thumbnail.png?width=214&height=121&time=1`}
+						poster={`${posterUrl}`}
 					/>
 				</Inner>
 			)}

@@ -1,6 +1,13 @@
 import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 import {CaseIcon} from '@sanity/icons'
-import {imageObject, projectImageBlocks, selectMediaTypeObject, videoObject} from '../objects'
+import {
+  imageObject,
+  mobileImageObject,
+  mobileVideoObject,
+  projectImageBlocks,
+  selectMediaTypeObject,
+  videoObject,
+} from '../objects'
 
 export default {
   title: 'Project',
@@ -138,7 +145,15 @@ export default {
           hidden: ({document}: any) => document?.fullWidthHero?.mediaType !== 'image',
         },
         {
+          ...mobileImageObject,
+          hidden: ({document}: any) => document?.fullWidthHero?.mediaType !== 'image',
+        },
+        {
           ...videoObject,
+          hidden: ({document}: any) => document?.fullWidthHero?.mediaType !== 'video',
+        },
+        {
+          ...mobileVideoObject,
           hidden: ({document}: any) => document?.fullWidthHero?.mediaType !== 'video',
         },
       ],

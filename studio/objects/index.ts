@@ -117,10 +117,31 @@ const imageObject = {
   ],
 }
 
+const mobileImageObject = {
+  title: 'Mobile Image',
+  name: 'mobileImage',
+  type: 'image',
+  description: 'Optional',
+  fields: [
+    {
+      name: 'alt',
+      type: 'string',
+      title: 'Alt Text',
+    },
+  ],
+}
+
 const videoObject = {
   title: 'Video',
   name: 'video',
   type: 'mux.video',
+}
+
+const mobileVideoObject = {
+  title: 'Mobile Video',
+  name: 'mobileVideo',
+  type: 'mux.video',
+  description: 'Optional',
 }
 
 const imageComponentOneHalfOneXSmall = {
@@ -1123,4 +1144,6 @@ export {
   selectPosition3,
   selectSmallOrMediumSize,
   homeBlocks,
+  mobileImageObject,
+  mobileVideoObject,
 }
