@@ -1,18 +1,56 @@
 import styled from 'styled-components';
 import client from '../../client';
-import { ProjectType, TransitionsType } from '../../shared/types/types';
+import {
+	ProjectType,
+	TransitionsType,
+	WorkPageType
+} from '../../shared/types/types';
 import { motion } from 'framer-motion';
 import { NextSeo } from 'next-seo';
+import OthernessPageBuilder from '../../components/common/OthernessPageBuilder';
+import CtaBanner from '../../components/blocks/CtaBanner';
+import ExploreFurther from '../../components/blocks/ExploreFurther';
+import WorkIntro from '../../components/blocks/WorkIntro';
+import WorkHero from '../../components/blocks/WorkHero';
+import WorkDetails from '../../components/blocks/WorkDetails/WorkDetails';
+import { workPageQueryString } from '../../lib/sanityQueries';
 
 type Props = {
 	data: ProjectType;
+	workPageData: WorkPageType;
 	pageTransitionVariants: TransitionsType;
 };
 
-const PageWrapper = styled(motion.div)``;
+const PageWrapper = styled(motion.div)`
+	padding-top: var(--header-h);
+	min-height: 150vh;
+	background: var(--colour-white);
+`;
 
 const Page = (props: Props) => {
-	const { data, pageTransitionVariants } = props;
+	const { data, workPageData, pageTransitionVariants } = props;
+
+	const {
+		collaborators,
+		description,
+		exerpt,
+		fullWidthHero,
+		heroLayoutType,
+		imageBlocks,
+		mood,
+		relatedProject,
+		slug,
+		subProjects,
+		tagline,
+		thumbnailMedia,
+		title,
+		twoColumnHero,
+		type
+	} = props;
+
+	const { ctaBannerTitle, ctaBannerLink, ctaBannerMedia } = workPageData;
+
+	console.log('data', data);
 
 	return (
 		<PageWrapper
@@ -25,6 +63,23 @@ const Page = (props: Props) => {
 				title={data?.title || 'Ultra'}
 				description={data?.excerpt || ''}
 			/>
+			<WorkIntro exerpt={exerpt} tagline={tagline} types={type} />
+			<WorkHero
+				heroLayoutType={heroLayoutType}
+				twoColumnHero={twoColumnHero}
+			/>
+			<WorkDetails
+				client={title}
+				collaborators={collaborators}
+				description={description}
+			/>
+			<OthernessPageBuilder data={imageBlocks} useImageComponent />
+			<CtaBanner
+				title={ctaBannerTitle}
+				media={ctaBannerMedia}
+				link={ctaBannerLink}
+			/>
+			<ExploreFurther />
 		</PageWrapper>
 	);
 };
@@ -260,11 +315,14 @@ export async function getStaticProps({ params }: any) {
 		}
 	`;
 
+	const workPageData = await client.fetch(workPageQueryString);
+
 	const data = await client.fetch(projectQuery);
 
 	return {
 		props: {
-			data
+			data,
+			workPageData
 		}
 	};
 }

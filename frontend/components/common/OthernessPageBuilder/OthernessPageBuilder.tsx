@@ -11,7 +11,9 @@ import ExpectImageOneColumnContent from '../../blocks/ExpectImageOneColumnConten
 
 type Props = {
 	data: any;
-	useType: boolean;
+	useType?: boolean;
+	useImageComponent?: boolean;
+	useComponent?: boolean;
 };
 
 const PageBuilderWrapper = styled.div`
@@ -22,7 +24,12 @@ const PageBuilderWrapper = styled.div`
 `;
 
 const OthernessPageBuilder = (props: Props) => {
-	const { data, useType = false } = props;
+	const {
+		data,
+		useType = false,
+		useComponent = false,
+		useImageComponent = false
+	} = props;
 
 	const sections: any = {
 		homeComponentOneTestimonialOneStatistic:
@@ -38,47 +45,49 @@ const OthernessPageBuilder = (props: Props) => {
 
 	return (
 		<PageBuilderWrapper className="page-builder">
-			{useType
-				? data &&
-				  data.map((section: any, i: number) => {
-						{
-							if (!sections[section._type]) {
-								return (
-									<div key={Math.random() * 10000}>
-										No section found for {section._type}
-									</div>
-								);
-							} else {
-								const Component = sections[section._type];
-								return (
-									<Component
-										key={`${section._type}-${i}`}
-										{...section}
-									/>
-								);
-							}
+			{useType &&
+				data &&
+				data.map((section: any, i: number) => {
+					{
+						if (!sections[section._type]) {
+							return (
+								<div key={Math.random() * 10000}>
+									No section found for {section._type}
+								</div>
+							);
+						} else {
+							const Component = sections[section._type];
+							return (
+								<Component
+									key={`${section._type}-${i}`}
+									{...section}
+								/>
+							);
 						}
-				  })
-				: data &&
-				  data.map((section: any, i: number) => {
-						{
-							if (!sections[section.component]) {
-								return (
-									<div key={Math.random() * 10000}>
-										No section found for {section.component}
-									</div>
-								);
-							} else {
-								const Component = sections[section.component];
-								return (
-									<Component
-										key={`${section.component}-${i}`}
-										{...section}
-									/>
-								);
-							}
+					}
+				})}
+
+			{useComponent &&
+				data &&
+				data.map((section: any, i: number) => {
+					{
+						if (!sections[section.component]) {
+							return (
+								<div key={Math.random() * 10000}>
+									No section found for {section.component}
+								</div>
+							);
+						} else {
+							const Component = sections[section.component];
+							return (
+								<Component
+									key={`${section.component}-${i}`}
+									{...section}
+								/>
+							);
 						}
-				  })}
+					}
+				})}
 		</PageBuilderWrapper>
 	);
 };

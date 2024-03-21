@@ -125,7 +125,7 @@ const Page = (props: Props) => {
 				button={data?.whatToExpectButton}
 			/>
 			<OurServicesBanner services={data?.servicesList} />
-			<OthernessPageBuilder data={data?.homeBlocks} />
+			<OthernessPageBuilder data={data?.homeBlocks} useComponent />
 			<FeaturedConversations data={data?.featuredConversations} />
 			<NoticedList data={data?.noticedList} />
 		</PageWrapper>

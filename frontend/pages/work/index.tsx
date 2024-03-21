@@ -70,14 +70,9 @@ const Page = (props: Props) => {
 		}...${projectSkip + 2}] ${basicProjectsQueryDefault}
 		`;
 
-		console.log('query', query);
-		console.log('moreProjectsQuery', moreProjectsQuery);
-
 		try {
 			const data = await client.fetch(query);
 			const moreData = await client.fetch(moreProjectsQuery);
-
-			console.log('moreData filtered', moreData);
 
 			setfetchedProjects(data);
 			setProjectCount(projectCount + projectSkip);
