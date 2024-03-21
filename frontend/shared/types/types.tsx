@@ -240,7 +240,7 @@ export type ProjectType = {
 	}[];
 	description: string;
 	excerpt: string;
-	fullWidthHero?: MediaType;
+	fullWidthHero: MediaType;
 	heroLayoutType: 'fullWidth' | 'twoColumn';
 	imageBlocks: any;
 	mood: (
