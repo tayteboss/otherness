@@ -15,7 +15,7 @@ const ImageComponentOneHalfOneXSmallWrapper = styled.section`
 `;
 
 const HalfWrapper = styled.div`
-	grid-column: span 13;
+	grid-column: span 12;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		grid-column: 1 / -1;
