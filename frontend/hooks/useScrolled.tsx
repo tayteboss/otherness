@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import throttle from 'lodash.throttle';
 
 type Props = {
@@ -18,7 +18,7 @@ const useScrolled = (props: Props) => {
 		}
 	};
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const throttledHandleScroll = throttle(handleScroll, 100);
 		window.addEventListener('scroll', throttledHandleScroll);
 		return () =>

@@ -1,7 +1,7 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 
 const useHeaderHeight = () => {
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const setHeaderHeight = (): void => {
 			const header: HTMLElement | null =
 				document.querySelector('.header');

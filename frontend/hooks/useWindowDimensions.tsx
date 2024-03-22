@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import throttle from 'lodash.throttle';
 
 type WindowDimensions = {
@@ -21,7 +21,7 @@ const useWindowDimensions = (): WindowDimensions => {
 		height: 0
 	});
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		setWindowDimensions(getWindowDimensions());
 
 		const handleResize = (): void => {

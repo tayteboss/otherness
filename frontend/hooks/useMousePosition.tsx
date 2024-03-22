@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import throttle from 'lodash.throttle';
 
 type ReturnMousePosition = {
@@ -17,7 +17,7 @@ export const useMousePosition = (): ReturnMousePosition => {
 	const setFromEvent = (e: MouseEvent) =>
 		setPosition({ x: e.clientX, y: e.clientY });
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const throttledSetFromEvent = throttle(setFromEvent, 50);
 		window.addEventListener('mousemove', throttledSetFromEvent);
 

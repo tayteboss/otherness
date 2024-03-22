@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 type StyledProps = {
@@ -45,7 +45,7 @@ const EditorialCard = (props: Props) => {
 
 	const ref = useRef<HTMLDivElement>(null);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const handleResize = () => {
 			if (ref.current) {
 				setDivWidth(ref.current.offsetWidth);
