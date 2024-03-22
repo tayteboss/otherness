@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import { SubProjectType } from '../../../shared/types/types';
 import SubProject from '../SubProject/SubProject';
+import pxToRem from '../../../utils/pxToRem';
 
 type Props = {
 	data: SubProjectType[];
 };
 
-const SubProjectsWrapper = styled.section``;
+const SubProjectsWrapper = styled.section`
+	margin-bottom: ${pxToRem(80)};
+`;
 
 const SubProjects = (props: Props) => {
 	const { data } = props;

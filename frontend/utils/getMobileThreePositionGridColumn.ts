@@ -9,6 +9,8 @@ const getMobileThreePositionGridColumn = (
 		gridColumn = '3 / -3';
 	} else if (selectPosition === 'right') {
 		gridColumn = '4 / -1';
+	} else {
+		gridColumn = 'span 5';
 	}
 
 	return gridColumn;

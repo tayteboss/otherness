@@ -273,6 +273,14 @@ export async function getStaticProps({ params }: any) {
 				imageComponentOneXSmall {
 					selectPosition,
 					${mediaTypeString}
+				},
+				imageComponentTwoHalf {
+					rhs {
+						${mediaTypeString}
+					},
+					lhs {
+						${mediaTypeString}
+					}
 				}
 			},
 			subProjects[]-> {
@@ -387,6 +395,14 @@ export async function getStaticProps({ params }: any) {
 					imageComponentOneXSmall {
 						selectPosition,
 						${mediaTypeString}
+					},
+					imageComponentTwoHalf {
+						rhs {
+							${mediaTypeString}
+						},
+						lhs {
+							${mediaTypeString}
+						}
 					}
 				}
 			},

@@ -4,6 +4,7 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
 import { useInView } from 'react-intersection-observer';
 import pxToRem from '../../../utils/pxToRem';
+import OthernessPageBuilder from '../../common/OthernessPageBuilder';
 
 const SubProjectWrapper = styled.div`
 	padding-top: ${pxToRem(48)};
@@ -20,6 +21,10 @@ const Title = styled.h2<{ $inView: boolean }>`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(24)} 0 ${pxToRem(8)};
+		margin-bottom: ${pxToRem(20)};
+		font-size: ${pxToRem(30)};
+		line-height: ${pxToRem(38)};
+		letter-spacing: -0.3px;
 	}
 
 	&::after {
@@ -47,8 +52,12 @@ const Description = styled.div`
 	}
 `;
 
+const SubProjectImages = styled.div``;
+
 const SubProject = (props: SubProjectType) => {
 	const { title, label, description, imageBlocks } = props;
+
+	const hasImages = imageBlocks.length > 0;
 
 	const formatId = (label: string) => {
 		if (!label) return;
@@ -86,6 +95,14 @@ const SubProject = (props: SubProjectType) => {
 					</LayoutGrid>
 				</LayoutWrapper>
 			</HeaderWrapper>
+			{hasImages && (
+				<SubProjectImages>
+					<OthernessPageBuilder
+						data={imageBlocks}
+						useImageComponent
+					/>
+				</SubProjectImages>
+			)}
 		</SubProjectWrapper>
 	);
 };
