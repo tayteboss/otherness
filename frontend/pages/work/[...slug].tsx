@@ -15,6 +15,8 @@ import WorkHero from '../../components/blocks/WorkHero';
 import WorkDetails from '../../components/blocks/WorkDetails/WorkDetails';
 import { workPageQueryString } from '../../lib/sanityQueries';
 import { useEffect } from 'react';
+import pxToRem from '../../utils/pxToRem';
+import RelatedProject from '../../components/blocks/RelatedProject';
 
 type Props = {
 	data: ProjectType;
@@ -30,6 +32,10 @@ const PageWrapper = styled(motion.div)`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding-top: calc(var(--header-h) + 16px);
 	}
+
+	.cta-banner {
+		padding-top: ${pxToRem(72)};
+	}
 `;
 
 const Page = (props: Props) => {
@@ -42,12 +48,9 @@ const Page = (props: Props) => {
 		fullWidthHero,
 		heroLayoutType,
 		imageBlocks,
-		mood,
 		relatedProject,
-		slug,
 		subProjects,
 		tagline,
-		thumbnailMedia,
 		title,
 		twoColumnHero,
 		type
@@ -56,7 +59,7 @@ const Page = (props: Props) => {
 	const { ctaBannerTitle, ctaBannerLink, ctaBannerMedia } = workPageData;
 
 	// console.log('data', data);
-	// console.log('workPageData', workPageData);
+	console.log('relatedProject', relatedProject);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -90,7 +93,7 @@ const Page = (props: Props) => {
 				media={ctaBannerMedia}
 				link={ctaBannerLink}
 			/>
-			<ExploreFurther />
+			<RelatedProject data={relatedProject} />
 		</PageWrapper>
 	);
 };
@@ -271,46 +274,17 @@ export async function getStaticProps({ params }: any) {
 			relatedProject-> {
 				slug,
 				title,
+				tagline,
 				heroLayoutType,
 				fullWidthHero {
-					mediaType,
-					image {
-						asset-> {
-							url,
-						},
-					},
-					video {
-						asset-> {
-							playbackId,
-						},
-					},
+					${mediaTypeString}
 				},
 				twoColumnHero {
 					leftBlock {
-						mediaType,
-						image {
-							asset-> {
-								url,
-							},
-						},
-						video {
-							asset-> {
-								playbackId,
-							},
-						},
+						${mediaTypeString}
 					},
 					rightBlock {
-						mediaType,
-						image {
-							asset-> {
-								url,
-							},
-						},
-						video {
-							asset-> {
-								playbackId,
-							},
-						},
+						${mediaTypeString}
 					},
 				},
 			},

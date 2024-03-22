@@ -65,8 +65,6 @@ const ImageComponentOneBigOneXSmall = (props: Props) => {
 		smallGridColumn = '1 / 7';
 	}
 
-	console.log('imageComponentOneBigOneXSmall', imageComponentOneBigOneXSmall);
-
 	return (
 		<ImageComponentOneBigOneXSmallWrapper>
 			<LayoutWrapper useGalleryLayout>
