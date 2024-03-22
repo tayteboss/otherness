@@ -281,6 +281,12 @@ export async function getStaticProps({ params }: any) {
 					lhs {
 						${mediaTypeString}
 					}
+				},
+				imageComponentOneTestimonialOneXSmall {
+					...,
+					xSmall {
+						${mediaTypeString}
+					}
 				}
 			},
 			subProjects[]-> {
@@ -401,6 +407,12 @@ export async function getStaticProps({ params }: any) {
 							${mediaTypeString}
 						},
 						lhs {
+							${mediaTypeString}
+						}
+					},
+					imageComponentOneTestimonialOneXSmall {
+						...,
+						xSmall {
 							${mediaTypeString}
 						}
 					}

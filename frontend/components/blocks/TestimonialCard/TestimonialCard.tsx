@@ -2,29 +2,20 @@ import styled from 'styled-components';
 import { TestimonialType } from '../../../shared/types/types';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
+import { useState, useRef, useEffect } from 'react';
 
 type StyledProps = {
 	$isLightTheme: boolean;
+	$divWidth: number;
 };
 
 const TestimonialCardWrapper = styled.div`
 	width: 100%;
 `;
 
-const RatioWrapper = styled.div`
-	padding-top: 87%;
-	position: relative;
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
-		padding-top: 0;
-	}
-`;
-
 const Inner = styled.div<StyledProps>`
 	padding: ${pxToRem(16)} ${pxToRem(24)} ${pxToRem(24)};
-	position: absolute;
-	inset: 0;
-	height: 100%;
+	min-height: ${(props) => props.$divWidth}px;
 	width: 100%;
 	background: ${(props) =>
 		props.$isLightTheme
@@ -34,10 +25,6 @@ const Inner = styled.div<StyledProps>`
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
-		position: relative;
-	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(16)};
@@ -79,6 +66,22 @@ const TestimonialCard = (props: TestimonialType) => {
 
 	const formattedCredit: string = `<p>${credit.replace(/\n/g, '<br />')}</p>`;
 
+	const [divWidth, setDivWidth] = useState(0);
+
+	const ref2 = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const handleResize = () => {
+			if (ref2.current) {
+				setDivWidth(ref2.current.offsetWidth);
+			}
+		};
+
+		handleResize();
+
+		window.addEventListener('resize', handleResize);
+	}, []);
+
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
@@ -87,28 +90,30 @@ const TestimonialCard = (props: TestimonialType) => {
 
 	return (
 		<TestimonialCardWrapper
-			ref={ref}
+			ref={ref2}
 			className={`testimonial-card view-element-fade-in ${
 				inView ? 'view-element-fade-in--in-view' : ''
 			}`}
 		>
-			<RatioWrapper>
-				<Inner $isLightTheme={theme === 'light'}>
-					{testimonial && (
-						<Testimonial $isLightTheme={theme === 'light'}>
-							{testimonial}
-						</Testimonial>
-					)}
-					{formattedCredit && (
-						<Credit
-							$isLightTheme={theme === 'light'}
-							dangerouslySetInnerHTML={{
-								__html: formattedCredit
-							}}
-						/>
-					)}
-				</Inner>
-			</RatioWrapper>
+			<Inner
+				$isLightTheme={theme === 'light'}
+				ref={ref}
+				$divWidth={divWidth}
+			>
+				{testimonial && (
+					<Testimonial $isLightTheme={theme === 'light'}>
+						{testimonial}
+					</Testimonial>
+				)}
+				{formattedCredit && (
+					<Credit
+						$isLightTheme={theme === 'light'}
+						dangerouslySetInnerHTML={{
+							__html: formattedCredit
+						}}
+					/>
+				)}
+			</Inner>
 		</TestimonialCardWrapper>
 	);
 };
