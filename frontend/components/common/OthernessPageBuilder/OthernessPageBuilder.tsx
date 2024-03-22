@@ -22,7 +22,6 @@ import ImageComponentOnePortraitOneMedium from '../../blocks/ImageComponentOnePo
 import ImageComponentOneSmallOneBigLandscape from '../../blocks/ImageComponentOneSmallOneBigLandscape';
 import ImageComponentOneXSmall from '../../blocks/ImageComponentOneXSmall';
 import ImageComponentTwoXSmall from '../../blocks/ImageComponentTwoXSmall';
-import ImageComponentTwoSmall from '../../blocks/ImageComponentTwoSmall/ImageComponentTwoSmall';
 
 type Props = {
 	data: any;
@@ -36,10 +35,6 @@ const PageBuilderWrapper = styled.div`
 	flex-direction: column;
 	gap: ${pxToRem(8)};
 	overflow: hidden;
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		gap: ${pxToRem(16)};
-	}
 `;
 
 const OthernessPageBuilder = (props: Props) => {

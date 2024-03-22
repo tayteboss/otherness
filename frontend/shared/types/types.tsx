@@ -232,6 +232,7 @@ export type TwoColumnHeroType = {
 };
 
 export type ProjectType = {
+	relatedDesktopMedia?: MediaType;
 	title: string;
 	tagline: string;
 	slug: SlugType;

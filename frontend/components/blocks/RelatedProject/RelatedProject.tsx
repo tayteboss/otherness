@@ -15,10 +15,9 @@ type Props = {
 		};
 		tagline: string;
 		title: string;
-		fullWidthHero: MediaType;
-		twoColumnHero: { leftBlock: MediaType; rightBlock: MediaType };
-		heroLayoutType: 'fullWidth' | 'twoColumn';
+		thumbnailMedia: MediaType;
 	};
+	desktopMedia: MediaType;
 };
 
 const RelatedProjectWrapper = styled.a`
@@ -107,22 +106,28 @@ const MobileDetails = styled.div`
 	}
 `;
 
+const DesktopWrapper = styled.div`
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		display: none;
+	}
+`;
+
+const MobileWrapper = styled.div`
+	display: none;
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		display: block;
+	}
+`;
+
 const MobileTitle = styled.h4``;
 
 const MobileTagline = styled.p``;
 
 const RelatedProject = (props: Props) => {
-	const { data } = props;
+	const { data, desktopMedia } = props;
 
 	const [isHovered, setIsHovered] = useState(false);
-
-	let mediaData = {} as MediaType;
-
-	if (data?.heroLayoutType === 'fullWidth') {
-		mediaData = data?.fullWidthHero;
-	} else {
-		mediaData = data?.twoColumnHero?.leftBlock;
-	}
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -157,7 +162,14 @@ const RelatedProject = (props: Props) => {
 						</DesktopTitle>
 					</SubTitleWrapper>
 					<MediaWrapper $isHovered={isHovered}>
-						{mediaData && <MediaStack data={mediaData} />}
+						<DesktopWrapper>
+							{desktopMedia && <MediaStack data={desktopMedia} />}
+						</DesktopWrapper>
+						<MobileWrapper>
+							{data?.thumbnailMedia && (
+								<MediaStack data={data?.thumbnailMedia} />
+							)}
+						</MobileWrapper>
 					</MediaWrapper>
 					<MobileDetails>
 						<MobileTitle className="type-secondary-heading-small">

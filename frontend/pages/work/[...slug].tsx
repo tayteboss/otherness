@@ -9,7 +9,6 @@ import { motion } from 'framer-motion';
 import { NextSeo } from 'next-seo';
 import OthernessPageBuilder from '../../components/common/OthernessPageBuilder';
 import CtaBanner from '../../components/blocks/CtaBanner';
-import ExploreFurther from '../../components/blocks/ExploreFurther';
 import WorkIntro from '../../components/blocks/WorkIntro';
 import WorkHero from '../../components/blocks/WorkHero';
 import WorkDetails from '../../components/blocks/WorkDetails/WorkDetails';
@@ -53,13 +52,13 @@ const Page = (props: Props) => {
 		tagline,
 		title,
 		twoColumnHero,
-		type
+		type,
+		relatedDesktopMedia
 	} = data;
 
 	const { ctaBannerTitle, ctaBannerLink, ctaBannerMedia } = workPageData;
 
-	// console.log('data', data);
-	console.log('relatedProject', relatedProject);
+	console.log('data', data);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -93,7 +92,10 @@ const Page = (props: Props) => {
 				media={ctaBannerMedia}
 				link={ctaBannerLink}
 			/>
-			<RelatedProject data={relatedProject} />
+			<RelatedProject
+				data={relatedProject}
+				desktopMedia={relatedDesktopMedia}
+			/>
 		</PageWrapper>
 	);
 };
@@ -275,18 +277,12 @@ export async function getStaticProps({ params }: any) {
 				slug,
 				title,
 				tagline,
-				heroLayoutType,
-				fullWidthHero {
+				thumbnailMedia {
 					${mediaTypeString}
-				},
-				twoColumnHero {
-					leftBlock {
-						${mediaTypeString}
-					},
-					rightBlock {
-						${mediaTypeString}
-					},
-				},
+				}
+			},
+			relatedDesktopMedia {
+				${mediaTypeString}
 			},
 		}
 	`;

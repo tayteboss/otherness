@@ -221,5 +221,21 @@ export default {
       type: 'reference',
       to: [{type: 'project'}],
     },
+    {
+      title: 'Related Desktop Media',
+      name: 'relatedDesktopMedia',
+      type: 'object',
+      fields: [
+        selectMediaTypeObject,
+        {
+          ...imageObject,
+          hidden: ({document}: any) => document?.relatedDesktopMedia?.mediaType !== 'image',
+        },
+        {
+          ...videoObject,
+          hidden: ({document}: any) => document?.relatedDesktopMedia?.mediaType !== 'video',
+        },
+      ],
+    },
   ],
 }
