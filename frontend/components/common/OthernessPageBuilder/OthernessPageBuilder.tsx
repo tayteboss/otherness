@@ -37,6 +37,9 @@ const PageBuilderWrapper = styled.div`
 	flex-direction: column;
 	gap: ${pxToRem(8)};
 	overflow: hidden;
+	background: var(--colour-white);
+	position: relative;
+	z-index: 1;
 `;
 
 const OthernessPageBuilder = (props: Props) => {

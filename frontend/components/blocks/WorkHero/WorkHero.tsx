@@ -18,6 +18,9 @@ type Props = {
 
 const WorkHeroWrapper = styled.section`
 	margin-bottom: ${pxToRem(104)};
+	background: var(--colour-white);
+	position: relative;
+	z-index: 5;
 `;
 
 const FullWidthWrapper = styled.div`

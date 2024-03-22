@@ -9,6 +9,9 @@ type Props = {
 
 const SubProjectsWrapper = styled.section`
 	margin-bottom: ${pxToRem(80)};
+	background: var(--colour-white);
+	position: relative;
+	z-index: 1;
 `;
 
 const SubProjects = (props: Props) => {

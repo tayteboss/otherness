@@ -15,14 +15,17 @@ type Props = {
 };
 
 const WorkIntroWrapper = styled(motion.section)`
-	margin-bottom: ${pxToRem(72)};
+	background: var(--colour-white);
+	position: relative;
+	z-index: 5;
+	padding-bottom: ${pxToRem(72)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		margin-bottom: ${pxToRem(48)};
 	}
 `;
 
-const Inner = styled.div`
+const Inner = styled(motion.div)`
 	grid-column: 4 / -4;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
@@ -60,7 +63,13 @@ const WorkIntro = (props: Props) => {
 		]
 	);
 
-	const opacity = useTransform(scrollY, [0, windowHeight], [1, 0]);
+	const opacity = useTransform(scrollY, [0, windowHeight / 2], [1, 0]);
+
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		threshold: 0.2,
+		rootMargin: '-50px'
+	});
 
 	useEffect(() => {
 		if (wrapperRef?.current) {
@@ -86,17 +95,11 @@ const WorkIntro = (props: Props) => {
 		return () => clearTimeout(timer);
 	}, [distanceToTop]);
 
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-		threshold: 0.2,
-		rootMargin: '-50px'
-	});
-
 	return (
-		<WorkIntroWrapper ref={ref} style={{ transform, opacity }}>
+		<WorkIntroWrapper ref={ref} style={{ transform }}>
 			<LayoutWrapper>
 				<LayoutGrid>
-					<Inner>
+					<Inner style={{ opacity }}>
 						{tagline && (
 							<Tagline
 								initial={{ opacity: 0 }}

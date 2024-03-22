@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 import pxToRem from '../../utils/pxToRem';
 import RelatedProject from '../../components/blocks/RelatedProject';
 import SubProjects from '../../components/blocks/SubProjects';
+import SubProjectsNavigation from '../../components/elements/SubProjectsNavigation';
 
 type Props = {
 	data: ProjectType;
@@ -99,6 +100,7 @@ const Page = (props: Props) => {
 				data={relatedProject}
 				desktopMedia={relatedDesktopMedia}
 			/>
+			<SubProjectsNavigation subProjects={subProjects} />
 		</PageWrapper>
 	);
 };

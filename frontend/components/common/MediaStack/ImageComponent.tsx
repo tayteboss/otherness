@@ -38,7 +38,7 @@ const wrapperVariants = {
 		filter: 'blur(10px)',
 		scale: 1.05,
 		transition: {
-			duration: 1.5,
+			duration: 1,
 			ease: 'easeInOut'
 		}
 	},
@@ -47,7 +47,7 @@ const wrapperVariants = {
 		filter: 'blur(0px)',
 		scale: 1,
 		transition: {
-			duration: 1.5,
+			duration: 1,
 			ease: 'easeInOut',
 			delay: 0.2
 		}
@@ -60,7 +60,7 @@ const defaultVariants = {
 		filter: 'blur(5px)',
 		scale: 1.05,
 		transition: {
-			duration: 1,
+			duration: 0.75,
 			ease: 'easeInOut'
 		}
 	},
@@ -69,7 +69,7 @@ const defaultVariants = {
 		filter: 'blur(0px)',
 		scale: 1,
 		transition: {
-			duration: 1,
+			duration: 0.75,
 			ease: 'easeInOut'
 		}
 	}

@@ -5,6 +5,7 @@ import LayoutGrid from '../../common/LayoutGrid';
 import { useInView } from 'react-intersection-observer';
 import pxToRem from '../../../utils/pxToRem';
 import OthernessPageBuilder from '../../common/OthernessPageBuilder';
+import { useEffect } from 'react';
 
 const SubProjectWrapper = styled.div`
 	margin-bottom: ${pxToRem(48)};
@@ -75,8 +76,26 @@ const SubProject = (props: SubProjectType) => {
 		rootMargin: '-50px'
 	});
 
+	const { ref: ref2, inView: inView2 } = useInView({
+		triggerOnce: false,
+		threshold: 0.1,
+		rootMargin: '-50px'
+	});
+
+	useEffect(() => {
+		const formattedId = formatId(label);
+		if (formattedId) {
+			const headerLink = document.querySelector(
+				`.sub-project-link[data-id="${formattedId}"]`
+			);
+			if (headerLink) {
+				headerLink.classList.toggle('active', inView2);
+			}
+		}
+	}, [inView2, label]);
+
 	return (
-		<SubProjectWrapper id={formatId(label)}>
+		<SubProjectWrapper id={formatId(label)} ref={ref2}>
 			<HeaderWrapper>
 				<LayoutWrapper>
 					{title && (

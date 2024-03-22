@@ -3,6 +3,7 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
 
 type Props = {
 	client: string;
@@ -15,7 +16,12 @@ type Props = {
 
 const WorkDetailsWrapper = styled.section`
 	margin-bottom: ${pxToRem(104)};
+	background: var(--colour-white);
+	position: relative;
+	z-index: 1;
 `;
+
+const Inner = styled.div``;
 
 const ClientTitle = styled.span`
 	grid-column: 4 / 6;
@@ -115,6 +121,22 @@ const WorkDetails = (props: Props) => {
 		rootMargin: '-50px'
 	});
 
+	const { ref: ref2, inView: inView2 } = useInView({
+		triggerOnce: false,
+		threshold: 0.2,
+		rootMargin: '-50px'
+	});
+
+	useEffect(() => {
+		const formattedId = 'project-intro';
+		const headerLink = document.querySelector(
+			`.sub-project-link[data-id="${formattedId}"]`
+		);
+		if (headerLink) {
+			headerLink.classList.toggle('active', inView2);
+		}
+	}, [inView2]);
+
 	return (
 		<WorkDetailsWrapper
 			id="project-intro"
@@ -123,45 +145,47 @@ const WorkDetails = (props: Props) => {
 				inView ? 'view-element-fade-in--in-view' : ''
 			}`}
 		>
-			<LayoutWrapper>
-				<TopGridWrapper>
+			<Inner ref={ref2}>
+				<LayoutWrapper>
+					<TopGridWrapper>
+						<LayoutGrid>
+							<ClientTitle className="type-secondary-heading-small">
+								Client
+							</ClientTitle>
+							<ClientName>{client || ''}</ClientName>
+						</LayoutGrid>
+					</TopGridWrapper>
 					<LayoutGrid>
-						<ClientTitle className="type-secondary-heading-small">
-							Client
-						</ClientTitle>
-						<ClientName>{client || ''}</ClientName>
+						<CollabsTitle className="type-secondary-heading-small">
+							Collabs
+						</CollabsTitle>
+						<CollabsList>
+							{hasCollaborators &&
+								collaborators.map((collab, index) =>
+									collab?.url ? (
+										<CollabLink
+											className="type-p"
+											href={collab?.url}
+											target="_blank"
+											key={index}
+										>
+											{collab?.title}
+										</CollabLink>
+									) : (
+										<Collab className="type-p" key={index}>
+											{collab?.title}
+										</Collab>
+									)
+								)}
+						</CollabsList>
+						{description && (
+							<Description className="type-p-large">
+								{description}
+							</Description>
+						)}
 					</LayoutGrid>
-				</TopGridWrapper>
-				<LayoutGrid>
-					<CollabsTitle className="type-secondary-heading-small">
-						Collabs
-					</CollabsTitle>
-					<CollabsList>
-						{hasCollaborators &&
-							collaborators.map((collab, index) =>
-								collab?.url ? (
-									<CollabLink
-										className="type-p"
-										href={collab?.url}
-										target="_blank"
-										key={index}
-									>
-										{collab?.title}
-									</CollabLink>
-								) : (
-									<Collab className="type-p" key={index}>
-										{collab?.title}
-									</Collab>
-								)
-							)}
-					</CollabsList>
-					{description && (
-						<Description className="type-p-large">
-							{description}
-						</Description>
-					)}
-				</LayoutGrid>
-			</LayoutWrapper>
+				</LayoutWrapper>
+			</Inner>
 		</WorkDetailsWrapper>
 	);
 };

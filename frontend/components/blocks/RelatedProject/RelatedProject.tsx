@@ -24,6 +24,9 @@ const RelatedProjectWrapper = styled.a`
 	background: var(--colour-beige-light);
 	padding: ${pxToRem(24)} 0 ${pxToRem(32)};
 	display: block;
+	background: var(--colour-white);
+	position: relative;
+	z-index: 5;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(24)} 0 ${pxToRem(16)};

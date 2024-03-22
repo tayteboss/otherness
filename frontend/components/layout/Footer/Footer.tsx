@@ -20,7 +20,7 @@ type Props = {
 const FooterWrapper = styled.footer`
 	background: var(--colour-black);
 	padding: ${pxToRem(56)} 0 ${pxToRem(40)};
-	margin-bottom: var(--header-h);
+	margin-bottom: var(--footer-header-h);
 	position: relative;
 	z-index: 2;
 

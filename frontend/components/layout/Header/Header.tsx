@@ -170,7 +170,7 @@ const Header = (props: Props) => {
 		<AnimatePresence>
 			{isActive && (
 				<HeaderWrapper
-					className="header"
+					className={isFooterVersion ? 'footer-header' : 'header'}
 					variants={wrapperVariants}
 					initial="hidden"
 					animate="visible"
