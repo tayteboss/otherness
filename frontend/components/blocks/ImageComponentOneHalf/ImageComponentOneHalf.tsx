@@ -34,8 +34,6 @@ const ImageComponentOneHalf = (props: Props) => {
 		gridColumn = 'span 12 / -1';
 	}
 
-	console.log('imageComponentOneHalf', imageComponentOneHalf);
-
 	return (
 		<ImageComponentOneHalfWrapper>
 			<LayoutWrapper useGalleryLayout>
