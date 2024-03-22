@@ -231,8 +231,15 @@ export type TwoColumnHeroType = {
 	rightBlock: MediaType;
 };
 
+export type SubProjectType = {
+	description: string;
+	imageBlocks: any;
+	title: string;
+	label: string;
+};
+
 export type ProjectType = {
-	relatedDesktopMedia?: MediaType;
+	relatedDesktopMedia: MediaType;
 	title: string;
 	tagline: string;
 	slug: SlugType;
@@ -246,6 +253,7 @@ export type ProjectType = {
 	fullWidthHero: MediaType;
 	heroLayoutType: 'fullWidth' | 'twoColumn';
 	imageBlocks: any;
+	subProjects: SubProjectType[];
 	mood: (
 		| 'all'
 		| 'artsy'

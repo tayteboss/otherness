@@ -16,6 +16,7 @@ import { workPageQueryString } from '../../lib/sanityQueries';
 import { useEffect } from 'react';
 import pxToRem from '../../utils/pxToRem';
 import RelatedProject from '../../components/blocks/RelatedProject';
+import SubProjects from '../../components/blocks/SubProjects';
 
 type Props = {
 	data: ProjectType;
@@ -92,6 +93,7 @@ const Page = (props: Props) => {
 				media={ctaBannerMedia}
 				link={ctaBannerLink}
 			/>
+			<SubProjects data={subProjects} />
 			<RelatedProject
 				data={relatedProject}
 				desktopMedia={relatedDesktopMedia}
@@ -271,6 +273,121 @@ export async function getStaticProps({ params }: any) {
 				imageComponentOneXSmall {
 					selectPosition,
 					${mediaTypeString}
+				}
+			},
+			subProjects[]-> {
+				...,
+				label,
+				description,
+				title,
+				imageBlocks[] {
+					...,
+					imageComponentOneHalfOneXSmall {
+						half {
+							${mediaTypeString}
+						},
+						xSmall {
+							${mediaTypeString}
+						}
+					},
+					imageComponentTwoXSmall {
+						lhs {
+							${mediaTypeString}
+						},
+						rhs {
+							${mediaTypeString}
+						}
+					},
+					imageComponentOneHalf {
+						${mediaTypeString},
+						selectPosition
+					},
+					imageComponentEditorialBig {
+						editorialBlock {
+							description,
+							title,
+							theme
+						},
+						selectPosition,
+						media {
+							${mediaTypeString}
+						}
+					},
+					imageComponentLandscape {
+						${mediaTypeString},
+						selectPosition
+					},
+					imageComponentOneBigTwoSmall {
+						big {
+							${mediaTypeString}
+						},
+						small1 {
+							${mediaTypeString}
+						},
+						small2 {
+							${mediaTypeString}
+						}
+					},
+					imageComponentOneEditorial {
+						selectPosition,
+						editorialBlock {
+							description,
+							title,
+							theme
+						}
+					},
+					imageComponentOnePortrait {
+						selectPosition,
+						selectSize,
+						${mediaTypeString}
+					},
+					imageComponentTwoXSmall {
+						selectPosition,
+						lhs {
+							${mediaTypeString}
+						},
+						rhs {
+							${mediaTypeString}
+						}
+					},
+					imageComponentFull {
+						${mediaTypeString}
+					},
+					imageComponentOnePortraitOneMedium {
+						selectPosition,
+						portrait {
+							${mediaTypeString}
+						},
+						medium {
+							${mediaTypeString}
+						}
+					},
+					imageComponentOneBig {
+						selectPosition,
+						${mediaTypeString}
+					},
+					imageComponentOneSmallOneBigLandscape {
+						selectPosition,
+						landscape {
+							${mediaTypeString}
+						},
+						small {
+							${mediaTypeString}
+						}
+					},
+					imageComponentOneBigOneXSmall {
+						selectPosition,
+						big {
+							${mediaTypeString}
+						},
+						small {
+							${mediaTypeString}
+						}
+					},
+					imageComponentOneXSmall {
+						selectPosition,
+						${mediaTypeString}
+					}
 				}
 			},
 			relatedProject-> {
