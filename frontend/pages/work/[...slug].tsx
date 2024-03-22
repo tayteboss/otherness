@@ -55,7 +55,7 @@ const Page = (props: Props) => {
 
 	const { ctaBannerTitle, ctaBannerLink, ctaBannerMedia } = workPageData;
 
-	console.log('data', data);
+	// console.log('data', data);
 	// console.log('workPageData', workPageData);
 
 	useEffect(() => {

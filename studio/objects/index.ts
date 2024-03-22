@@ -306,7 +306,6 @@ const imageBlockList = [
   {title: 'One Big Two Small', value: 'imageComponentOneBigTwoSmall'},
   {title: 'One Editorial', value: 'imageComponentOneEditorial'},
   {title: 'One Portrait', value: 'imageComponentOnePortrait'},
-  {title: 'Two Small', value: 'imageComponentTwoSmall'},
   {title: 'Full', value: 'imageComponentFull'},
   {title: 'One Portrait One Medium', value: 'imageComponentOnePortraitOneMedium'},
   {title: 'One Big', value: 'imageComponentOneBig'},
@@ -453,8 +452,6 @@ const projectImageBlocks = {
             componentName = 'One Editorial'
           } else if (imageComponent === 'imageComponentOnePortrait') {
             componentName = 'One Portrait'
-          } else if (imageComponent === 'imageComponentTwoSmall') {
-            componentName = 'Two Small'
           } else if (imageComponent === 'imageComponentFull') {
             componentName = 'Full'
           } else if (imageComponent === 'imageComponentOnePortraitOneMedium') {
@@ -735,47 +732,6 @@ const projectImageBlocks = {
           ],
           hidden: ({parent}: {parent: any}) =>
             parent?.imageComponent !== 'imageComponentOnePortrait',
-        },
-        {
-          name: 'imageComponentTwoSmall',
-          title: 'Two Small',
-          type: 'object',
-          fields: [
-            selectPosition2,
-            {
-              title: 'Small 1',
-              name: 'small1',
-              type: 'object',
-              fields: [
-                selectMediaTypeObject,
-                {
-                  ...imageObject,
-                  hidden: ({parent}: any) => parent?.mediaType !== 'image',
-                },
-                {
-                  ...videoObject,
-                  hidden: ({parent}: any) => parent?.mediaType !== 'video',
-                },
-              ],
-            },
-            {
-              title: 'Small 2',
-              name: 'small2',
-              type: 'object',
-              fields: [
-                selectMediaTypeObject,
-                {
-                  ...imageObject,
-                  hidden: ({parent}: any) => parent?.mediaType !== 'image',
-                },
-                {
-                  ...videoObject,
-                  hidden: ({parent}: any) => parent?.mediaType !== 'video',
-                },
-              ],
-            },
-          ],
-          hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'imageComponentTwoSmall',
         },
         {
           name: 'imageComponentFull',

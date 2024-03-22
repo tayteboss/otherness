@@ -96,17 +96,23 @@ const WorkHero = (props: Props) => {
 					{useFullWidth && (
 						<FullWidthWrapper>
 							<MotionWrapper style={{ transform }}>
-								<MediaStack data={fullWidthHero} />
+								<MediaStack data={fullWidthHero} isPriority />
 							</MotionWrapper>
 						</FullWidthWrapper>
 					)}
 					{!useFullWidth && (
 						<>
 							<TwoColWrapper>
-								<MediaStack data={twoColumnHero.leftBlock} />
+								<MediaStack
+									data={twoColumnHero.leftBlock}
+									isPriority
+								/>
 							</TwoColWrapper>
 							<TwoColWrapper>
-								<MediaStack data={twoColumnHero.rightBlock} />
+								<MediaStack
+									data={twoColumnHero.rightBlock}
+									isPriority
+								/>
 							</TwoColWrapper>
 						</>
 					)}
