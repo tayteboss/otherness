@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 const use1vh = () => {
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const set1vh = () => {
 			const vh: number = document.documentElement.clientHeight * 0.01;
 			document.documentElement.style.setProperty('--vh', `${vh}px`);

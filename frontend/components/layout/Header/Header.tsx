@@ -6,7 +6,7 @@ import pxToRem from '../../../utils/pxToRem';
 import { AnimatePresence, motion } from 'framer-motion';
 import MobileMenuTrigger from '../../elements/MobileMenuTrigger';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import throttle from 'lodash.throttle';
 import { useRouter } from 'next/router';
 
@@ -157,7 +157,7 @@ const Header = (props: Props) => {
 		setIsHidden(false);
 	}, [router]);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const throttledHandleScroll = throttle(handleScroll, 100);
 		window.addEventListener('scroll', throttledHandleScroll);
 

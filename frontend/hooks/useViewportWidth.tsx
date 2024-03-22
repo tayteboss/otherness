@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 
 const useViewportWidth = (): string => {
 	const [breakpoint, setBreakpoint] = useState<string>('');
@@ -26,7 +26,7 @@ const useViewportWidth = (): string => {
 		}
 	};
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		window.addEventListener('resize', handleResize);
 		handleResize();
 

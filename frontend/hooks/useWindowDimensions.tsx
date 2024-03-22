@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import throttle from 'lodash.throttle';
 
 type WindowDimensions = {
@@ -11,26 +11,26 @@ const getWindowDimensions = (): WindowDimensions => {
 
 	return {
 		width,
-		height,
+		height
 	};
 };
 
 const useWindowDimensions = (): WindowDimensions => {
 	const [windowDimensions, setWindowDimensions] = useState<WindowDimensions>({
 		width: 0,
-		height: 0,
+		height: 0
 	});
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		setWindowDimensions(getWindowDimensions());
 
 		const handleResize = (): void => {
 			setWindowDimensions(getWindowDimensions());
-		}
+		};
 
 		const throttledHandleResize = throttle(handleResize, 64, {
 			leading: true,
-			trailing: true,
+			trailing: true
 		});
 
 		window.addEventListener('resize', throttledHandleResize);
