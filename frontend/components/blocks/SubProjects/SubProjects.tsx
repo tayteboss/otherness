@@ -14,7 +14,7 @@ const SubProjectsWrapper = styled.section`
 const SubProjects = (props: Props) => {
 	const { data } = props;
 
-	const hasSubProjects = data.length > 0;
+	const hasSubProjects = data?.length > 0;
 
 	return (
 		<>

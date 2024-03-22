@@ -7,7 +7,7 @@ import pxToRem from '../../../utils/pxToRem';
 import OthernessPageBuilder from '../../common/OthernessPageBuilder';
 
 const SubProjectWrapper = styled.div`
-	padding-top: ${pxToRem(48)};
+	margin-bottom: ${pxToRem(48)};
 `;
 
 const HeaderWrapper = styled.div`

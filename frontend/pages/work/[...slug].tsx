@@ -35,6 +35,7 @@ const PageWrapper = styled(motion.div)`
 
 	.cta-banner {
 		padding-top: ${pxToRem(72)};
+		padding-bottom: ${pxToRem(72)};
 	}
 `;
 
