@@ -175,8 +175,8 @@ export const projectsQueryString = `
 	*[_type == 'project'] | order(orderRank) [0...100] ${projectsQueryDefault}
 `;
 
-export const conversationsQueryString = `
-	*[_type == 'article'] | order(orderRank) [0...100] {
+export const conversationsQueryDefault = `
+	{
 		...,
 		thumbnailMedia {
 			mediaType,
@@ -221,6 +221,41 @@ export const conversationsQueryString = `
 			title
 		},
 	}
+`;
+
+export const basicArticlesQueryDefault = `
+	{
+		...,
+		thumbnailMedia {
+			mediaType,
+			image {
+				asset-> {
+					url,
+					metadata {
+						lqip
+					}
+				},
+				alt
+			},
+			video {
+				asset-> {
+					playbackId,
+				},
+			},
+		},
+	}
+`;
+
+export const basicArticlesQueryString = `
+	*[_type == 'article'] | order(orderRank) [0...10] ${basicArticlesQueryDefault}
+`;
+
+export const overflowArticlesQueryString = `
+	*[_type == 'article'] | order(orderRank) [10...100] ${basicArticlesQueryDefault}
+`;
+
+export const coversationsQueryString = `
+	*[_type == 'article'] | order(orderRank) [0...100] ${conversationsQueryDefault}
 `;
 
 export const homePageQueryString = `

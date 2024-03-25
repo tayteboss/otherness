@@ -49,6 +49,12 @@ const LinkTag = styled.a`
 	white-space: pre;
 	color: var(--colour-black);
 
+	transition: all var(--transition-speed-default) var(--transition-ease);
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.3);
+	}
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
 		padding: ${pxToRem(8)};
 	}

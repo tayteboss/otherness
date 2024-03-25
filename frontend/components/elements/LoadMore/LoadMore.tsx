@@ -8,6 +8,8 @@ type Props = {
 	isActive: boolean;
 };
 
+const LoadMoreOuter = styled.div``;
+
 const LoadMoreWrapper = styled.button`
 	position: relative;
 	display: flex;
@@ -38,7 +40,7 @@ const LoadMore = (props: Props) => {
 	const { title, handleLoadMore, isActive } = props;
 
 	return (
-		<>
+		<LoadMoreOuter className="load-more">
 			{isActive && (
 				<LayoutWrapper>
 					<Inner>
@@ -48,7 +50,7 @@ const LoadMore = (props: Props) => {
 					</Inner>
 				</LayoutWrapper>
 			)}
-		</>
+		</LoadMoreOuter>
 	);
 };
 

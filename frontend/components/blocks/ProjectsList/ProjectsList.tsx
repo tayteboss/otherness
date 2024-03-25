@@ -121,7 +121,6 @@ const ProjectsList = (props: Props) => {
 
 	return (
 		<AnimatePresence>
-			{/* {!isLoading && ( */}
 			<ProjectsListWrapper
 				variants={wrapperVariants}
 				initial="hidden"
@@ -185,7 +184,6 @@ const ProjectsList = (props: Props) => {
 					/>
 				)}
 			</ProjectsListWrapper>
-			{/* )} */}
 		</AnimatePresence>
 	);
 };

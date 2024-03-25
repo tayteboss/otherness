@@ -110,8 +110,8 @@ const Page = (props: Props) => {
 		`;
 		const moreProjectsQuery = `
 			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${
-			projectCount + projectSkip + 1
-		}...${projectCount + projectSkip + 2}] ${basicProjectsQueryDefault}
+			projectCount + projectSkip
+		}...${projectCount + projectSkip + 1}] ${basicProjectsQueryDefault}
 		`;
 
 		try {

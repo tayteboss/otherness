@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 type Props = {
 	data: string;
-	isLoading: boolean;
+	isLoading?: boolean;
 };
 
 const PageHeaderWrapper = styled.section``;
@@ -34,6 +34,12 @@ const Inner = styled.div<{ $inView: boolean }>`
 `;
 
 const Title = styled.h1`
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		font-size: ${pxToRem(86)};
+		line-height: ${pxToRem(106)};
+		letter-spacing: -1.72px;
+	}
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		font-size: ${pxToRem(46)};
 		line-height: ${pxToRem(59)};
