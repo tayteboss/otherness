@@ -48,8 +48,8 @@ const Page = (props: Props) => {
 				tag={tag}
 				author={author}
 			/>
-			<RelatedConversations data={relatedArticle} />
 			<OthernessPageBuilder data={pageBuilder} useType />
+			<RelatedConversations data={relatedArticle} />
 		</PageWrapper>
 	);
 };
@@ -109,6 +109,22 @@ export async function getStaticProps({ params }: any) {
 				},
 				title
 			},
+			pageBuilder[] {
+				...,
+				thumbnailMedia {
+					mediaType,
+					image {
+						asset-> {
+							url,
+						},
+					},
+					video {
+						asset-> {
+							playbackId,
+						},
+					},
+				},
+			}
 		}
 	`;
 
