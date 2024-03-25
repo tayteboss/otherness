@@ -3,6 +3,9 @@ import client from '../../client';
 import { ArticleType, TransitionsType } from '../../shared/types/types';
 import { motion } from 'framer-motion';
 import { NextSeo } from 'next-seo';
+import ArticleHeader from '../../components/blocks/ArticleHeader';
+import OthernessPageBuilder from '../../components/common/OthernessPageBuilder';
+import RelatedConversations from '../../components/blocks/RelatedConversations';
 
 type Props = {
 	data: ArticleType;
@@ -13,6 +16,19 @@ const PageWrapper = styled(motion.div)``;
 
 const Page = (props: Props) => {
 	const { data, pageTransitionVariants } = props;
+
+	const {
+		author,
+		authorUrl,
+		excerpt,
+		pageBuilder,
+		relatedArticle,
+		tag,
+		thumbnailMedia,
+		title
+	} = data;
+
+	console.log('data', data);
 
 	return (
 		<PageWrapper
@@ -25,6 +41,15 @@ const Page = (props: Props) => {
 				title={data?.title || 'Ultra'}
 				description={data?.excerpt || ''}
 			/>
+			<ArticleHeader
+				media={thumbnailMedia}
+				title={title}
+				excerpt={excerpt}
+				tag={tag}
+				author={author}
+			/>
+			<RelatedConversations data={relatedArticle} />
+			<OthernessPageBuilder data={pageBuilder} useType />
 		</PageWrapper>
 	);
 };

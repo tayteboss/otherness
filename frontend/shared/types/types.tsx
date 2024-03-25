@@ -299,6 +299,7 @@ export type EditorialBlockType = {
 export type ArticleType = {
 	title: string;
 	author: string;
+	authorUrl?: string;
 	excerpt: string;
 	pageBuilder:
 		| ArticleRichTextType

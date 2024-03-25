@@ -24,6 +24,9 @@ import ImageComponentOneXSmall from '../../blocks/ImageComponentOneXSmall';
 import ImageComponentTwoXSmall from '../../blocks/ImageComponentTwoXSmall';
 import ImageComponentTwoHalf from '../../blocks/ImageComponentTwoHalf';
 import ImageComponentOneTestimonialOneXSmall from '../../blocks/ImageComponentOneTestimonialOneXSmall';
+import ArticleTestimonial from '../../blocks/ArticleTestimonial';
+import ArticleMedia from '../../blocks/ArticleMedia';
+import ArticleRichText from '../../blocks/ArticleRichText';
 
 type Props = {
 	data: any;
@@ -77,7 +80,10 @@ const OthernessPageBuilder = (props: Props) => {
 		imageComponentTwoXSmall: ImageComponentTwoXSmall,
 		imageComponentTwoHalf: ImageComponentTwoHalf,
 		imageComponentOneTestimonialOneXSmall:
-			ImageComponentOneTestimonialOneXSmall
+			ImageComponentOneTestimonialOneXSmall,
+		pbRichText: ArticleRichText,
+		pbMedia: ArticleMedia,
+		pbTestimonial: ArticleTestimonial
 	};
 
 	return (

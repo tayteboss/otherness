@@ -61,8 +61,6 @@ const Page = (props: Props) => {
 
 	const { ctaBannerTitle, ctaBannerLink, ctaBannerMedia } = workPageData;
 
-	console.log('data', data);
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
