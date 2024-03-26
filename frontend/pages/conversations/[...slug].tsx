@@ -47,6 +47,7 @@ const Page = (props: Props) => {
 				excerpt={excerpt}
 				tag={tag}
 				author={author}
+				authorUrl={authorUrl}
 			/>
 			<OthernessPageBuilder data={pageBuilder} useType />
 			<RelatedConversations data={relatedArticle} />
@@ -115,6 +116,7 @@ export async function getStaticProps({ params }: any) {
 					mediaType,
 					image {
 						asset-> {
+							...,
 							url,
 						},
 					},
@@ -123,6 +125,7 @@ export async function getStaticProps({ params }: any) {
 							playbackId,
 						},
 					},
+					caption
 				},
 			}
 		}

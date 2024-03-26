@@ -104,6 +104,10 @@ const Divider = styled.div`
 
 const LinkAuthor = styled.a`
 	text-transform: uppercase;
+
+	&:hover {
+		text-decoration: underline;
+	}
 `;
 
 const Author = styled.span`

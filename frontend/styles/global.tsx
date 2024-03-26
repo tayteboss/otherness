@@ -170,8 +170,8 @@ export const GlobalStyles = createGlobalStyle`
 
 	.type-p-small {
 		font-family: var(--font-classic-grotesque-regular);
-		font-size: ${pxToRem(10)};
-		line-height: ${pxToRem(15)};
+		font-size: ${pxToRem(12)};
+		line-height: ${pxToRem(16)};
 		letter-spacing: 0.12px;
 	}
 
