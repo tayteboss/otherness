@@ -6,13 +6,18 @@ import { NextSeo } from 'next-seo';
 import ArticleHeader from '../../components/blocks/ArticleHeader';
 import OthernessPageBuilder from '../../components/common/OthernessPageBuilder';
 import RelatedConversations from '../../components/blocks/RelatedConversations';
+import pxToRem from '../../utils/pxToRem';
 
 type Props = {
 	data: ArticleType;
 	pageTransitionVariants: TransitionsType;
 };
 
-const PageWrapper = styled(motion.div)``;
+const PageWrapper = styled(motion.div)`
+	.page-builder {
+		margin-bottom: ${pxToRem(40)};
+	}
+`;
 
 const Page = (props: Props) => {
 	const { data, pageTransitionVariants } = props;
