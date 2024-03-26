@@ -31,7 +31,7 @@ const Page = (props: Props) => {
 		tag,
 		thumbnailMedia,
 		title
-	} = data;
+	} = data ?? {};
 
 	return (
 		<PageWrapper

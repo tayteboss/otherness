@@ -12,7 +12,7 @@ type Props = {
 };
 
 const MediaStack = (props: Props) => {
-	const { data, isPriority = false } = props;
+	const { data, isPriority = false } = props ?? {};
 
 	const useVideo = data?.mediaType === 'video';
 

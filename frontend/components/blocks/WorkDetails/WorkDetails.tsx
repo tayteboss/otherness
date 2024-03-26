@@ -111,7 +111,7 @@ const TopGridWrapper = styled.div`
 `;
 
 const WorkDetails = (props: Props) => {
-	const { client, collaborators, description } = props;
+	const { client, collaborators, description } = props ?? {};
 
 	const hasCollaborators = collaborators?.length > 0;
 

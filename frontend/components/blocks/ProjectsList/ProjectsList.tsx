@@ -120,7 +120,7 @@ const ProjectsList = (props: Props) => {
 		ctaBannerLink,
 		cantLoadMore,
 		handleNextProjects
-	} = props;
+	} = props ?? {};
 
 	const first5Projects = data.slice(0, 5);
 	const restOfProjects = data.slice(5);

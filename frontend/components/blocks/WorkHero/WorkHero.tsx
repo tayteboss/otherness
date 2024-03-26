@@ -107,13 +107,13 @@ const WorkHero = (props: Props) => {
 						<>
 							<TwoColWrapper>
 								<MediaStack
-									data={twoColumnHero.leftBlock}
+									data={twoColumnHero?.leftBlock}
 									isPriority
 								/>
 							</TwoColWrapper>
 							<TwoColWrapper>
 								<MediaStack
-									data={twoColumnHero.rightBlock}
+									data={twoColumnHero?.rightBlock}
 									isPriority
 								/>
 							</TwoColWrapper>

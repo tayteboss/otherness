@@ -94,7 +94,7 @@ const MediaWrapper = styled.div`
 
 const ConversationCard = (props: ConversationsType & { index: number }) => {
 	const { title, excerpt, tag, theme, thumbnailMedia, slug, author, index } =
-		props;
+		props ?? {};
 
 	const [isHovered, setIsHovered] = useState(false);
 

@@ -57,9 +57,10 @@ const Page = (props: Props) => {
 		twoColumnHero,
 		type,
 		relatedDesktopMedia
-	} = data;
+	} = data ?? {};
 
-	const { ctaBannerTitle, ctaBannerLink, ctaBannerMedia } = workPageData;
+	const { ctaBannerTitle, ctaBannerLink, ctaBannerMedia } =
+		workPageData ?? {};
 
 	useEffect(() => {
 		window.scrollTo(0, 0);

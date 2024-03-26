@@ -115,7 +115,7 @@ const Author = styled.span`
 `;
 
 const ArticleHeader = (props: Props) => {
-	const { media, title, excerpt, tag, author, authorUrl } = props;
+	const { media, title, excerpt, tag, author, authorUrl } = props ?? {};
 
 	const [windowHeight, setWindowHeight] = useState(0);
 	const [distanceToTop, setDistanceToTop] = useState(0);
