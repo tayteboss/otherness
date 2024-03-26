@@ -48,7 +48,7 @@ const FirstListWrapper = styled.div`
 		}
 
 		&:nth-child(6n + 5) {
-			grid-column: 1 / 18;
+			grid-column: 1 / 17;
 		}
 
 		&:nth-child(6n + 6) {
@@ -84,7 +84,7 @@ const RestListWrapper = styled.div`
 		}
 
 		&:nth-child(6n + 6) {
-			grid-column: 1 / 18;
+			grid-column: 1 / 17;
 		}
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
@@ -168,8 +168,8 @@ const ProjectsList = (props: Props) => {
 					link={ctaBannerLink}
 				/>
 				<RestListWrapper>
-					<LayoutWrapper>
-						<LayoutGrid>
+					<LayoutWrapper useGalleryLayout>
+						<LayoutGrid useGalleryGrid>
 							{hasRestOfProjects &&
 								restOfProjects.map((item, i) => (
 									<ProjectCard
@@ -178,7 +178,7 @@ const ProjectsList = (props: Props) => {
 										tagline={item?.tagline}
 										thumbnailMedia={item?.thumbnailMedia}
 										slug={item?.slug}
-										isLarge={i % 6 === 4}
+										isLarge={i % 6 === 5}
 									/>
 								))}
 						</LayoutGrid>
