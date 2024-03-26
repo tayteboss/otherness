@@ -18,22 +18,39 @@ const FilterTabWrapper = styled.div<{ $isMoodFilter: boolean }>`
 	flex-direction: ${(props) => (props.$isMoodFilter ? 'row' : 'row-reverse')};
 	align-items: center;
 	gap: ${pxToRem(12)};
+	position: relative;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		position: unset;
+	}
 `;
 
 const Title = styled.span`
 	white-space: nowrap;
 	padding-bottom: ${pxToRem(2)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding-bottom: 0;
+	}
 `;
 
 const Divider = styled.div`
 	background: var(--colour-black);
 	height: 1px;
 	width: ${pxToRem(24)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
 `;
 
 const FiltersList = styled(motion.div)`
 	display: flex;
 	gap: ${pxToRem(10)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
 `;
 
 const MotionWrapper = styled(motion.div)``;
@@ -60,6 +77,10 @@ const ActiveFilter = styled(motion.span)`
 	letter-spacing: 1.12px;
 	text-transform: uppercase;
 	color: var(--colour-black);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
 `;
 
 const DesktopWrapper = styled.div`
@@ -73,6 +94,66 @@ const MediumWrapper = styled.div`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
 		display: block;
+	}
+`;
+
+const MobileFiltersList = styled(motion.div)<{ $isMoodFilter: boolean }>`
+	display: none;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		position: absolute;
+		bottom: -16px;
+		left: ${(props) => (props.$isMoodFilter ? '0' : 'unset')};
+		right: ${(props) => (props.$isMoodFilter ? 'unset' : '0')};
+		width: calc(100vw - 24px);
+		height: ${pxToRem(22)};
+		overflow: auto;
+		display: flex;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			left: 0;
+			right: unset;
+			bottom: ${pxToRem(19)};
+		}
+
+		&::after {
+			content: '';
+			width: ${pxToRem(52)};
+			height: 100%;
+			background: linear-gradient(
+				270deg,
+				#fff 0%,
+				rgba(255, 255, 255, 0) 100%
+			);
+			position: absolute;
+			bottom: 0;
+			right: ${(props) => props.$isMoodFilter && '0'};
+			left: ${(props) => !props.$isMoodFilter && '0'};
+			z-index: 1;
+
+			@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+				right: 0;
+				left: unset;
+			}
+		}
+	}
+`;
+
+const MobileFiltersListInner = styled.div<{ $isMoodFilter: boolean }>`
+	display: flex;
+	gap: ${pxToRem(10)};
+	position: absolute;
+	padding-right: ${(props) => props.$isMoodFilter && '48px'};
+	padding-left: ${(props) => !props.$isMoodFilter && '48px'};
+	width: 100%;
+	overflow: auto;
+	justify-content: ${(props) => !props.$isMoodFilter && 'flex-end'};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding-left: 0;
+		padding-right: ${pxToRem(48)};
+		justify-content: flex-start;
+		padding-bottom: ${pxToRem(16)};
 	}
 `;
 
@@ -163,6 +244,7 @@ const FilterTab = (props: Props) => {
 		<FilterTabWrapper
 			onMouseOver={() => setIsHovered(true)}
 			onMouseOut={() => setIsHovered(false)}
+			onClick={() => setIsHovered(!isHovered)}
 			$isMoodFilter={isMoodFilter}
 		>
 			<Title className="type-h5">Type of {title}</Title>
@@ -231,6 +313,45 @@ const FilterTab = (props: Props) => {
 					)}
 				</AnimatePresence>
 			</DesktopWrapper>
+			<AnimatePresence mode="wait">
+				{isHovered && (
+					<MobileFiltersList
+						variants={wrapperVariants}
+						initial="hidden"
+						animate="visible"
+						exit="hidden"
+						$isMoodFilter={isMoodFilter}
+					>
+						<MobileFiltersListInner $isMoodFilter={isMoodFilter}>
+							{filters.map((filter, i) => (
+								<MotionWrapper
+									variants={childVariants}
+									key={`${title}-${i}-${filter}`}
+								>
+									<Filter
+										key={filter}
+										onClick={() => {
+											if (isMoodFilter) {
+												setActiveMood &&
+													setActiveMood(filter);
+											} else {
+												setActiveWork &&
+													setActiveWork(filter);
+											}
+										}}
+										$isActive={
+											activeMood === filter ||
+											activeWork === filter
+										}
+									>
+										{filter}
+									</Filter>
+								</MotionWrapper>
+							))}
+						</MobileFiltersListInner>
+					</MobileFiltersList>
+				)}
+			</AnimatePresence>
 		</FilterTabWrapper>
 	);
 };

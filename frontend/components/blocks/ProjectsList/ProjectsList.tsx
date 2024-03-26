@@ -54,6 +54,10 @@ const FirstListWrapper = styled.div`
 		&:nth-child(6n + 6) {
 			grid-column: 15 / -1;
 		}
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			grid-column: 1 / -1 !important;
+		}
 	}
 `;
 
@@ -81,6 +85,10 @@ const RestListWrapper = styled.div`
 
 		&:nth-child(6n + 6) {
 			grid-column: 1 / 18;
+		}
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			grid-column: 1 / -1 !important;
 		}
 	}
 `;
