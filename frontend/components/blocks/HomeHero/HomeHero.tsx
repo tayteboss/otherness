@@ -21,7 +21,7 @@ const MediaWrapper = styled.div`
 
 	.video-component-wrapper,
 	.image-component-wrapper {
-		height: calc(100vh - var(--header-h));
+		height: calc(100vh - ((var(--header-h) / 2) - 35px));
 	}
 `;
 

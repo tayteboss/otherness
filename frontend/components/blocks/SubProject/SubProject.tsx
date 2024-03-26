@@ -42,13 +42,17 @@ const Title = styled.h2<{ $inView: boolean }>`
 `;
 
 const Description = styled.div`
-	grid-column: 11 / span 11;
+	grid-column: 11 / span 10;
 	font-family: var(--font-classic-grotesque-regular);
 	font-size: ${pxToRem(14)};
 	line-height: ${pxToRem(21)};
 	letter-spacing: 0.14px;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		grid-column: 1 / -7;
+	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		grid-column: 1 / -1;
 	}
 `;

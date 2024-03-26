@@ -246,7 +246,7 @@ export const GlobalStyles = createGlobalStyle`
 		}
 
 		&--large-p {
-			p {
+			p, a {
 				font-family: var(--font-classic-grotesque-regular);
 				font-size: ${pxToRem(18)};
 				line-height: ${pxToRem(27)};

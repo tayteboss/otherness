@@ -35,11 +35,11 @@ const ImageComponentOneBig = (props: Props) => {
 	let gridColumn = '';
 
 	if (selectPosition === 'left') {
-		gridColumn = '1 / span 12';
+		gridColumn = '1 / span 13';
 	} else if (selectPosition === 'middle') {
 		gridColumn = '7 / 18';
 	} else if (selectPosition === 'right') {
-		gridColumn = 'span 12 / -1';
+		gridColumn = 'span 13 / -1';
 	}
 
 	return (

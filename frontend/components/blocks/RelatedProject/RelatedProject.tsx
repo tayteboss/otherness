@@ -22,7 +22,7 @@ type Props = {
 
 const RelatedProjectWrapper = styled.a`
 	background: var(--colour-beige-light);
-	padding: ${pxToRem(24)} 0 ${pxToRem(32)};
+	padding: ${pxToRem(24)} 0 ${pxToRem(80)};
 	display: block;
 	position: relative;
 	z-index: 5;

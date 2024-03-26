@@ -18,11 +18,19 @@ const ImageComponentOneTestimonialOneXSmallWrapper = styled.section``;
 const TestimonialWrapper = styled.div<StyledProps>`
 	grid-column: ${(props) => props.$gridColumn};
 	order: ${(props) => (props.$isLHS ? 1 : 2)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		grid-column: 1 / -1;
+	}
 `;
 
 const SmallWrapper = styled.div<StyledProps>`
 	grid-column: ${(props) => props.$gridColumn};
 	order: ${(props) => (props.$isLHS ? 1 : 2)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		grid-column: 1 / -1;
+	}
 
 	.image-component-wrapper,
 	.video-component-wrapper {

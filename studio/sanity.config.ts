@@ -41,6 +41,10 @@ export default defineConfig({
               .title('Conversations Page')
               .icon(DocumentIcon)
               .child(S.editor().schemaType('conversationsPage').documentId('conversationsPage')),
+            S.listItem()
+              .title('Privacy Page')
+              .icon(DocumentIcon)
+              .child(S.editor().schemaType('privacyPage').documentId('privacyPage')),
             S.divider(),
             S.listItem()
               .title('Projects')

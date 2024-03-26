@@ -6,7 +6,7 @@ const getThreePositionGridColumn = (
 	if (selectPosition === 'left') {
 		gridColumn = '1 / span 8';
 	} else if (selectPosition === 'middle') {
-		gridColumn = '9 / -9';
+		gridColumn = '13 / span 6';
 	} else if (selectPosition === 'right') {
 		gridColumn = '-9 / span 8';
 	} else {

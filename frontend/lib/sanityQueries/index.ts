@@ -36,6 +36,12 @@ export const whatToExpectQueryString = `
 	}
 `;
 
+export const privacyQueryString = `
+	*[_type == "privacyPage"] {
+		...,
+	}
+`;
+
 export const conversationsPageQueryString = `
 	*[_type == "conversationsPage"] {
 		...,

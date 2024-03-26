@@ -213,7 +213,6 @@ const Footer = (props: Props) => {
 									footerConsultationButtonUrl && (
 										<PrimaryButton
 											url={footerConsultationButtonUrl}
-											target="_blank"
 										>
 											{footerConsultationButtonTitle}
 										</PrimaryButton>
@@ -226,7 +225,7 @@ const Footer = (props: Props) => {
 									Holding BV
 								</SubDetail>
 								<Link
-									href="/privacy-policy"
+									href="/privacy"
 									passHref
 									legacyBehavior
 									scroll={false}
@@ -252,7 +251,6 @@ const Footer = (props: Props) => {
 							footerConsultationButtonUrl && (
 								<PrimaryButton
 									url={footerConsultationButtonUrl}
-									target="_blank"
 								>
 									{footerConsultationButtonTitle}
 								</PrimaryButton>
@@ -268,7 +266,7 @@ const Footer = (props: Props) => {
 						<SubDetail>
 							Otherness™ is a trademark of Otherness Holding BV
 						</SubDetail>
-						<Link href="/privacy-policy" passHref legacyBehavior>
+						<Link href="/privacy" passHref legacyBehavior>
 							<SubDetailLink>Privacy</SubDetailLink>
 						</Link>
 					</SubDetailsWrapper>

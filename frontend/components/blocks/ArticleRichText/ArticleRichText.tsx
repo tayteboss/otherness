@@ -43,7 +43,7 @@ const ArticleRichText = (props: Props) => {
 		>
 			<LayoutWrapper>
 				<LayoutGrid>
-					<ContentWrapper className="rich-text">
+					<ContentWrapper className="rich-text rich-text--large-p">
 						<PortableText value={content} />
 					</ContentWrapper>
 				</LayoutGrid>

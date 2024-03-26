@@ -139,7 +139,7 @@ const WorkServicesList = (props: Props) => {
 					initial="hidden"
 					animate={inView ? 'visible' : 'hidden'}
 				>
-					Our Services
+					Project Services
 				</Title>
 				<ListWrapper
 					variants={wrapperVariants}

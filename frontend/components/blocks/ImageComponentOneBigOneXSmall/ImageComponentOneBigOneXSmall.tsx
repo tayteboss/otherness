@@ -58,10 +58,10 @@ const ImageComponentOneBigOneXSmall = (props: Props) => {
 	let smallGridColumn = '';
 
 	if (selectPosition === 'left') {
-		bigGridColumn = '1 / 13';
+		bigGridColumn = '1 / 14';
 		smallGridColumn = '-7 / -1';
 	} else if (selectPosition === 'right') {
-		bigGridColumn = '-13 / -1';
+		bigGridColumn = '-14 / -1';
 		smallGridColumn = '1 / 7';
 	}
 
