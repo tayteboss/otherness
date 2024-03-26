@@ -3,7 +3,7 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
 import BarLoader from 'react-spinners/BarLoader';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 
 type Props = {
 	data: string;
@@ -33,19 +33,7 @@ const Inner = styled.div<{ $inView: boolean }>`
 	}
 `;
 
-const Title = styled.h1`
-	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
-		font-size: ${pxToRem(86)};
-		line-height: ${pxToRem(106)};
-		letter-spacing: -1.72px;
-	}
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		font-size: ${pxToRem(46)};
-		line-height: ${pxToRem(59)};
-		letter-spacing: -0.69px;
-	}
-`;
+const Title = styled.h1``;
 
 const LoadingWrapper = styled(motion.div)`
 	position: absolute;
@@ -56,6 +44,38 @@ const LoadingWrapper = styled(motion.div)`
 
 	& > span {
 		width: 100% !important;
+	}
+`;
+
+const MotionWrapper = styled(motion.div)`
+	overflow: hidden;
+`;
+
+const Word = styled.span`
+	display: inline-block;
+	white-space: pre;
+	overflow: hidden;
+`;
+
+const Letter = styled(motion.span)<{ $inlineBlock: boolean }>`
+	position: relative;
+	display: ${(props) => props.$inlineBlock && 'inline-block'};
+	font-family: var(--font-baryton);
+	font-size: ${pxToRem(130)};
+	line-height: ${pxToRem(157)};
+	letter-spacing: -5px;
+	font-weight: 200;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		font-size: ${pxToRem(86)};
+		line-height: ${pxToRem(106)};
+		letter-spacing: -1.72px;
+	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(46)};
+		line-height: ${pxToRem(59)};
+		letter-spacing: -0.69px;
 	}
 `;
 
@@ -76,6 +96,51 @@ const wrapperVariants = {
 	}
 };
 
+const headingWrapperVariants = {
+	hidden: {
+		opacity: 0,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut',
+			staggerChildren: 0.04
+		}
+	}
+};
+
+const childVariants = {
+	hidden: {
+		opacity: 0,
+		y: 60,
+		x: -10,
+		rotate: 10,
+		transition: {
+			type: 'spring',
+			stiffness: 100,
+			damping: 12,
+			duration: 0.5
+		}
+	},
+	visible: {
+		opacity: 1,
+		y: 0,
+		x: 0,
+		rotate: 0,
+		transition: {
+			type: 'spring',
+			stiffness: 100,
+			damping: 12,
+			duration: 0.5
+		}
+	}
+};
+
 const PageHeader = (props: Props) => {
 	const { data, isLoading } = props;
 
@@ -84,6 +149,8 @@ const PageHeader = (props: Props) => {
 		threshold: 0.2,
 		rootMargin: '-50px'
 	});
+
+	const words = data.split(' ').map((word) => [...word, ' ']);
 
 	return (
 		<PageHeaderWrapper
@@ -94,7 +161,33 @@ const PageHeader = (props: Props) => {
 		>
 			<LayoutWrapper>
 				<Inner $inView={inView}>
-					<Title>{data || ''}</Title>
+					<Title>
+						<MotionWrapper
+							variants={headingWrapperVariants}
+							initial="hidden"
+							animate="visible"
+						>
+							{words.map((word, i) => {
+								return (
+									<Word key={i}>
+										{word.map((letter, j) => {
+											return (
+												<Letter
+													key={j}
+													variants={childVariants}
+													$inlineBlock={
+														letter !== ' '
+													}
+												>
+													{letter}
+												</Letter>
+											);
+										})}
+									</Word>
+								);
+							})}
+						</MotionWrapper>
+					</Title>
 					<AnimatePresence>
 						{isLoading && (
 							<LoadingWrapper
