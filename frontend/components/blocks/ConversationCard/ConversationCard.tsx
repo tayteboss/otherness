@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 const ConversationCardWrapper = styled.a<{ $isDarkTheme: boolean }>`
 	padding: ${pxToRem(24)};
 	background: ${(props) =>
-		props.$isDarkTheme ? 'var(--colour-black)' : 'var(--colour-white)'};
+		props.$isDarkTheme ? 'var(--colour-black)' : 'transparant'};
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

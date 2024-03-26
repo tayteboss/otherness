@@ -24,7 +24,6 @@ const RelatedProjectWrapper = styled.a`
 	background: var(--colour-beige-light);
 	padding: ${pxToRem(24)} 0 ${pxToRem(32)};
 	display: block;
-	background: var(--colour-white);
 	position: relative;
 	z-index: 5;
 

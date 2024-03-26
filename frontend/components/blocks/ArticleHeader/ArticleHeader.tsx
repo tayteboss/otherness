@@ -60,7 +60,7 @@ const MediaWrapper = styled(motion.div)`
 `;
 
 const ContentWrapper = styled.div`
-	grid-column: 15 / -2;
+	grid-column: 14 / -2;
 	padding: var(--header-h) 0 ${pxToRem(192)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
@@ -187,7 +187,7 @@ const ArticleHeader = (props: Props) => {
 						)}
 						<DetailsWrapper>
 							{tag && <Tag className="type-p">{tag}</Tag>}
-							<Divider />
+							{tag && author && <Divider />}
 							{authorUrl
 								? author && (
 										<LinkAuthor

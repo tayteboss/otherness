@@ -33,8 +33,6 @@ const Page = (props: Props) => {
 		title
 	} = data;
 
-	console.log('data', data);
-
 	return (
 		<PageWrapper
 			variants={pageTransitionVariants}
@@ -137,6 +135,37 @@ export async function getStaticProps({ params }: any) {
 	`;
 
 	const data = await client.fetch(articleQuery);
+	const hasRelatedArticles = data?.relatedArticle;
+
+	if (!hasRelatedArticles) {
+		const randomArticlesQuery = `
+			*[_type == 'article' && slug.current != "${params.slug[0]}"] | order(_createdAt desc) [0...2] {
+				author,
+				excerpt,
+				slug,
+				tag,
+				theme,
+				thumbnailMedia {
+					mediaType,
+					image {
+						asset-> {
+							url,
+						},
+					},
+					video {
+						asset-> {
+							playbackId,
+						},
+					},
+				},
+				title
+			}
+		`;
+
+		const randomArticles = await client.fetch(randomArticlesQuery);
+
+		data.relatedArticle = randomArticles;
+	}
 
 	return {
 		props: {
