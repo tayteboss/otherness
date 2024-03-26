@@ -234,6 +234,16 @@ export const GlobalStyles = createGlobalStyle`
 		p:not(:last-child) {
 			margin-bottom: ${pxToRem(16)};
 		}
+
+		a {
+			text-decoration: underline;
+
+			transition: all var(--transition-speed-default) var(--transition-ease);
+
+			&:hover {
+				opacity: 0.6;
+			}
+		}
 	}
 
 	.conversations-card {

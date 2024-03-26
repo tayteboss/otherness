@@ -19,8 +19,11 @@ type Props = {
 };
 
 const ArticleHeaderWrapper = styled.section`
+	margin-bottom: ${pxToRem(120)};
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding-top: var(--header-h);
+		margin-bottom: 0;
 	}
 `;
 
@@ -76,6 +79,10 @@ const Title = styled.h1`
 
 const Excerpt = styled.h3`
 	margin-bottom: ${pxToRem(48)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		margin-bottom: ${pxToRem(24)};
+	}
 `;
 
 const DetailsWrapper = styled.div`
