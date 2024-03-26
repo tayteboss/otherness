@@ -49,9 +49,6 @@ const Page = (props: Props) => {
 	const [projectCount, setProjectCount] = useState(projectSkip);
 	const [cantLoadMore, setCantLoadMore] = useState(!hasMoreProject);
 
-	// TODO:
-	// MOBILE FILTERING FRONTEND
-
 	const handleFiltering = async (activeMood: string, activeWork: string) => {
 		setIsLoading(true);
 
@@ -65,10 +62,13 @@ const Page = (props: Props) => {
 		`;
 
 		const moreProjectsQuery = `
-			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${
+			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${projectSkip}...${
 			projectSkip + 1
-		}...${projectSkip + 2}] ${basicProjectsQueryDefault}
+		}] ${basicProjectsQueryDefault}
 		`;
+
+		console.log('query', query);
+		console.log('moreProjectsQuery', moreProjectsQuery);
 
 		try {
 			const data = await client.fetch(query);
