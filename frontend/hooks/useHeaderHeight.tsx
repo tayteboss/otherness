@@ -35,13 +35,18 @@ const useHeaderHeight = () => {
 			setHeaderHeight();
 		}, 50);
 
+		const timer2 = setTimeout(() => {
+			setHeaderHeight();
+		}, 550);
+
 		window.addEventListener('resize', setHeaderHeight);
 
 		return () => {
 			window.removeEventListener('resize', setHeaderHeight);
 			clearTimeout(timer);
+			clearTimeout(timer2);
 		};
-	}, [router.asPath]);
+	}, [router]);
 };
 
 export default useHeaderHeight;

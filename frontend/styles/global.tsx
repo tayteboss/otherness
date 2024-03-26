@@ -244,6 +244,15 @@ export const GlobalStyles = createGlobalStyle`
 				opacity: 0.6;
 			}
 		}
+
+		&--large-p {
+			p {
+				font-family: var(--font-classic-grotesque-regular);
+				font-size: ${pxToRem(18)};
+				line-height: ${pxToRem(27)};
+				letter-spacing: 0.18px;
+			}
+		}
 	}
 
 	.conversations-card {

@@ -25,6 +25,8 @@ const ExpectProcessListWrapper = styled.section`
 
 const TitleWrapper = styled.div`
 	grid-column: 2 / 13;
+	position: sticky;
+	top: 100px;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
 		grid-column: 1 / 13;

@@ -67,7 +67,7 @@ const ContentWrapper = styled.div`
 	}
 `;
 
-const Title = styled.h3`
+const Title = styled.h4`
 	color: var(--colour-white);
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
