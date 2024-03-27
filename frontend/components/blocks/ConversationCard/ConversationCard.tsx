@@ -43,6 +43,12 @@ const TitleWrapper = styled.div`
 const Title = styled.h4<{ $isDarkTheme: boolean }>`
 	color: ${(props) =>
 		props.$isDarkTheme ? 'var(--colour-white)' : 'var(--colour-black)'};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(30)};
+		line-height: ${pxToRem(38)};
+		letter-spacing: -0.3px;
+	}
 `;
 
 const Excerpt = styled.p<{ $isDarkTheme: boolean }>`
@@ -82,7 +88,12 @@ const Divider = styled.div<{ $isDarkTheme: boolean }>`
 	border-radius: 100%;
 `;
 
-const ArrowWrapper = styled(motion.div)``;
+const ArrowWrapper = styled(motion.div)`
+	svg {
+		width: ${pxToRem(32)};
+		height: ${pxToRem(21)};
+	}
+`;
 
 const MediaWrapper = styled.div`
 	.image-component-wrapper,

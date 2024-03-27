@@ -20,6 +20,11 @@ const HomeComponentOneProjectWrapper = styled.section<{ $gridColumn: string }>`
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			grid-column: 1 / -1;
+
+			.image-component-wrapper,
+			.video-component-wrapper {
+				padding-top: 142%;
+			}
 		}
 	}
 `;

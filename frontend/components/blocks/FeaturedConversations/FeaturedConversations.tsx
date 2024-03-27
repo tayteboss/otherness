@@ -12,6 +12,10 @@ type Props = {
 const FeaturedConversationsWrapper = styled.section`
 	background: var(--colour-white);
 	padding: ${pxToRem(24)} 0 ${pxToRem(80)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: ${pxToRem(40)} 0 ${pxToRem(40)};
+	}
 `;
 
 const Title = styled.h2`

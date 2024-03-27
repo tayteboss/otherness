@@ -42,7 +42,7 @@ const Title = styled(motion.h3)`
 	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		margin-bottom: ${pxToRem(8)};
+		margin-bottom: ${pxToRem(12)};
 	}
 `;
 
@@ -64,8 +64,31 @@ const DesktopListWrapper = styled(motion.ul)`
 const MobileListWrapper = styled(motion.ul)`
 	display: none;
 	position: relative;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		display: block;
+	}
+
+	&::after {
+		content: '';
+		width: ${pxToRem(52)};
+		height: 100%;
+		background: linear-gradient(
+			270deg,
+			#fff 0%,
+			rgba(255, 255, 255, 0) 100%
+		);
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 1;
+	}
+`;
+
+const MobileInner = styled.div`
 	-ms-overflow-style: none;
 	scrollbar-width: none;
+	padding-right: ${pxToRem(40)};
 
 	&::-webkit-scrollbar {
 		display: none;
@@ -82,21 +105,6 @@ const MobileListWrapper = styled(motion.ul)`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding-left: ${pxToRem(16)};
 		gap: ${pxToRem(16)};
-	}
-
-	&::after {
-		content: '';
-		width: ${pxToRem(52)};
-		height: 100%;
-		background: linear-gradient(
-			270deg,
-			#fff 0%,
-			rgba(255, 255, 255, 0) 100%
-		);
-		position: absolute;
-		top: 0;
-		right: 0;
-		z-index: 1;
 	}
 `;
 
@@ -191,16 +199,18 @@ const OurServicesBanner = (props: Props) => {
 				initial="hidden"
 				animate={inView ? 'visible' : 'hidden'}
 			>
-				{hasServices &&
-					services.map((item, i) => (
-						<ListItem
-							variants={childVariants}
-							className="type-h4"
-							key={i}
-						>
-							{item}
-						</ListItem>
-					))}
+				<MobileInner>
+					{hasServices &&
+						services.map((item, i) => (
+							<ListItem
+								variants={childVariants}
+								className="type-h4"
+								key={i}
+							>
+								{item}
+							</ListItem>
+						))}
+				</MobileInner>
 			</MobileListWrapper>
 		</OurServicesBannerWrapper>
 	);

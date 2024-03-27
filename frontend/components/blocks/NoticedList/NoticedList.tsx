@@ -12,6 +12,10 @@ type Props = {
 const NoticedListWrapper = styled.section`
 	background: var(--colour-beige-light);
 	padding: ${pxToRem(48)} 0 ${pxToRem(80)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: ${pxToRem(32)} 0 ${pxToRem(56)};
+	}
 `;
 
 const Title = styled.h3`

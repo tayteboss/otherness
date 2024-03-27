@@ -3,7 +3,6 @@ import { ProjectCardType } from '../../../shared/types/types';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
 import ProjectCard from '../ProjectCard';
-import pxToRem from '../../../utils/pxToRem';
 
 type Props = {
 	homeComponentTwoHalfProjects: {
@@ -18,6 +17,11 @@ const HomeComponentTwoHalfProjectsWrapper = styled.section`
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			grid-column: 1 / -1;
+
+			.image-component-wrapper,
+			.video-component-wrapper {
+				padding-top: 125%;
+			}
 		}
 	}
 `;
