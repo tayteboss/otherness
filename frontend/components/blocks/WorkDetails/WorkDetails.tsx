@@ -123,18 +123,17 @@ const WorkDetails = (props: Props) => {
 
 	const { ref: ref2, inView: inView2 } = useInView({
 		triggerOnce: false,
-		threshold: 0.2,
 		rootMargin: '-50px'
 	});
 
 	useEffect(() => {
 		const formattedId = 'project-intro';
-		const headerLink = document.querySelector(
+		const headerLinks = document.querySelectorAll(
 			`.sub-project-link[data-id="${formattedId}"]`
 		);
-		if (headerLink) {
+		headerLinks.forEach((headerLink) => {
 			headerLink.classList.toggle('active', inView2);
-		}
+		});
 	}, [inView2]);
 
 	return (

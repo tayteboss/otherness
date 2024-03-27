@@ -82,24 +82,29 @@ const SubProject = (props: SubProjectType) => {
 
 	const { ref: ref2, inView: inView2 } = useInView({
 		triggerOnce: false,
-		threshold: 0.1,
 		rootMargin: '-50px'
 	});
 
 	useEffect(() => {
 		const formattedId = formatId(label);
+		console.log('formattedId', formattedId);
+
 		if (formattedId) {
-			const headerLink = document.querySelector(
+			const headerLinks = document.querySelectorAll(
 				`.sub-project-link[data-id="${formattedId}"]`
 			);
-			if (headerLink) {
+			headerLinks.forEach((headerLink) => {
 				headerLink.classList.toggle('active', inView2);
-			}
+			});
 		}
 	}, [inView2, label]);
 
 	return (
-		<SubProjectWrapper id={formatId(label)} ref={ref2}>
+		<SubProjectWrapper
+			id={formatId(label)}
+			ref={ref2}
+			key={formatId(label)}
+		>
 			<HeaderWrapper>
 				<LayoutWrapper>
 					{title && (

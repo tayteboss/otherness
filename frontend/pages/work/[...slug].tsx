@@ -18,6 +18,7 @@ import pxToRem from '../../utils/pxToRem';
 import RelatedProject from '../../components/blocks/RelatedProject';
 import SubProjects from '../../components/blocks/SubProjects';
 import SubProjectsNavigation from '../../components/elements/SubProjectsNavigation';
+import MobileSubProjectsNavigation from '../../components/blocks/MobileSubProjectsNavigation';
 
 type Props = {
 	data: ProjectType;
@@ -88,6 +89,7 @@ const Page = (props: Props) => {
 				collaborators={collaborators}
 				description={description}
 			/>
+			<MobileSubProjectsNavigation subProjects={subProjects} />
 			<OthernessPageBuilder data={imageBlocks} useImageComponent />
 			<CtaBanner
 				title={ctaBannerTitle}
