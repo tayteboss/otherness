@@ -35,6 +35,8 @@ const TitleWrapper = styled.div`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		grid-column: 1 / -1;
 		margin-bottom: ${pxToRem(40)};
+		position: relative;
+		top: 0;
 	}
 `;
 

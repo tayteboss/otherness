@@ -251,6 +251,12 @@ export const GlobalStyles = createGlobalStyle`
 				font-size: ${pxToRem(18)};
 				line-height: ${pxToRem(27)};
 				letter-spacing: 0.18px;
+
+				@media ${theme.mediaBreakpoints.tabletPortrait} {
+					font-size: ${pxToRem(14)};
+					line-height: ${pxToRem(21)};
+					letter-spacing: 0.14px;
+				}
 			}
 		}
 	}

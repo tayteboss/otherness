@@ -7,10 +7,15 @@ import { whatToExpectQueryString } from '../lib/sanityQueries';
 import PageHeader from '../components/blocks/PageHeader';
 import OthernessPageBuilder from '../components/common/OthernessPageBuilder';
 import ExploreFurther from '../components/blocks/ExploreFurther';
+import pxToRem from '../utils/pxToRem';
 
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
 	padding-top: var(--header-h);
+
+	.page-builder {
+		padding-bottom: ${pxToRem(60)};
+	}
 `;
 
 type Props = {

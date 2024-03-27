@@ -41,7 +41,13 @@ const ColumnCardWrapper = styled.div`
 	gap: ${pxToRem(16)};
 `;
 
-const Title = styled.h5``;
+const Title = styled.h5`
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(24)};
+		line-height: ${pxToRem(31)};
+		letter-spacing: -0.24px;
+	}
+`;
 
 const Description = styled.p``;
 
