@@ -21,7 +21,7 @@ const MediaWrapper = styled.div`
 
 	.video-component-wrapper,
 	.image-component-wrapper {
-		height: calc(100vh - ((var(--header-h) / 2) - 35px));
+		height: calc(100vh - ((var(--header-h) / 2) - 10px));
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			height: calc(100svh - var(--header-h));
