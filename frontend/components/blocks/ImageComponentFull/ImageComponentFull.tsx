@@ -15,6 +15,10 @@ const FullWrapper = styled.div`
 	.image-component-wrapper,
 	.video-component-wrapper {
 		padding-top: 56.25%;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			padding-top: 142.6%;
+		}
 	}
 `;
 

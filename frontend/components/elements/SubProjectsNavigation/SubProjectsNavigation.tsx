@@ -21,6 +21,10 @@ const SubProjectsNavigationWrapper = styled(motion.div)`
 	display: flex;
 	gap: ${pxToRem(24)};
 	mix-blend-mode: difference;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
 `;
 
 const LinkTrigger = styled.button<{ $isActive: boolean }>`

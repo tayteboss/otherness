@@ -21,7 +21,7 @@ const WorkIntroWrapper = styled(motion.section)`
 	padding-bottom: ${pxToRem(72)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		margin-bottom: ${pxToRem(48)};
+		padding-bottom: ${pxToRem(48)};
 	}
 `;
 
