@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 type Props = {
@@ -239,6 +239,10 @@ const FilterTab = (props: Props) => {
 			filter.charAt(0).toUpperCase() + filter.slice(1).replace('-', ' ')
 		);
 	};
+
+	useEffect(() => {
+		setIsHovered(false);
+	}, [activeWork, activeMood]);
 
 	return (
 		<FilterTabWrapper
