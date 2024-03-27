@@ -56,14 +56,14 @@ const ImageComponentOnePortrait = (props: Props) => {
 	}
 
 	if (selectPosition === 'left') {
-		gridColumn = `1 / span 4`;
+		mobileGridColumn = `1 / span 4`;
 	} else if (selectPosition === 'right') {
-		gridColumn = `span 5 / -1`;
+		mobileGridColumn = `span 5 / -1`;
 	} else if (selectPosition === 'middle') {
 		if (isSmall) {
-			gridColumn = `2 / -2`;
+			mobileGridColumn = `2 / -2`;
 		} else {
-			gridColumn = `1 / -1`;
+			mobileGridColumn = `1 / -1`;
 		}
 	}
 
