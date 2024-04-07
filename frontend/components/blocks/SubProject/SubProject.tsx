@@ -69,10 +69,9 @@ const SubProject = (props: SubProjectType) => {
 		return label.replace(/\s+/g, '-').toLowerCase();
 	};
 
-	const formattedDescription: string = `<p>${description.replace(
-		/\n/g,
-		'<br />'
-	)}</p>`;
+	const formattedDescription: string = description
+		? `<p>${description.replace(/\n/g, '<br />')}</p>`
+		: '';
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
