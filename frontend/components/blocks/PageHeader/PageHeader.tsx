@@ -51,19 +51,19 @@ const MotionWrapper = styled(motion.div)`
 	overflow: hidden;
 `;
 
-const Word = styled.span`
+const Word = styled.div`
 	display: inline-block;
 	white-space: pre;
 	overflow: hidden;
 `;
 
-const Letter = styled(motion.span)<{ $inlineBlock: boolean }>`
+const Letter = styled(motion.h2)<{ $inlineBlock: boolean }>`
 	position: relative;
-	display: ${(props) => props.$inlineBlock && 'inline-block'};
+	display: ${(props) => (props.$inlineBlock ? 'inline-block' : 'inline')};
 	font-family: var(--font-baryton);
 	font-size: ${pxToRem(130)};
 	line-height: ${pxToRem(157)};
-	letter-spacing: -5px;
+	letter-spacing: -2px;
 	font-weight: 200;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
@@ -74,8 +74,8 @@ const Letter = styled(motion.span)<{ $inlineBlock: boolean }>`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		font-size: ${pxToRem(46)};
-		line-height: ${pxToRem(59)};
 		letter-spacing: -0.69px;
+		line-height: ${pxToRem(56)};
 	}
 `;
 
@@ -109,7 +109,8 @@ const headingWrapperVariants = {
 		transition: {
 			duration: 0.3,
 			ease: 'easeInOut',
-			staggerChildren: 0.04
+			staggerChildren: 0.01,
+			delayChildren: 0.3
 		}
 	}
 };
@@ -117,26 +118,18 @@ const headingWrapperVariants = {
 const childVariants = {
 	hidden: {
 		opacity: 0,
-		y: 60,
-		x: -10,
-		rotate: 10,
+		y: 80,
 		transition: {
-			type: 'spring',
-			stiffness: 100,
-			damping: 12,
-			duration: 0.5
+			ease: 'easeInOut',
+			duration: 0.3
 		}
 	},
 	visible: {
 		opacity: 1,
 		y: 0,
-		x: 0,
-		rotate: 0,
 		transition: {
-			type: 'spring',
-			stiffness: 100,
-			damping: 12,
-			duration: 0.5
+			ease: 'easeInOut',
+			duration: 0.3
 		}
 	}
 };

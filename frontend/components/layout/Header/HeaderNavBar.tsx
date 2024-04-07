@@ -43,7 +43,7 @@ const LinkTag = styled.a`
 	text-transform: uppercase;
 	padding: ${pxToRem(8)} ${pxToRem(16)};
 	background: rgba(255, 255, 255, 0.2);
-	backdrop-filter: blur(5px);
+	backdrop-filter: blur(25px);
 	position: relative;
 	z-index: 2;
 	white-space: pre;
@@ -52,7 +52,24 @@ const LinkTag = styled.a`
 	transition: all var(--transition-speed-default) var(--transition-ease);
 
 	&:hover {
-		background: rgba(255, 255, 255, 0.3);
+		background: rgba(255, 255, 255, 0.65);
+
+		&::after {
+			opacity: 1;
+		}
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background: var(--colour-black);
+		opacity: 0;
+
+		transition: all var(--transition-speed-default) var(--transition-ease);
 	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
@@ -73,9 +90,9 @@ const HeaderNavBar = () => {
 				>
 					<LinkTag>Things You Can Expect</LinkTag>
 				</Link>
-				<Link href="/" passHref legacyBehavior scroll={false}>
+				{/* <Link href="/" passHref legacyBehavior scroll={false}>
 					<LinkTag>Things We Understand</LinkTag>
-				</Link>
+				</Link> */}
 				<Link href="/work" passHref legacyBehavior scroll={false}>
 					<LinkTag>Work We Do</LinkTag>
 				</Link>

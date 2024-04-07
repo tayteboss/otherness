@@ -10,6 +10,11 @@ type Props = {
 	link: ButtonType;
 	media: MediaType;
 	title: string;
+	pbCtaBanner?: {
+		link: ButtonType;
+		media: MediaType;
+		title: string;
+	};
 };
 
 const CtaBannerWrapper = styled.section`
@@ -50,9 +55,8 @@ const MediaWrapper = styled.div`
 const ContentWrapper = styled.div`
 	grid-column: 15 / -1;
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: ${pxToRem(40)};
+	justify-content: center;
+	width: 100%;
 	padding: ${pxToRem(120)} 10%;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
@@ -62,8 +66,21 @@ const ContentWrapper = styled.div`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		grid-column: 1 / -1;
-		align-items: center;
 		padding: ${pxToRem(48)} ${pxToRem(40)};
+	}
+`;
+
+const InnerContent = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: ${pxToRem(40)};
+	width: ${pxToRem(400)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		align-items: center;
+		gap: ${pxToRem(32)};
+		width: auto;
 	}
 `;
 
@@ -76,7 +93,13 @@ const Title = styled.h4`
 `;
 
 const CtaBanner = (props: Props) => {
-	const { link, media, title } = props;
+	let { pbCtaBanner, link, media, title } = props;
+
+	if (pbCtaBanner) {
+		link = pbCtaBanner.link;
+		media = pbCtaBanner.media;
+		title = pbCtaBanner.title;
+	}
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -96,12 +119,14 @@ const CtaBanner = (props: Props) => {
 							inView ? 'view-element-fade-in--in-view' : ''
 						}`}
 					>
-						<Title>{title || ''}</Title>
-						{link && (
-							<PrimaryButton data={link}>
-								{link?.title || ''}
-							</PrimaryButton>
-						)}
+						<InnerContent>
+							<Title>{title || ''}</Title>
+							{link && (
+								<PrimaryButton data={link}>
+									{link?.title || ''}
+								</PrimaryButton>
+							)}
+						</InnerContent>
 					</ContentWrapper>
 				</LayoutGrid>
 			</Inner>

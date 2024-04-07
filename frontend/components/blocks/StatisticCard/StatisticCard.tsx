@@ -44,6 +44,10 @@ const ContentWrapper = styled.div`
 	flex-direction: column;
 	padding: 0 ${pxToRem(24)};
 	z-index: 1;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: 0 ${pxToRem(16)};
+	}
 `;
 
 const Title = styled.h1`

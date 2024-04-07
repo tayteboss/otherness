@@ -162,10 +162,10 @@ export type HomePageType = {
 
 export type SiteSettingsType = {
 	footerConsultationCta: string;
-	instagramUrl: string;
-	linkedInUrl: string;
+	socialLink1: ButtonType;
+	socialLink2: ButtonType;
+	socialLink3: ButtonType;
 	tagline: string;
-	twitterUrl: string;
 	footerConsultationButtonTitle: string;
 	footerConsultationButtonUrl: string;
 	mobileMenuConsultationCta: string;
@@ -261,7 +261,7 @@ export type ProjectType = {
 		| 'bookish'
 		| 'luxxy'
 		| 'technical'
-		| 'profesh'
+		| 'professh'
 		| 'vivacious'
 	)[];
 	relatedProject: ProjectType;

@@ -41,7 +41,7 @@ const Page = (props: Props) => {
 			exit="hidden"
 		>
 			<NextSeo
-				title={data?.title || 'Ultra'}
+				title={data?.title || 'Otherness'}
 				description={data?.excerpt || ''}
 			/>
 			<ArticleHeader

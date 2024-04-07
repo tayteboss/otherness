@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
-import { useInView } from 'react-intersection-observer';
 import WorkServicesList from '../WorkServicesList';
 import pxToRem from '../../../utils/pxToRem';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
-import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 type Props = {
 	excerpt: string;
@@ -14,7 +12,7 @@ type Props = {
 	types: string[];
 };
 
-const WorkIntroWrapper = styled(motion.section)`
+const WorkIntroWrapper = styled.section`
 	background: var(--colour-white);
 	position: relative;
 	z-index: 5;
@@ -25,7 +23,7 @@ const WorkIntroWrapper = styled(motion.section)`
 	}
 `;
 
-const Inner = styled(motion.div)`
+const Inner = styled.div`
 	grid-column: 4 / -4;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
@@ -33,37 +31,16 @@ const Inner = styled(motion.div)`
 	}
 `;
 
-const Tagline = styled(motion.h3)`
+const Tagline = styled.h3`
 	margin-bottom: ${pxToRem(24)};
 `;
 
-const Excerpt = styled(motion.h5)`
+const Excerpt = styled.h5`
 	margin-bottom: ${pxToRem(56)};
 `;
 
 const WorkIntro = (props: Props) => {
 	const { excerpt, tagline, types } = props;
-
-	const [windowHeight, setWindowHeight] = useState(0);
-	const [distanceToTop, setDistanceToTop] = useState(0);
-
-	const windowDimensions = useWindowDimensions();
-	const isTabletMobile = windowDimensions.width < 768;
-
-	const wrapperRef = useRef<HTMLAnchorElement>(null);
-
-	const { scrollY } = useScroll();
-
-	const transform = useTransform(
-		scrollY,
-		[0, distanceToTop + windowHeight * 2],
-		[
-			'translateY(0)',
-			isTabletMobile ? 'translateY(0)' : 'translateY(250px)'
-		]
-	);
-
-	const opacity = useTransform(scrollY, [0, windowHeight / 2], [1, 0]);
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -71,61 +48,16 @@ const WorkIntro = (props: Props) => {
 		rootMargin: '-50px'
 	});
 
-	useEffect(() => {
-		if (wrapperRef?.current) {
-			setDistanceToTop(
-				window.pageYOffset +
-					wrapperRef.current.getBoundingClientRect().top
-			);
-		}
-
-		setWindowHeight(window.innerHeight);
-
-		const timer = setTimeout(() => {
-			if (wrapperRef?.current) {
-				setDistanceToTop(
-					window.pageYOffset +
-						wrapperRef.current.getBoundingClientRect().top
-				);
-			}
-
-			setWindowHeight(window.innerHeight);
-		}, 1000);
-
-		return () => clearTimeout(timer);
-	}, [distanceToTop]);
-
 	return (
-		<WorkIntroWrapper ref={ref} style={{ transform }}>
+		<WorkIntroWrapper>
 			<LayoutWrapper>
 				<LayoutGrid>
-					<Inner style={{ opacity }}>
-						{tagline && (
-							<Tagline
-								initial={{ opacity: 0 }}
-								animate={{
-									opacity: 1,
-									transition: {
-										duration: 0.3,
-										ease: 'easeInOut'
-									}
-								}}
-							>
-								{tagline}
-							</Tagline>
-						)}
+					<Inner>
+						{tagline && <Tagline>{tagline}</Tagline>}
 						{excerpt && (
 							<Excerpt
 								className="type-secondary-heading-medium"
-								initial={{ opacity: 0 }}
-								animate={{
-									opacity: 1,
-									transition: {
-										duration: 0.3,
-										ease: 'easeInOut',
-										delay: 0.25
-									}
-								}}
+								ref={ref}
 							>
 								{excerpt}
 							</Excerpt>

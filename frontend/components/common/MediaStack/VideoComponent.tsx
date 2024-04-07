@@ -17,6 +17,8 @@ const VideoComponentWrapper = styled.div`
 
 	mux-player,
 	img {
+		transform: scale(1.01);
+
 		transition: all var(--transition-speed-extra-slow)
 			var(--transition-ease);
 	}
@@ -27,7 +29,18 @@ const InnerBlur = styled(motion.div)`
 	inset: 0;
 	height: 100%;
 	width: 100%;
-	z-index: 1;
+	z-index: 3;
+	background: var(--colour-beige-light);
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: var(--colour-beige-light);
+		height: 100%;
+		width: 100%;
+		z-index: 0;
+	}
 `;
 
 const Inner = styled.div`
@@ -41,21 +54,17 @@ const Inner = styled.div`
 const wrapperVariants = {
 	hidden: {
 		opacity: 1,
-		filter: 'blur(10px)',
-		scale: 1.05,
 		transition: {
-			duration: 2,
+			duration: 0.3,
 			ease: 'easeInOut'
 		}
 	},
 	visible: {
 		opacity: 0,
-		filter: 'blur(0px)',
-		scale: 1,
 		transition: {
-			duration: 2,
-			ease: 'easeInOut',
-			delay: 0.2
+			duration: 0.3,
+			delay: 0.5,
+			ease: 'easeInOut'
 		}
 	}
 };
@@ -84,7 +93,7 @@ const VideoComponent = (props: Props) => {
 	return (
 		<VideoComponentWrapper className="video-component-wrapper">
 			<AnimatePresence initial={false}>
-				{inView && playbackId && (
+				{playbackId && inView && (
 					<InnerBlur
 						variants={wrapperVariants}
 						initial="hidden"

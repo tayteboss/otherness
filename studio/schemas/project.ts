@@ -56,6 +56,22 @@ export default {
       ],
     },
     {
+      title: 'Related Cover Media',
+      name: 'relatedDesktopMedia',
+      type: 'object',
+      fields: [
+        selectMediaTypeObject,
+        {
+          ...imageObject,
+          hidden: ({document}: any) => document?.relatedDesktopMedia?.mediaType !== 'image',
+        },
+        {
+          ...videoObject,
+          hidden: ({document}: any) => document?.relatedDesktopMedia?.mediaType !== 'video',
+        },
+      ],
+    },
+    {
       title: 'Tagline',
       name: 'tagline',
       type: 'string',
@@ -114,7 +130,7 @@ export default {
           {title: 'Bookish', value: 'bookish'},
           {title: 'Luxxy', value: 'luxxy'},
           {title: 'Technical', value: 'technical'},
-          {title: 'Profesh', value: 'profesh'},
+          {title: 'Professh', value: 'professh'},
           {title: 'Vivacious', value: 'vivacious'},
         ],
         layout: 'checkbox',
@@ -201,7 +217,6 @@ export default {
           ],
         },
       ],
-      options: {collapsible: true},
     },
     projectImageBlocks,
     {
@@ -220,22 +235,6 @@ export default {
       name: 'relatedProject',
       type: 'reference',
       to: [{type: 'project'}],
-    },
-    {
-      title: 'Related Desktop Media',
-      name: 'relatedDesktopMedia',
-      type: 'object',
-      fields: [
-        selectMediaTypeObject,
-        {
-          ...imageObject,
-          hidden: ({document}: any) => document?.relatedDesktopMedia?.mediaType !== 'image',
-        },
-        {
-          ...videoObject,
-          hidden: ({document}: any) => document?.relatedDesktopMedia?.mediaType !== 'video',
-        },
-      ],
     },
   ],
 }

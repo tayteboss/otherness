@@ -24,10 +24,10 @@ const Layout = (props: Props) => {
 
 	const {
 		footerConsultationCta,
-		instagramUrl,
-		linkedInUrl,
+		socialLink1,
+		socialLink2,
+		socialLink3,
 		tagline,
-		twitterUrl,
 		footerConsultationButtonTitle,
 		footerConsultationButtonUrl,
 		mobileMenuConsultationCta,
@@ -81,10 +81,10 @@ const Layout = (props: Props) => {
 			</ReactLenis>
 			<Footer
 				footerConsultationCta={footerConsultationCta}
-				instagramUrl={instagramUrl}
-				linkedInUrl={linkedInUrl}
+				socialLink1={socialLink1}
+				socialLink2={socialLink2}
+				socialLink3={socialLink3}
 				tagline={tagline}
-				twitterUrl={twitterUrl}
 				footerConsultationButtonTitle={footerConsultationButtonTitle}
 				footerConsultationButtonUrl={footerConsultationButtonUrl}
 			/>

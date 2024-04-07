@@ -144,7 +144,7 @@ const MobileMenu = (props: Props) => {
 									Things You Can Expect
 								</LinkTag>
 							</Link>
-							<Link
+							{/* <Link
 								href="/"
 								passHref
 								legacyBehavior
@@ -155,7 +155,7 @@ const MobileMenu = (props: Props) => {
 								>
 									Things We Understand
 								</LinkTag>
-							</Link>
+							</Link> */}
 							<Link
 								href="/work"
 								passHref

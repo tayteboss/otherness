@@ -115,6 +115,10 @@ const imageObject = {
       title: 'Alt Text',
     },
   ],
+  options: {
+    collapsible: false,
+    collapsed: false,
+  },
 }
 
 const mobileImageObject = {
@@ -129,12 +133,20 @@ const mobileImageObject = {
       title: 'Alt Text',
     },
   ],
+  options: {
+    collapsible: false,
+    collapsed: false,
+  },
 }
 
 const videoObject = {
   title: 'Video',
   name: 'video',
   type: 'mux.video',
+  options: {
+    collapsible: false,
+    collapsed: false,
+  },
 }
 
 const mobileVideoObject = {
@@ -142,6 +154,10 @@ const mobileVideoObject = {
   name: 'mobileVideo',
   type: 'mux.video',
   description: 'Optional',
+  options: {
+    collapsible: false,
+    collapsed: false,
+  },
 }
 
 const imageComponentOneHalfOneXSmall = {
@@ -250,6 +266,8 @@ const pageReferencesList = [
   {type: 'workPage'},
   {type: 'conversationsPage'},
   {type: 'whatToExpectPage'},
+  {type: 'project'},
+  {type: 'article'},
 ]
 
 const pageReferences = {
@@ -313,6 +331,7 @@ const imageBlockList = [
   {title: 'One Big One XSmall', value: 'imageComponentOneBigOneXSmall'},
   {title: 'Two Half', value: 'imageComponentTwoHalf'},
   {title: 'One Testimonial One XSmall', value: 'imageComponentOneTestimonialOneXSmall'},
+  {title: 'CTA Banner', value: 'pbCtaBanner'},
 ]
 
 const homeBlockList = [
@@ -350,6 +369,10 @@ const editorialBlock = {
       },
     },
   ],
+  options: {
+    collapsible: false,
+    collapsed: false,
+  },
 }
 
 const testimonialBlock = {
@@ -466,6 +489,8 @@ const projectImageBlocks = {
             componentName = 'Two Half'
           } else if (imageComponent === 'imageComponentOneTestimonialOneXSmall') {
             componentName = 'One Editorial One XSmall'
+          } else if (imageComponent === 'pbCtaBanner') {
+            componentName = 'CTA Banner'
           } else {
             componentName = 'Unknown'
           }
@@ -505,6 +530,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
             {
               title: 'X-Small',
@@ -521,6 +550,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
           ],
           hidden: ({parent}: {parent: any}) =>
@@ -542,6 +575,10 @@ const projectImageBlocks = {
               hidden: ({parent}: any) => parent?.mediaType !== 'video',
             },
           ],
+          options: {
+            collapsible: false,
+            collapsed: false,
+          },
           hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'imageComponentOneXSmall',
         },
         {
@@ -565,6 +602,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
             {
               title: 'RHS',
@@ -581,6 +622,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
           ],
           hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'imageComponentTwoXSmall',
@@ -601,6 +646,10 @@ const projectImageBlocks = {
               hidden: ({parent}: any) => parent?.mediaType !== 'video',
             },
           ],
+          options: {
+            collapsible: false,
+            collapsed: false,
+          },
           hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'imageComponentOneHalf',
         },
         {
@@ -625,6 +674,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
           ],
           hidden: ({parent}: {parent: any}) =>
@@ -646,6 +699,10 @@ const projectImageBlocks = {
               hidden: ({parent}: any) => parent?.mediaType !== 'video',
             },
           ],
+          options: {
+            collapsible: false,
+            collapsed: false,
+          },
           hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'imageComponentLandscape',
         },
         {
@@ -668,6 +725,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
             {
               title: 'Small 1',
@@ -684,6 +745,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
             {
               title: 'Small 2',
@@ -700,6 +765,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
           ],
           hidden: ({parent}: {parent: any}) =>
@@ -730,6 +799,10 @@ const projectImageBlocks = {
               hidden: ({parent}: any) => parent?.mediaType !== 'video',
             },
           ],
+          options: {
+            collapsible: false,
+            collapsed: false,
+          },
           hidden: ({parent}: {parent: any}) =>
             parent?.imageComponent !== 'imageComponentOnePortrait',
         },
@@ -748,6 +821,10 @@ const projectImageBlocks = {
               hidden: ({parent}: any) => parent?.mediaType !== 'video',
             },
           ],
+          options: {
+            collapsible: false,
+            collapsed: false,
+          },
           hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'imageComponentFull',
         },
         {
@@ -771,6 +848,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
             {
               title: 'Medium',
@@ -787,6 +868,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
           ],
           hidden: ({parent}: {parent: any}) =>
@@ -808,6 +893,10 @@ const projectImageBlocks = {
               hidden: ({parent}: any) => parent?.mediaType !== 'video',
             },
           ],
+          options: {
+            collapsible: false,
+            collapsed: false,
+          },
           hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'imageComponentOneBig',
         },
         {
@@ -831,6 +920,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
             {
               title: 'Landscape',
@@ -847,6 +940,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
           ],
           hidden: ({parent}: {parent: any}) =>
@@ -873,6 +970,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
             {
               title: 'Small',
@@ -889,6 +990,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
           ],
           hidden: ({parent}: {parent: any}) =>
@@ -914,6 +1019,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
             {
               title: 'RHS',
@@ -930,6 +1039,10 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
           ],
           hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'imageComponentTwoHalf',
@@ -956,10 +1069,49 @@ const projectImageBlocks = {
                   hidden: ({parent}: any) => parent?.mediaType !== 'video',
                 },
               ],
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
           ],
           hidden: ({parent}: {parent: any}) =>
             parent?.imageComponent !== 'imageComponentOneTestimonialOneXSmall',
+        },
+        {
+          title: 'CTA Banner',
+          name: 'pbCtaBanner',
+          type: 'object',
+          fields: [
+            {
+              title: 'Title',
+              name: 'title',
+              type: 'string',
+            },
+            {
+              title: 'Link',
+              name: 'link',
+              type: 'object',
+              fields: linkObject,
+            },
+            {
+              title: 'Media',
+              name: 'media',
+              type: 'object',
+              fields: [
+                selectMediaTypeObject,
+                {
+                  ...imageObject,
+                  hidden: ({parent}: any) => parent?.mediaType !== 'image',
+                },
+                {
+                  ...videoObject,
+                  hidden: ({parent}: any) => parent?.mediaType !== 'video',
+                },
+              ],
+            },
+          ],
+          hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'pbCtaBanner',
         },
       ],
     },
@@ -1048,6 +1200,10 @@ const homeBlocks = {
               to: [{type: 'project'}],
             },
           ],
+          options: {
+            collapsible: false,
+            collapsed: false,
+          },
           hidden: ({parent}: {parent: any}) => parent?.component !== 'homeComponentTwoHalfProjects',
         },
         {

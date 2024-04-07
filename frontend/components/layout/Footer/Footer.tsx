@@ -6,13 +6,14 @@ import pxToRem from '../../../utils/pxToRem';
 import FooterSocialLinks from './FooterSocialLinks';
 import PrimaryButton from '../../elements/PrimaryButton';
 import Link from 'next/link';
+import { ButtonType } from '../../../shared/types/types';
 
 type Props = {
 	footerConsultationCta: string;
-	instagramUrl: string;
-	linkedInUrl: string;
+	socialLink1: ButtonType;
+	socialLink2: ButtonType;
+	socialLink3: ButtonType;
 	tagline: string;
-	twitterUrl: string;
 	footerConsultationButtonTitle: string;
 	footerConsultationButtonUrl: string;
 };
@@ -167,26 +168,26 @@ const MobileWrapper = styled.div`
 const Footer = (props: Props) => {
 	const {
 		footerConsultationCta,
-		instagramUrl,
-		linkedInUrl,
+		socialLink1,
+		socialLink2,
+		socialLink3,
 		tagline,
-		twitterUrl,
 		footerConsultationButtonTitle,
 		footerConsultationButtonUrl
 	} = props;
 
 	const socialButtons = [
 		{
-			title: 'Instagram',
-			url: instagramUrl
+			title: socialLink1.title,
+			url: socialLink1.url
 		},
 		{
-			title: 'LinkedIn',
-			url: linkedInUrl
+			title: socialLink2.title,
+			url: socialLink2.url
 		},
 		{
-			title: 'Twitter',
-			url: twitterUrl
+			title: socialLink3.title,
+			url: socialLink3.url
 		}
 	];
 

@@ -53,7 +53,7 @@ const FiltersBar = (props: Props) => {
 		'bookish',
 		'luxxy',
 		'technical',
-		'profesh',
+		'professh',
 		'vivacious'
 	];
 

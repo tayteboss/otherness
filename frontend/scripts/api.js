@@ -11,15 +11,7 @@ const client = sanityClient.createClient({
 const getSiteData = async () => {
     const query = `
     *[_type == "siteSettings"][0] {
-        footerConsultationCta,
-      instagramUrl,
-      linkedInUrl,
-      tagline,
-      twitterUrl,
-      footerConsultationButtonTitle,
-      footerConsultationButtonUrl,
-      mobileMenuConsultationCta,
-      mobileMenuConsultationButtonTitle,
+      ...,
     }
   `;
 

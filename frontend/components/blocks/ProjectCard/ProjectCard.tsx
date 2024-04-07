@@ -8,11 +8,10 @@ import { useInView } from 'react-intersection-observer';
 const ProjectCardWrapper = styled.a`
 	width: 100%;
 
+	transition: opacity var(--transition-speed-default) var(--transition-ease);
+
 	&:hover {
-		img,
-		mux-player {
-			transform: scale(1.05);
-		}
+		opacity: 0.8;
 	}
 `;
 

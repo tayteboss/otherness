@@ -26,7 +26,7 @@ const NoticedCardWrapper = styled.div<StyledProps>`
 		height: 1px;
 		background: var(--colour-black);
 
-		transition: all 2000ms var(--transition-ease);
+		transition: all 1000ms var(--transition-ease);
 	}
 `;
 
@@ -121,7 +121,7 @@ const NoticedCard = (props: NoticedType) => {
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
-		rootMargin: '-50px'
+		rootMargin: '-300px'
 	});
 
 	const handleClick = () => {
@@ -165,7 +165,7 @@ const NoticedCard = (props: NoticedType) => {
 					</BottomWrapper>
 				</MobileWrapper>
 			</NoticedCardWrapper>
-			{thumbnailImage && (
+			{thumbnailImage && url && (
 				<NoticedCursorLayout isActive={isHovered}>
 					<ImageWrapper>
 						<ImageInner>

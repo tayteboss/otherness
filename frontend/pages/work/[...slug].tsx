@@ -56,12 +56,8 @@ const Page = (props: Props) => {
 		tagline,
 		title,
 		twoColumnHero,
-		type,
-		relatedDesktopMedia
+		type
 	} = data ?? {};
-
-	const { ctaBannerTitle, ctaBannerLink, ctaBannerMedia } =
-		workPageData ?? {};
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -75,7 +71,7 @@ const Page = (props: Props) => {
 			exit="hidden"
 		>
 			<NextSeo
-				title={data?.title || 'Ultra'}
+				title={data?.title || 'Otherness'}
 				description={data?.excerpt || ''}
 			/>
 			<WorkIntro excerpt={excerpt} tagline={tagline} types={type} />
@@ -91,15 +87,10 @@ const Page = (props: Props) => {
 			/>
 			<MobileSubProjectsNavigation subProjects={subProjects} />
 			<OthernessPageBuilder data={imageBlocks} useImageComponent />
-			<CtaBanner
-				title={ctaBannerTitle}
-				media={ctaBannerMedia}
-				link={ctaBannerLink}
-			/>
 			<SubProjects data={subProjects} />
 			<RelatedProject
 				data={relatedProject}
-				desktopMedia={relatedDesktopMedia}
+				desktopMedia={relatedProject?.relatedDesktopMedia}
 			/>
 			<SubProjectsNavigation subProjects={subProjects} />
 		</PageWrapper>
@@ -291,6 +282,12 @@ export async function getStaticProps({ params }: any) {
 					xSmall {
 						${mediaTypeString}
 					}
+				},
+				pbCtaBanner {
+					...,
+					media {
+						${mediaTypeString}
+					}
 				}
 			},
 			subProjects[]-> {
@@ -428,10 +425,10 @@ export async function getStaticProps({ params }: any) {
 				tagline,
 				thumbnailMedia {
 					${mediaTypeString}
-				}
-			},
-			relatedDesktopMedia {
-				${mediaTypeString}
+				},
+				relatedDesktopMedia {
+					${mediaTypeString}
+				},
 			},
 		}
 	`;

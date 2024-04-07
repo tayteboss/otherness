@@ -36,7 +36,23 @@ const Title = styled.h4`
 	margin-bottom: ${pxToRem(24)};
 `;
 
-const Description = styled.p``;
+const Description = styled.div`
+	* {
+		font-family: var(--font-classic-grotesque-regular);
+		font-size: ${pxToRem(18)};
+		line-height: ${pxToRem(25)};
+		letter-spacing: 0.9px;
+		text-transform: uppercase;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(16)};
+			line-height: ${pxToRem(22)};
+			letter-spacing: 0.64px;
+		}
+	}
+`;
+
+const DescriptionHTML = styled.div``;
 
 const EditorialCard = (props: Props) => {
 	const { title, description } = props;
@@ -63,6 +79,10 @@ const EditorialCard = (props: Props) => {
 		rootMargin: '-50px'
 	});
 
+	const formattedDescription: string = description
+		? `<p>${description.replace(/\n/g, '<br />')}</p>`
+		: '';
+
 	return (
 		<EditorialCardWrapper
 			ref={ref}
@@ -74,7 +94,11 @@ const EditorialCard = (props: Props) => {
 				{title && <Title>{title}</Title>}
 				{description && (
 					<Description className="type-secondary-heading-medium">
-						{description}
+						<DescriptionHTML
+							dangerouslySetInnerHTML={{
+								__html: formattedDescription
+							}}
+						/>
 					</Description>
 				)}
 			</Inner>

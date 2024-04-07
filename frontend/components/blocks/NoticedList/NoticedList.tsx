@@ -34,7 +34,7 @@ const ListWrapper = styled.div<{ $inView: boolean }>`
 		height: 1px;
 		background: var(--colour-black);
 
-		transition: all 2000ms var(--transition-ease);
+		transition: all 1000ms var(--transition-ease);
 	}
 `;
 
@@ -46,7 +46,7 @@ const NoticedList = (props: Props) => {
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
-		rootMargin: '-50px'
+		rootMargin: '-300px'
 	});
 
 	return (

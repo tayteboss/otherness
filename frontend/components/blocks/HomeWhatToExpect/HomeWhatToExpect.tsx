@@ -13,7 +13,7 @@ type Props = {
 };
 
 const HomeWhatToExpectWrapper = styled.section`
-	background: var(--colour-black);
+	background: var(--colour-beige-light);
 	padding: ${pxToRem(136)} 0;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
@@ -35,7 +35,7 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.h3`
-	color: var(--colour-white);
+	color: var(--colour-black);
 `;
 
 const ContentWrapper = styled.div`
@@ -57,7 +57,7 @@ const ContentWrapper = styled.div`
 
 const RichTextWrapper = styled.div`
 	* {
-		color: var(--colour-white);
+		color: var(--colour-black);
 	}
 `;
 
@@ -77,12 +77,12 @@ const HomeWhatToExpect = (props: Props) => {
 					</TitleWrapper>
 					<ContentWrapper>
 						{content && (
-							<RichTextWrapper className="rich-text rich-text--medium">
+							<RichTextWrapper className="rich-text">
 								<PortableText value={content} />
 							</RichTextWrapper>
 						)}
 						{button && (
-							<ArrowButton data={button}>
+							<ArrowButton data={button} isBlack>
 								{button.title}
 							</ArrowButton>
 						)}

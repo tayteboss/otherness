@@ -17,6 +17,8 @@ const SubProjectsNavigationWrapper = styled(motion.div)`
 	transform: translateY(-50%);
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
+	-webkit-writing-mode: vertical-rl;
+	-webkit-text-orientation: mixed;
 	z-index: 3;
 	display: flex;
 	gap: ${pxToRem(24)};
@@ -27,7 +29,7 @@ const SubProjectsNavigationWrapper = styled(motion.div)`
 	}
 `;
 
-const LinkTrigger = styled.button<{ $isActive: boolean }>`
+const LinkTrigger = styled.div<{ $isActive: boolean }>`
 	color: var(--colour-white);
 	opacity: 0.4;
 	position: relative;
@@ -35,6 +37,12 @@ const LinkTrigger = styled.button<{ $isActive: boolean }>`
 	line-height: ${pxToRem(14)};
 	letter-spacing: 0.96px;
 	text-transform: uppercase;
+	white-space: nowrap;
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+	-webkit-writing-mode: vertical-rl;
+	-webkit-text-orientation: mixed;
+	cursor: pointer;
 
 	transition: all var(--transition-speed-default) var(--transition-ease);
 

@@ -1,3 +1,5 @@
+import {linkObject} from '../objects'
+
 export default {
   title: 'Site Settings',
   name: 'siteSettings',
@@ -42,19 +44,61 @@ export default {
       type: 'string',
     },
     {
-      title: 'Instagram URL',
-      name: 'instagramUrl',
-      type: 'url',
+      title: 'Social Link 1',
+      name: 'socialLink1',
+      type: 'object',
+      fields: [
+        {
+          title: 'Title',
+          name: 'title',
+          type: 'string',
+          validation: (Rule: any) => Rule.required(),
+        },
+        {
+          title: 'External URL',
+          name: 'url',
+          type: 'url',
+          validation: (Rule: any) => Rule.uri({allowRelative: true}),
+        },
+      ],
     },
     {
-      title: 'Twitter URL',
-      name: 'twitterUrl',
-      type: 'url',
+      title: 'Social Link 2',
+      name: 'socialLink2',
+      type: 'object',
+      fields: [
+        {
+          title: 'Title',
+          name: 'title',
+          type: 'string',
+          validation: (Rule: any) => Rule.required(),
+        },
+        {
+          title: 'External URL',
+          name: 'url',
+          type: 'url',
+          validation: (Rule: any) => Rule.uri({allowRelative: true}),
+        },
+      ],
     },
     {
-      title: 'LinkedIn URL',
-      name: 'linkedInUrl',
-      type: 'url',
+      title: 'Social Link 3',
+      name: 'socialLink3',
+      type: 'object',
+      fields: [
+        {
+          title: 'Title',
+          name: 'title',
+          type: 'string',
+          validation: (Rule: any) => Rule.required(),
+        },
+        {
+          title: 'External URL',
+          name: 'url',
+          type: 'url',
+          validation: (Rule: any) => Rule.uri({allowRelative: true}),
+        },
+      ],
     },
   ],
 }

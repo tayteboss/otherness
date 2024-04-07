@@ -113,7 +113,7 @@ export const GlobalStyles = createGlobalStyle`
 
 		@media ${theme.mediaBreakpoints.tabletPortrait} {
 			font-size: ${pxToRem(46)};
-			line-height: ${pxToRem(59)};
+			line-height: ${pxToRem(65)};
 			letter-spacing: -0.69px;
 		}
 	}
@@ -223,12 +223,21 @@ export const GlobalStyles = createGlobalStyle`
 		h2,
 		h3,
 		h4,
-		h5 {
+		h5,
+		h6 {
 			margin-bottom: ${pxToRem(24)};
 
 			@media ${theme.mediaBreakpoints.tabletPortrait} {
 				margin-bottom: ${pxToRem(16)};
 			}
+		}
+
+		h6 {
+			font-family: var(--font-classic-grotesque-regular);
+			font-size: ${pxToRem(18)};
+			line-height: ${pxToRem(27)};
+			letter-spacing: 0.18px;
+			font-weight: 400;
 		}
 
 		p:not(:last-child) {

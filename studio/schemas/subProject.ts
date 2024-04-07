@@ -6,7 +6,7 @@ export default {
   type: 'document',
   fields: [
     {
-      title: 'Label',
+      title: 'Anchor Title',
       name: 'label',
       type: 'string',
     },

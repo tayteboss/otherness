@@ -35,10 +35,10 @@ const Inner = styled(motion.div)`
 const wrapperVariants = {
 	hidden: {
 		opacity: 1,
-		filter: 'blur(10px)',
-		scale: 1.05,
+		filter: 'blur(3px)',
+		scale: 1.01,
 		transition: {
-			duration: 1,
+			duration: 0.3,
 			ease: 'easeInOut'
 		}
 	},
@@ -47,9 +47,9 @@ const wrapperVariants = {
 		filter: 'blur(0px)',
 		scale: 1,
 		transition: {
-			duration: 1,
+			duration: 0.3,
 			ease: 'easeInOut',
-			delay: 0.2
+			delay: 0.15
 		}
 	}
 };
@@ -57,10 +57,10 @@ const wrapperVariants = {
 const defaultVariants = {
 	hidden: {
 		opacity: 0,
-		filter: 'blur(5px)',
-		scale: 1.05,
+		filter: 'blur(3px)',
+		scale: 1.02,
 		transition: {
-			duration: 0.75,
+			duration: 0.3,
 			ease: 'easeInOut'
 		}
 	},
@@ -69,7 +69,7 @@ const defaultVariants = {
 		filter: 'blur(0px)',
 		scale: 1,
 		transition: {
-			duration: 0.75,
+			duration: 0.3,
 			ease: 'easeInOut'
 		}
 	}
@@ -98,24 +98,6 @@ const ImageComponent = (props: Props) => {
 
 	return (
 		<ImageComponentWrapper className="image-component-wrapper">
-			<AnimatePresence initial={false}>
-				{inView && data?.image?.asset?.metadata?.lqip && (
-					<InnerBlur
-						variants={wrapperVariants}
-						initial="hidden"
-						animate="visible"
-						exit="hidden"
-					>
-						<Image
-							src={blurDataURL}
-							alt={data?.image?.alt || ''}
-							fill
-							priority={isPriority}
-							blurDataURL={blurDataURL}
-						/>
-					</InnerBlur>
-				)}
-			</AnimatePresence>
 			<Inner
 				variants={defaultVariants}
 				initial="hidden"
