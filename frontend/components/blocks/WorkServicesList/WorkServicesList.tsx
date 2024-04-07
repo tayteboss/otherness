@@ -124,7 +124,6 @@ const WorkServicesList = (props: Props) => {
 	const hasItems = items && items.length > 0;
 
 	const format = (item: string) => {
-		// turn - into space then capitalize each word
 		return item
 			.replace(/-/g, ' ')
 			.replace(/\b\w/g, (char) => char.toUpperCase());
@@ -147,15 +146,18 @@ const WorkServicesList = (props: Props) => {
 					animate={inView ? 'visible' : 'hidden'}
 				>
 					{hasItems &&
-						items.map((item, i) => (
-							<ListItem
-								variants={childVariants}
-								className="type-h5"
-								key={i}
-							>
-								{format(item)}
-							</ListItem>
-						))}
+						items.map(
+							(item, i) =>
+								item && (
+									<ListItem
+										variants={childVariants}
+										className="type-h5"
+										key={i}
+									>
+										{format(item)}
+									</ListItem>
+								)
+						)}
 				</ListWrapper>
 			</Inner>
 		</WorkServicesListWrapper>

@@ -148,21 +148,24 @@ const SubProjectsNavigation = (props: Props) => {
 					>
 						Intro
 					</LinkTrigger>
-					{subProjects.map((item, i) => (
-						<LinkTrigger
-							key={i + 1}
-							$isActive={false}
-							onClick={() =>
-								handleScrollToAnchor(
-									formatId(item?.label ?? '')
-								)
-							}
-							className="sub-project-link"
-							data-id={formatId(item?.label ?? '')}
-						>
-							{item?.label || ''}
-						</LinkTrigger>
-					))}
+					{subProjects.map(
+						(item, i) =>
+							item?.label && (
+								<LinkTrigger
+									key={i + 1}
+									$isActive={false}
+									onClick={() =>
+										handleScrollToAnchor(
+											formatId(item?.label ?? '')
+										)
+									}
+									className="sub-project-link"
+									data-id={formatId(item?.label ?? '')}
+								>
+									{item?.label || ''}
+								</LinkTrigger>
+							)
+					)}
 				</SubProjectsNavigationWrapper>
 			)}
 		</AnimatePresence>

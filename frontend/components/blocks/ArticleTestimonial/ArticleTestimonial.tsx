@@ -47,10 +47,9 @@ const ArticleTestimonial = (props: Props) => {
 		rootMargin: '-50px'
 	});
 
-	const formattedTestimonial: string = `<p>${testimonial.replace(
-		/\n/g,
-		'<br />'
-	)}</p>`;
+	const formattedTestimonial: string = testimonial
+		? `<p>${testimonial.replace(/\n/g, '<br />')}</p>`
+		: '';
 
 	return (
 		<ArticleTestimonialWrapper

@@ -64,7 +64,9 @@ const Credit = styled.div<StyledProps>`
 const TestimonialCard = (props: TestimonialType) => {
 	const { credit, testimonial, theme } = props;
 
-	const formattedCredit: string = `<p>${credit.replace(/\n/g, '<br />')}</p>`;
+	const formattedCredit: string = credit
+		? `<p>${credit.replace(/\n/g, '<br />')}</p>`
+		: '';
 
 	const [divWidth, setDivWidth] = useState(0);
 
