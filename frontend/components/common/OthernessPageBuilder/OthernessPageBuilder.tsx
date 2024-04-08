@@ -85,8 +85,6 @@ const OthernessPageBuilder = (props: Props) => {
 		pbTestimonial: ArticleTestimonial
 	};
 
-	console.log('data', data);
-
 	return (
 		<PageBuilderWrapper className="page-builder">
 			{useImageComponent &&

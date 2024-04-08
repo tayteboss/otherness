@@ -86,7 +86,6 @@ const SubProject = (props: SubProjectType) => {
 
 	useEffect(() => {
 		const formattedId = formatId(label);
-		console.log('formattedId', formattedId);
 
 		if (formattedId) {
 			const headerLinks = document.querySelectorAll(

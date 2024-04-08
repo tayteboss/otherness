@@ -67,9 +67,6 @@ const Page = (props: Props) => {
 		}] ${basicProjectsQueryDefault}
 		`;
 
-		console.log('query', query);
-		console.log('moreProjectsQuery', moreProjectsQuery);
-
 		try {
 			const data = await client.fetch(query);
 			const moreData = await client.fetch(moreProjectsQuery);
