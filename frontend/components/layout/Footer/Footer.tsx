@@ -20,7 +20,7 @@ type Props = {
 
 const FooterWrapper = styled.footer`
 	background: var(--colour-black);
-	padding: ${pxToRem(56)} 0 ${pxToRem(40)};
+	padding: ${pxToRem(90)} 0 ${pxToRem(60)};
 	margin-bottom: var(--footer-header-h);
 	position: relative;
 	z-index: 2;
@@ -28,10 +28,6 @@ const FooterWrapper = styled.footer`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(40)} 0 ${pxToRem(24)};
 		margin-bottom: 0;
-	}
-
-	.layout-grid {
-		align-items: end;
 	}
 `;
 
@@ -42,7 +38,11 @@ const DesktopWrapper = styled.div`
 `;
 
 const DetailsWrapper = styled.div`
-	grid-column: 1 / 8;
+	grid-column: 1 / 15;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		grid-column: 1 / 13;
+	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		margin-bottom: ${pxToRem(32)};
@@ -67,12 +67,11 @@ const Tagline = styled.h4`
 	font-size: ${pxToRem(23)};
 	line-height: ${pxToRem(33)};
 	letter-spacing: 0.184px;
-	margin-bottom: ${pxToRem(86)};
-	max-width: ${pxToRem(350)};
+	margin-bottom: ${pxToRem(16)};
+	max-width: ${pxToRem(400)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		max-width: 80%;
-		margin-bottom: ${pxToRem(28)};
 	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
@@ -81,30 +80,20 @@ const Tagline = styled.h4`
 `;
 
 const CtaWrapper = styled.div`
-	grid-column: 11 / -1;
+	grid-column: 16 / -1;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
-		grid-column: 12 / -1;
+		grid-column: 14 / -1;
 	}
 `;
 
 const ConsultationWrapper = styled.div`
 	width: 100%;
 	display: flex;
-	align-items: flex-end;
-	margin-bottom: ${pxToRem(83)};
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: ${pxToRem(24)};
-		margin-bottom: ${pxToRem(65)};
-	}
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		margin-bottom: ${pxToRem(48)};
-		gap: ${pxToRem(16)};
-	}
+	flex-direction: column;
+	align-items: flex-start;
+	gap: ${pxToRem(16)};
+	margin-bottom: ${pxToRem(40)};
 `;
 
 const ConsultationTitle = styled.p`
@@ -123,18 +112,13 @@ const ConsultationTitle = styled.p`
 
 const SubDetailsWrapper = styled.div`
 	display: flex;
-	justify-content: space-between;
-	padding: ${pxToRem(8)} 0;
+	flex-direction: column;
+	gap: ${pxToRem(8)};
+`;
 
-	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
-		flex-direction: column;
-		gap: ${pxToRem(8)};
-		padding: 0;
-	}
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		gap: ${pxToRem(3)};
-	}
+const SubDetailsBottomWrapper = styled.div`
+	display: flex;
+	gap: ${pxToRem(20)};
 `;
 
 const SubDetail = styled.p`
@@ -143,6 +127,7 @@ const SubDetail = styled.p`
 	font-size: ${pxToRem(12)};
 	line-height: ${pxToRem(15)};
 	letter-spacing: 0.12px;
+	opacity: 0.5;
 `;
 
 const SubDetailLink = styled.a`
@@ -151,9 +136,12 @@ const SubDetailLink = styled.a`
 	font-size: ${pxToRem(12)};
 	line-height: ${pxToRem(15)};
 	letter-spacing: 0.12px;
+	opacity: 0.5;
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
 
 	&:hover {
-		text-decoration: underline;
+		opacity: 1;
 	}
 `;
 
@@ -197,16 +185,13 @@ const Footer = (props: Props) => {
 				<DesktopWrapper>
 					<LayoutGrid>
 						<DetailsWrapper>
-							<LogoWrapper>
-								<LogoIconSvg colour="var(--colour-white)" />
-							</LogoWrapper>
 							{tagline && <Tagline>{tagline}</Tagline>}
 							<FooterSocialLinks data={socialButtons} />
 						</DetailsWrapper>
 						<CtaWrapper>
 							<ConsultationWrapper>
 								{footerConsultationCta && (
-									<ConsultationTitle className="type-h2">
+									<ConsultationTitle className="type-h3">
 										{footerConsultationCta}
 									</ConsultationTitle>
 								)}
@@ -220,28 +205,27 @@ const Footer = (props: Props) => {
 									)}
 							</ConsultationWrapper>
 							<SubDetailsWrapper>
-								<SubDetail>© Studio Otherness BV</SubDetail>
 								<SubDetail>
 									Otherness™ is a trademark of Otherness
 									Holding BV
 								</SubDetail>
-								<Link
-									href="/privacy"
-									passHref
-									legacyBehavior
-									scroll={false}
-								>
-									<SubDetailLink>Privacy</SubDetailLink>
-								</Link>
+								<SubDetailsBottomWrapper>
+									<SubDetail>© Studio Otherness BV</SubDetail>
+									<Link
+										href="/privacy"
+										passHref
+										legacyBehavior
+										scroll={false}
+									>
+										<SubDetailLink>Privacy</SubDetailLink>
+									</Link>
+								</SubDetailsBottomWrapper>
 							</SubDetailsWrapper>
 						</CtaWrapper>
 					</LayoutGrid>
 				</DesktopWrapper>
 
 				<MobileWrapper>
-					<LogoWrapper>
-						<LogoIconSvg colour="var(--colour-white)" />
-					</LogoWrapper>
 					<ConsultationWrapper>
 						{footerConsultationCta && (
 							<ConsultationTitle className="type-h2">
@@ -263,13 +247,13 @@ const Footer = (props: Props) => {
 					</DetailsWrapper>
 
 					<SubDetailsWrapper>
+						<Link href="/privacy" passHref legacyBehavior>
+							<SubDetailLink>Privacy</SubDetailLink>
+						</Link>
 						<SubDetail>© Studio Otherness BV</SubDetail>
 						<SubDetail>
 							Otherness™ is a trademark of Otherness Holding BV
 						</SubDetail>
-						<Link href="/privacy" passHref legacyBehavior>
-							<SubDetailLink>Privacy</SubDetailLink>
-						</Link>
 					</SubDetailsWrapper>
 				</MobileWrapper>
 			</LayoutWrapper>

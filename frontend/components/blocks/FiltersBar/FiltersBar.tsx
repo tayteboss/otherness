@@ -79,6 +79,7 @@ const FiltersBar = (props: Props) => {
 						filters={moodFilters}
 						setActiveMood={setActiveMood}
 						activeMood={activeMood}
+						initialActive
 					/>
 					<MobileDivider />
 					<FilterTab

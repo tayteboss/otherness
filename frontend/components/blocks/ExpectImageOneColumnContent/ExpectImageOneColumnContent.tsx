@@ -126,7 +126,7 @@ const ExpectImageOneColumnContent = (props: Props) => {
 					<MediaWrapper ref={ref} style={{ transform }}>
 						<MediaStack data={media} />
 					</MediaWrapper>
-					<ContentWrapper className="rich-text rich-text--large-p">
+					<ContentWrapper className="rich-text">
 						{content && <PortableText value={content} />}
 					</ContentWrapper>
 				</LayoutGrid>

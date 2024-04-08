@@ -10,6 +10,7 @@ type Props = {
 	setActiveWork?: (value: string) => void;
 	activeWork?: string;
 	activeMood?: string;
+	initialActive?: boolean;
 };
 
 const FilterTabWrapper = styled.div<{ $isMoodFilter: boolean }>`
@@ -183,10 +184,11 @@ const FilterTab = (props: Props) => {
 		setActiveMood,
 		setActiveWork,
 		activeWork,
-		activeMood
+		activeMood,
+		initialActive = false
 	} = props;
 
-	const [isHovered, setIsHovered] = useState(false);
+	const [isHovered, setIsHovered] = useState(initialActive);
 
 	const isMoodFilter = title === 'mood';
 
@@ -243,6 +245,12 @@ const FilterTab = (props: Props) => {
 	useEffect(() => {
 		setIsHovered(false);
 	}, [activeWork, activeMood]);
+
+	useEffect(() => {
+		if (initialActive) {
+			setIsHovered(true);
+		}
+	}, [initialActive]);
 
 	return (
 		<FilterTabWrapper

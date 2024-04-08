@@ -5,8 +5,8 @@ import { useInView } from 'react-intersection-observer';
 import { useState, useRef, useEffect } from 'react';
 
 type StyledProps = {
-	$isLightTheme: boolean;
-	$divWidth: number;
+	$isLightTheme?: boolean;
+	$divWidth?: number;
 };
 
 const TestimonialCardWrapper = styled.div`
@@ -31,12 +31,15 @@ const Inner = styled.div<StyledProps>`
 	}
 `;
 
-const Testimonial = styled.h4<StyledProps>`
-	color: ${(props) =>
-		props.$isLightTheme
-			? 'var(--colour-beige-dark)'
-			: 'var(--colour-white)'};
+const Testimonial = styled.div<StyledProps>`
 	margin-bottom: ${pxToRem(120)};
+
+	* {
+		color: ${(props) =>
+			props.$isLightTheme
+				? 'var(--colour-beige-dark)'
+				: 'var(--colour-white)'};
+	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		margin-bottom: ${pxToRem(240)};
@@ -44,6 +47,22 @@ const Testimonial = styled.h4<StyledProps>`
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		margin-bottom: ${pxToRem(88)};
+	}
+`;
+
+const HTML = styled.div`
+	* {
+		font-family: var(--font-baryton);
+		font-size: ${pxToRem(30)};
+		line-height: ${pxToRem(38)};
+		letter-spacing: -0.3px;
+		font-weight: 200;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			font-size: ${pxToRem(24)};
+			line-height: ${pxToRem(31)};
+			letter-spacing: -0.24px;
+		}
 	}
 `;
 
@@ -66,6 +85,10 @@ const TestimonialCard = (props: TestimonialType) => {
 
 	const formattedCredit: string = credit
 		? `<p>${credit.replace(/\n/g, '<br />')}</p>`
+		: '';
+
+	const formattedTestimonial: string = testimonial
+		? `<p>${testimonial.replace(/\n/g, '<br />')}</p>`
 		: '';
 
 	const [divWidth, setDivWidth] = useState(0);
@@ -104,7 +127,13 @@ const TestimonialCard = (props: TestimonialType) => {
 			>
 				{testimonial && (
 					<Testimonial $isLightTheme={theme === 'light'}>
-						{testimonial}
+						{testimonial && (
+							<HTML
+								dangerouslySetInnerHTML={{
+									__html: formattedTestimonial
+								}}
+							/>
+						)}
 					</Testimonial>
 				)}
 				{formattedCredit && (

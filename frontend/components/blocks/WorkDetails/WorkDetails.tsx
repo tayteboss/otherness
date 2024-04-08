@@ -115,6 +115,10 @@ const WorkDetails = (props: Props) => {
 
 	const hasCollaborators = collaborators?.length > 0;
 
+	const formattedDescription: string = description
+		? `<p>${description.replace(/\n/g, '<br />')}</p>`
+		: '';
+
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
@@ -178,9 +182,12 @@ const WorkDetails = (props: Props) => {
 								)}
 						</CollabsList>
 						{description && (
-							<Description className="type-p-large">
-								{description}
-							</Description>
+							<Description
+								className="type-p-large"
+								dangerouslySetInnerHTML={{
+									__html: formattedDescription
+								}}
+							/>
 						)}
 					</LayoutGrid>
 				</LayoutWrapper>

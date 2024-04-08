@@ -180,6 +180,13 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${pxToRem(18)};
 		line-height: ${pxToRem(27)};
 		letter-spacing: 0.18px;
+
+		* {
+			font-family: var(--font-classic-grotesque-regular);
+			font-size: ${pxToRem(18)};
+			line-height: ${pxToRem(27)};
+			letter-spacing: 0.18px;
+		}
 	}
 
 	.type-secondary-heading-large {

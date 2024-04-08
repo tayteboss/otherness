@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
-import Link from 'next/link';
+import ArrowButton from '../../elements/ArrowButton';
 
 type Props = {
 	data: { title: string; url: string }[];
@@ -8,22 +8,21 @@ type Props = {
 
 const FooterSocialLinksWrapper = styled.div`
 	display: flex;
-	gap: ${pxToRem(8)};
-`;
+	gap: ${pxToRem(40)};
 
-const LinkTag = styled.a`
-	padding: ${pxToRem(8)} ${pxToRem(16)};
-	font-size: ${pxToRem(12)};
-	line-height: ${pxToRem(14)};
-	letter-spacing: 0.96px;
-	text-transform: uppercase;
-	color: var(--colour-white);
-	background: rgba(255, 255, 255, 0.2);
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		flex-direction: column;
+		gap: ${pxToRem(0)};
+	}
 
-	transition: all var(--transition-speed-default) var(--transition-ease);
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		flex-direction: row;
+		gap: ${pxToRem(32)};
+	}
 
-	&:hover {
-		background: rgba(255, 255, 255, 0.4);
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		flex-direction: column;
+		gap: ${pxToRem(0)};
 	}
 `;
 
@@ -36,17 +35,9 @@ const FooterSocialLinks = (props: Props) => {
 		<FooterSocialLinksWrapper>
 			{hasData &&
 				data.map((item, i) => (
-					<Link
-						key={i}
-						href={item.url}
-						passHref
-						legacyBehavior
-						scroll={false}
-					>
-						<LinkTag key={i} target="_blank">
-							{item.title}
-						</LinkTag>
-					</Link>
+					<ArrowButton url={item?.url} key={i}>
+						{item.title}
+					</ArrowButton>
 				))}
 		</FooterSocialLinksWrapper>
 	);
