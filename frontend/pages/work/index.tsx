@@ -61,6 +61,8 @@ const Page = (props: Props) => {
 			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [0...${projectSkip}] ${basicProjectsQueryDefault}
 		`;
 
+		console.log('query', query);
+
 		const moreProjectsQuery = `
 			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${projectSkip}...${
 			projectSkip + 1

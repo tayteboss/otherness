@@ -125,7 +125,7 @@ export default {
       of: [{type: 'string'}],
       options: {
         list: [
-          {title: 'Artsy', value: 'strategy'},
+          {title: 'Artsy', value: 'artsy'},
           {title: 'Bombastic', value: 'bombastic'},
           {title: 'Bookish', value: 'bookish'},
           {title: 'Luxxy', value: 'luxxy'},

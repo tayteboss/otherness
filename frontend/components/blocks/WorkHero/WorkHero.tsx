@@ -36,6 +36,10 @@ const FullWidthWrapper = styled.div`
 			padding-top: 177.7%;
 		}
 	}
+
+	mux-player {
+		--controls: block !important;
+	}
 `;
 
 const MotionWrapper = styled(motion.div)``;
