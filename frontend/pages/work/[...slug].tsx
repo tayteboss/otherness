@@ -288,6 +288,14 @@ export async function getStaticProps({ params }: any) {
 					media {
 						${mediaTypeString}
 					}
+				},
+				oneVideo {
+					...,
+					video {
+						asset-> {
+							playbackId,
+						},
+					},
 				}
 			},
 			subProjects[]-> {
@@ -416,6 +424,14 @@ export async function getStaticProps({ params }: any) {
 						xSmall {
 							${mediaTypeString}
 						}
+					},
+					oneVideo {
+						...,
+						video {
+							asset-> {
+								playbackId,
+							},
+						},
 					}
 				}
 			},

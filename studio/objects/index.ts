@@ -332,6 +332,7 @@ const imageBlockList = [
   {title: 'Two Half', value: 'imageComponentTwoHalf'},
   {title: 'One Testimonial One XSmall', value: 'imageComponentOneTestimonialOneXSmall'},
   {title: 'CTA Banner', value: 'pbCtaBanner'},
+  {title: 'One Video', value: 'oneVideo'},
 ]
 
 const homeBlockList = [
@@ -491,8 +492,10 @@ const projectImageBlocks = {
             componentName = 'One Editorial One XSmall'
           } else if (imageComponent === 'pbCtaBanner') {
             componentName = 'CTA Banner'
+          } else if (imageComponent === 'oneVideo') {
+            componentName = 'One Video'
           } else {
-            componentName = 'Unknown'
+            componentName = 'Empty Block - Please Select a Component'
           }
 
           return {
@@ -1112,6 +1115,17 @@ const projectImageBlocks = {
             },
           ],
           hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'pbCtaBanner',
+        },
+        {
+          title: 'One Video',
+          name: 'oneVideo',
+          type: 'object',
+          fields: [
+            {
+              ...videoObject,
+            },
+          ],
+          hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'oneVideo',
         },
       ],
     },

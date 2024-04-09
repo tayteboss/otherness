@@ -27,6 +27,7 @@ import ImageComponentOneTestimonialOneXSmall from '../../blocks/ImageComponentOn
 import ArticleTestimonial from '../../blocks/ArticleTestimonial';
 import ArticleMedia from '../../blocks/ArticleMedia';
 import ArticleRichText from '../../blocks/ArticleRichText';
+import OneVideo from '../../blocks/OneVideo';
 
 type Props = {
 	data: any;
@@ -82,7 +83,8 @@ const OthernessPageBuilder = (props: Props) => {
 			ImageComponentOneTestimonialOneXSmall,
 		pbRichText: ArticleRichText,
 		pbMedia: ArticleMedia,
-		pbTestimonial: ArticleTestimonial
+		pbTestimonial: ArticleTestimonial,
+		oneVideo: OneVideo
 	};
 
 	return (
