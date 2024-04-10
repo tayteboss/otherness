@@ -22,7 +22,6 @@ import MobileSubProjectsNavigation from '../../components/blocks/MobileSubProjec
 
 type Props = {
 	data: ProjectType;
-	workPageData: WorkPageType;
 	pageTransitionVariants: TransitionsType;
 };
 
@@ -42,7 +41,7 @@ const PageWrapper = styled(motion.div)`
 `;
 
 const Page = (props: Props) => {
-	const { data, workPageData, pageTransitionVariants } = props;
+	const { data, pageTransitionVariants } = props;
 
 	const {
 		collaborators,
@@ -71,10 +70,11 @@ const Page = (props: Props) => {
 			exit="hidden"
 		>
 			<NextSeo
-				title={data?.title || 'Otherness'}
+				title={`Otherness — ${data?.title}` || 'Otherness'}
 				description={data?.excerpt || ''}
 			/>
 			<WorkIntro excerpt={excerpt} tagline={tagline} types={type} />
+			<MobileSubProjectsNavigation subProjects={subProjects} />
 			<WorkHero
 				heroLayoutType={heroLayoutType}
 				twoColumnHero={twoColumnHero}
@@ -85,7 +85,6 @@ const Page = (props: Props) => {
 				collaborators={collaborators}
 				description={description}
 			/>
-			<MobileSubProjectsNavigation subProjects={subProjects} />
 			<OthernessPageBuilder data={imageBlocks} useImageComponent />
 			<SubProjects data={subProjects} />
 			<RelatedProject
@@ -448,15 +447,11 @@ export async function getStaticProps({ params }: any) {
 			},
 		}
 	`;
-
-	let workPageData = await client.fetch(workPageQueryString);
 	const data = await client.fetch(projectQuery);
-	workPageData = workPageData[0];
 
 	return {
 		props: {
-			data,
-			workPageData
+			data
 		}
 	};
 }

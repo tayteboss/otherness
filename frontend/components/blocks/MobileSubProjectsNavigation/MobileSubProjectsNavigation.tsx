@@ -15,7 +15,7 @@ const SubProjectsNavigationWrapper = styled(motion.div)`
 	top: var(--header-h);
 	left: 0;
 	width: 100%;
-	z-index: 3;
+	z-index: 6;
 	display: none;
 	backdrop-filter: blur(5px);
 	background: rgba(255, 255, 255, 0.5);
