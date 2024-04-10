@@ -22,6 +22,14 @@ const VideoComponentWrapper = styled.div`
 		transition: all var(--transition-speed-extra-slow)
 			var(--transition-ease);
 	}
+
+	mux-player {
+		--media-object-fit: contain;
+		--media-object-position: center;
+		--controls: none;
+		--media-object-fit: cover;
+		--media-object-position: center;
+	}
 `;
 
 const InnerBlur = styled(motion.div)`

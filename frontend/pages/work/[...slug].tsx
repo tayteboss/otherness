@@ -295,6 +295,27 @@ export async function getStaticProps({ params }: any) {
 							playbackId,
 						},
 					},
+					mobileVideo {
+						asset-> {
+							playbackId,
+						},
+					},
+					desktopPosterImage {
+						asset-> {
+							url,
+							metadata {
+								lqip
+							}
+						},
+					},
+					mobilePosterImage {
+						asset-> {
+							url,
+							metadata {
+								lqip
+							}
+						},
+					},
 				}
 			},
 			subProjects[]-> {
@@ -429,6 +450,27 @@ export async function getStaticProps({ params }: any) {
 						video {
 							asset-> {
 								playbackId,
+							},
+						},
+						mobileVideo {
+							asset-> {
+								playbackId,
+							},
+						},
+						desktopPosterImage {
+							asset-> {
+								url,
+								metadata {
+									lqip
+								}
+							},
+						},
+						mobilePosterImage {
+							asset-> {
+								url,
+								metadata {
+									lqip
+								}
 							},
 						},
 					}

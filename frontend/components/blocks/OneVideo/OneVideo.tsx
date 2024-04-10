@@ -5,26 +5,53 @@ import { useInView } from 'react-intersection-observer';
 import MuxPlayer from '@mux/mux-player-react/lazy';
 import { useRef, useState } from 'react';
 import pxToRem from '../../../utils/pxToRem';
+import LayoutGrid from '../../common/LayoutGrid';
+import PlaySvg from '../../svgs/PlaySvg';
+import Image from 'next/image';
 
 type Props = {
 	oneVideo: any;
 };
 
-const OneVideoWrapper = styled.section``;
+const OneVideoWrapper = styled.section`
+	background: var(--colour-white);
+	padding: ${pxToRem(88)} 0;
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		padding: ${pxToRem(48)} 0;
+	}
+`;
 
 const InnerVideoWrapper = styled.div`
 	position: relative;
 	overflow: hidden;
 	padding-top: 56.25%;
+	grid-column: 4 / -4;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		grid-column: 1 / -1;
+	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		height: 100dvh;
+		padding-top: 0;
+	}
 
 	mux-player {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+		--live-button: none;
+		--fullscreen-button: none;
+		--time-display: none;
+		--playback-rate-button: none;
+		--seek-backward-button: none;
+		--seek-forward-button: none;
+		--rendition-selectmenu: none;
 	}
 
 	mux-player,
 	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 		transform: scale(1.01);
 
 		transition: all var(--transition-speed-extra-slow)
@@ -32,32 +59,70 @@ const InnerVideoWrapper = styled.div`
 	}
 `;
 
-const Inner = styled.div`
+const PosterImageWrapper = styled.div`
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+`;
+
+const DesktopInner = styled.div`
 	position: absolute;
 	inset: 0;
 	height: 100%;
 	width: 100%;
 	z-index: 1;
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		display: none;
+	}
+`;
+
+const MobileInner = styled.div`
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	display: none;
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		display: block;
+	}
 `;
 
 const ControlsWrapper = styled.div`
 	position: absolute;
-	bottom: ${pxToRem(32)};
-	left: ${pxToRem(32)};
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	display: flex;
 	align-items: center;
-	gap: ${pxToRem(16)};
+	justify-content: center;
 	z-index: 5;
 `;
 
 const PlayTrigger = styled.button`
-	color: white;
-	cursor: pointer;
-`;
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(15px);
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-const MuteTrigger = styled.button`
-	color: white;
-	cursor: pointer;
+	transition: all var(--transition-speed-default) var(--transition-ease);
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.65);
+	}
+
+	svg {
+		position: relative;
+		left: 4px;
+	}
 `;
 
 const OneVideo = (props: Props) => {
@@ -70,7 +135,9 @@ const OneVideo = (props: Props) => {
 	const isMobile = viewport === 'mobile';
 
 	const playbackId = oneVideo?.video?.asset?.playbackId;
-	const posterUrl = `https://image.mux.com/${playbackId}/thumbnail.png?width=214&height=121&time=1`;
+	const mobilePlaybackId = oneVideo?.mobileVideo?.asset?.playbackId;
+	const posterImage = oneVideo?.desktopPosterImage?.asset?.url;
+	const mobilePosterImage = oneVideo?.mobilePosterImage?.asset?.url;
 
 	const muxRef = useRef(null);
 
@@ -80,8 +147,6 @@ const OneVideo = (props: Props) => {
 		rootMargin: '-50px'
 	});
 
-	console.log('playbackId', playbackId);
-
 	return (
 		<OneVideoWrapper
 			ref={ref}
@@ -90,37 +155,84 @@ const OneVideo = (props: Props) => {
 			}`}
 		>
 			<LayoutWrapper useGalleryLayout>
-				<InnerVideoWrapper>
-					{playbackId && (
-						<Inner>
-							<MuxPlayer
-								streamType="on-demand"
-								playbackId={playbackId}
-								loop={true}
-								thumbnailTime={1}
-								loading="page"
-								preload="auto"
-								playsInline={true}
-								poster={`${posterUrl}`}
-								ref={muxRef}
-								paused={!isPlaying}
-								muted={isMuted}
-							/>
-							<ControlsWrapper>
+				<LayoutGrid useGalleryGrid>
+					<InnerVideoWrapper>
+						{playbackId && (
+							<DesktopInner>
+								{posterImage && !isPlaying && (
+									<PosterImageWrapper>
+										<Image
+											src={posterImage}
+											alt="Video poster image"
+											fill
+										/>
+									</PosterImageWrapper>
+								)}
+								<MuxPlayer
+									streamType="on-demand"
+									playbackId={playbackId}
+									loop={true}
+									thumbnailTime={1}
+									loading="page"
+									preload="auto"
+									playsInline={true}
+									ref={muxRef}
+									paused={!isPlaying}
+									muted={false}
+									showControls={true} // Add this line to force show controls
+									accentColor="#67605A"
+								/>
+							</DesktopInner>
+						)}
+						{playbackId && (
+							<MobileInner>
+								{posterImage && !isPlaying && (
+									<PosterImageWrapper>
+										<Image
+											src={
+												mobilePosterImage
+													? mobilePosterImage
+													: posterImage
+											}
+											alt="Video poster image"
+											fill
+										/>
+									</PosterImageWrapper>
+								)}
+								<MuxPlayer
+									streamType="on-demand"
+									playbackId={
+										mobilePlaybackId
+											? mobilePlaybackId
+											: playbackId
+									}
+									loop={true}
+									thumbnailTime={1}
+									loading="page"
+									preload="auto"
+									playsInline={true}
+									ref={muxRef}
+									paused={!isPlaying}
+									muted={isMuted}
+									showControls={true}
+									accentColor="#67605A"
+								/>
+							</MobileInner>
+						)}
+						<ControlsWrapper>
+							{!isPlaying && (
 								<PlayTrigger
-									onClick={() => setIsPlaying(!isPlaying)}
+									onClick={() => {
+										setIsPlaying(!isPlaying);
+										setIsMuted(false);
+									}}
 								>
-									{isPlaying ? 'Pause' : 'Play'}
+									<PlaySvg />
 								</PlayTrigger>
-								<MuteTrigger
-									onClick={() => setIsMuted(!isMuted)}
-								>
-									{isMuted ? 'Unmute' : 'Mute'}
-								</MuteTrigger>
-							</ControlsWrapper>
-						</Inner>
-					)}
-				</InnerVideoWrapper>
+							)}
+						</ControlsWrapper>
+					</InnerVideoWrapper>
+				</LayoutGrid>
 			</LayoutWrapper>
 		</OneVideoWrapper>
 	);

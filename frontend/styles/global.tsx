@@ -303,14 +303,6 @@ export const GlobalStyles = createGlobalStyle`
 		}
 	}
 
-	mux-player {
-		--media-object-fit: contain;
-		--media-object-position: center;
-		--controls: none;
-		--media-object-fit: cover;
-		--media-object-position: center;
-	}
-
 	.view-element-fade-in
 	{
 		opacity: 0;

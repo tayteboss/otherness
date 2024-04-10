@@ -1122,7 +1122,40 @@ const projectImageBlocks = {
           type: 'object',
           fields: [
             {
-              ...videoObject,
+              title: 'Video',
+              name: 'video',
+              type: 'mux.video',
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
+            },
+            {
+              title: 'Mobile Video',
+              name: 'mobileVideo',
+              type: 'mux.video',
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
+            },
+            {
+              title: 'Desktop Poster Image',
+              name: 'desktopPosterImage',
+              type: 'image',
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
+            },
+            {
+              title: 'Mobile Poster Image',
+              name: 'mobilePosterImage',
+              type: 'image',
+              options: {
+                collapsible: false,
+                collapsed: false,
+              },
             },
           ],
           hidden: ({parent}: {parent: any}) => parent?.imageComponent !== 'oneVideo',
