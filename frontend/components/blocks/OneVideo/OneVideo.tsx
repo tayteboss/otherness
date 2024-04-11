@@ -33,18 +33,18 @@ const InnerVideoWrapper = styled.div`
 	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
-		height: 100dvh;
-		padding-top: 0;
+		padding-top: 134.7%;
 	}
 
 	mux-player {
 		--live-button: none;
-		--fullscreen-button: none;
 		--time-display: none;
 		--playback-rate-button: none;
 		--seek-backward-button: none;
 		--seek-forward-button: none;
 		--rendition-selectmenu: none;
+		--airplay-button: none;
+		--pip-button: none;
 	}
 
 	mux-player,
@@ -73,10 +73,6 @@ const DesktopInner = styled.div`
 	height: 100%;
 	width: 100%;
 	z-index: 1;
-
-	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
-		display: none;
-	}
 `;
 
 const MobileInner = styled.div`
@@ -135,7 +131,6 @@ const OneVideo = (props: Props) => {
 	const isMobile = viewport === 'mobile';
 
 	const playbackId = oneVideo?.video?.asset?.playbackId;
-	const mobilePlaybackId = oneVideo?.mobileVideo?.asset?.playbackId;
 	const posterImage = oneVideo?.desktopPosterImage?.asset?.url;
 	const mobilePosterImage = oneVideo?.mobilePosterImage?.asset?.url;
 
@@ -162,7 +157,11 @@ const OneVideo = (props: Props) => {
 								{posterImage && !isPlaying && (
 									<PosterImageWrapper>
 										<Image
-											src={posterImage}
+											src={
+												isMobile && mobilePosterImage
+													? mobilePosterImage
+													: posterImage
+											}
 											alt="Video poster image"
 											fill
 										/>
@@ -183,41 +182,6 @@ const OneVideo = (props: Props) => {
 									accentColor="#67605A"
 								/>
 							</DesktopInner>
-						)}
-						{playbackId && (
-							<MobileInner>
-								{posterImage && !isPlaying && (
-									<PosterImageWrapper>
-										<Image
-											src={
-												mobilePosterImage
-													? mobilePosterImage
-													: posterImage
-											}
-											alt="Video poster image"
-											fill
-										/>
-									</PosterImageWrapper>
-								)}
-								<MuxPlayer
-									streamType="on-demand"
-									playbackId={
-										mobilePlaybackId
-											? mobilePlaybackId
-											: playbackId
-									}
-									loop={true}
-									thumbnailTime={1}
-									loading="page"
-									preload="auto"
-									playsInline={true}
-									ref={muxRef}
-									paused={!isPlaying}
-									muted={isMuted}
-									showControls={true}
-									accentColor="#67605A"
-								/>
-							</MobileInner>
 						)}
 						<ControlsWrapper>
 							{!isPlaying && (

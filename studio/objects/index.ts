@@ -1131,15 +1131,6 @@ const projectImageBlocks = {
               },
             },
             {
-              title: 'Mobile Video',
-              name: 'mobileVideo',
-              type: 'mux.video',
-              options: {
-                collapsible: false,
-                collapsed: false,
-              },
-            },
-            {
               title: 'Desktop Poster Image',
               name: 'desktopPosterImage',
               type: 'image',

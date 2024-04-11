@@ -295,11 +295,6 @@ export async function getStaticProps({ params }: any) {
 							playbackId,
 						},
 					},
-					mobileVideo {
-						asset-> {
-							playbackId,
-						},
-					},
 					desktopPosterImage {
 						asset-> {
 							url,
@@ -448,11 +443,6 @@ export async function getStaticProps({ params }: any) {
 					oneVideo {
 						...,
 						video {
-							asset-> {
-								playbackId,
-							},
-						},
-						mobileVideo {
 							asset-> {
 								playbackId,
 							},

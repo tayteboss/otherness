@@ -3,7 +3,7 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type Props = {
 	client: string;
@@ -113,11 +113,9 @@ const TopGridWrapper = styled.div`
 const WorkDetails = (props: Props) => {
 	const { client, collaborators, description } = props ?? {};
 
-	const hasCollaborators = collaborators?.length > 0;
+	const [formattedDescription, setFormattedDescription] = useState('');
 
-	const formattedDescription: string = description
-		? `<p>${description.replace(/\n/g, '<br />')}</p>`
-		: '';
+	const hasCollaborators = collaborators?.length > 0;
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -129,6 +127,14 @@ const WorkDetails = (props: Props) => {
 		triggerOnce: false,
 		rootMargin: '-50px'
 	});
+
+	useEffect(() => {
+		const formattedDescription: string = description
+			? `<p>${description.replace(/\n/g, '<br />')}</p>`
+			: '';
+
+		setFormattedDescription(formattedDescription);
+	}, [description]);
 
 	useEffect(() => {
 		const formattedId = 'project-intro';
