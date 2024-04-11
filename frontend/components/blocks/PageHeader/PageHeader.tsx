@@ -51,15 +51,10 @@ const MotionWrapper = styled(motion.div)`
 	overflow: hidden;
 `;
 
-const Word = styled.div`
+const Word = styled(motion.div)`
 	display: inline-block;
 	white-space: pre;
 	overflow: hidden;
-`;
-
-const Letter = styled(motion.h2)<{ $inlineBlock: boolean }>`
-	position: relative;
-	display: ${(props) => (props.$inlineBlock ? 'inline-block' : 'inline')};
 	font-family: var(--font-baryton);
 	font-size: ${pxToRem(130)};
 	line-height: ${pxToRem(157)};
@@ -109,7 +104,7 @@ const headingWrapperVariants = {
 		transition: {
 			duration: 0.3,
 			ease: 'easeInOut',
-			staggerChildren: 0.01,
+			staggerChildren: 0.05,
 			delayChildren: 0.3
 		}
 	}
@@ -118,7 +113,7 @@ const headingWrapperVariants = {
 const childVariants = {
 	hidden: {
 		opacity: 0,
-		y: 80,
+		y: 50,
 		transition: {
 			ease: 'easeInOut',
 			duration: 0.3
@@ -162,20 +157,8 @@ const PageHeader = (props: Props) => {
 						>
 							{words.map((word, i) => {
 								return (
-									<Word key={i}>
-										{word.map((letter, j) => {
-											return (
-												<Letter
-													key={j}
-													variants={childVariants}
-													$inlineBlock={
-														letter !== ' '
-													}
-												>
-													{letter}
-												</Letter>
-											);
-										})}
+									<Word key={i} variants={childVariants}>
+										{word}
 									</Word>
 								);
 							})}
