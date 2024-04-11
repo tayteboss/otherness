@@ -3,7 +3,6 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
 import WorkServicesList from '../WorkServicesList';
 import pxToRem from '../../../utils/pxToRem';
-import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 type Props = {
@@ -13,12 +12,14 @@ type Props = {
 };
 
 const WorkIntroWrapper = styled.section`
+	padding-top: var(--header-h);
 	background: var(--colour-white);
 	position: relative;
 	z-index: 5;
 	padding-bottom: ${pxToRem(72)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding-top: calc(var(--header-h) + 16px);
 		padding-bottom: ${pxToRem(48)};
 	}
 `;

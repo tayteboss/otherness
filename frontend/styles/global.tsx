@@ -45,6 +45,8 @@ export const GlobalStyles = createGlobalStyle`
 		background: var(--colour-white);
 		font-size: 16px;
 
+		-webkit-text-size-adjust: 100%;
+
 		&.no-scroll {
 			overflow-y: hidden;
 			

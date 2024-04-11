@@ -1,18 +1,12 @@
 import styled from 'styled-components';
 import client from '../../client';
-import {
-	ProjectType,
-	TransitionsType,
-	WorkPageType
-} from '../../shared/types/types';
+import { ProjectType, TransitionsType } from '../../shared/types/types';
 import { motion } from 'framer-motion';
 import { NextSeo } from 'next-seo';
 import OthernessPageBuilder from '../../components/common/OthernessPageBuilder';
-import CtaBanner from '../../components/blocks/CtaBanner';
 import WorkIntro from '../../components/blocks/WorkIntro';
 import WorkHero from '../../components/blocks/WorkHero';
 import WorkDetails from '../../components/blocks/WorkDetails/WorkDetails';
-import { workPageQueryString } from '../../lib/sanityQueries';
 import { useEffect } from 'react';
 import pxToRem from '../../utils/pxToRem';
 import RelatedProject from '../../components/blocks/RelatedProject';
@@ -26,13 +20,8 @@ type Props = {
 };
 
 const PageWrapper = styled(motion.div)`
-	padding-top: var(--header-h);
 	min-height: 150vh;
 	background: var(--colour-white);
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding-top: calc(var(--header-h) + 16px);
-	}
 
 	.cta-banner {
 		padding-top: ${pxToRem(72)};
