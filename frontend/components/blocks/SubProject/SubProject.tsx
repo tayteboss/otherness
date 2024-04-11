@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import pxToRem from '../../../utils/pxToRem';
 import OthernessPageBuilder from '../../common/OthernessPageBuilder';
 import { useEffect } from 'react';
+import { PortableText } from '@portabletext/react';
 
 const SubProjectWrapper = styled.div`
 	margin-bottom: ${pxToRem(48)};
@@ -41,12 +42,8 @@ const Title = styled.h2<{ $inView: boolean }>`
 	}
 `;
 
-const Description = styled.div`
+const DescriptionWrapper = styled.div`
 	grid-column: 11 / span 10;
-	font-family: var(--font-classic-grotesque-regular);
-	font-size: ${pxToRem(14)};
-	line-height: ${pxToRem(21)};
-	letter-spacing: 0.14px;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
 		grid-column: 1 / -7;
@@ -62,16 +59,12 @@ const SubProjectImages = styled.div``;
 const SubProject = (props: SubProjectType) => {
 	const { title, label, description, imageBlocks } = props;
 
-	const hasImages = imageBlocks.length > 0;
+	const hasImages = imageBlocks?.length > 0;
 
 	const formatId = (label: string) => {
 		if (!label) return;
 		return label.replace(/\s+/g, '-').toLowerCase();
 	};
-
-	const formattedDescription: string = description
-		? `<p>${description.replace(/\n/g, '<br />')}</p>`
-		: '';
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -112,11 +105,9 @@ const SubProject = (props: SubProjectType) => {
 					)}
 					<LayoutGrid>
 						{description && (
-							<Description
-								dangerouslySetInnerHTML={{
-									__html: formattedDescription
-								}}
-							/>
+							<DescriptionWrapper className="rich-text">
+								<PortableText value={description} />
+							</DescriptionWrapper>
 						)}
 					</LayoutGrid>
 				</LayoutWrapper>

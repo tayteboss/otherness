@@ -84,13 +84,18 @@ export default {
     {
       title: 'Description',
       name: 'description',
-      type: 'block',
-      styles: [{title: 'Normal', value: 'normal'}],
-      lists: [],
-      marks: {
-        decorators: [{title: 'Emphasis', value: 'em'}],
-        annotations: [],
-      },
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+          marks: {
+            decorators: [{title: 'Emphasis', value: 'em'}],
+            annotations: [],
+          },
+        },
+      ],
     },
     {
       title: 'Collaborators',

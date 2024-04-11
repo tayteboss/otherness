@@ -4,6 +4,7 @@ import LayoutGrid from '../../common/LayoutGrid';
 import pxToRem from '../../../utils/pxToRem';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
+import { PortableText } from '@portabletext/react';
 
 type Props = {
 	client: string;
@@ -11,7 +12,7 @@ type Props = {
 		title: string;
 		url?: string;
 	}[];
-	description: string;
+	description: [];
 };
 
 const WorkDetailsWrapper = styled.section`
@@ -80,7 +81,7 @@ const Collab = styled.li``;
 
 const CollabLink = styled.a``;
 
-const Description = styled.p`
+const DescriptionWrapper = styled.p`
 	grid-column: 11 / 21;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
@@ -89,12 +90,6 @@ const Description = styled.p`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		grid-column: 1 / -1;
-
-		&.type-p-large {
-			font-size: ${pxToRem(14)};
-			line-height: ${pxToRem(21)};
-			letter-spacing: 0.14px;
-		}
 	}
 `;
 
@@ -113,8 +108,6 @@ const TopGridWrapper = styled.div`
 const WorkDetails = (props: Props) => {
 	const { client, collaborators, description } = props ?? {};
 
-	const [formattedDescription, setFormattedDescription] = useState('');
-
 	const hasCollaborators = collaborators?.length > 0;
 
 	const { ref, inView } = useInView({
@@ -127,14 +120,6 @@ const WorkDetails = (props: Props) => {
 		triggerOnce: false,
 		rootMargin: '-50px'
 	});
-
-	useEffect(() => {
-		const formattedDescription: string = description
-			? `<p>${description.replace(/\n/g, '<br />')}</p>`
-			: '';
-
-		setFormattedDescription(formattedDescription);
-	}, [description]);
 
 	useEffect(() => {
 		const formattedId = 'project-intro';
@@ -188,12 +173,9 @@ const WorkDetails = (props: Props) => {
 								)}
 						</CollabsList>
 						{description && (
-							<Description
-								className="type-p-large"
-								dangerouslySetInnerHTML={{
-									__html: formattedDescription
-								}}
-							/>
+							<DescriptionWrapper className="rich-text rich-text--large-p">
+								<PortableText value={description} />
+							</DescriptionWrapper>
 						)}
 					</LayoutGrid>
 				</LayoutWrapper>

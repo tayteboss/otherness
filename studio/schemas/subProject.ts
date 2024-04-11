@@ -18,7 +18,18 @@ export default {
     {
       title: 'Description',
       name: 'description',
-      type: 'text',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+          marks: {
+            decorators: [{title: 'Emphasis', value: 'em'}],
+            annotations: [],
+          },
+        },
+      ],
     },
     projectImageBlocks,
   ],

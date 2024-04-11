@@ -232,7 +232,7 @@ export type TwoColumnHeroType = {
 };
 
 export type SubProjectType = {
-	description: string;
+	description: [];
 	imageBlocks: any;
 	title: string;
 	label: string;

@@ -261,6 +261,11 @@ export const GlobalStyles = createGlobalStyle`
 			}
 		}
 
+		em {
+			font-variant: small-caps;
+			font-style: normal;
+		}
+
 		&--large-p {
 			p, a {
 				font-family: var(--font-classic-grotesque-regular);
