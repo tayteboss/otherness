@@ -27,6 +27,14 @@ const PageWrapper = styled(motion.div)`
 		padding-top: ${pxToRem(72)};
 		padding-bottom: ${pxToRem(72)};
 	}
+
+	.page-builder {
+		section {
+			&:last-child {
+				padding-bottom: ${pxToRem(80)};
+			}
+		}
+	}
 `;
 
 const Page = (props: Props) => {
@@ -309,6 +317,12 @@ export async function getStaticProps({ params }: any) {
 				title,
 				imageBlocks[] {
 					...,
+					pbCtaBanner {
+						...,
+						media {
+							${mediaTypeString}
+						}
+					},
 					imageComponentOneHalfOneXSmall {
 						half {
 							${mediaTypeString}

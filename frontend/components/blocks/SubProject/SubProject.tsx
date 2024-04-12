@@ -8,9 +8,7 @@ import OthernessPageBuilder from '../../common/OthernessPageBuilder';
 import { useEffect } from 'react';
 import { PortableText } from '@portabletext/react';
 
-const SubProjectWrapper = styled.div`
-	margin-bottom: ${pxToRem(48)};
-`;
+const SubProjectWrapper = styled.div``;
 
 const HeaderWrapper = styled.div`
 	margin-bottom: ${pxToRem(48)};

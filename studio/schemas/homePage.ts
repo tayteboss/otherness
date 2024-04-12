@@ -38,8 +38,18 @@ export default {
       type: 'string',
     },
     {
+      title: 'Mobile Hero Title',
+      name: 'mobileHeroTitle',
+      type: 'string',
+    },
+    {
       title: 'Hero Description',
       name: 'heroDescription',
+      type: 'string',
+    },
+    {
+      title: 'Mobile Hero Description',
+      name: 'mobileHeroDescription',
       type: 'string',
     },
     {

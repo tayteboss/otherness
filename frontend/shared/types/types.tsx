@@ -147,6 +147,8 @@ export type HomePageType = {
 	featuredConversations: ConversationsType[];
 	heroButton: ButtonType;
 	heroDescription: string;
+	mobileHeroDescription: string;
+	mobileHeroTitle: string;
 	heroMedia: MediaType;
 	heroTitle: string;
 	homeBlocks: PageBuilderType[];

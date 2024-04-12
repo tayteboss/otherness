@@ -103,7 +103,9 @@ const Page = (props: Props) => {
 			/>
 			<HomeHero
 				title={data?.heroTitle}
+				mobileTitle={data?.mobileHeroTitle}
 				description={data?.heroDescription}
+				mobileDescription={data?.mobileHeroDescription}
 				media={data?.heroMedia}
 				link={data?.heroLink}
 			/>

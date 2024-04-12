@@ -45,6 +45,7 @@ const InnerVideoWrapper = styled.div`
 		--rendition-selectmenu: none;
 		--airplay-button: none;
 		--pip-button: none;
+		--center-controls: none;
 	}
 
 	mux-player,

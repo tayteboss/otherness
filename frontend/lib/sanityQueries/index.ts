@@ -270,7 +270,9 @@ export const homePageQueryString = `
 		seoTitle,
 		seoDescription,
 		heroTitle,
+		mobileHeroTitle,
 		heroDescription,
+		mobileHeroDescription,
 		'heroLink': button,
 		heroMedia {
 			mediaType,

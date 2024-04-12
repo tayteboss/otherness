@@ -3,10 +3,13 @@ import { ButtonType, MediaType } from '../../../shared/types/types';
 import MediaStack from '../../common/MediaStack';
 import pxToRem from '../../../utils/pxToRem';
 import PrimaryButton from '../../elements/PrimaryButton';
+import useViewportWidth from '../../../hooks/useViewportWidth';
 
 type Props = {
 	title: string;
+	mobileTitle?: string;
 	description: string;
+	mobileDescription?: string;
 	media: MediaType;
 	link: ButtonType;
 };
@@ -43,6 +46,7 @@ const ContentWrapper = styled.div`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		align-items: flex-start;
+		gap: ${pxToRem(30)};
 	}
 `;
 
@@ -58,6 +62,8 @@ const TitleWrapper = styled.div`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: 0 ${pxToRem(16)};
 		width: 100vw;
+		gap: ${pxToRem(20)};
+		align-items: flex-start;
 	}
 `;
 
@@ -69,6 +75,7 @@ const Title = styled.h1`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		text-align: left;
+		margin: 0;
 	}
 `;
 
@@ -86,7 +93,11 @@ const ButtonWrapper = styled.div`
 `;
 
 const HomeHero = (props: Props) => {
-	const { title, description, media, link } = props;
+	const { title, mobileTitle, description, mobileDescription, media, link } =
+		props;
+
+	const viewport = useViewportWidth();
+	const isMobile = viewport === 'mobile' || viewport === 'tabletPortrait';
 
 	return (
 		<HomeHeroWrapper>
@@ -95,10 +106,10 @@ const HomeHero = (props: Props) => {
 			</MediaWrapper>
 			<ContentWrapper>
 				<TitleWrapper>
-					{title && <Title>{title}</Title>}
+					{title && <Title>{isMobile ? mobileTitle : title}</Title>}
 					{description && (
 						<Description className="type-secondary-heading-large">
-							{description}
+							{isMobile ? mobileDescription : description}
 						</Description>
 					)}
 				</TitleWrapper>
