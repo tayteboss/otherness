@@ -137,7 +137,7 @@ export default {
       options: {
         list: [
           {title: 'Artsy', value: 'artsy'},
-          {title: 'Bombastic', value: 'bombastic'},
+          {title: 'Cheeky', value: 'cheeky'},
           {title: 'Bookish', value: 'bookish'},
           {title: 'Luxxy', value: 'luxxy'},
           {title: 'Technical', value: 'technical'},

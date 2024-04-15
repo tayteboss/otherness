@@ -31,11 +31,19 @@ const FooterSocialLinks = (props: Props) => {
 
 	const hasData = data.length > 0;
 
+	const handleUrl = (url: string) => {
+		if (url.includes('@')) {
+			return `mailto:${url}`;
+		} else {
+			return url;
+		}
+	};
+
 	return (
 		<FooterSocialLinksWrapper>
 			{hasData &&
 				data.map((item, i) => (
-					<ArrowButton url={item?.url} key={i}>
+					<ArrowButton url={handleUrl(item?.url)} key={i}>
 						{item.title}
 					</ArrowButton>
 				))}

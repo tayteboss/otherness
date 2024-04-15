@@ -260,7 +260,7 @@ export type ProjectType = {
 	mood: (
 		| 'all'
 		| 'artsy'
-		| 'bombastic'
+		| 'cheeky'
 		| 'bookish'
 		| 'luxxy'
 		| 'technical'
