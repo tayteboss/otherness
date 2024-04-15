@@ -133,6 +133,7 @@ export type NoticedType = {
 	thumbnailImage: string;
 	url?: string;
 	year: string;
+	pageReference: any;
 };
 
 export type FurtherReadingType = {

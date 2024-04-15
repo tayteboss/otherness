@@ -68,6 +68,7 @@ const NoticedList = (props: Props) => {
 								thumbnailImage={item?.thumbnailImage}
 								source={item?.source}
 								url={item?.url}
+								pageReference={item?.pageReference}
 								key={i}
 							/>
 						))}

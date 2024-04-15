@@ -447,6 +447,10 @@ export const homePageQueryString = `
 			year,
 			"thumbnailImage": thumbnailImage.asset->url,
 			url,
+			pageReference-> {
+				_type,
+				slug
+			}
 		}
 	}
 `;

@@ -1,4 +1,18 @@
-const getPageReferenceHref = (ref: string) => {
+const getPageReferenceHref = (
+	ref: string | { _type: string; slug: { current: string } },
+	useProject = false
+) => {
+	if (useProject) {
+		if (typeof ref !== 'string' && ref._type === 'project') {
+			return `work/${ref.slug.current}`;
+		}
+		if (typeof ref !== 'string' && ref._type === 'article') {
+			return `conversations/${ref.slug.current}`;
+		}
+
+		return '/';
+	}
+
 	if (ref === 'whatToExpectPage') {
 		return '/what-to-expect';
 	} else if (ref === 'contactPage') {

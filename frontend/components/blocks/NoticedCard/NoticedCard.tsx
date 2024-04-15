@@ -6,6 +6,8 @@ import pxToRem from '../../../utils/pxToRem';
 import { useState } from 'react';
 import NoticedCursorLayout from '../../layout/NoticedCursorLayout';
 import Image from 'next/image';
+import getPageReferenceHref from '../../../utils/getPageReferenceHref';
+import { useRouter } from 'next/router';
 
 type StyledProps = {
 	$inView?: boolean;
@@ -114,7 +116,9 @@ const ImageInner = styled.div`
 `;
 
 const NoticedCard = (props: NoticedType) => {
-	const { year, title, thumbnailImage, source, url } = props;
+	const { year, title, thumbnailImage, source, url, pageReference } = props;
+
+	const hasLink = !!url || !!pageReference;
 
 	const [isHovered, setIsHovered] = useState(false);
 
@@ -124,10 +128,27 @@ const NoticedCard = (props: NoticedType) => {
 		rootMargin: '-300px'
 	});
 
+	const router = useRouter();
+
 	const handleClick = () => {
-		if (url) {
-			window.open(url, '_blank');
+		if (!hasLink) return;
+
+		let href = '';
+		let target = '_self';
+
+		if (pageReference) {
+			href = getPageReferenceHref(pageReference, true);
+		} else if (url) {
+			href = url;
+			target = '_blank';
+		} else if (url) {
+			href = url;
+			target = '_blank';
+		} else {
+			href = '/';
 		}
+
+		router.push(href);
 	};
 
 	return (
@@ -136,7 +157,7 @@ const NoticedCard = (props: NoticedType) => {
 				ref={ref}
 				onClick={() => handleClick()}
 				$inView={inView}
-				$isClickable={!!url}
+				$isClickable={!!hasLink}
 				onMouseOver={() => setIsHovered(true)}
 				onMouseOut={() => setIsHovered(false)}
 			>
@@ -148,12 +169,12 @@ const NoticedCard = (props: NoticedType) => {
 					<Year className="type-secondary-heading-small">
 						{year || ''}
 					</Year>
-					<ArrowWrapper>{url && <ArrowSvg />}</ArrowWrapper>
+					<ArrowWrapper>{hasLink && <ArrowSvg />}</ArrowWrapper>
 				</DesktopWrapper>
 				<MobileWrapper>
 					<TopWrapper>
 						<Title>{title || ''}</Title>
-						<ArrowWrapper>{url && <ArrowSvg />}</ArrowWrapper>
+						<ArrowWrapper>{hasLink && <ArrowSvg />}</ArrowWrapper>
 					</TopWrapper>
 					<BottomWrapper>
 						<Source className="type-secondary-heading-small">
@@ -165,7 +186,7 @@ const NoticedCard = (props: NoticedType) => {
 					</BottomWrapper>
 				</MobileWrapper>
 			</NoticedCardWrapper>
-			{thumbnailImage && url && (
+			{thumbnailImage && hasLink && (
 				<NoticedCursorLayout isActive={isHovered}>
 					<ImageWrapper>
 						<ImageInner>
