@@ -30,7 +30,7 @@ const FeaturedConversations = (props: Props) => {
 	return (
 		<FeaturedConversationsWrapper>
 			<LayoutWrapper>
-				<Title>Conversations we need to have</Title>
+				<Title>Conversations to have</Title>
 			</LayoutWrapper>
 			<LayoutWrapper useGalleryLayout>
 				<LayoutGrid useGalleryGrid>

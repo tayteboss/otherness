@@ -141,7 +141,7 @@ const MobileMenu = (props: Props) => {
 								<LinkTag
 									onClick={() => setMobileMenuIsActive(false)}
 								>
-									Things You Can Expect
+									What to expect
 								</LinkTag>
 							</Link>
 							{/* <Link
@@ -177,7 +177,7 @@ const MobileMenu = (props: Props) => {
 								<LinkTag
 									onClick={() => setMobileMenuIsActive(false)}
 								>
-									Conversations We Need To Have
+									Conversations To Have
 								</LinkTag>
 							</Link>
 						</ListWrapper>

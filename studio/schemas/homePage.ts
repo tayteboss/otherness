@@ -147,7 +147,7 @@ export default {
       validation: (Rule: any) => Rule.max(2),
     },
     {
-      title: 'Noticed List',
+      title: 'Featured List',
       name: 'noticedList',
       type: 'array',
       of: [

@@ -102,7 +102,7 @@ const RelatedConversations = (props: Props) => {
 							</SubTitleWrapper>
 						</Link>
 						<ConversationsWrapper>
-							<Title>Conversations we need to have</Title>
+							<Title>Conversations to have</Title>
 							<LayoutGrid>
 								{data.map((item, i) => (
 									<ConversationCard

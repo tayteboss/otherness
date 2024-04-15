@@ -57,7 +57,7 @@ const NoticedList = (props: Props) => {
 						inView ? 'view-element-fade-in--in-view' : ''
 					}`}
 				>
-					Noticed
+					Featured
 				</Title>
 				<ListWrapper $inView={inView}>
 					{hasData &&

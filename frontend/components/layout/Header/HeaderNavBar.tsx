@@ -88,7 +88,7 @@ const HeaderNavBar = () => {
 					legacyBehavior
 					scroll={false}
 				>
-					<LinkTag>Things You Can Expect</LinkTag>
+					<LinkTag>What to expect</LinkTag>
 				</Link>
 				{/* <Link href="/" passHref legacyBehavior scroll={false}>
 					<LinkTag>Things We Understand</LinkTag>
@@ -102,7 +102,7 @@ const HeaderNavBar = () => {
 					legacyBehavior
 					scroll={false}
 				>
-					<LinkTag>Conversations We Need To Have</LinkTag>
+					<LinkTag>Conversations To Have</LinkTag>
 				</Link>
 			</Inner>
 		</HeaderNavBarWrapper>
