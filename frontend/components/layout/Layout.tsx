@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import MobileMenu from '../blocks/MobileMenu';
 import { ReactLenis, useLenis } from '@studio-freight/react-lenis';
 import { SiteSettingsType } from '../../shared/types/types';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const siteSettings: SiteSettingsType = require('../../json/siteSettings.json');
 
@@ -64,6 +65,7 @@ const Layout = (props: Props) => {
 
 	return (
 		<>
+			<GoogleTagManager gtmId="G-5TXD8TLXKY" />
 			<Header
 				isActive={!hideLayoutHeader}
 				mobileMenuIsActive={mobileMenuIsActive}
