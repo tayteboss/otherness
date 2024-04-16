@@ -49,8 +49,8 @@ const FiltersBar = (props: Props) => {
 	const moodFilters = [
 		'all',
 		'artsy',
-		'cheeky',
 		'bookish',
+		'cheeky',
 		'luxxy',
 		'technical',
 		'professh',
