@@ -50,14 +50,16 @@ const ContentWrapper = styled.div`
 	}
 `;
 
-const Title = styled.h1`
+const Title = styled.p`
 	color: var(--colour-white);
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
-		font-size: ${pxToRem(86)};
-		line-height: ${pxToRem(106)};
-		letter-spacing: -1.72px;
-		font-weight: 200;
+		&.type-h1 {
+			font-size: ${pxToRem(86)};
+			line-height: ${pxToRem(106)};
+			letter-spacing: -1.72px;
+			font-weight: 200;
+		}
 	}
 `;
 
@@ -104,7 +106,9 @@ const StatisticCard = (props: StatisticType) => {
 						<MediaStack data={mediaData} />
 					</MediaWrapper>
 					<ContentWrapper>
-						{statisticTitle && <Title>{statisticTitle}</Title>}
+						{statisticTitle && (
+							<Title className="type-h1">{statisticTitle}</Title>
+						)}
 						{description && (
 							<Description className="type-secondary-heading-small">
 								{description}
