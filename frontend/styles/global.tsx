@@ -228,6 +228,10 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	.rich-text {
+		
+	}
+
+	.rich-text {
 		h1,
 		h2,
 		h3,
