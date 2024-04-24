@@ -108,6 +108,10 @@ const PrimaryButton = (props: Props) => {
 
 	if (data?.pageReference) {
 		href = getPageReferenceHref(data?.pageReference?._ref);
+	}
+	if (data?.url.includes('@')) {
+		href = `mailto:${data?.url}`;
+		target = '_blank';
 	} else if (data?.url) {
 		href = data?.url;
 		target = '_blank';

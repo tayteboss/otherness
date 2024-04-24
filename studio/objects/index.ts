@@ -289,7 +289,11 @@ const linkObject = [
     title: 'External URL',
     name: 'url',
     type: 'url',
-    validation: (Rule: any) => Rule.uri({allowRelative: true}),
+    validation: (Rule) =>
+      Rule.uri({
+        allowRelative: true,
+        scheme: ['http', 'https', 'mailto', 'tel'],
+      }),
     description: 'Please use either a page reference or an external URL.',
   },
   pageReferences,
