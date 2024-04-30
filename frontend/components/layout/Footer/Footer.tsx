@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
-import LogoIconSvg from '../../svgs/LogoIconSvg';
 import pxToRem from '../../../utils/pxToRem';
 import FooterSocialLinks from './FooterSocialLinks';
 import PrimaryButton from '../../elements/PrimaryButton';
 import Link from 'next/link';
 import { ButtonType } from '../../../shared/types/types';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 type Props = {
 	footerConsultationCta: string;
@@ -164,6 +165,18 @@ const Footer = (props: Props) => {
 		footerConsultationButtonUrl
 	} = props;
 
+	const [isActive, setIsActive] = useState(true);
+
+	const router = useRouter();
+
+	useEffect(() => {
+		if (router.pathname === '/things-we-understand') {
+			setIsActive(false);
+		} else {
+			setIsActive(true);
+		}
+	}, [router]);
+
 	const socialButtons = [
 		{
 			title: socialLink1.title,
@@ -180,18 +193,65 @@ const Footer = (props: Props) => {
 	];
 
 	return (
-		<FooterWrapper>
-			<LayoutWrapper>
-				<DesktopWrapper>
-					<LayoutGrid>
-						<DetailsWrapper>
-							{tagline && <Tagline>{tagline}</Tagline>}
-							<FooterSocialLinks data={socialButtons} />
-						</DetailsWrapper>
-						<CtaWrapper>
+		<>
+			{isActive && (
+				<FooterWrapper>
+					<LayoutWrapper>
+						<DesktopWrapper>
+							<LayoutGrid>
+								<DetailsWrapper>
+									{tagline && <Tagline>{tagline}</Tagline>}
+									<FooterSocialLinks data={socialButtons} />
+								</DetailsWrapper>
+								<CtaWrapper>
+									<ConsultationWrapper>
+										{footerConsultationCta && (
+											<ConsultationTitle className="type-h3">
+												{footerConsultationCta}
+											</ConsultationTitle>
+										)}
+										{footerConsultationButtonTitle &&
+											footerConsultationButtonUrl && (
+												<PrimaryButton
+													url={
+														footerConsultationButtonUrl
+													}
+												>
+													{
+														footerConsultationButtonTitle
+													}
+												</PrimaryButton>
+											)}
+									</ConsultationWrapper>
+									<SubDetailsWrapper>
+										<SubDetail>
+											Otherness™ is a trademark of
+											Otherness Holding BV
+										</SubDetail>
+										<SubDetailsBottomWrapper>
+											<SubDetail>
+												© Studio Otherness BV
+											</SubDetail>
+											<Link
+												href="/privacy"
+												passHref
+												legacyBehavior
+												scroll={false}
+											>
+												<SubDetailLink>
+													Privacy
+												</SubDetailLink>
+											</Link>
+										</SubDetailsBottomWrapper>
+									</SubDetailsWrapper>
+								</CtaWrapper>
+							</LayoutGrid>
+						</DesktopWrapper>
+
+						<MobileWrapper>
 							<ConsultationWrapper>
 								{footerConsultationCta && (
-									<ConsultationTitle className="type-h3">
+									<ConsultationTitle className="type-h2">
 										{footerConsultationCta}
 									</ConsultationTitle>
 								)}
@@ -204,60 +264,26 @@ const Footer = (props: Props) => {
 										</PrimaryButton>
 									)}
 							</ConsultationWrapper>
+							<DetailsWrapper>
+								{tagline && <Tagline>{tagline}</Tagline>}
+								<FooterSocialLinks data={socialButtons} />
+							</DetailsWrapper>
+
 							<SubDetailsWrapper>
+								<Link href="/privacy" passHref legacyBehavior>
+									<SubDetailLink>Privacy</SubDetailLink>
+								</Link>
+								<SubDetail>© Studio Otherness BV</SubDetail>
 								<SubDetail>
 									Otherness™ is a trademark of Otherness
 									Holding BV
 								</SubDetail>
-								<SubDetailsBottomWrapper>
-									<SubDetail>© Studio Otherness BV</SubDetail>
-									<Link
-										href="/privacy"
-										passHref
-										legacyBehavior
-										scroll={false}
-									>
-										<SubDetailLink>Privacy</SubDetailLink>
-									</Link>
-								</SubDetailsBottomWrapper>
 							</SubDetailsWrapper>
-						</CtaWrapper>
-					</LayoutGrid>
-				</DesktopWrapper>
-
-				<MobileWrapper>
-					<ConsultationWrapper>
-						{footerConsultationCta && (
-							<ConsultationTitle className="type-h2">
-								{footerConsultationCta}
-							</ConsultationTitle>
-						)}
-						{footerConsultationButtonTitle &&
-							footerConsultationButtonUrl && (
-								<PrimaryButton
-									url={footerConsultationButtonUrl}
-								>
-									{footerConsultationButtonTitle}
-								</PrimaryButton>
-							)}
-					</ConsultationWrapper>
-					<DetailsWrapper>
-						{tagline && <Tagline>{tagline}</Tagline>}
-						<FooterSocialLinks data={socialButtons} />
-					</DetailsWrapper>
-
-					<SubDetailsWrapper>
-						<Link href="/privacy" passHref legacyBehavior>
-							<SubDetailLink>Privacy</SubDetailLink>
-						</Link>
-						<SubDetail>© Studio Otherness BV</SubDetail>
-						<SubDetail>
-							Otherness™ is a trademark of Otherness Holding BV
-						</SubDetail>
-					</SubDetailsWrapper>
-				</MobileWrapper>
-			</LayoutWrapper>
-		</FooterWrapper>
+						</MobileWrapper>
+					</LayoutWrapper>
+				</FooterWrapper>
+			)}
+		</>
 	);
 };
 

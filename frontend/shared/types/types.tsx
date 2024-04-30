@@ -166,7 +166,7 @@ export type HomePageType = {
 export type ThingsWeUnderstandType = {
 	seoDescription: string;
 	seoTitle: string;
-	statements: { statement: string; author: string }[];
+	statementsAndAuthors: { statement: string; author: string }[];
 };
 
 export type SiteSettingsType = {

@@ -6,6 +6,7 @@ import client from '../client';
 import { thingsWeUnderstandQueryString } from '../lib/sanityQueries';
 import pxToRem from '../utils/pxToRem';
 import UnderstandBackground from '../components/blocks/UnderstandBackground';
+import UnderstandStatements from '../components/blocks/UnderstandStatements';
 
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
@@ -38,6 +39,7 @@ const Page = (props: Props) => {
 				description={data?.seoDescription || ''}
 			/>
 			<UnderstandBackground />
+			<UnderstandStatements data={data?.statementsAndAuthors} />
 		</PageWrapper>
 	);
 };
