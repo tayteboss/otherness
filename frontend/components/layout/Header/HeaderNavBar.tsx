@@ -90,9 +90,14 @@ const HeaderNavBar = () => {
 				>
 					<LinkTag>What to expect</LinkTag>
 				</Link>
-				{/* <Link href="/" passHref legacyBehavior scroll={false}>
+				<Link
+					href="/things-we-understand"
+					passHref
+					legacyBehavior
+					scroll={false}
+				>
 					<LinkTag>Things We Understand</LinkTag>
-				</Link> */}
+				</Link>
 				<Link href="/work" passHref legacyBehavior scroll={false}>
 					<LinkTag>Work We Do</LinkTag>
 				</Link>

@@ -36,6 +36,12 @@ export const whatToExpectQueryString = `
 	}
 `;
 
+export const thingsWeUnderstandQueryString = `
+	*[_type == "thingsWeUnderstandPage"] {
+		...,
+	}
+`;
+
 export const privacyQueryString = `
 	*[_type == "privacyPage"] {
 		...,

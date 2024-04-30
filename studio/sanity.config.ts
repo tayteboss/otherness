@@ -34,6 +34,14 @@ export default defineConfig({
               .icon(DocumentIcon)
               .child(S.editor().schemaType('whatToExpectPage').documentId('whatToExpectPage')),
             S.listItem()
+              .title('Things We Understand Page')
+              .icon(DocumentIcon)
+              .child(
+                S.editor()
+                  .schemaType('thingsWeUnderstandPage')
+                  .documentId('thingsWeUnderstandPage'),
+              ),
+            S.listItem()
               .title('Work We Do Page')
               .icon(DocumentIcon)
               .child(S.editor().schemaType('workPage').documentId('workPage')),

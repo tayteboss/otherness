@@ -17,6 +17,7 @@ import siteSettings from './siteSettings'
 import statisticBlock from './statisticBlock'
 import subProject from './subProject'
 import testimonialBlock from './testimonialBlock'
+import thingsWeUnderstandPage from './thingsWeUnderstandPage'
 import thumbnailMedia from './thumbnailMedia'
 import whatToExpectPage from './whatToExpectPage'
 import workPage from './workPage'
@@ -31,6 +32,7 @@ export const schemaTypes = [
   whatToExpectPage,
   conversationsPage,
   privacyPage,
+  thingsWeUnderstandPage,
 
   // Documents
   project,

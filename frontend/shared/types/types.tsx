@@ -163,6 +163,12 @@ export type HomePageType = {
 	heroLink: ButtonType;
 };
 
+export type ThingsWeUnderstandType = {
+	seoDescription: string;
+	seoTitle: string;
+	statements: { statement: string; author: string }[];
+};
+
 export type SiteSettingsType = {
 	footerConsultationCta: string;
 	socialLink1: ButtonType;
