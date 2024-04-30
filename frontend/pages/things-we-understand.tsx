@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import client from '../client';
 import { thingsWeUnderstandQueryString } from '../lib/sanityQueries';
 import pxToRem from '../utils/pxToRem';
+import UnderstandBackground from '../components/blocks/UnderstandBackground';
 
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
@@ -36,6 +37,7 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Otherness'}
 				description={data?.seoDescription || ''}
 			/>
+			<UnderstandBackground />
 		</PageWrapper>
 	);
 };
