@@ -7,10 +7,12 @@ import { thingsWeUnderstandQueryString } from '../lib/sanityQueries';
 import pxToRem from '../utils/pxToRem';
 import UnderstandBackground from '../components/blocks/UnderstandBackground';
 import UnderstandStatements from '../components/blocks/UnderstandStatements';
+import Cursor from '../components/elements/Cursor';
+import { useState } from 'react';
 
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
-	padding-top: var(--header-h);
+	padding-top: 30vw;
 
 	.page-builder {
 		padding-bottom: ${pxToRem(60)};
@@ -25,7 +27,7 @@ type Props = {
 const Page = (props: Props) => {
 	const { data, pageTransitionVariants } = props;
 
-	console.log('data', data);
+	const [appCursorRefresh, setAppCursorRefresh] = useState<number>(0);
 
 	return (
 		<PageWrapper
@@ -40,6 +42,9 @@ const Page = (props: Props) => {
 			/>
 			<UnderstandBackground />
 			<UnderstandStatements data={data?.statementsAndAuthors} />
+			{/* <Cursor
+				cursorRefresh={() => setAppCursorRefresh(appCursorRefresh + 1)}
+			/> */}
 		</PageWrapper>
 	);
 };

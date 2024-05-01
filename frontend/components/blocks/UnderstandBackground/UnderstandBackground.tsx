@@ -32,7 +32,7 @@ const UnderstandBackground = () => {
 			>
 				<ShaderGradient
 					animate="on"
-					brightness={1.2}
+					brightness={1}
 					cAzimuthAngle={180}
 					cDistance={3.6}
 					cPolarAngle={90}
@@ -54,7 +54,7 @@ const UnderstandBackground = () => {
 					type="plane"
 					uDensity={1.3}
 					uFrequency={5.5}
-					uSpeed={0.2}
+					uSpeed={0.1}
 					uStrength={4}
 					uTime={0}
 					wireframe={false}
