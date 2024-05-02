@@ -9,10 +9,11 @@ import UnderstandBackground from '../components/blocks/UnderstandBackground';
 import UnderstandStatements from '../components/blocks/UnderstandStatements';
 import Cursor from '../components/elements/Cursor';
 import { useState } from 'react';
+import Orb from '../components/elements/Orb';
 
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
-	padding-top: 30vw;
+	padding-top: 80vw;
 
 	.page-builder {
 		padding-bottom: ${pxToRem(60)};
@@ -45,6 +46,7 @@ const Page = (props: Props) => {
 			{/* <Cursor
 				cursorRefresh={() => setAppCursorRefresh(appCursorRefresh + 1)}
 			/> */}
+			<Orb cursorRefresh={appCursorRefresh} />
 		</PageWrapper>
 	);
 };

@@ -54,6 +54,14 @@ export const GlobalStyles = createGlobalStyle`
 				overflow-y: hidden;
 			}
 		}
+
+		&.no-cursor {
+			cursor: none !important;
+
+			* {
+				cursor: none !important;
+			}
+		}
 	}
 
 	body {

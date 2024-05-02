@@ -12,6 +12,8 @@ const UnderstandBackgroundWrapper = styled.div`
 	height: 100vh;
 	z-index: 1;
 	pointer-events: none;
+	filter: blur(2px);
+	transform: scale(1.1);
 
 	* {
 		pointer-events: none;
@@ -22,7 +24,7 @@ const UnderstandBackground = () => {
 	return (
 		<UnderstandBackgroundWrapper>
 			<ShaderGradientCanvas
-				importedFiber={{ ...fiber, ...drei, ...reactSpring }}
+				importedfiber={{ ...fiber, ...drei, ...reactSpring }}
 				style={{
 					position: 'absolute',
 					top: 0,
@@ -37,16 +39,16 @@ const UnderstandBackground = () => {
 					cDistance={3.6}
 					cPolarAngle={90}
 					cameraZoom={1}
-					color1="#FF8F5E"
-					color2="#D7C7A1"
-					color3="#A2A89C"
-					envPreset="city"
+					color1="#E7907F"
+					color2="#137372"
+					color3="#B0927A"
+					envPreset="dawn"
 					grain="off"
 					lightType="3d"
-					positionX={-1.4}
+					positionX={-1.1}
 					positionY={0}
 					positionZ={0}
-					reflection={0.1}
+					reflection={0}
 					rotationX={0}
 					rotationY={10}
 					rotationZ={50}
@@ -54,8 +56,8 @@ const UnderstandBackground = () => {
 					type="plane"
 					uDensity={1.3}
 					uFrequency={5.5}
-					uSpeed={0.1}
-					uStrength={4}
+					uSpeed={0.05}
+					uStrength={10}
 					uTime={0}
 					wireframe={false}
 					zoomOut={false}
