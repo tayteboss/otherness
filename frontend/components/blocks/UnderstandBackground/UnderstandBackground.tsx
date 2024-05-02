@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import { ShaderGradientCanvas, ShaderGradient } from 'shadergradient';
-import * as reactSpring from '@react-spring/three';
-import * as drei from '@react-three/drei';
 import * as fiber from '@react-three/fiber';
 
 const UnderstandBackgroundWrapper = styled.div`
@@ -24,7 +22,7 @@ const UnderstandBackground = () => {
 	return (
 		<UnderstandBackgroundWrapper>
 			<ShaderGradientCanvas
-				importedfiber={{ ...fiber, ...drei, ...reactSpring }}
+				importedfiber={{ ...fiber }}
 				style={{
 					position: 'absolute',
 					top: 0,
