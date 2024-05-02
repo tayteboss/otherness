@@ -14,6 +14,7 @@ import Orb from '../components/elements/Orb';
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
 	padding-top: 80vw;
+	background: #f7f7f7;
 
 	.page-builder {
 		padding-bottom: ${pxToRem(60)};
@@ -41,12 +42,9 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Otherness'}
 				description={data?.seoDescription || ''}
 			/>
-			<UnderstandBackground />
-			<UnderstandStatements data={data?.statementsAndAuthors} />
-			{/* <Cursor
-				cursorRefresh={() => setAppCursorRefresh(appCursorRefresh + 1)}
-			/> */}
-			<Orb cursorRefresh={appCursorRefresh} />
+			{/* <UnderstandBackground /> */}
+			{/* <UnderstandStatements data={data?.statementsAndAuthors} />
+			<Orb cursorRefresh={appCursorRefresh} /> */}
 		</PageWrapper>
 	);
 };
