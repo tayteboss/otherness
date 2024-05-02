@@ -66,13 +66,8 @@ const Word = styled.div<StyledProps>`
 	display: inline-block;
 	white-space: nowrap;
 	position: relative;
-	font-size: ${pxToRem(60)};
-	line-height: ${pxToRem(80)};
-	letter-spacing: 1px;
-	font-weight: 200;
-	font-family: var(--font-baryton);
 
-	&::after {
+	/* &::after {
 		content: '';
 		position: absolute;
 		top: 50%;
@@ -88,12 +83,17 @@ const Word = styled.div<StyledProps>`
 		width: 125%;
 
 		transition: all var(--transition-speed-slow) var(--transition-ease);
-	}
+	} */
 `;
 
 const Letter = styled.span<StyledProps>`
 	display: inline-block;
 	opacity: ${(props) => props.opacityAmount};
+	font-size: ${pxToRem(60)};
+	line-height: ${pxToRem(80)};
+	letter-spacing: 0.1px;
+	font-weight: 200;
+	font-family: var(--font-baryton);
 
 	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 `;

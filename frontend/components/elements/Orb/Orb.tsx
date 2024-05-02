@@ -37,11 +37,12 @@ const CursorRing = styled(motion.div)<StyledProps>`
 	left: ${(props) => (props.$largeOrb ? '-180px' : '-80px')};
 	height: ${(props) => (props.$largeOrb ? '360px' : '160px')};
 	width: ${(props) => (props.$largeOrb ? '360px' : '160px')};
-	background: #137372;
+	background: #e7907f;
 	border-radius: 50%;
 	pointer-events: none;
 	text-align: center;
 	z-index: 2;
+	opacity: 0.5;
 	filter: ${(props) => props.$largeOrb && 'blur(20px)'};
 
 	transition: height 500ms ease, width 500ms ease, top 500ms ease,
