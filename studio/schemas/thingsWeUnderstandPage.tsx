@@ -25,6 +25,11 @@ export default {
       description: 'This is the SEO description that appears in search engines.',
     },
     {
+      title: 'Background Video',
+      name: 'backgroundVideo',
+      type: 'mux.video',
+    },
+    {
       title: 'Statements and Authors',
       name: 'statementsAndAuthors',
       type: 'array',

@@ -167,6 +167,7 @@ export type ThingsWeUnderstandType = {
 	seoDescription: string;
 	seoTitle: string;
 	statementsAndAuthors: { statement: string; author: string }[];
+	backgroundVideo: { asset: { playbackId: string } };
 };
 
 export type SiteSettingsType = {

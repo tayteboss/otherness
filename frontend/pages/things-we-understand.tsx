@@ -7,13 +7,13 @@ import { thingsWeUnderstandQueryString } from '../lib/sanityQueries';
 import pxToRem from '../utils/pxToRem';
 import UnderstandBackground from '../components/blocks/UnderstandBackground';
 import UnderstandStatements from '../components/blocks/UnderstandStatements';
-import Cursor from '../components/elements/Cursor';
 import { useState } from 'react';
 import Orb from '../components/elements/Orb';
+import UnderstandVideoBackground from '../components/blocks/UnderstandVideoBackground';
 
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
-	padding-top: 80vw;
+	padding: 120vh 0 50vh;
 	background: #b0927a;
 
 	.page-builder {
@@ -42,7 +42,8 @@ const Page = (props: Props) => {
 				title={data?.seoTitle || 'Otherness'}
 				description={data?.seoDescription || ''}
 			/>
-			{/* <UnderstandBackground /> */}
+			{/* <UnderstandVideoBackground data={data?.backgroundVideo} /> */}
+			<UnderstandBackground />
 			<UnderstandStatements data={data?.statementsAndAuthors} />
 			<Orb cursorRefresh={appCursorRefresh} />
 		</PageWrapper>

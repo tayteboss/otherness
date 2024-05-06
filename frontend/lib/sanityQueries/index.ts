@@ -39,6 +39,11 @@ export const whatToExpectQueryString = `
 export const thingsWeUnderstandQueryString = `
 	*[_type == "thingsWeUnderstandPage"] {
 		...,
+		backgroundVideo {
+			asset-> {
+				playbackId,
+			},
+		},
 	}
 `;
 

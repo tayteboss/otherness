@@ -67,7 +67,7 @@ const Word = styled.div<StyledProps>`
 	white-space: nowrap;
 	position: relative;
 
-	/* &::after {
+	&::after {
 		content: '';
 		position: absolute;
 		top: 50%;
@@ -79,16 +79,16 @@ const Word = styled.div<StyledProps>`
 		mix-blend-mode: soft-light;
 		opacity: ${(props) => props.opacityAmount};
 		pointer-events: none;
-		height: 100%;
+		height: ${(props) => props.$height};
 		width: 125%;
 
 		transition: all var(--transition-speed-slow) var(--transition-ease);
-	} */
+	}
 `;
 
 const Letter = styled.span<StyledProps>`
 	display: inline-block;
-	opacity: ${(props) => props.opacityAmount};
+	/* opacity: ${(props) => props.opacityAmount}; */
 	font-size: ${pxToRem(60)};
 	line-height: ${pxToRem(80)};
 	letter-spacing: 0.1px;
@@ -102,13 +102,18 @@ const Statement = (props: StatementProps) => {
 	const { statement, author, index } = props;
 
 	const letterElements = statement.replace(/\s/g, '').length;
+	const wordElements = statement.split(' ').length;
 
 	const [fontSizeType, setFontSizeType] = useState('type-h2');
 	const [alignment, setAlignment] = useState('center');
 	const [marginBottom, setMarginBottom] = useState('60px');
 	const [width, setWidth] = useState('100%');
-	const [opacityLevels, setOpacityLevels] = useState<number[]>(
+	const [height, setHeight] = useState('100%');
+	const [letterOpacityLevels, setLetterOpacityLevels] = useState<number[]>(
 		Array(letterElements).fill(10)
+	);
+	const [wordOpacityLevels, setWordOpacityLevels] = useState<number[]>(
+		Array(wordElements).fill(10)
 	);
 
 	const words = statement.split(' ');
@@ -154,32 +159,30 @@ const Statement = (props: StatementProps) => {
 	// 	setWindowHeight(window.innerHeight);
 	// }, [distanceToTop]);
 
-	const handleWordHover = (index: number) => {
-		const opacityDecayFactor = 0.1; // Controls how quickly the opacity decays
+	const handleWordHover = (hoveredIndex: number) => {
+		const opacityDecayFactor = 0.3; // Controls how quickly the opacity decays
 		const maxOpacity = 1; // Maximum opacity for the hovered letter
 		const minOpacity = 0; // Minimum opacity any letter can have
 
-		const newOpacityLevels = opacityLevels.map((_, idx) => {
-			const distance = Math.abs(index - idx);
-			// Corrected formula to ensure the hovered letter has the highest opacity
-			return Math.min(
-				maxOpacity,
-				minOpacity -
-					(maxOpacity - minOpacity) *
-						Math.exp(-distance * opacityDecayFactor)
+		const newOpacityLevels = wordOpacityLevels.map((_, idx) => {
+			const distance = Math.abs(hoveredIndex - idx);
+			return (
+				minOpacity +
+				(maxOpacity - minOpacity) *
+					(1 - Math.exp(-distance * opacityDecayFactor))
 			);
 		});
-		setOpacityLevels(newOpacityLevels);
+
+		setWordOpacityLevels(newOpacityLevels);
 	};
 
 	const handleLetterHover = (index: number) => {
 		const opacityDecayFactor = 0.1; // Controls how quickly the opacity decays
-		const maxOpacity = 1; // Maximum opacity for the hovered letter
-		const minOpacity = 0; // Minimum opacity any letter can have
+		const maxOpacity = 1;
+		const minOpacity = 0;
 
-		const newOpacityLevels = opacityLevels.map((_, idx) => {
+		const newOpacityLevels = letterOpacityLevels.map((_, idx) => {
 			const distance = Math.abs(index - idx);
-			// Corrected formula to ensure the hovered letter has the highest opacity
 			return Math.min(
 				maxOpacity,
 				minOpacity +
@@ -187,7 +190,7 @@ const Statement = (props: StatementProps) => {
 						Math.exp(-distance * opacityDecayFactor)
 			);
 		});
-		setOpacityLevels(newOpacityLevels);
+		setLetterOpacityLevels(newOpacityLevels);
 	};
 
 	useEffect(() => {
@@ -202,12 +205,21 @@ const Statement = (props: StatementProps) => {
 		} else {
 			setAlignment('right');
 		}
+
 		if (randomIndex === 0) {
 			setWidth('60%');
 		} else if (randomIndex === 1) {
 			setWidth('50%');
 		} else {
 			setWidth('70%');
+		}
+
+		if (randomIndex === 0) {
+			setHeight('100%');
+		} else if (randomIndex === 1) {
+			setHeight('150%');
+		} else {
+			setHeight('125%');
 		}
 
 		if (statement.length < 90) {
@@ -236,33 +248,38 @@ const Statement = (props: StatementProps) => {
 				<Title className={fontSizeType}>
 					{words.map((word, i) => {
 						wordIndex++;
-						const currentIndex = wordIndex;
+						const currentWordIndex = wordIndex;
 
 						return (
 							<React.Fragment key={i}>
 								<Word
-									opacityAmount={opacityLevels[currentIndex]}
+									opacityAmount={
+										wordOpacityLevels[currentWordIndex]
+									}
 									onMouseEnter={() =>
-										handleWordHover(currentIndex)
+										handleWordHover(currentWordIndex)
 									}
 									onMouseLeave={() => {
-										setOpacityLevels(
+										setWordOpacityLevels(
 											Array(letterElements).fill(10)
 										);
 									}}
+									$height={height}
 								>
 									{word.split('').map((letter, j) => {
 										letterIndex++;
-										const currentIndex = letterIndex;
+										const currentLetterIndex = letterIndex;
 										return (
 											<Letter
 												key={j}
 												opacityAmount={
-													opacityLevels[currentIndex]
+													letterOpacityLevels[
+														currentLetterIndex
+													]
 												}
 												onMouseEnter={() =>
 													handleLetterHover(
-														currentIndex
+														currentLetterIndex
 													)
 												}
 											>

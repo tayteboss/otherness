@@ -33,10 +33,10 @@ const CursorRing = styled(motion.div)<StyledProps>`
 	flex-flow: row;
 	align-content: center;
 	justify-content: center;
-	top: ${(props) => (props.$largeOrb ? '-180px' : '-80px')};
-	left: ${(props) => (props.$largeOrb ? '-180px' : '-80px')};
-	height: ${(props) => (props.$largeOrb ? '360px' : '160px')};
-	width: ${(props) => (props.$largeOrb ? '360px' : '160px')};
+	top: ${(props) => (props.$largeOrb ? '-45px' : '-80px')};
+	left: ${(props) => (props.$largeOrb ? '-45px' : '-80px')};
+	height: ${(props) => (props.$largeOrb ? '90px' : '160px')};
+	width: ${(props) => (props.$largeOrb ? '90px' : '160px')};
 	background: #e7907f;
 	border-radius: 50%;
 	pointer-events: none;
