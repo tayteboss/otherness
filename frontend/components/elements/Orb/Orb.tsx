@@ -25,6 +25,10 @@ const OrbWrapper = styled.div<{ $isActive: boolean }>`
 	opacity: ${(props) => (props.$isActive ? 1 : 0)};
 
 	transition: all var(--transition-speed-slow) var(--transition-ease);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		opacity: 0;
+	}
 `;
 
 const CursorRing = styled(motion.div)<StyledProps>`
@@ -61,6 +65,10 @@ const TextWrapper = styled.div<{ $isActive: boolean }>`
 	opacity: ${(props) => (props.$isActive ? 0.75 : 0)};
 
 	transition: all var(--transition-speed-default) var(--transition-ease);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		opacity: 0;
+	}
 `;
 
 const TextInner = styled(motion.div)`
@@ -89,37 +97,6 @@ const Text = styled.p`
 
 	transition: all 1000ms var(--transition-ease);
 `;
-
-// const OrbInner = styled(motion.div)`
-// 	position: fixed;
-// 	display: flex;
-// 	flex-flow: row;
-// 	align-content: center;
-// 	justify-content: center;
-// 	left: -90vw;
-// 	top: -90vh;
-// 	width: 180vw;
-// 	height: 180vh;
-
-// 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-// 		width: 500vw;
-// 		height: 500vh;
-// 		left: -250vw;
-// 		top: -250vh;
-// 	}
-// `;
-
-// const Svg = styled.svg<StyledProps>`
-// 	position: absolute;
-// 	top: 50%;
-// 	left: 50%;
-// 	transform: translate(-50%, -50%);
-// 	z-index: 10;
-// 	width: ${(props) => (props.$largeOrb ? '250%' : '100%')};
-// 	height: ${(props) => (props.$largeOrb ? '250%' : '100%')};
-
-// 	transition: all 1000ms var(--transition-ease);
-// `;
 
 const Orb = ({ cursorRefresh }: Props) => {
 	const [isOnDevice, setIsOnDevice] = useState(false);

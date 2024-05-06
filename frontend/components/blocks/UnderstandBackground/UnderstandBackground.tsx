@@ -46,7 +46,7 @@ const UnderstandBackground = () => {
 					grain="off"
 					lightType="3d"
 					positionX={-1.1}
-					positionY={0}
+					positionY={0.9}
 					positionZ={0}
 					reflection={0}
 					rotationX={0}
@@ -61,6 +61,9 @@ const UnderstandBackground = () => {
 					uTime={0}
 					wireframe={false}
 					zoomOut={false}
+					rangeEnd={40}
+					rangeStart={0}
+					range="disabled"
 				/>
 			</ShaderGradientCanvas>
 		</UnderstandBackgroundWrapper>

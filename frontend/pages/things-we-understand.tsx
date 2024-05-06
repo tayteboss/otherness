@@ -10,14 +10,35 @@ import UnderstandStatements from '../components/blocks/UnderstandStatements';
 import { useState } from 'react';
 import Orb from '../components/elements/Orb';
 import UnderstandVideoBackground from '../components/blocks/UnderstandVideoBackground';
+import LogoIconSvg from '../components/svgs/LogoIconSvg';
 
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
-	padding: 120vh 0 50vh;
+	padding: 120vh 0 30vh;
 	background: #b0927a;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: 95vh 0 30vh;
+	}
 
 	.page-builder {
 		padding-bottom: ${pxToRem(60)};
+	}
+`;
+
+const LogoWrapper = styled.div`
+	position: absolute;
+	top: 25vh;
+	height: 50vh;
+	width: 100%;
+	z-index: 2;
+	pointer-events: none;
+	mix-blend-mode: overlay;
+	opacity: 0.5;
+
+	svg {
+		height: 100%;
+		width: 100%;
 	}
 `;
 
@@ -46,6 +67,9 @@ const Page = (props: Props) => {
 			<UnderstandBackground />
 			<UnderstandStatements data={data?.statementsAndAuthors} />
 			<Orb cursorRefresh={appCursorRefresh} />
+			<LogoWrapper>
+				<LogoIconSvg colour="white" />
+			</LogoWrapper>
 		</PageWrapper>
 	);
 };

@@ -151,6 +151,11 @@ const Letter = styled.span<StyledProps>`
 	opacity: ${(props) => props.opacityAmount};
 
 	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(40)};
+		line-height: 1;
+	}
 `;
 
 const Space = styled.span`
@@ -174,12 +179,32 @@ const Statement = (props: StatementProps) => {
 	const [wordOpacityLevels, setWordOpacityLevels] = useState<number[]>(
 		Array(wordElements).fill(10)
 	);
+	const [clickedWordIndex, setClickedWordIndex] = useState<number | null>(
+		null
+	);
 
 	const words = statement.split(' ');
 	let letterIndex = -1;
 	let wordIndex = -1;
 
 	const wrapperRef = useRef<HTMLDivElement>(null);
+
+	const handleWordClick = (clickIndex: number) => {
+		const opacityDecayFactor = 0.05; // Controls how quickly the opacity decays
+		const maxOpacity = 1; // Maximum opacity for the hovered letter
+		const minOpacity = 0; // Minimum opacity any letter can have
+
+		const newOpacityLevels = wordOpacityLevels.map((_, idx) => {
+			const distance = Math.abs(clickIndex - idx);
+			return (
+				minOpacity +
+				(maxOpacity - minOpacity) *
+					(1 - Math.exp(-distance * opacityDecayFactor))
+			);
+		});
+
+		setWordOpacityLevels(newOpacityLevels);
+	};
 
 	const handleWordHover = (hoveredIndex: number) => {
 		const opacityDecayFactor = 0.2; // Controls how quickly the opacity decays
@@ -280,6 +305,7 @@ const Statement = (props: StatementProps) => {
 											Array(letterElements).fill(10)
 										);
 									}}
+									onClick={() => handleWordClick(i)}
 									$height={height}
 								>
 									{word.split('').map((letter, j) => {
