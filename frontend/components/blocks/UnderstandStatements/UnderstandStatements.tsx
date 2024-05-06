@@ -6,6 +6,7 @@ import randomIntFromInterval from '../../../utils/randomIntFromInterval';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import LayoutGrid from '../../common/LayoutGrid';
 
 type StyledProps = {
 	opacityAmount?: number;
@@ -31,29 +32,83 @@ const UnderstandStatementsWrapper = styled.div`
 
 const StatementWrapper = styled(motion.div)`
 	cursor: default;
-	margin-left: auto;
-	margin-right: auto;
-`;
 
-const StatementInnerWrapper = styled.div`
-	filter: blur(3px);
+	&:nth-child(6n + 1) {
+		grid-column: 1 / -1;
 
-	transition: all var(--transition-speed-slow) var(--transition-ease);
-
-	&:hover {
-		filter: blur(0);
-
-		.author {
-			filter: blur(0);
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			grid-column: 1 / span 4;
 		}
 
-		.blob {
-			opacity: 0 !important;
+		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+			grid-column: 1 / -1;
+		}
+	}
+
+	&:nth-child(6n + 2) {
+		grid-column: 1 / 12;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			grid-column: 1 / span 4;
+		}
+
+		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+			grid-column: 1 / -1;
+		}
+	}
+
+	&:nth-child(6n + 3) {
+		grid-column: 4 / -5;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			grid-column: 1 / span 4;
+		}
+
+		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+			grid-column: 1 / -1;
+		}
+	}
+
+	&:nth-child(6n + 4) {
+		grid-column: 12 / -1;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			grid-column: 1 / span 4;
+		}
+
+		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+			grid-column: 1 / -1;
+		}
+	}
+
+	&:nth-child(6n + 5) {
+		grid-column: 1 / 10;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			grid-column: 1 / span 4;
+		}
+
+		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+			grid-column: 1 / -1;
+		}
+	}
+
+	&:nth-child(6n + 6) {
+		grid-column: 14 / -1;
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			grid-column: 1 / span 4;
+		}
+
+		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+			grid-column: 1 / -1;
 		}
 	}
 `;
 
-const Title = styled.p`
+const StatementInnerWrapper = styled.div``;
+
+const Title = styled.div`
 	color: #ff8f5e;
 	margin-bottom: ${pxToRem(32)};
 `;
@@ -76,11 +131,11 @@ const Word = styled.div<StyledProps>`
 		background: #ff8f5e;
 		border-radius: 33%;
 		filter: blur(10px);
-		mix-blend-mode: soft-light;
+		mix-blend-mode: color;
 		opacity: ${(props) => props.opacityAmount};
 		pointer-events: none;
 		height: ${(props) => props.$height};
-		width: 125%;
+		width: 115%;
 
 		transition: all var(--transition-speed-slow) var(--transition-ease);
 	}
@@ -88,14 +143,19 @@ const Word = styled.div<StyledProps>`
 
 const Letter = styled.span<StyledProps>`
 	display: inline-block;
-	/* opacity: ${(props) => props.opacityAmount}; */
 	font-size: ${pxToRem(60)};
-	line-height: ${pxToRem(80)};
+	line-height: 1.4;
 	letter-spacing: 0.1px;
 	font-weight: 200;
 	font-family: var(--font-baryton);
+	opacity: ${(props) => props.opacityAmount};
 
 	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+`;
+
+const Space = styled.span`
+	display: inline-block;
+	width: ${pxToRem(10)};
 `;
 
 const Statement = (props: StatementProps) => {
@@ -104,7 +164,6 @@ const Statement = (props: StatementProps) => {
 	const letterElements = statement.replace(/\s/g, '').length;
 	const wordElements = statement.split(' ').length;
 
-	const [fontSizeType, setFontSizeType] = useState('type-h2');
 	const [alignment, setAlignment] = useState('center');
 	const [marginBottom, setMarginBottom] = useState('60px');
 	const [width, setWidth] = useState('100%');
@@ -122,45 +181,8 @@ const Statement = (props: StatementProps) => {
 
 	const wrapperRef = useRef<HTMLDivElement>(null);
 
-	// const [windowHeight, setWindowHeight] = useState(0);
-	// const [distanceToTop, setDistanceToTop] = useState(0);
-
-	// const windowDimensions = useWindowDimensions();
-	// const isTabletMobile = windowDimensions.width < 768;
-
-	// const { scrollY } = useScroll();
-
-	// const transform = useTransform(
-	// 	scrollY,
-	// 	[distanceToTop - windowHeight, distanceToTop + windowHeight],
-	// 	[
-	// 		`translateY(0) translateX(${randomIntFromInterval(
-	// 			-50,
-	// 			50
-	// 		)}px) rotate(${randomIntFromInterval(-5, 5)}deg)`,
-	// 		`translateY(${randomIntFromInterval(
-	// 			-300,
-	// 			300
-	// 		)}px) translateX(${randomIntFromInterval(
-	// 			-50,
-	// 			50
-	// 		)}px) rotate(${randomIntFromInterval(-5, 5)}deg)`
-	// 	]
-	// );
-
-	// useEffect(() => {
-	// 	if (wrapperRef?.current) {
-	// 		setDistanceToTop(
-	// 			window.pageYOffset +
-	// 				wrapperRef.current.getBoundingClientRect().top
-	// 		);
-	// 	}
-
-	// 	setWindowHeight(window.innerHeight);
-	// }, [distanceToTop]);
-
 	const handleWordHover = (hoveredIndex: number) => {
-		const opacityDecayFactor = 0.3; // Controls how quickly the opacity decays
+		const opacityDecayFactor = 0.2; // Controls how quickly the opacity decays
 		const maxOpacity = 1; // Maximum opacity for the hovered letter
 		const minOpacity = 0; // Minimum opacity any letter can have
 
@@ -222,12 +244,6 @@ const Statement = (props: StatementProps) => {
 			setHeight('125%');
 		}
 
-		if (statement.length < 90) {
-			setFontSizeType('type-h2');
-		} else {
-			setFontSizeType('type-h3');
-		}
-
 		if (randomIndex === 0) {
 			setAlignment('left');
 		} else if (randomIndex === 1) {
@@ -239,13 +255,13 @@ const Statement = (props: StatementProps) => {
 
 	return (
 		<StatementWrapper
-			style={{ marginBottom, textAlign: alignment, width }}
-			className="performance cursor-link"
+			style={{ marginBottom, textAlign: alignment }}
+			className="performance cursor-link statement-wrapper"
 			ref={wrapperRef}
 			key={`${statement}-${index}`}
 		>
 			<StatementInnerWrapper>
-				<Title className={fontSizeType}>
+				<Title>
 					{words.map((word, i) => {
 						wordIndex++;
 						const currentWordIndex = wordIndex;
@@ -287,7 +303,8 @@ const Statement = (props: StatementProps) => {
 											</Letter>
 										);
 									})}
-								</Word>{' '}
+									<Space> </Space>
+								</Word>
 							</React.Fragment>
 						);
 					})}
@@ -308,15 +325,17 @@ const UnderstandStatements = (props: Props) => {
 	return (
 		<UnderstandStatementsWrapper>
 			<LayoutWrapper>
-				{hasData &&
-					data.map((item, i) => (
-						<Statement
-							statement={item?.statement}
-							author={item?.author}
-							key={i}
-							index={i}
-						/>
-					))}
+				<LayoutGrid>
+					{hasData &&
+						data.map((item, i) => (
+							<Statement
+								statement={item?.statement}
+								author={item?.author}
+								key={i}
+								index={i}
+							/>
+						))}
+				</LayoutGrid>
 			</LayoutWrapper>
 		</UnderstandStatementsWrapper>
 	);

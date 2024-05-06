@@ -34,7 +34,7 @@ const UnderstandBackground = () => {
 			>
 				<ShaderGradient
 					animate="on"
-					brightness={1}
+					brightness={0.9}
 					cAzimuthAngle={180}
 					cDistance={3.6}
 					cPolarAngle={90}

@@ -44,7 +44,7 @@ const Page = (props: Props) => {
 			/>
 			{/* <UnderstandVideoBackground data={data?.backgroundVideo} /> */}
 			<UnderstandBackground />
-			{/* <UnderstandStatements data={data?.statementsAndAuthors} /> */}
+			<UnderstandStatements data={data?.statementsAndAuthors} />
 			<Orb cursorRefresh={appCursorRefresh} />
 		</PageWrapper>
 	);
