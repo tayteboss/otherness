@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import randomIntFromInterval from '../../../utils/randomIntFromInterval';
 
 type Props = {
 	title: string;
@@ -256,7 +257,7 @@ const FilterTab = (props: Props) => {
 		<FilterTabWrapper
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
-			onClick={() => setIsHovered(!isHovered)}
+			onClick={() => setIsHovered(false)}
 			$isMoodFilter={isMoodFilter}
 		>
 			<Title className="type-h5">Type of {title}</Title>
@@ -276,19 +277,23 @@ const FilterTab = (props: Props) => {
 			</MediumWrapper>
 			<DesktopWrapper>
 				<AnimatePresence mode="wait">
-					{!isHovered ? (
+					{!isHovered && (
 						<ActiveFilter
 							variants={activeVariants}
 							initial="hidden"
 							animate="visible"
 							exit="hidden"
-							key={`${title}-active-filter`}
+							key={`${title}-active-filter-${randomIntFromInterval(
+								1,
+								100000
+							)}`}
 						>
 							{isMoodFilter
 								? formatFilter(activeMood)
 								: formatFilter(activeWork)}
 						</ActiveFilter>
-					) : (
+					)}
+					{isHovered && (
 						<FiltersList
 							variants={wrapperVariants}
 							initial="hidden"
