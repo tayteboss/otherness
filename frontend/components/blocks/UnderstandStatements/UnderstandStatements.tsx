@@ -134,7 +134,7 @@ const Word = styled.div<StyledProps>`
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background: #efeae3;
+		background: #eee3d5;
 		border-radius: 33%;
 		filter: blur(10px);
 		mix-blend-mode: color;
