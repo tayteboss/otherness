@@ -3,8 +3,9 @@ import { ShaderGradientCanvas, ShaderGradient } from 'shadergradient';
 import * as reactSpring from '@react-spring/three';
 import * as drei from '@react-three/drei';
 import * as fiber from '@react-three/fiber';
+import { useInView } from 'react-intersection-observer';
 
-const UnderstandBackgroundWrapper = styled.div`
+const UnderstandBackgroundWrapper = styled.div<{ $isActive: boolean }>`
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -14,6 +15,10 @@ const UnderstandBackgroundWrapper = styled.div`
 	pointer-events: none;
 	filter: blur(2px);
 	transform: scale(1.1);
+	opacity: ${(props) => (props.$isActive ? 1 : 0)};
+
+	transition: all var(--transition-speed-slow) var(--transition-ease);
+	transition-delay: 1000ms;
 
 	* {
 		pointer-events: none;
@@ -21,8 +26,14 @@ const UnderstandBackgroundWrapper = styled.div`
 `;
 
 const UnderstandBackground = () => {
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		threshold: 0.2,
+		rootMargin: '-50px'
+	});
+
 	return (
-		<UnderstandBackgroundWrapper>
+		<UnderstandBackgroundWrapper ref={ref} $isActive={inView}>
 			<ShaderGradientCanvas
 				importedfiber={{ ...fiber, ...reactSpring, ...drei }}
 				style={{
@@ -34,9 +45,6 @@ const UnderstandBackground = () => {
 			>
 				<ShaderGradient
 					animate="on"
-					axesHelper="off"
-					bgColor1="#000000"
-					bgColor2="#000000"
 					brightness={0.9}
 					cAzimuthAngle={180}
 					cDistance={3.6}
@@ -45,16 +53,10 @@ const UnderstandBackground = () => {
 					color1="#f4e7cf"
 					color2="#85b6c4"
 					color3="#4a6b2d"
-					destination="onCanvas"
-					embedMode="off"
 					envPreset="lobby"
-					format="gif"
-					fov={45}
 					frameRate={10}
-					gizmoHelper="hide"
 					grain="off"
 					lightType="3d"
-					pixelDensity={1.7}
 					positionX={-1.4}
 					positionY={0}
 					positionZ={0}

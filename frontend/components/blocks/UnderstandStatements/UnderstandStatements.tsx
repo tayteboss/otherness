@@ -6,6 +6,7 @@ import randomIntFromInterval from '../../../utils/randomIntFromInterval';
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import LayoutGrid from '../../common/LayoutGrid';
+import { useInView } from 'react-intersection-observer';
 
 type StyledProps = {
 	opacityAmount?: number;
@@ -23,10 +24,14 @@ type Props = {
 	data: StatementProps[];
 };
 
-const UnderstandStatementsWrapper = styled.div`
+const UnderstandStatementsWrapper = styled.div<{ $isActive: boolean }>`
 	position: relative;
 	z-index: 10;
 	mix-blend-mode: hard-light;
+	opacity: ${(props) => (props.$isActive ? 1 : 0)};
+
+	transition: all var(--transition-speed-slow) var(--transition-ease);
+	transition-delay: 1000ms;
 `;
 
 const StatementWrapper = styled(motion.div)`
@@ -333,8 +338,14 @@ const UnderstandStatements = (props: Props) => {
 
 	const hasData = data && data.length > 0;
 
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		threshold: 0.01,
+		rootMargin: '-50px'
+	});
+
 	return (
-		<UnderstandStatementsWrapper>
+		<UnderstandStatementsWrapper ref={ref} $isActive={inView}>
 			<LayoutWrapper>
 				<LayoutGrid>
 					{hasData &&

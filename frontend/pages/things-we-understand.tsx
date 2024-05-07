@@ -15,7 +15,7 @@ import LogoIconSvg from '../components/svgs/LogoIconSvg';
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
 	padding: 60vh 0 30vh;
-	background: #b0927a;
+	background: #f4e7cf;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: 95vh 0 30vh;
