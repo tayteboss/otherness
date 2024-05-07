@@ -21,7 +21,6 @@ const OrbWrapper = styled.div<{ $isActive: boolean }>`
 	height: 100vh;
 	z-index: 3;
 	pointer-events: none;
-	mix-blend-mode: lighten;
 	opacity: ${(props) => (props.$isActive ? 1 : 0)};
 
 	transition: all var(--transition-speed-slow) var(--transition-ease);
@@ -37,17 +36,15 @@ const CursorRing = styled(motion.div)<StyledProps>`
 	flex-flow: row;
 	align-content: center;
 	justify-content: center;
-	top: ${(props) => (props.$largeOrb ? '-45px' : '-80px')};
-	left: ${(props) => (props.$largeOrb ? '-45px' : '-80px')};
-	height: ${(props) => (props.$largeOrb ? '90px' : '160px')};
-	width: ${(props) => (props.$largeOrb ? '90px' : '160px')};
-	background: #e7907f;
+	top: ${(props) => (props.$largeOrb ? '-10px' : '-15px')};
+	left: ${(props) => (props.$largeOrb ? '-10px' : '-15px')};
+	height: ${(props) => (props.$largeOrb ? '20px' : '30px')};
+	width: ${(props) => (props.$largeOrb ? '20px' : '30px')};
+	background: var(--colour-black);
 	border-radius: 50%;
 	pointer-events: none;
 	text-align: center;
 	z-index: 2;
-	opacity: ${(props) => (props.$largeOrb ? 0.2 : 0.5)};
-	filter: ${(props) => props.$largeOrb && 'blur(5px)'};
 
 	transition: height 500ms ease, width 500ms ease, top 500ms ease,
 		left 500ms ease, filter 500ms ease;

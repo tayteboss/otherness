@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import randomIntFromInterval from '../../../utils/randomIntFromInterval';
-import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import LayoutGrid from '../../common/LayoutGrid';
 
 type StyledProps = {
@@ -34,7 +33,7 @@ const StatementWrapper = styled(motion.div)`
 	cursor: default;
 
 	&:nth-child(6n + 1) {
-		grid-column: 1 / -1;
+		grid-column: 2 / 17;
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			grid-column: 1 / span 4;
@@ -46,7 +45,7 @@ const StatementWrapper = styled(motion.div)`
 	}
 
 	&:nth-child(6n + 2) {
-		grid-column: 1 / 12;
+		grid-column: 13 / 23;
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			grid-column: 1 / span 4;
@@ -58,7 +57,7 @@ const StatementWrapper = styled(motion.div)`
 	}
 
 	&:nth-child(6n + 3) {
-		grid-column: 4 / -5;
+		grid-column: 3 / 12;
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			grid-column: 1 / span 4;
@@ -70,7 +69,7 @@ const StatementWrapper = styled(motion.div)`
 	}
 
 	&:nth-child(6n + 4) {
-		grid-column: 12 / -1;
+		grid-column: 11 / 22;
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			grid-column: 1 / span 4;
@@ -82,7 +81,7 @@ const StatementWrapper = styled(motion.div)`
 	}
 
 	&:nth-child(6n + 5) {
-		grid-column: 1 / 10;
+		grid-column: 1 / 12;
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			grid-column: 1 / span 4;
@@ -94,7 +93,7 @@ const StatementWrapper = styled(motion.div)`
 	}
 
 	&:nth-child(6n + 6) {
-		grid-column: 14 / -1;
+		grid-column: 13 / 22;
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			grid-column: 1 / span 4;
@@ -109,12 +108,19 @@ const StatementWrapper = styled(motion.div)`
 const StatementInnerWrapper = styled.div``;
 
 const Title = styled.div`
-	color: #ff8f5e;
+	color: var(--colour-white);
 	margin-bottom: ${pxToRem(32)};
+
+	.word {
+		&:first-child {
+			padding-left: ${pxToRem(50)};
+		}
+	}
 `;
 
-const Author = styled.p`
-	color: #ff8f5e;
+const Author = styled.span`
+	color: var(--colour-white);
+	padding-left: ${pxToRem(25)};
 `;
 
 const Word = styled.div<StyledProps>`
@@ -128,7 +134,7 @@ const Word = styled.div<StyledProps>`
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background: #ff8f5e;
+		background: #efeae3;
 		border-radius: 33%;
 		filter: blur(10px);
 		mix-blend-mode: color;
@@ -143,9 +149,10 @@ const Word = styled.div<StyledProps>`
 
 const Letter = styled.span<StyledProps>`
 	display: inline-block;
-	font-size: ${pxToRem(60)};
-	line-height: 1.4;
-	letter-spacing: 0.1px;
+	font-family: var(--font-baryton);
+	font-size: ${pxToRem(30)};
+	line-height: ${pxToRem(38)};
+	letter-spacing: -0.3px;
 	font-weight: 200;
 	font-family: var(--font-baryton);
 	opacity: ${(props) => props.opacityAmount};
@@ -153,8 +160,9 @@ const Letter = styled.span<StyledProps>`
 	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		font-size: ${pxToRem(40)};
-		line-height: 1;
+		font-size: ${pxToRem(24)};
+		line-height: ${pxToRem(31)};
+		letter-spacing: -0.24px;
 	}
 `;
 
@@ -169,15 +177,14 @@ const Statement = (props: StatementProps) => {
 	const letterElements = statement.replace(/\s/g, '').length;
 	const wordElements = statement.split(' ').length;
 
-	const [alignment, setAlignment] = useState('center');
 	const [marginBottom, setMarginBottom] = useState('60px');
-	const [width, setWidth] = useState('100%');
+	const [paddingTop, setPaddingTop] = useState('100px');
 	const [height, setHeight] = useState('100%');
 	const [letterOpacityLevels, setLetterOpacityLevels] = useState<number[]>(
-		Array(letterElements).fill(10)
+		Array(letterElements).fill(0.2)
 	);
 	const [wordOpacityLevels, setWordOpacityLevels] = useState<number[]>(
-		Array(wordElements).fill(10)
+		Array(wordElements).fill(1)
 	);
 	const [clickedWordIndex, setClickedWordIndex] = useState<number | null>(
 		null
@@ -243,23 +250,8 @@ const Statement = (props: StatementProps) => {
 	useEffect(() => {
 		const randomIndex = Math.floor(Math.random() * 3);
 
-		setMarginBottom(randomIntFromInterval(100, 300) + 'px');
-
-		if (randomIndex === 0) {
-			setAlignment('left');
-		} else if (randomIndex === 1) {
-			setAlignment('center');
-		} else {
-			setAlignment('right');
-		}
-
-		if (randomIndex === 0) {
-			setWidth('60%');
-		} else if (randomIndex === 1) {
-			setWidth('50%');
-		} else {
-			setWidth('70%');
-		}
+		setMarginBottom(randomIntFromInterval(50, 150) + 'px');
+		setPaddingTop(randomIntFromInterval(50, 300) + 'px');
 
 		if (randomIndex === 0) {
 			setHeight('100%');
@@ -268,25 +260,17 @@ const Statement = (props: StatementProps) => {
 		} else {
 			setHeight('125%');
 		}
-
-		if (randomIndex === 0) {
-			setAlignment('left');
-		} else if (randomIndex === 1) {
-			setAlignment('center');
-		} else {
-			setAlignment('right');
-		}
 	}, []);
 
 	return (
 		<StatementWrapper
-			style={{ marginBottom, textAlign: alignment }}
+			style={{ marginBottom, paddingTop }}
 			className="performance cursor-link statement-wrapper"
 			ref={wrapperRef}
 			key={`${statement}-${index}`}
 		>
 			<StatementInnerWrapper>
-				<Title>
+				<Title className="title">
 					{words.map((word, i) => {
 						wordIndex++;
 						const currentWordIndex = wordIndex;
@@ -307,6 +291,7 @@ const Statement = (props: StatementProps) => {
 									}}
 									onClick={() => handleWordClick(i)}
 									$height={height}
+									className="word"
 								>
 									{word.split('').map((letter, j) => {
 										letterIndex++;
@@ -334,10 +319,10 @@ const Statement = (props: StatementProps) => {
 							</React.Fragment>
 						);
 					})}
+					<Author className="type-secondary-heading-small author">
+						{author}
+					</Author>
 				</Title>
-				<Author className="type-secondary-heading-medium author">
-					{author}
-				</Author>
 			</StatementInnerWrapper>
 		</StatementWrapper>
 	);
