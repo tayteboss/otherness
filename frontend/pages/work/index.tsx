@@ -19,7 +19,6 @@ import FiltersBar from '../../components/blocks/FiltersBar';
 import ProjectsList from '../../components/blocks/ProjectsList';
 import LoadMore from '../../components/elements/LoadMore';
 import pxToRem from '../../utils/pxToRem';
-import { check } from 'prettier';
 
 const PageWrapper = styled(motion.div)`
 	padding-top: var(--header-h);

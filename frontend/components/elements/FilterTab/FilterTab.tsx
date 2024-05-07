@@ -254,8 +254,8 @@ const FilterTab = (props: Props) => {
 
 	return (
 		<FilterTabWrapper
-			onMouseOver={() => setIsHovered(true)}
-			onMouseOut={() => setIsHovered(false)}
+			onMouseEnter={() => setIsHovered(true)}
+			onMouseLeave={() => setIsHovered(false)}
 			onClick={() => setIsHovered(!isHovered)}
 			$isMoodFilter={isMoodFilter}
 		>
