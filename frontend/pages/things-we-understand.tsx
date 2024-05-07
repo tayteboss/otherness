@@ -14,7 +14,7 @@ import LogoIconSvg from '../components/svgs/LogoIconSvg';
 
 const PageWrapper = styled(motion.div)`
 	min-height: 100vh;
-	padding: 75vh 0 30vh;
+	padding: 60vh 0 30vh;
 	background: #b0927a;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
@@ -27,18 +27,15 @@ const PageWrapper = styled(motion.div)`
 `;
 
 const LogoWrapper = styled.div`
-	position: absolute;
-	top: 25vh;
-	height: 50vh;
-	width: 100%;
-	z-index: 2;
-	pointer-events: none;
-	mix-blend-mode: overlay;
-	opacity: 0.5;
+	position: relative;
+	z-index: 10;
+	display: flex;
+	justify-content: center;
+	padding-top: 40vh;
 
 	svg {
-		height: 100%;
-		width: 100%;
+		width: 15vw;
+		height: auto;
 	}
 `;
 
@@ -67,9 +64,9 @@ const Page = (props: Props) => {
 			<UnderstandBackground />
 			<UnderstandStatements data={data?.statementsAndAuthors} />
 			<Orb cursorRefresh={appCursorRefresh} />
-			{/* <LogoWrapper>
+			<LogoWrapper>
 				<LogoIconSvg colour="white" />
-			</LogoWrapper> */}
+			</LogoWrapper>
 		</PageWrapper>
 	);
 };

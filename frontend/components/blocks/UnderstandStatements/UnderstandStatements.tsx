@@ -214,7 +214,7 @@ const Statement = (props: StatementProps) => {
 	};
 
 	const handleWordHover = (hoveredIndex: number) => {
-		const opacityDecayFactor = 0.2; // Controls how quickly the opacity decays
+		const opacityDecayFactor = 0.1; // Controls how quickly the opacity decays
 		const maxOpacity = 1; // Maximum opacity for the hovered letter
 		const minOpacity = 0; // Minimum opacity any letter can have
 
