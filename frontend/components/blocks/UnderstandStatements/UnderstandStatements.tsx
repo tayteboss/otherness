@@ -225,11 +225,11 @@ const Statement = (props: StatementProps) => {
 
 		const newOpacityLevels = wordOpacityLevels.map((_, idx) => {
 			const distance = Math.abs(hoveredIndex - idx);
-			return (
+			const opacity =
 				minOpacity +
 				(maxOpacity - minOpacity) *
-					(1 - Math.exp(-distance * opacityDecayFactor))
-			);
+					(1 - Math.exp(-distance * opacityDecayFactor));
+			return Math.round(opacity * 10) / 10;
 		});
 
 		setWordOpacityLevels(newOpacityLevels);
