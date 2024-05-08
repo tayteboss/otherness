@@ -204,7 +204,11 @@ const Orb = ({ cursorRefresh }: Props) => {
 		} else {
 			html?.classList.remove('no-cursor');
 		}
-	}, [isActive]);
+
+		if (router.asPath !== '/things-we-understand') {
+			html?.classList.remove('no-cursor');
+		}
+	}, [isActive, router]);
 
 	return (
 		<>
