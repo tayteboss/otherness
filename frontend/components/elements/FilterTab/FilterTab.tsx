@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import randomIntFromInterval from '../../../utils/randomIntFromInterval';
 
@@ -12,6 +12,8 @@ type Props = {
 	activeWork?: string;
 	activeMood?: string;
 	initialActive?: boolean;
+	setIsHovered: (value: boolean) => void;
+	isHovered: boolean;
 };
 
 const FilterTabWrapper = styled.div<{ $isMoodFilter: boolean }>`
@@ -21,6 +23,7 @@ const FilterTabWrapper = styled.div<{ $isMoodFilter: boolean }>`
 	align-items: center;
 	gap: ${pxToRem(12)};
 	position: relative;
+	cursor: pointer;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		position: unset;
@@ -164,7 +167,7 @@ const activeVariants = {
 		opacity: 0,
 		x: -5,
 		transition: {
-			duration: 0.15,
+			duration: 0.25,
 			ease: 'easeInOut'
 		}
 	},
@@ -172,7 +175,7 @@ const activeVariants = {
 		opacity: 1,
 		x: 0,
 		transition: {
-			duration: 0.15,
+			duration: 0.25,
 			ease: 'easeInOut'
 		}
 	}
@@ -186,10 +189,10 @@ const FilterTab = (props: Props) => {
 		setActiveWork,
 		activeWork,
 		activeMood,
-		initialActive = false
+		initialActive = false,
+		setIsHovered,
+		isHovered
 	} = props;
-
-	const [isHovered, setIsHovered] = useState(initialActive);
 
 	const isMoodFilter = title === 'mood';
 
@@ -255,10 +258,12 @@ const FilterTab = (props: Props) => {
 
 	return (
 		<FilterTabWrapper
-			onMouseEnter={() => setIsHovered(true)}
-			onMouseLeave={() => setIsHovered(false)}
-			onClick={() => setIsHovered(false)}
+			// onMouseEnter={() => setIsHovered(true)}
+			// onMouseLeave={() => setIsHovered(false)}
+			// onMouseOut={() => setIsHovered(false)}
+			onClick={() => setIsHovered(!isHovered)}
 			$isMoodFilter={isMoodFilter}
+			key={title}
 		>
 			<Title className="type-h5">Type of {title}</Title>
 			<Divider />
@@ -299,6 +304,7 @@ const FilterTab = (props: Props) => {
 							initial="hidden"
 							animate="visible"
 							exit="hidden"
+							key="filter-list"
 						>
 							{filters.map((filter, i) => (
 								<MotionWrapper
@@ -338,6 +344,7 @@ const FilterTab = (props: Props) => {
 						animate="visible"
 						exit="hidden"
 						$isMoodFilter={isMoodFilter}
+						key="mobile-filter-list"
 					>
 						<MobileFiltersListInner $isMoodFilter={isMoodFilter}>
 							{filters.map((filter, i) => (

@@ -3,6 +3,7 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import FilterTab from '../../elements/FilterTab';
 import pxToRem from '../../../utils/pxToRem';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import { useEffect, useState } from 'react';
 
 type Props = {
 	setActiveMood: (value: string) => void;
@@ -42,6 +43,9 @@ const MobileDivider = styled.div`
 const FiltersBar = (props: Props) => {
 	const { setActiveMood, setActiveWork, activeWork, activeMood } = props;
 
+	const [moodIsHovered, setMoodIsHovered] = useState(true);
+	const [workIsHovered, setWorkIsHovered] = useState(false);
+
 	const window = useWindowDimensions();
 	const windowWidth = window.width;
 	const isTablet = windowWidth < 768;
@@ -70,6 +74,15 @@ const FiltersBar = (props: Props) => {
 		workFilters = workFilters.reverse();
 	}
 
+	useEffect(() => {
+		if (workIsHovered) {
+			setMoodIsHovered(false);
+		}
+		if (moodIsHovered) {
+			setWorkIsHovered(false);
+		}
+	}, [moodIsHovered, workIsHovered]);
+
 	return (
 		<FiltersBarWrapper>
 			<LayoutWrapper>
@@ -80,6 +93,8 @@ const FiltersBar = (props: Props) => {
 						setActiveMood={setActiveMood}
 						activeMood={activeMood}
 						initialActive
+						setIsHovered={setMoodIsHovered}
+						isHovered={moodIsHovered}
 					/>
 					<MobileDivider />
 					<FilterTab
@@ -87,6 +102,8 @@ const FiltersBar = (props: Props) => {
 						filters={workFilters}
 						setActiveWork={setActiveWork}
 						activeWork={activeWork}
+						setIsHovered={setWorkIsHovered}
+						isHovered={workIsHovered}
 					/>
 				</Inner>
 			</LayoutWrapper>
