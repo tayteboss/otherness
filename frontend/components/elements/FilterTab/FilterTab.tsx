@@ -49,9 +49,20 @@ const Divider = styled.div`
 	}
 `;
 
-const FiltersList = styled(motion.div)`
+const FiltersList = styled(motion.div)<{ $isLHS: boolean }>`
+	position: absolute;
+	left: ${(props) => (props.$isLHS ? 0 : 'unset')};
+	right: ${(props) => (!props.$isLHS ? 0 : 'unset')};
+	transform: translateY(-50%) !important;
 	display: flex;
 	gap: ${pxToRem(10)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		position: relative;
+		top: unset;
+		left: unset;
+		right: unset;
+	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		display: none;
@@ -76,12 +87,24 @@ const Filter = styled.button<{ $isActive: boolean }>`
 	}
 `;
 
-const ActiveFilter = styled(motion.span)`
+const ActiveFilter = styled(motion.span)<{ $isLHS: boolean }>`
+	position: absolute;
+	top: 50%;
+	left: ${(props) => (props.$isLHS ? 0 : 'unset')};
+	right: ${(props) => (!props.$isLHS ? 0 : 'unset')};
+	transform: translateY(-50%) !important;
 	font-size: ${pxToRem(14)};
 	line-height: ${pxToRem(17)};
 	letter-spacing: 1.12px;
 	text-transform: uppercase;
 	color: var(--colour-black);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		position: relative;
+		top: unset;
+		left: unset;
+		right: unset;
+	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		display: none;
@@ -89,6 +112,8 @@ const ActiveFilter = styled(motion.span)`
 `;
 
 const DesktopWrapper = styled.div`
+	position: relative;
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
 		display: none;
 	}
@@ -176,7 +201,8 @@ const activeVariants = {
 		x: 0,
 		transition: {
 			duration: 0.25,
-			ease: 'easeInOut'
+			ease: 'easeInOut',
+			delay: 0.2
 		}
 	}
 };
@@ -203,7 +229,7 @@ const FilterTab = (props: Props) => {
 				duration: 0,
 				ease: 'easeInOut',
 				when: 'afterChildren',
-				staggerChildren: 0.05,
+				staggerChildren: 0.01,
 				staggerDirection: isMoodFilter ? -1 : 1
 			}
 		},
@@ -213,8 +239,9 @@ const FilterTab = (props: Props) => {
 				duration: 0,
 				ease: 'easeInOut',
 				when: 'beforeChildren',
-				staggerChildren: 0.05,
-				staggerDirection: isMoodFilter ? 1 : -1
+				staggerChildren: 0.01,
+				staggerDirection: isMoodFilter ? 1 : -1,
+				delay: 0.2
 			}
 		}
 	};
@@ -222,7 +249,7 @@ const FilterTab = (props: Props) => {
 	const childVariants = {
 		hidden: {
 			opacity: 0,
-			x: -5,
+			x: -2,
 			transition: {
 				duration: 0.3,
 				ease: 'easeInOut'
@@ -246,6 +273,18 @@ const FilterTab = (props: Props) => {
 		);
 	};
 
+	const handleMouseEnter = useCallback(() => {
+		setTimeout(() => {
+			setIsHovered(true);
+		}, 100);
+	}, [setIsHovered]);
+
+	const handleMouseLeave = useCallback(() => {
+		setTimeout(() => {
+			setIsHovered(false);
+		}, 100);
+	}, [setIsHovered]);
+
 	useEffect(() => {
 		setIsHovered(false);
 	}, [activeWork, activeMood]);
@@ -258,9 +297,8 @@ const FilterTab = (props: Props) => {
 
 	return (
 		<FilterTabWrapper
-			// onMouseEnter={() => setIsHovered(true)}
-			// onMouseLeave={() => setIsHovered(false)}
-			// onMouseOut={() => setIsHovered(false)}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
 			onClick={() => setIsHovered(!isHovered)}
 			$isMoodFilter={isMoodFilter}
 			key={title}
@@ -281,60 +319,54 @@ const FilterTab = (props: Props) => {
 				</ActiveFilter>
 			</MediumWrapper>
 			<DesktopWrapper>
-				<AnimatePresence mode="wait">
-					{!isHovered && (
-						<ActiveFilter
-							variants={activeVariants}
-							initial="hidden"
-							animate="visible"
-							exit="hidden"
-							key={`${title}-active-filter-${randomIntFromInterval(
-								1,
-								100000
-							)}`}
+				<ActiveFilter
+					variants={activeVariants}
+					initial="hidden"
+					animate={!isHovered ? 'visible' : 'hidden'}
+					exit="hidden"
+					key={`${title}-active-filter-${randomIntFromInterval(
+						1,
+						100000
+					)}`}
+					$isLHS={title === 'mood'}
+				>
+					{isMoodFilter
+						? formatFilter(activeMood)
+						: formatFilter(activeWork)}
+				</ActiveFilter>
+				<FiltersList
+					variants={wrapperVariants}
+					initial="hidden"
+					animate={isHovered ? 'visible' : 'hidden'}
+					exit="hidden"
+					key="filter-list"
+					$isLHS={title === 'mood'}
+				>
+					{filters.map((filter, i) => (
+						<MotionWrapper
+							variants={childVariants}
+							key={`${title}-${i}-${filter}`}
 						>
-							{isMoodFilter
-								? formatFilter(activeMood)
-								: formatFilter(activeWork)}
-						</ActiveFilter>
-					)}
-					{isHovered && (
-						<FiltersList
-							variants={wrapperVariants}
-							initial="hidden"
-							animate="visible"
-							exit="hidden"
-							key="filter-list"
-						>
-							{filters.map((filter, i) => (
-								<MotionWrapper
-									variants={childVariants}
-									key={`${title}-${i}-${filter}`}
-								>
-									<Filter
-										key={filter}
-										onClick={() => {
-											if (isMoodFilter) {
-												setActiveMood &&
-													setActiveMood(filter);
-											} else {
-												setActiveWork &&
-													setActiveWork(filter);
-											}
-											setIsHovered(false);
-										}}
-										$isActive={
-											activeMood === filter ||
-											activeWork === filter
-										}
-									>
-										{filter}
-									</Filter>
-								</MotionWrapper>
-							))}
-						</FiltersList>
-					)}
-				</AnimatePresence>
+							<Filter
+								key={filter}
+								onClick={() => {
+									if (isMoodFilter) {
+										setActiveMood && setActiveMood(filter);
+									} else {
+										setActiveWork && setActiveWork(filter);
+									}
+									setIsHovered(false);
+								}}
+								$isActive={
+									activeMood === filter ||
+									activeWork === filter
+								}
+							>
+								{filter}
+							</Filter>
+						</MotionWrapper>
+					))}
+				</FiltersList>
 			</DesktopWrapper>
 			<AnimatePresence mode="wait">
 				{isHovered && (

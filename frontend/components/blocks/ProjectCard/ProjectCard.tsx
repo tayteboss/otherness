@@ -74,7 +74,7 @@ const childVariants = {
 };
 
 const ProjectCard = (props: ProjectCardType) => {
-	const { title, tagline, thumbnailMedia, slug, isLarge } = props;
+	const { title, tagline, thumbnailMedia, slug, isLarge, isPriority } = props;
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
@@ -94,10 +94,9 @@ const ProjectCard = (props: ProjectCardType) => {
 					inView ? 'view-element-fade-in--in-view' : ''
 				}`}
 				ref={ref}
-				variants={childVariants}
 			>
 				<MediaWrapper $isLarge={isLarge}>
-					<MediaStack data={thumbnailMedia} />
+					<MediaStack data={thumbnailMedia} isPriority={isPriority} />
 				</MediaWrapper>
 				<ContentWrapper>
 					<Title className="type-secondary-heading-small">

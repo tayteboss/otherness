@@ -3,7 +3,8 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import FilterTab from '../../elements/FilterTab';
 import pxToRem from '../../../utils/pxToRem';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useClickOutside } from '../../../hooks/useClickOutside';
 
 type Props = {
 	setActiveMood: (value: string) => void;
@@ -45,6 +46,7 @@ const FiltersBar = (props: Props) => {
 
 	const [moodIsHovered, setMoodIsHovered] = useState(true);
 	const [workIsHovered, setWorkIsHovered] = useState(false);
+	const [count, setCount] = useState(0);
 
 	const window = useWindowDimensions();
 	const windowWidth = window.width;
@@ -75,16 +77,24 @@ const FiltersBar = (props: Props) => {
 	}
 
 	useEffect(() => {
-		if (workIsHovered) {
-			setMoodIsHovered(false);
-		}
-		if (moodIsHovered) {
-			setWorkIsHovered(false);
+		setCount(count + 1);
+
+		if (count <= 1) {
+			if (workIsHovered) {
+				setMoodIsHovered(false);
+			}
 		}
 	}, [moodIsHovered, workIsHovered]);
 
+	const ref = useRef<HTMLDivElement>(null!);
+
+	useClickOutside(ref, () => {
+		setMoodIsHovered(false);
+		setWorkIsHovered(false);
+	});
+
 	return (
-		<FiltersBarWrapper>
+		<FiltersBarWrapper ref={ref}>
 			<LayoutWrapper>
 				<Inner>
 					<FilterTab
@@ -95,6 +105,7 @@ const FiltersBar = (props: Props) => {
 						initialActive
 						setIsHovered={setMoodIsHovered}
 						isHovered={moodIsHovered}
+						key="mood"
 					/>
 					<MobileDivider />
 					<FilterTab
@@ -104,6 +115,7 @@ const FiltersBar = (props: Props) => {
 						activeWork={activeWork}
 						setIsHovered={setWorkIsHovered}
 						isHovered={workIsHovered}
+						key="work"
 					/>
 				</Inner>
 			</LayoutWrapper>

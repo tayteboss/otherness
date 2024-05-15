@@ -14,7 +14,6 @@
     "@mux/mux-player-react": "^2.3.3",
     "@next/third-parties": "^14.2.1",
     "@portabletext/react": "^3.0.11",
-    "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.105.6",
     "@react-three/fiber": "^8.16.3",
     "@sanity/client": "^6.8.6",
