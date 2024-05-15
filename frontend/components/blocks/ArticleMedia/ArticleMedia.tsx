@@ -59,7 +59,7 @@ const ArticleMedia = (props: Props) => {
 							isImage ? imageAspectRatio : videoAspectRatio
 						}
 					>
-						<MediaStack data={thumbnailMedia} />
+						<MediaStack data={thumbnailMedia} noTransition />
 						{thumbnailMedia?.caption && (
 							<Caption className="type-p-small">
 								{thumbnailMedia.caption}

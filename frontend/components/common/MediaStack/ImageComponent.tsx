@@ -79,10 +79,11 @@ type Props = {
 	data: MediaType;
 	isPriority: boolean;
 	inView: boolean;
+	noTransition: boolean;
 };
 
 const ImageComponent = (props: Props) => {
-	const { data, isPriority, inView } = props;
+	const { data, isPriority, inView, noTransition } = props;
 
 	const viewport = useViewportWidth();
 	const isMobile = viewport === 'mobile';
@@ -101,7 +102,9 @@ const ImageComponent = (props: Props) => {
 			<Inner
 				variants={defaultVariants}
 				initial="hidden"
-				animate={inView ? 'visible' : 'hidden'}
+				animate={
+					noTransition ? 'visible' : inView ? 'visible' : 'hidden'
+				}
 			>
 				{imageUrl && (
 					<Image

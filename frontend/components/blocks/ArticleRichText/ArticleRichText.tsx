@@ -3,7 +3,6 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
 import { PortableText } from '@portabletext/react';
 import pxToRem from '../../../utils/pxToRem';
-import { useInView } from 'react-intersection-observer';
 
 type Props = {
 	content: [];
@@ -28,19 +27,8 @@ const ContentWrapper = styled.div`
 const ArticleRichText = (props: Props) => {
 	const { content } = props;
 
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-		threshold: 0.1,
-		rootMargin: '-50px'
-	});
-
 	return (
-		<ArticleRichTextWrapper
-			ref={ref}
-			className={`view-element-fade-in ${
-				inView ? 'view-element-fade-in--in-view' : ''
-			}`}
-		>
+		<ArticleRichTextWrapper>
 			<LayoutWrapper>
 				<LayoutGrid>
 					<ContentWrapper className="rich-text rich-text--large-p">

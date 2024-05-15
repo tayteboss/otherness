@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
 import pxToRem from '../../../utils/pxToRem';
-import { useInView } from 'react-intersection-observer';
 
 type Props = {
 	testimonial: string;
@@ -41,23 +40,12 @@ const Testimonial = styled.div`
 const ArticleTestimonial = (props: Props) => {
 	const { testimonial } = props;
 
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-		threshold: 0.2,
-		rootMargin: '-50px'
-	});
-
 	const formattedTestimonial: string = testimonial
 		? `<p>${testimonial.replace(/\n/g, '<br />')}</p>`
 		: '';
 
 	return (
-		<ArticleTestimonialWrapper
-			ref={ref}
-			className={`view-element-fade-in ${
-				inView ? 'view-element-fade-in--in-view' : ''
-			}`}
-		>
+		<ArticleTestimonialWrapper>
 			<LayoutWrapper>
 				<LayoutGrid>
 					<Testimonial

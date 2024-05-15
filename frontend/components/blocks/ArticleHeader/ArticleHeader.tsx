@@ -4,10 +4,7 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import LayoutGrid from '../../common/LayoutGrid';
 import MediaStack from '../../common/MediaStack';
 import pxToRem from '../../../utils/pxToRem';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
-import useWindowDimensions from '../../../hooks/useWindowDimensions';
-import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 
 type Props = {
 	media: MediaType;
@@ -117,68 +114,14 @@ const Author = styled.span`
 const ArticleHeader = (props: Props) => {
 	const { media, title, excerpt, tag, author, authorUrl } = props ?? {};
 
-	const [windowHeight, setWindowHeight] = useState(0);
-	const [distanceToTop, setDistanceToTop] = useState(0);
-
-	const windowDimensions = useWindowDimensions();
-	const isTabletMobile = windowDimensions.width < 768;
-
-	const wrapperRef = useRef<HTMLAnchorElement>(null);
-
-	const { scrollY } = useScroll();
-
-	const transform = useTransform(
-		scrollY,
-		[0, distanceToTop + windowHeight * 2],
-		[
-			'translateY(0)',
-			isTabletMobile ? 'translateY(0)' : 'translateY(150px)'
-		]
-	);
-
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-		threshold: 0.2,
-		rootMargin: '-50px'
-	});
-
-	useEffect(() => {
-		if (wrapperRef?.current) {
-			setDistanceToTop(
-				window.pageYOffset +
-					wrapperRef.current.getBoundingClientRect().top
-			);
-		}
-
-		setWindowHeight(window.innerHeight);
-
-		const timer = setTimeout(() => {
-			if (wrapperRef?.current) {
-				setDistanceToTop(
-					window.pageYOffset +
-						wrapperRef.current.getBoundingClientRect().top
-				);
-			}
-
-			setWindowHeight(window.innerHeight);
-		}, 1000);
-
-		return () => clearTimeout(timer);
-	}, [distanceToTop]);
-
 	return (
 		<ArticleHeaderWrapper>
 			<LayoutWrapper>
 				<LayoutGrid>
-					<MediaWrapper style={{ transform }}>
+					<MediaWrapper>
 						<MediaStack data={media} />
 					</MediaWrapper>
-					<ContentWrapper
-						ref={ref}
-						className={`view-element-fade-in ${
-							inView ? 'view-element-fade-in--in-view' : ''
-						}`}
-					>
+					<ContentWrapper>
 						{title && <Title className="type-h3">{title}</Title>}
 						{excerpt && (
 							<Excerpt className="type-secondary-heading-medium">
