@@ -156,13 +156,13 @@ const ProjectsList = (props: Props) => {
 						</LayoutGrid>
 					</LayoutWrapper>
 				</FirstListWrapper>
-				{!hasRestOfProjects && (
+				{/* {!hasRestOfProjects && (
 					<LoadMore
 						title="Load more projects"
 						handleLoadMore={handleNextProjects}
 						isActive={!cantLoadMore}
 					/>
-				)}
+				)} */}
 				<CtaBanner
 					title={ctaBannerTitle}
 					media={ctaBannerMedia}
@@ -185,13 +185,13 @@ const ProjectsList = (props: Props) => {
 						</LayoutGrid>
 					</LayoutWrapper>
 				</RestListWrapper>
-				{hasRestOfProjects && (
+				{/* {hasRestOfProjects && (
 					<LoadMore
 						title={isLoading ? 'Loading' : 'Load more projects'}
 						handleLoadMore={handleNextProjects}
 						isActive={!cantLoadMore}
 					/>
-				)}
+				)} */}
 			</ProjectsListWrapper>
 		</AnimatePresence>
 	);

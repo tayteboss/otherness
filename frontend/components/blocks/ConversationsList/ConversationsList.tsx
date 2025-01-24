@@ -56,11 +56,11 @@ const ConversationsList = (props: Props) => {
 								index={i}
 							/>
 						))}
-					<LoadMore
+					{/* <LoadMore
 						title={isLoading ? 'Loading' : 'Load more articles'}
 						handleLoadMore={handleNextArticles}
 						isActive={!cantLoadMore}
-					/>
+					/> */}
 				</LayoutGrid>
 			</LayoutWrapper>
 		</ConversationsListWrapper>
