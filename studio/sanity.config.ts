@@ -30,7 +30,7 @@ export default defineConfig({
               .icon(DocumentIcon)
               .child(S.editor().schemaType('homePage').documentId('homePage')),
             S.listItem()
-              .title('What to Expect Page')
+              .title('Working Together Page')
               .icon(DocumentIcon)
               .child(S.editor().schemaType('whatToExpectPage').documentId('whatToExpectPage')),
             S.listItem()

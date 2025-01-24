@@ -6,7 +6,6 @@ export const useClickOutside = (
 ) => {
 	useEffect(() => {
 		const listener = (event: MouseEvent | TouchEvent) => {
-			
 			if (!ref.current || ref.current.contains(event.target as Node)) {
 				return;
 			}
@@ -15,14 +14,12 @@ export const useClickOutside = (
 		};
 		document.addEventListener('mousedown', listener);
 		document.addEventListener('touchstart', listener);
-		
+
 		return () => {
 			document.removeEventListener('mousedown', listener);
 			document.removeEventListener('touchstart', listener);
-		}
-
+		};
 	}, [handler, ref]);
-
 };
 
 // HOW TO USE

@@ -133,7 +133,7 @@ const MobileMenu = (props: Props) => {
 								</LinkTag>
 							</Link>
 							<Link
-								href="/what-to-expect"
+								href="/working-together"
 								passHref
 								legacyBehavior
 								scroll={false}
@@ -141,7 +141,7 @@ const MobileMenu = (props: Props) => {
 								<LinkTag
 									onClick={() => setMobileMenuIsActive(false)}
 								>
-									What to expect
+									Working Togther
 								</LinkTag>
 							</Link>
 							<Link

@@ -14,7 +14,7 @@ const getPageReferenceHref = (
 	}
 
 	if (ref === 'whatToExpectPage') {
-		return '/what-to-expect';
+		return '/working-together';
 	} else if (ref === 'contactPage') {
 		return '/contact';
 	} else if (ref === 'conversationsPage') {

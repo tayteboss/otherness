@@ -83,12 +83,12 @@ const HeaderNavBar = () => {
 			<Inner>
 				<BackdropBar />
 				<Link
-					href="/what-to-expect"
+					href="/working-together"
 					passHref
 					legacyBehavior
 					scroll={false}
 				>
-					<LinkTag>What to expect</LinkTag>
+					<LinkTag>Working Together</LinkTag>
 				</Link>
 				<Link
 					href="/things-we-understand"

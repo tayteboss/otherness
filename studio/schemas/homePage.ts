@@ -88,12 +88,12 @@ export default {
       ],
     },
     {
-      title: 'What to Expect Title',
+      title: 'Working Together Title',
       name: 'whatToExpectTitle',
       type: 'string',
     },
     {
-      title: 'What to Expect Content',
+      title: 'Working Together Content',
       name: 'whatToExpectContent',
       type: 'array',
       of: [
@@ -116,7 +116,7 @@ export default {
       ],
     },
     {
-      title: 'What to Expect Button',
+      title: 'Working Together Button',
       name: 'whatToExpectButton',
       type: 'object',
       fields: linkObject,
