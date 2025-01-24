@@ -76,6 +76,8 @@ const Title = styled.h1`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		text-align: left;
 		margin: 0;
+		font-size: ${pxToRem(60)};
+		line-height: ${pxToRem(65)};
 	}
 `;
 
@@ -83,6 +85,11 @@ const Description = styled.h3`
 	max-width: ${pxToRem(946)};
 	margin: 0 auto;
 	color: var(--colour-white);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		font-size: ${pxToRem(20)} !important;
+		line-height: ${pxToRem(28)} !important;
+	}
 `;
 
 const ButtonWrapper = styled.div`
