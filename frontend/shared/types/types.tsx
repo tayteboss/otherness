@@ -249,6 +249,11 @@ export type SubProjectType = {
 };
 
 export type ProjectType = {
+	openGraphImage: {
+		asset: {
+			url: string;
+		};
+	};
 	relatedDesktopMedia: MediaType;
 	title: string;
 	tagline: string;
@@ -307,6 +312,11 @@ export type EditorialBlockType = {
 };
 
 export type ArticleType = {
+	openGraphImage: {
+		asset: {
+			url: string;
+		};
+	};
 	title: string;
 	author: string;
 	authorUrl?: string;

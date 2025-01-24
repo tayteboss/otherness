@@ -40,6 +40,12 @@ export default {
       validation: (Rule: any) => Rule.required(),
     },
     {
+      title: 'Open Graph Image',
+      name: 'openGraphImage',
+      type: 'image',
+      description: 'IMPORTANT: Ensure image is 1200x630px and jpg',
+    },
+    {
       title: 'Thumbnail Media',
       name: 'thumbnailMedia',
       type: 'object',

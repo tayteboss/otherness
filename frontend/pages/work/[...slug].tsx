@@ -67,8 +67,19 @@ const Page = (props: Props) => {
 			exit="hidden"
 		>
 			<NextSeo
-				title={`Otherness — ${data?.title}` || 'Otherness'}
-				description={data?.excerpt || ''}
+				title={`Otherness — ${data?.title ?? 'Otherness'}`}
+				description={data?.excerpt ?? ''}
+				openGraph={{
+					...(data?.openGraphImage?.asset?.url && {
+						images: [
+							{
+								url: data.openGraphImage.asset.url,
+								width: 1200,
+								height: 630
+							}
+						]
+					})
+				}}
 			/>
 			<WorkIntro excerpt={excerpt} tagline={tagline} types={type} />
 			<MobileSubProjectsNavigation subProjects={subProjects} />
@@ -146,6 +157,12 @@ export async function getStaticProps({ params }: any) {
 	const projectQuery = `
 		*[_type == 'project' && slug.current == "${params.slug[0]}"][0] {
 			...,
+			openGraphImage {
+				...,
+				asset-> {
+					url,
+				},
+			},
 			fullWidthHero {
 				${mediaTypeString}
 			},

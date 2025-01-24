@@ -43,6 +43,17 @@ const Page = (props: Props) => {
 			<NextSeo
 				title={`Otherness — ${data?.title}` || 'Otherness'}
 				description={data?.excerpt || ''}
+				openGraph={{
+					...(data?.openGraphImage?.image?.asset?.url && {
+						images: [
+							{
+								url: data.openGraphImage.image.asset.url,
+								width: 1200,
+								height: 630
+							}
+						]
+					})
+				}}
 			/>
 			<ArticleHeader
 				media={thumbnailMedia}
@@ -79,6 +90,12 @@ export async function getStaticProps({ params }: any) {
 	const articleQuery = `
 		*[_type == 'article' && slug.current == "${params.slug[0]}"][0] {
 			...,
+			openGraphImage {
+				...,
+				asset-> {
+					url,
+				},
+			},
 			thumbnailMedia {
 				mediaType,
 				image {
