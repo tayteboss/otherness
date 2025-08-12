@@ -15,6 +15,7 @@ import {
 } from '../../lib/sanityQueries';
 import PageHeader from '../../components/blocks/PageHeader';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import FiltersBar from '../../components/blocks/FiltersBar';
 import ProjectsList from '../../components/blocks/ProjectsList';
 import LoadMore from '../../components/elements/LoadMore';
@@ -39,12 +40,14 @@ const Page = (props: Props) => {
 
 	const projectSkip = 10;
 
+	const router = useRouter();
+
 	const [activeMood, setActiveMood] = useState('all');
 	const [activeWork, setActiveWork] = useState('all');
 	const [isLoading, setIsLoading] = useState(false);
 	const [fetchedProjects, setfetchedProjects] =
 		useState<ProjectType[]>(projects);
-	const [firstRenderCheck, setFirstRenderCheck] = useState(0);
+	const [hasReadInitialQuery, setHasReadInitialQuery] = useState(false);
 	const [projectCount, setProjectCount] = useState(projectSkip);
 	const [cantLoadMore, setCantLoadMore] = useState(!hasMoreProject);
 
@@ -135,14 +138,68 @@ const Page = (props: Props) => {
 		}
 	};
 
+	// Read query params on initial load and set filters accordingly
 	useEffect(() => {
-		if (firstRenderCheck < 1) {
-			setFirstRenderCheck(firstRenderCheck + 1);
+		if (!router.isReady) return;
+
+		const { mood, type } = router.query;
+		const moodParam = typeof mood === 'string' ? mood : undefined;
+		const typeParam = typeof type === 'string' ? type : undefined;
+
+		if (moodParam && moodParam !== activeMood) {
+			setActiveMood(moodParam);
+		}
+		if (typeParam && typeParam !== activeWork) {
+			setActiveWork(typeParam);
+		}
+
+		setHasReadInitialQuery(true);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [router.isReady]);
+
+	useEffect(() => {
+		if (!hasReadInitialQuery) return;
+
+		const currentMood =
+			typeof router.query.mood === 'string'
+				? router.query.mood
+				: undefined;
+		const currentType =
+			typeof router.query.type === 'string'
+				? router.query.type
+				: undefined;
+
+		const nextQuery: Record<string, string> = {};
+		if (activeMood !== 'all') nextQuery.mood = activeMood;
+		if (activeWork !== 'all') nextQuery.type = activeWork;
+
+		const currentQueryFiltered: Record<string, string> = {};
+		if (currentMood) currentQueryFiltered.mood = currentMood;
+		if (currentType) currentQueryFiltered.type = currentType;
+
+		const queriesDiffer =
+			JSON.stringify(currentQueryFiltered) !== JSON.stringify(nextQuery);
+
+		if (queriesDiffer) {
+			router.replace(
+				{ pathname: router.pathname, query: nextQuery },
+				undefined,
+				{ shallow: true }
+			);
+		}
+
+		const hasFilters = activeMood !== 'all' || activeWork !== 'all';
+		const hasQueryParams = Boolean(currentMood || currentType);
+
+		// Avoid redundant fetch on initial load when there are no filters
+		if (!hasFilters && !hasQueryParams) {
 			return;
 		}
+
 		setProjectCount(0);
 		handleFiltering(activeMood, activeWork);
-	}, [activeMood, activeWork]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [activeMood, activeWork, hasReadInitialQuery]);
 
 	return (
 		<PageWrapper

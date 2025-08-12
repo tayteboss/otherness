@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import randomIntFromInterval from '../../../utils/randomIntFromInterval';
 
 type Props = {
 	title: string;
@@ -312,6 +311,7 @@ const FilterTab = (props: Props) => {
 					animate="visible"
 					exit="hidden"
 					key={`${title}-active-filter`}
+					$isLHS={isMoodFilter}
 				>
 					{isMoodFilter
 						? formatFilter(activeMood)
@@ -324,10 +324,7 @@ const FilterTab = (props: Props) => {
 					initial="hidden"
 					animate={!isHovered ? 'visible' : 'hidden'}
 					exit="hidden"
-					key={`${title}-active-filter-${randomIntFromInterval(
-						1,
-						100000
-					)}`}
+					key={`${title}-active-filter-desktop`}
 					$isLHS={title === 'mood'}
 				>
 					{isMoodFilter

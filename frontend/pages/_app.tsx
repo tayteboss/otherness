@@ -70,7 +70,7 @@ const App = (props: Props) => {
 					>
 						<Component
 							{...pageProps}
-							key={router.asPath}
+							key={router.pathname}
 							pageTransitionVariants={pageTransitionVariants}
 						/>
 					</AnimatePresence>
