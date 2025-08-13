@@ -100,7 +100,7 @@ const VideoComponent = (props: Props) => {
 
 	return (
 		<VideoComponentWrapper className="video-component-wrapper">
-			<AnimatePresence initial={false}>
+			{/* <AnimatePresence initial={false}>
 				{playbackId && inView && (
 					<InnerBlur
 						variants={wrapperVariants}
@@ -117,7 +117,7 @@ const VideoComponent = (props: Props) => {
 						/>
 					</InnerBlur>
 				)}
-			</AnimatePresence>
+			</AnimatePresence> */}
 			{playbackId && (
 				<Inner>
 					<MuxPlayer
