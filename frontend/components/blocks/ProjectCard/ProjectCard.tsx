@@ -79,7 +79,11 @@ const ProjectCard = (props: ProjectCardType) => {
 				ref={ref}
 			>
 				<MediaWrapper $isLarge={isLarge}>
-					<MediaStack data={thumbnailMedia} isPriority={isPriority} />
+					<MediaStack
+						data={thumbnailMedia}
+						isPriority={isPriority}
+						sizes="(max-width: 768px) 100vw, 50vw"
+					/>
 				</MediaWrapper>
 				<ContentWrapper>
 					<Title className="type-secondary-heading-small">
