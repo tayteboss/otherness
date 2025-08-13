@@ -59,7 +59,12 @@ const ArticleMedia = (props: Props) => {
 							isImage ? imageAspectRatio : videoAspectRatio
 						}
 					>
-						<MediaStack data={thumbnailMedia} noTransition />
+						<MediaStack
+							data={thumbnailMedia}
+							noTransition
+							sizes="(max-width: 768px) 100vw, (max-width: 1124px) 83vw, 58vw"
+							lazyLoad={true}
+						/>
 						{thumbnailMedia?.caption && (
 							<Caption className="type-p-small">
 								{thumbnailMedia.caption}

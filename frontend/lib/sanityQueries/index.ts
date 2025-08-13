@@ -181,7 +181,7 @@ export const projectsQueryDefault = `
 `;
 
 export const basicProjectsQueryString = `
-	*[_type == 'project'] | order(orderRank) [0...10] ${basicProjectsQueryDefault}
+	*[_type == 'project'] | order(orderRank) [0...20] ${basicProjectsQueryDefault}
 `;
 
 export const overflowProjectsQueryString = `

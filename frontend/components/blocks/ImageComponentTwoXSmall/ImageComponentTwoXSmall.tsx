@@ -50,10 +50,18 @@ const ImageComponentTwoXSmall = (props: Props) => {
 			<LayoutWrapper useGalleryLayout>
 				<LayoutGrid useGalleryGrid>
 					<SmallOneWrapper $gridColumn={lhsGridColumn}>
-						<MediaStack data={lhs} />
+						<MediaStack
+							data={lhs}
+							sizes="(max-width: 768px) 50vw, 33vw"
+							lazyLoad={true}
+						/>
 					</SmallOneWrapper>
 					<SmallTwoWrapper $gridColumn={rhsGridColumn}>
-						<MediaStack data={rhs} />
+						<MediaStack
+							data={rhs}
+							sizes="(max-width: 768px) 50vw, 33vw"
+							lazyLoad={true}
+						/>
 					</SmallTwoWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

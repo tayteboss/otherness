@@ -47,7 +47,11 @@ const ImageComponentOneBig = (props: Props) => {
 			<LayoutWrapper useGalleryLayout>
 				<LayoutGrid useGalleryGrid>
 					<BigWrapper $gridColumn={gridColumn}>
-						<MediaStack data={mediaData} />
+						<MediaStack
+							data={mediaData}
+							sizes="(max-width: 768px) 100vw, 54vw"
+							lazyLoad={true}
+						/>
 					</BigWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

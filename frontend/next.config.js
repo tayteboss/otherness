@@ -1,32 +1,39 @@
+// Use require (CommonJS) to import the plugin
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true', // Only enable when ANALYZE env var is 'true'
+});
+
 const nextConfig = {
-	reactStrictMode: true,
-	eslint: {
-		// Warning: This allows production builds to successfully complete even if
-		// your project has ESLint errors.
-		ignoreDuringBuilds: true,
-	},
-	typescript: {
-		// Warning: This allows production builds to successfully complete even if
-		// your project has type errors.
-		ignoreBuildErrors: true,
-	},
-	env: {
-		SITE_URL: process.env.SITE_URL,
-	},
-	images: {
-		remotePatterns: [
-			{
-				protocol: 'https',
-				hostname: 'cdn.sanity.io',
-				pathname: '**',
-			},
-			{
-				protocol: 'https',
-				hostname: 'image.mux.com',
-				pathname: '**',
-			},
-		],
-	},
+  reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '/images/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'image.mux.com',
+        pathname: '/**',
+      },
+    ],
+    loader: 'custom',
+    loaderFile: './lib/sanityImageLoader.ts',
+  },
+  compiler: {
+    styledComponents: {
+      ssr: true,
+      displayName: true,
+    },
+  },
 };
 
-module.exports = nextConfig;
+// Use module.exports (CommonJS) to export the wrapped config
+module.exports = withBundleAnalyzer(nextConfig);

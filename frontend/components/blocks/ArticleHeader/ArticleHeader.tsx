@@ -119,7 +119,11 @@ const ArticleHeader = (props: Props) => {
 			<LayoutWrapper>
 				<LayoutGrid>
 					<MediaWrapper>
-						<MediaStack data={media} />
+						<MediaStack
+							data={media}
+							sizes="(max-width: 768px) 100vw, 50vw"
+							lazyLoad={true}
+						/>
 					</MediaWrapper>
 					<ContentWrapper>
 						{title && <Title className="type-h3">{title}</Title>}

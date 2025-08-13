@@ -39,7 +39,11 @@ const ImageComponentOneHalf = (props: Props) => {
 			<LayoutWrapper useGalleryLayout>
 				<LayoutGrid useGalleryGrid>
 					<HalfWrapper $gridColumn={gridColumn}>
-						<MediaStack data={mediaData} />
+						<MediaStack
+							data={mediaData}
+							sizes="(max-width: 768px) 100vw, 50vw"
+							lazyLoad={true}
+						/>
 					</HalfWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

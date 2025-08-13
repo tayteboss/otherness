@@ -73,13 +73,21 @@ const ImageComponentOneBigOneXSmall = (props: Props) => {
 						$gridColumn={bigGridColumn}
 						$isLHS={selectPosition === 'left'}
 					>
-						<MediaStack data={big} />
+						<MediaStack
+							data={big}
+							sizes="(max-width: 768px) 100vw, 50vw"
+							lazyLoad={true}
+						/>
 					</BigWrapper>
 					<XSmallWrapper
 						$gridColumn={smallGridColumn}
 						$isLHS={selectPosition === 'right'}
 					>
-						<MediaStack data={small} />
+						<MediaStack
+							data={small}
+							sizes="(max-width: 768px) 50vw, 25vw"
+							lazyLoad={true}
+						/>
 					</XSmallWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

@@ -66,13 +66,21 @@ const ImageComponentOneSmallOneBigLandscape = (props: Props) => {
 						$isLHS={selectPosition === 'left'}
 						$gridColumn={smallGridColumn}
 					>
-						<MediaStack data={small} />
+						<MediaStack
+							data={small}
+							sizes="(max-width: 768px) 50vw, 25vw"
+							lazyLoad={true}
+						/>
 					</SmallWrapper>
 					<LandscapeWrapper
 						$isLHS={selectPosition === 'right'}
 						$gridColumn={landscapeGridColumn}
 					>
-						<MediaStack data={landscape} />
+						<MediaStack
+							data={landscape}
+							sizes="(max-width: 768px) 100vw, 75vw"
+							lazyLoad={true}
+						/>
 					</LandscapeWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

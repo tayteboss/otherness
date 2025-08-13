@@ -18,10 +18,10 @@ type Props = {
 };
 
 const CtaBannerWrapper = styled.section`
-	padding: ${pxToRem(32)} 0;
+	padding: ${pxToRem(64)} 0;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding: ${pxToRem(28)} 0;
+		padding: ${pxToRem(32)} 0;
 	}
 `;
 
@@ -112,7 +112,11 @@ const CtaBanner = (props: Props) => {
 			<Inner>
 				<LayoutGrid>
 					<MediaWrapper>
-						<MediaStack data={media} />
+						<MediaStack
+							data={media}
+							sizes="(max-width: 768px) 100vw, 58vw"
+							lazyLoad={true}
+						/>
 					</MediaWrapper>
 					<ContentWrapper
 						className={`view-element-fade-in ${

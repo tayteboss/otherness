@@ -219,7 +219,11 @@ const ExpectMultiColumnContent = (props: Props) => {
 						</TopColumnTwoLayout>
 					)}
 					<MediaWrapper style={{ transform }}>
-						<MediaStack data={media} />
+						<MediaStack
+							data={media}
+							sizes="(max-width: 768px) 100vw, 50vw"
+							lazyLoad={true}
+						/>
 					</MediaWrapper>
 					<ColumnsWrapper>
 						{columns.slice(2).map((column, i) => (

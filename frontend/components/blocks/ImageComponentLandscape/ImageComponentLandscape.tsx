@@ -45,7 +45,11 @@ const ImageComponentLandscape = (props: Props) => {
 			<LayoutWrapper useGalleryLayout>
 				<LayoutGrid useGalleryGrid>
 					<LandscapeWrapper $gridColumn={gridColumn}>
-						<MediaStack data={mediaData} />
+						<MediaStack
+							data={mediaData}
+							sizes="(max-width: 768px) 100vw, 70vw"
+							lazyLoad={true}
+						/>
 					</LandscapeWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

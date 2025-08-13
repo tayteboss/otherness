@@ -31,10 +31,18 @@ const ImageComponentTwoHalf = (props: Props) => {
 			<LayoutWrapper useGalleryLayout>
 				<LayoutGrid useGalleryGrid>
 					<HalfWrapper>
-						<MediaStack data={lhs} />
+						<MediaStack
+							data={lhs}
+							sizes="(max-width: 768px) 100vw, 50vw"
+							lazyLoad={true}
+						/>
 					</HalfWrapper>
 					<HalfWrapper>
-						<MediaStack data={rhs} />
+						<MediaStack
+							data={rhs}
+							sizes="(max-width: 768px) 100vw, 50vw"
+							lazyLoad={true}
+						/>
 					</HalfWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

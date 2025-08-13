@@ -113,6 +113,7 @@ const VideoComponent = (props: Props) => {
 							alt={''}
 							fill
 							priority={isPriority}
+							sizes="25vw"
 						/>
 					</InnerBlur>
 				)}
@@ -130,7 +131,6 @@ const VideoComponent = (props: Props) => {
 						muted
 						playsInline={true}
 						poster={`${posterUrl}`}
-						minResolution="1080p"
 					/>
 				</Inner>
 			)}
