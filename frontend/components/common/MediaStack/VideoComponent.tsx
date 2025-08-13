@@ -126,11 +126,12 @@ const VideoComponent = (props: Props) => {
 						autoPlay="muted"
 						loop={true}
 						thumbnailTime={1}
-						loading="page"
+						loading="viewport"
 						preload="auto"
 						muted
 						playsInline={true}
 						poster={`${posterUrl}`}
+						style={{ aspectRatio: 16 / 9 }}
 					/>
 				</Inner>
 			)}
