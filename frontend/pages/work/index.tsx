@@ -38,7 +38,7 @@ type Props = {
 const Page = (props: Props) => {
 	const { data, projects, pageTransitionVariants, hasMoreProject } = props;
 
-	const projectSkip = 10;
+	const projectSkip = 20;
 
 	const router = useRouter();
 
