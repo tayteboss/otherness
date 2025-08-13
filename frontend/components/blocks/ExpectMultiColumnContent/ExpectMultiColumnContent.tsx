@@ -222,6 +222,7 @@ const ExpectMultiColumnContent = (props: Props) => {
 						<MediaStack
 							data={media}
 							sizes="(max-width: 768px) 100vw, 50vw"
+							lazyLoad={true}
 						/>
 					</MediaWrapper>
 					<ColumnsWrapper>

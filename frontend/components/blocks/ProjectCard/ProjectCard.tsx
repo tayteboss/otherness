@@ -83,6 +83,7 @@ const ProjectCard = (props: ProjectCardType) => {
 						data={thumbnailMedia}
 						isPriority={isPriority}
 						sizes="(max-width: 768px) 100vw, 50vw"
+						lazyLoad={true}
 					/>
 				</MediaWrapper>
 				<ContentWrapper>

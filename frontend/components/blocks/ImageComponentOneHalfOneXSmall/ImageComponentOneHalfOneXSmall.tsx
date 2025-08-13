@@ -52,12 +52,14 @@ const ImageComponentOneHalfOneXSmall = (props: Props) => {
 						<MediaStack
 							data={halfMediaData}
 							sizes="(max-width: 768px) 100vw, 50vw"
+							lazyLoad={true}
 						/>
 					</HalfWrapper>
 					<XSmallWrapper>
 						<MediaStack
 							data={xSmallMediaData}
 							sizes="(max-width: 768px) 50vw, 25vw"
+							lazyLoad={true}
 						/>
 					</XSmallWrapper>
 				</LayoutGrid>

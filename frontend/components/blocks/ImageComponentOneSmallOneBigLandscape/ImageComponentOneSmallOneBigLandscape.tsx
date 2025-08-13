@@ -69,6 +69,7 @@ const ImageComponentOneSmallOneBigLandscape = (props: Props) => {
 						<MediaStack
 							data={small}
 							sizes="(max-width: 768px) 50vw, 25vw"
+							lazyLoad={true}
 						/>
 					</SmallWrapper>
 					<LandscapeWrapper
@@ -78,6 +79,7 @@ const ImageComponentOneSmallOneBigLandscape = (props: Props) => {
 						<MediaStack
 							data={landscape}
 							sizes="(max-width: 768px) 100vw, 75vw"
+							lazyLoad={true}
 						/>
 					</LandscapeWrapper>
 				</LayoutGrid>

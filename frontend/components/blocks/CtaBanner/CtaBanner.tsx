@@ -115,6 +115,7 @@ const CtaBanner = (props: Props) => {
 						<MediaStack
 							data={media}
 							sizes="(max-width: 768px) 100vw, 58vw"
+							lazyLoad={true}
 						/>
 					</MediaWrapper>
 					<ContentWrapper

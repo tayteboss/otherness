@@ -42,6 +42,7 @@ const ImageComponentOneHalf = (props: Props) => {
 						<MediaStack
 							data={mediaData}
 							sizes="(max-width: 768px) 100vw, 50vw"
+							lazyLoad={true}
 						/>
 					</HalfWrapper>
 				</LayoutGrid>

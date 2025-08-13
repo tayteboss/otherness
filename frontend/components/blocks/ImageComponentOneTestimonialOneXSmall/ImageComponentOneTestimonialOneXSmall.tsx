@@ -75,6 +75,7 @@ const ImageComponentOneTestimonialOneXSmall = (props: Props) => {
 						<MediaStack
 							data={xSmall}
 							sizes="(max-width: 768px) 100vw, 25vw"
+							lazyLoad={true}
 						/>
 					</SmallWrapper>
 				</LayoutGrid>

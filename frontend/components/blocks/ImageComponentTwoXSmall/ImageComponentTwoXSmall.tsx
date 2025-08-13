@@ -53,12 +53,14 @@ const ImageComponentTwoXSmall = (props: Props) => {
 						<MediaStack
 							data={lhs}
 							sizes="(max-width: 768px) 50vw, 33vw"
+							lazyLoad={true}
 						/>
 					</SmallOneWrapper>
 					<SmallTwoWrapper $gridColumn={rhsGridColumn}>
 						<MediaStack
 							data={rhs}
 							sizes="(max-width: 768px) 50vw, 33vw"
+							lazyLoad={true}
 						/>
 					</SmallTwoWrapper>
 				</LayoutGrid>

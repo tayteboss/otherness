@@ -48,6 +48,7 @@ const ImageComponentLandscape = (props: Props) => {
 						<MediaStack
 							data={mediaData}
 							sizes="(max-width: 768px) 100vw, 70vw"
+							lazyLoad={true}
 						/>
 					</LandscapeWrapper>
 				</LayoutGrid>

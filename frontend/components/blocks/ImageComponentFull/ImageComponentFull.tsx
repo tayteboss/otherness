@@ -36,7 +36,11 @@ const ImageComponentFull = (props: Props) => {
 			<LayoutWrapper useGalleryLayout>
 				<LayoutGrid useGalleryGrid>
 					<FullWrapper>
-						<MediaStack data={mediaData} sizes="100vw" />
+						<MediaStack
+							data={mediaData}
+							sizes="100vw"
+							lazyLoad={true}
+						/>
 					</FullWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

@@ -70,6 +70,7 @@ const ImageComponentOnePortraitOneMedium = (props: Props) => {
 						<MediaStack
 							data={portrait}
 							sizes="(max-width: 768px) 38vw, 33vw"
+							lazyLoad={true}
 						/>
 					</PortraitWrapper>
 					<MediumWrapper
@@ -79,6 +80,7 @@ const ImageComponentOnePortraitOneMedium = (props: Props) => {
 						<MediaStack
 							data={medium}
 							sizes="(max-width: 768px) 62vw, 42vw"
+							lazyLoad={true}
 						/>
 					</MediumWrapper>
 				</LayoutGrid>

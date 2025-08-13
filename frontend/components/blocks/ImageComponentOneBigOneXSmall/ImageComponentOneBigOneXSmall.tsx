@@ -76,6 +76,7 @@ const ImageComponentOneBigOneXSmall = (props: Props) => {
 						<MediaStack
 							data={big}
 							sizes="(max-width: 768px) 100vw, 50vw"
+							lazyLoad={true}
 						/>
 					</BigWrapper>
 					<XSmallWrapper
@@ -85,6 +86,7 @@ const ImageComponentOneBigOneXSmall = (props: Props) => {
 						<MediaStack
 							data={small}
 							sizes="(max-width: 768px) 50vw, 25vw"
+							lazyLoad={true}
 						/>
 					</XSmallWrapper>
 				</LayoutGrid>
