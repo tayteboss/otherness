@@ -103,7 +103,11 @@ const WorkHero = (props: Props) => {
 					{useFullWidth && (
 						<FullWidthWrapper>
 							<MotionWrapper style={{ transform }}>
-								<MediaStack data={fullWidthHero} isPriority />
+								<MediaStack
+									data={fullWidthHero}
+									isPriority
+									sizes="100vw"
+								/>
 							</MotionWrapper>
 						</FullWidthWrapper>
 					)}
@@ -113,12 +117,14 @@ const WorkHero = (props: Props) => {
 								<MediaStack
 									data={twoColumnHero?.leftBlock}
 									isPriority
+									sizes="(max-width: 768px) 100vw, 50vw"
 								/>
 							</TwoColWrapper>
 							<TwoColWrapper>
 								<MediaStack
 									data={twoColumnHero?.rightBlock}
 									isPriority
+									sizes="(max-width: 768px) 100vw, 50vw"
 								/>
 							</TwoColWrapper>
 						</>
