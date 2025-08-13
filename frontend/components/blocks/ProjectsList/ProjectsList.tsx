@@ -10,6 +10,7 @@ import ProjectCard from '../ProjectCard';
 import { AnimatePresence, motion } from 'framer-motion';
 import CtaBanner from '../CtaBanner';
 import LoadMore from '../../elements/LoadMore';
+import pxToRem from '../../../utils/pxToRem';
 
 type Props = {
 	data: ProjectType[];
@@ -23,6 +24,14 @@ type Props = {
 
 const ProjectsListWrapper = styled(motion.section)`
 	min-height: 100vh;
+
+	.layout-grid {
+		grid-row-gap: ${pxToRem(64)};
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			grid-row-gap: ${pxToRem(32)};
+		}
+	}
 `;
 
 const Title = styled.h3`
@@ -31,29 +40,7 @@ const Title = styled.h3`
 
 const FirstListWrapper = styled.div`
 	.project-card {
-		&:nth-child(6n + 1) {
-			grid-column: 1 / 13;
-		}
-
-		&:nth-child(6n + 2) {
-			grid-column: 13 / -1;
-		}
-
-		&:nth-child(6n + 3) {
-			grid-column: 13 / -1;
-		}
-
-		&:nth-child(6n + 4) {
-			grid-column: 1 / 13;
-		}
-
-		&:nth-child(6n + 5) {
-			grid-column: 1 / 17;
-		}
-
-		&:nth-child(6n + 6) {
-			grid-column: 15 / -1;
-		}
+		grid-column: span 12;
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			grid-column: 1 / -1 !important;
@@ -63,29 +50,7 @@ const FirstListWrapper = styled.div`
 
 const RestListWrapper = styled.div`
 	.project-card {
-		&:nth-child(6n + 1) {
-			grid-column: 15 / -1;
-		}
-
-		&:nth-child(6n + 2) {
-			grid-column: 1 / 13;
-		}
-
-		&:nth-child(6n + 3) {
-			grid-column: 13 / -1;
-		}
-
-		&:nth-child(6n + 4) {
-			grid-column: 13 / -1;
-		}
-
-		&:nth-child(6n + 5) {
-			grid-column: 1 / 13;
-		}
-
-		&:nth-child(6n + 6) {
-			grid-column: 1 / 17;
-		}
+		grid-column: span 12;
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			grid-column: 1 / -1 !important;
@@ -122,9 +87,9 @@ const ProjectsList = (props: Props) => {
 		handleNextProjects
 	} = props ?? {};
 
-	const first5Projects = data.slice(0, 5);
-	const restOfProjects = data.slice(5);
-	const hasFirst5Projects = first5Projects.length > 0;
+	const first6Projects = data.slice(0, 6);
+	const restOfProjects = data.slice(6);
+	const hasFirst6Projects = first6Projects.length > 0;
 	const hasRestOfProjects = restOfProjects.length > 0;
 
 	return (
@@ -137,12 +102,12 @@ const ProjectsList = (props: Props) => {
 			>
 				<FirstListWrapper>
 					<LayoutWrapper useGalleryLayout>
-						{!hasFirst5Projects && (
+						{!hasFirst6Projects && (
 							<Title>No projects found...</Title>
 						)}
 						<LayoutGrid useGalleryGrid>
-							{hasFirst5Projects &&
-								first5Projects.map((item, i) => (
+							{hasFirst6Projects &&
+								first6Projects.map((item, i) => (
 									<ProjectCard
 										key={i}
 										title={item?.title}

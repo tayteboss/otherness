@@ -15,13 +15,13 @@ const ProjectCardWrapper = styled.a`
 	}
 `;
 
-const MediaWrapper = styled.div<{ $isLarge: boolean }>`
+const MediaWrapper = styled.div<{ $isLarge?: boolean }>`
 	.video-component-wrapper,
 	.image-component-wrapper {
-		padding-top: ${(props) => (props.$isLarge ? '71%' : '87%')};
+		padding-top: 71%;
 
 		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
-			padding-top: ${(props) => (props.$isLarge ? '142%' : '125%')};
+			padding-top: 125%;
 		}
 	}
 `;
@@ -55,23 +55,6 @@ const Tagline = styled.h5`
 		width: 100%;
 	}
 `;
-
-const childVariants = {
-	hidden: {
-		opacity: 0,
-		transition: {
-			duration: 0.3,
-			ease: 'easeInOut'
-		}
-	},
-	visible: {
-		opacity: 1,
-		transition: {
-			duration: 0.3,
-			ease: 'easeInOut'
-		}
-	}
-};
 
 const ProjectCard = (props: ProjectCardType) => {
 	const { title, tagline, thumbnailMedia, slug, isLarge, isPriority } = props;
