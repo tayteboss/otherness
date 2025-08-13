@@ -174,7 +174,11 @@ const ConversationCard = (props: ConversationsType & { index: number }) => {
 				</FooterWrapper>
 				<MediaCursorLayout isActive={isHovered} isOdd={index % 2 === 1}>
 					<MediaWrapper>
-						<MediaStack data={thumbnailMedia} />
+						<MediaStack
+							data={thumbnailMedia}
+							lazyLoad={true}
+							sizes="20vw"
+						/>
 					</MediaWrapper>
 				</MediaCursorLayout>
 			</ConversationCardWrapper>

@@ -194,6 +194,8 @@ const NoticedCard = (props: NoticedType) => {
 								src={thumbnailImage}
 								alt="Noticed thumbnail"
 								fill
+								sizes="20vw"
+								loading="lazy"
 							/>
 						</ImageInner>
 					</ImageWrapper>

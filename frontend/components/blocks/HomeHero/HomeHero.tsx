@@ -109,7 +109,7 @@ const HomeHero = (props: Props) => {
 	return (
 		<HomeHeroWrapper>
 			<MediaWrapper>
-				<MediaStack data={media} isPriority />
+				<MediaStack data={media} isPriority sizes="100vw" />
 			</MediaWrapper>
 			<ContentWrapper>
 				<TitleWrapper>
