@@ -70,7 +70,10 @@ const ImageComponentEditorialBig = (props: Props) => {
 						$gridColumn={mediaGridColumn}
 						$editorialIsLHS={selectPosition === 'left'}
 					>
-						<MediaStack data={media} />
+						<MediaStack
+							data={media}
+							sizes="(max-width: 768px) 100vw, 50vw"
+						/>
 					</HalfWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

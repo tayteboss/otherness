@@ -49,10 +49,16 @@ const ImageComponentOneHalfOneXSmall = (props: Props) => {
 			<LayoutWrapper useGalleryLayout>
 				<LayoutGrid useGalleryGrid>
 					<HalfWrapper>
-						<MediaStack data={halfMediaData} />
+						<MediaStack
+							data={halfMediaData}
+							sizes="(max-width: 768px) 100vw, 50vw"
+						/>
 					</HalfWrapper>
 					<XSmallWrapper>
-						<MediaStack data={xSmallMediaData} />
+						<MediaStack
+							data={xSmallMediaData}
+							sizes="(max-width: 768px) 50vw, 25vw"
+						/>
 					</XSmallWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

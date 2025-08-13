@@ -72,7 +72,10 @@ const ImageComponentOneTestimonialOneXSmall = (props: Props) => {
 						$isLHS={selectPosition === 'right'}
 						$gridColumn={smallGridColumn}
 					>
-						<MediaStack data={xSmall} />
+						<MediaStack
+							data={xSmall}
+							sizes="(max-width: 768px) 100vw, 25vw"
+						/>
 					</SmallWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

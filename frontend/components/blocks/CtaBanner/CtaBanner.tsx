@@ -112,7 +112,10 @@ const CtaBanner = (props: Props) => {
 			<Inner>
 				<LayoutGrid>
 					<MediaWrapper>
-						<MediaStack data={media} />
+						<MediaStack
+							data={media}
+							sizes="(max-width: 768px) 100vw, 58vw"
+						/>
 					</MediaWrapper>
 					<ContentWrapper
 						className={`view-element-fade-in ${

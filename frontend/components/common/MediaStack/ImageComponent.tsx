@@ -80,10 +80,16 @@ type Props = {
 	isPriority: boolean;
 	inView: boolean;
 	noTransition: boolean;
+	sizes: string | undefined;
+	alt?: string;
+	lazyLoad?: boolean;
 };
 
 const ImageComponent = (props: Props) => {
-	const { data, isPriority, inView, noTransition } = props;
+	const { data, isPriority, inView, noTransition, sizes, alt, lazyLoad } =
+		props;
+
+	// sizes="(max-width: 768px) 38vw, (max-width: 1024px) 20vw, 15vw"
 
 	const viewport = useViewportWidth();
 	const isMobile = viewport === 'mobile';
@@ -96,6 +102,12 @@ const ImageComponent = (props: Props) => {
 		isMobile && data?.mobileImage?.asset?.metadata?.lqip
 			? data.mobileImage.asset.metadata.lqip
 			: data?.image?.asset?.metadata?.lqip;
+
+	const loadingStrategy = isPriority
+		? 'eager'
+		: lazyLoad === false
+		? 'eager'
+		: 'lazy';
 
 	return (
 		<ImageComponentWrapper className="image-component-wrapper">
@@ -113,6 +125,8 @@ const ImageComponent = (props: Props) => {
 						fill
 						priority={isPriority}
 						blurDataURL={blurDataURL}
+						sizes={sizes}
+						loading={loadingStrategy}
 					/>
 				)}
 			</Inner>

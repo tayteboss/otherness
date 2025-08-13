@@ -50,7 +50,10 @@ const ImageComponentOneXSmall = (props: Props) => {
 						$gridColumn={gridColumn}
 						$mobileGridColumn={mobileGridColumn}
 					>
-						<MediaStack data={mediaData} />
+						<MediaStack
+							data={mediaData}
+							sizes="(max-width: 768px) 62vw, 33vw"
+						/>
 					</XSmallWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

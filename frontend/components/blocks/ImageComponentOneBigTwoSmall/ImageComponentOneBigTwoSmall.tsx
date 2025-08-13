@@ -51,13 +51,22 @@ const ImageComponentOneBigTwoSmall = (props: Props) => {
 			<LayoutWrapper useGalleryLayout>
 				<LayoutGrid useGalleryGrid>
 					<BigWrapper>
-						<MediaStack data={big} />
+						<MediaStack
+							data={big}
+							sizes="(max-width: 768px) 100vw, 50vw"
+						/>
 					</BigWrapper>
 					<SmallOneWrapper>
-						<MediaStack data={small1} />
+						<MediaStack
+							data={small1}
+							sizes="(max-width: 768px) 50vw, 25vw"
+						/>
 					</SmallOneWrapper>
 					<SmallTwoWrapper>
-						<MediaStack data={small2} />
+						<MediaStack
+							data={small2}
+							sizes="(max-width: 768px) 50vw, 25vw"
+						/>
 					</SmallTwoWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>

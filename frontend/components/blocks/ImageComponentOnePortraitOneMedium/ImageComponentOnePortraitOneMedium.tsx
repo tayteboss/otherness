@@ -67,13 +67,19 @@ const ImageComponentOnePortraitOneMedium = (props: Props) => {
 						$gridColumn={portraitGridColumn}
 						$isLHS={selectPosition === 'left'}
 					>
-						<MediaStack data={portrait} />
+						<MediaStack
+							data={portrait}
+							sizes="(max-width: 768px) 38vw, 33vw"
+						/>
 					</PortraitWrapper>
 					<MediumWrapper
 						$gridColumn={mediumGridColumn}
 						$isLHS={selectPosition === 'right'}
 					>
-						<MediaStack data={medium} />
+						<MediaStack
+							data={medium}
+							sizes="(max-width: 768px) 62vw, 42vw"
+						/>
 					</MediumWrapper>
 				</LayoutGrid>
 			</LayoutWrapper>
