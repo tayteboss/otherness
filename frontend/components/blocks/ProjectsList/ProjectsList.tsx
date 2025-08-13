@@ -145,6 +145,7 @@ const ProjectsList = (props: Props) => {
 										thumbnailMedia={item?.thumbnailMedia}
 										slug={item?.slug}
 										isLarge={i % 6 === 5}
+										isPriority={false}
 									/>
 								))}
 						</LayoutGrid>
