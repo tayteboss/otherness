@@ -24,6 +24,11 @@ export default {
   fields: [
     orderRankField({type: 'project'}),
     {
+      title: 'Archive Project',
+      name: 'archiveProject',
+      type: 'boolean',
+    },
+    {
       title: 'Client',
       name: 'title',
       type: 'string',

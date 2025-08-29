@@ -73,6 +73,12 @@ const Title = styled.h1`
 	margin: 0 auto;
 	color: var(--colour-white);
 
+	@media ${(props) => props.theme.mediaBreakpoints.tabletLandscape} {
+		font-size: ${pxToRem(100)};
+		line-height: ${pxToRem(105)};
+		letter-spacing: -1px;
+	}
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		text-align: left;
 		margin: 0;
@@ -85,6 +91,7 @@ const Description = styled.h3`
 	max-width: ${pxToRem(946)};
 	margin: 0 auto;
 	color: var(--colour-white);
+	text-align: center;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		font-size: ${pxToRem(20)} !important;

@@ -152,7 +152,7 @@ export type HomePageType = {
 	mobileHeroTitle: string;
 	heroMedia: MediaType;
 	heroTitle: string;
-	homeBlocks: PageBuilderType[];
+	homeBlocks: HomeBlocksType[];
 	noticedList: NoticedType[];
 	seoDescription: string;
 	seoTitle: string;
@@ -249,6 +249,7 @@ export type SubProjectType = {
 };
 
 export type ProjectType = {
+	archiveProject?: boolean;
 	openGraphImage: {
 		asset: {
 			url: string;
@@ -344,4 +345,5 @@ export type ProjectCardType = {
 	slug: SlugType;
 	isLarge?: boolean;
 	isPriority?: boolean;
+	archiveProject?: boolean;
 };

@@ -92,33 +92,6 @@ export const workPageQueryString = `
 	}
 `;
 
-export const basicProjectsQueryDefault = `
-	{
-		mood,
-		type,
-		title,
-		tagline,
-		slug,
-		thumbnailMedia {
-			mediaType,
-			image {
-				asset-> {
-					url,
-					metadata {
-						lqip
-					}
-				},
-				alt
-			},
-			video {
-				asset-> {
-					playbackId,
-				},
-			}
-		}
-	}
-`;
-
 export const projectsQueryDefault = `
 {
 	...,
@@ -180,12 +153,42 @@ export const projectsQueryDefault = `
 }
 `;
 
+export const basicProjectsQueryDefault = `
+	archiveProject,
+	mood,
+	type,
+	title,
+	tagline,
+	slug,
+	thumbnailMedia {
+		mediaType,
+		image {
+			asset-> {
+				url,
+				metadata {
+					lqip
+				}
+			},
+			alt
+		},
+		video {
+			asset-> {
+				playbackId,
+			},
+		}
+	}
+`;
+
 export const basicProjectsQueryString = `
-	*[_type == 'project'] | order(orderRank) [0...20] ${basicProjectsQueryDefault}
+	*[_type == "project" && archiveProject != true] | order(orderRank) [0...20] {
+		${basicProjectsQueryDefault}
+	}
 `;
 
 export const overflowProjectsQueryString = `
-	*[_type == 'project'] | order(orderRank) [10...100] ${basicProjectsQueryDefault}
+	*[_type == "project" && archiveProject != true] | order(orderRank) [10...100] {
+		${basicProjectsQueryDefault}
+	}
 `;
 
 export const projectsQueryString = `
