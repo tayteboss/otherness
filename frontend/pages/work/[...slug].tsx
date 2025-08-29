@@ -37,6 +37,12 @@ const PageWrapper = styled(motion.div)`
 	}
 `;
 
+const ArchiveBlank = styled.div`
+	height: 100vh;
+	width: 100%;
+	background: var(--colour-white);
+`;
+
 const Page = (props: Props) => {
 	const { data, pageTransitionVariants } = props;
 
@@ -52,8 +58,30 @@ const Page = (props: Props) => {
 		tagline,
 		title,
 		twoColumnHero,
-		type
+		type,
+		archiveProject = false
 	} = data ?? {};
+
+	useEffect(() => {
+		if (archiveProject) {
+			// Redirect client-side (users)
+			window.location.href = '/work';
+		}
+	}, [archiveProject]);
+
+	if (archiveProject) {
+		// Still render SEO + fallback content for crawlers
+		return (
+			<>
+				<NextSeo
+					title={`Otherness — ${data?.title ?? 'Archived Project'}`}
+					description={data?.excerpt ?? ''}
+					noindex={false} // <-- still indexable if you want
+				/>
+				<ArchiveBlank />
+			</>
+		);
+	}
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -157,6 +185,7 @@ export async function getStaticProps({ params }: any) {
 	const projectQuery = `
 		*[_type == 'project' && slug.current == "${params.slug[0]}"][0] {
 			...,
+			archiveProject,
 			openGraphImage {
 				...,
 				asset-> {
