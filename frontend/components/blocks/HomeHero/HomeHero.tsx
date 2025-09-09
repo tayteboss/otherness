@@ -94,6 +94,7 @@ const Description = styled.h3`
 	text-align: center;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		text-align: left;
 		font-size: ${pxToRem(20)} !important;
 		line-height: ${pxToRem(28)} !important;
 	}

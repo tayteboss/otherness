@@ -60,18 +60,24 @@ const Page = (props: Props) => {
 			activeWork === 'all' ? '' : ` && "${activeWork}" in type[]`;
 
 		const query = `
-			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [0...${projectSkip}] ${basicProjectsQueryDefault}
+			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [0...${projectSkip}] {
+				${basicProjectsQueryDefault}
+			}
 		`;
 
 		const moreProjectsQuery = `
 			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${projectSkip}...${
 			projectSkip + 1
-		}] ${basicProjectsQueryDefault}
+		}] {
+				${basicProjectsQueryDefault}
+			}
 		`;
 
 		try {
 			const data = await client.fetch(query);
 			const moreData = await client.fetch(moreProjectsQuery);
+
+			console.log('data', data);
 
 			setfetchedProjects(data);
 			setProjectCount(projectCount + projectSkip);
@@ -105,12 +111,16 @@ const Page = (props: Props) => {
 		const query = `
 			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${projectCount}...${
 			projectCount + projectSkip
-		}] ${basicProjectsQueryDefault}
+		}] {
+				${basicProjectsQueryDefault}
+			}
 		`;
 		const moreProjectsQuery = `
 			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${
 			projectCount + projectSkip
-		}...${projectCount + projectSkip + 1}] ${basicProjectsQueryDefault}
+		}...${projectCount + projectSkip + 1}] {
+				${basicProjectsQueryDefault}
+			}
 		`;
 
 		try {
