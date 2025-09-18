@@ -37,9 +37,9 @@ const FullWidthWrapper = styled.div`
 		}
 	}
 
-	mux-player {
+	/* mux-player {
 		--controls: block !important;
-	}
+	} */
 `;
 
 const MotionWrapper = styled(motion.div)``;
