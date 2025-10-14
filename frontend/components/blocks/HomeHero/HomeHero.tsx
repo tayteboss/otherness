@@ -130,7 +130,9 @@ const HomeHero = (props: Props) => {
 				</TitleWrapper>
 				{link && (
 					<ButtonWrapper>
-						<PrimaryButton data={link}>{link.title}</PrimaryButton>
+						<PrimaryButton data={link} useOutBound>
+							{link.title}
+						</PrimaryButton>
 					</ButtonWrapper>
 				)}
 			</ContentWrapper>

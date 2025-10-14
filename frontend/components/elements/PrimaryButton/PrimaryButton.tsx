@@ -17,6 +17,7 @@ type Props = {
 	data?: ButtonType;
 	url?: string;
 	isBlack?: boolean;
+	useOutBound?: boolean;
 };
 
 const LinkTag = styled.a`
@@ -99,32 +100,53 @@ const arrowVariants = {
 };
 
 const PrimaryButton = (props: Props) => {
-	const { children, data, url, isBlack = false } = props;
+	const { children, data, url, isBlack = false, useOutBound = false } = props;
 
 	const [isHovered, setIsHovered] = useState(false);
 
 	let href = '';
 	let target = '_self';
 
+	// Helper function to ensure external URLs have proper protocol
+	const ensureProtocol = (url: string) => {
+		if (
+			url.startsWith('http://') ||
+			url.startsWith('https://') ||
+			url.startsWith('mailto:')
+		) {
+			return url;
+		}
+		// If it looks like an external domain (contains a dot but doesn't start with /)
+		if (url.includes('.') && !url.startsWith('/')) {
+			return `https://${url}`;
+		}
+		return url;
+	};
+
 	if (data?.pageReference) {
 		href = getPageReferenceHref(data?.pageReference?._ref);
 	}
 	// Check if it's an email by testing for standard email format
-	if (
+	if (useOutBound) {
+		const rawUrl = data?.url || url || '/';
+		href = ensureProtocol(rawUrl);
+		target = '_blank';
+	} else if (
 		data?.url &&
 		/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(data?.url)
 	) {
 		href = `mailto:${data?.url}`;
 		target = '_blank';
 	} else if (data?.url) {
-		href = data?.url;
+		href = ensureProtocol(data?.url);
 		target = '_blank';
 	} else if (url) {
-		href = url;
+		href = ensureProtocol(url);
 		target = '_blank';
 	} else {
 		href = '/';
 	}
+	console.log('href', href);
 
 	return (
 		<>
