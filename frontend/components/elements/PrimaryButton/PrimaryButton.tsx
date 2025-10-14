@@ -109,7 +109,11 @@ const PrimaryButton = (props: Props) => {
 	if (data?.pageReference) {
 		href = getPageReferenceHref(data?.pageReference?._ref);
 	}
-	if (data?.url.includes('@')) {
+	// Check if it's an email by testing for standard email format
+	if (
+		data?.url &&
+		/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(data?.url)
+	) {
 		href = `mailto:${data?.url}`;
 		target = '_blank';
 	} else if (data?.url) {
