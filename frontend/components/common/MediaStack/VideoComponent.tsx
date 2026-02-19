@@ -132,6 +132,7 @@ const VideoComponent = (props: Props) => {
 						playsInline={true}
 						poster={`${posterUrl}`}
 						style={{ aspectRatio: 16 / 9 }}
+						minResolution="1080p"
 					/>
 				</Inner>
 			)}

@@ -181,6 +181,7 @@ const OneVideo = (props: Props) => {
 									muted={false}
 									showControls={true} // Add this line to force show controls
 									accentColor="#67605A"
+									minResolution="1080p"
 								/>
 							</DesktopInner>
 						)}
