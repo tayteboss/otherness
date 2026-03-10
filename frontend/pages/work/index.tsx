@@ -60,13 +60,13 @@ const Page = (props: Props) => {
 			activeWork === 'all' ? '' : ` && "${activeWork}" in type[]`;
 
 		const query = `
-			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [0...${projectSkip}] {
+			*[_type == 'project' && archiveProject != true${moodQuery}${workQuery}] | order(orderRank) [0...${projectSkip}] {
 				${basicProjectsQueryDefault}
 			}
 		`;
 
 		const moreProjectsQuery = `
-			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${projectSkip}...${
+			*[_type == 'project' && archiveProject != true${moodQuery}${workQuery}] | order(orderRank) [${projectSkip}...${
 			projectSkip + 1
 		}] {
 				${basicProjectsQueryDefault}
@@ -109,14 +109,14 @@ const Page = (props: Props) => {
 			activeWork === 'all' ? '' : ` && "${activeWork}" in type[]`;
 
 		const query = `
-			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${projectCount}...${
+			*[_type == 'project' && archiveProject != true${moodQuery}${workQuery}] | order(orderRank) [${projectCount}...${
 			projectCount + projectSkip
 		}] {
 				${basicProjectsQueryDefault}
 			}
 		`;
 		const moreProjectsQuery = `
-			*[_type == 'project'${moodQuery}${workQuery}] | order(orderRank) [${
+			*[_type == 'project' && archiveProject != true${moodQuery}${workQuery}] | order(orderRank) [${
 			projectCount + projectSkip
 		}...${projectCount + projectSkip + 1}] {
 				${basicProjectsQueryDefault}
