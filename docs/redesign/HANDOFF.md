@@ -81,6 +81,10 @@ Responsive checks passed at 375/402/768/1024/1512/1920. Menu keyboard/focus/scro
 
 Approved new copy, trademark, principles, recognition, clean artwork and Contact designs remain pending. Neue Montreal core web weights are ready. Seeded service selections still need review.
 
+## Phase 4 preview
+
+Final application commit `9a5d4ef` is deployed READY as `dpl_7t8MJmVxcFmNPPDCn5HE2z92FakM` at the stable preview. Hosted in-app checks verify the four sections, accordion/Noticed behavior, preview-origin OG metadata and final thumbnail clearance. HTTP 200/noindex confirmed. Staging and public production retain their original deployment IDs. Follow-up documentation/capture changes contain no application changes.
+
 ## Phase 4 implementation notes
 
 - `frontend/components/redesign/HomeSections.tsx` and its scoped styles render introduction, services/project tracks, results tabs and Noticed. Homepage loads `homePageV2` through `getRedesignData()` and retains `getRedesignShellProps()` for chrome.

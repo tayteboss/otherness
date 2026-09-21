@@ -1,0 +1,20 @@
+{
+  "homeDocument": "homePageV2",
+  "serviceOrder": [
+    "Branding",
+    "Strategy",
+    "Art direction",
+    "Packaging",
+    "Digital"
+  ],
+  "results": 1,
+  "noticed": 10,
+  "sections": {
+    "introduction": true,
+    "services": true,
+    "results": true,
+    "noticed": true
+  },
+  "noindex": true,
+  "temporaryFixturePresent": false
+}

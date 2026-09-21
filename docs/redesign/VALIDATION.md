@@ -152,3 +152,11 @@ Only the Codex in-app browser was used; desktop panel hidden for captures. Local
 ## Boundaries and dependencies
 
 The loader/session handling, replacement landing, header scroll choreography and `/our-way` remain phases 5/6. Introduction statement, service descriptions and curation/captions, new artwork, client logos and Noticed thumbnails are still pending. No supplied screenshot became production artwork. No animation, autoplay or reduced-motion-dependent behavior was added to phase 4 sections.
+
+## Hosted phase 4 result
+
+PASS: final application commit `9a5d4ef8d7eaa74be30a1eaf349b26cb00c3c702` is READY as `dpl_7t8MJmVxcFmNPPDCn5HE2z92FakM`. Stable preview homepage returns HTTP 200 with `X-Robots-Tag: noindex, nofollow, noarchive`. In-app browser confirms five services, one published result and ten Noticed rows; Strategy opens while Branding closes; Flydog expansion remains separate from its real destination. Final deployed expanded-row minimum height is 184px at 402px, with 17px clearance below the thumbnail and document width 402px. The OG image remains one absolute preview-origin URL.
+
+Vercel API confirms staging still resolves to `dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N` and public www to `dpl_2hW8KVM2WdqKzcff48GcNwxsi41B`. No aliases/hooks were changed. `phase4-hosting.json` records final identities; `phase4-hosted-http.json` records Home New payload/section/noindex checks (initial phase 4 deployment; final spacing fix confirmed separately in the hosted browser).
+
+Browser viewport override was reset and the stable preview left open at the introduction. Local preview processes were stopped. Untracked supplied font originals remain untouched. Commits used a command-scoped signing override, preserving persistent Git signing settings.
