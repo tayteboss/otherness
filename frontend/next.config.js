@@ -2,8 +2,14 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true', // Only enable when ANALYZE env var is 'true'
 });
+const isPreview = require('./config/isPreview');
 
 const nextConfig = {
+	async headers() {
+		return isPreview()
+			? [{ source: '/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }] }]
+			: [];
+	},
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,

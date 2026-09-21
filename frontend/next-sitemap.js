@@ -1,8 +1,6 @@
+const isPreview = require('./config/isPreview');
 let robotsPolicy = [{ userAgent: '*', allow: '/' }];
-if (
-	process.env.NEXT_PUBLIC_ENVIRONMENT === 'staging' ||
-	process.env.NEXT_PUBLIC_ENVIRONMENT === 'development'
-) {
+if (isPreview()) {
 	robotsPolicy = [{ userAgent: '*', disallow: '/' }];
 }
 

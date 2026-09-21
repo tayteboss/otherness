@@ -1,0 +1,19 @@
+
+Oops! Something went wrong! :(
+
+ESLint: 8.56.0
+
+Error: .eslintrc:
+	Configuration for rule "arrow-body-style" is invalid:
+	Severity should be one of the following: 0 = off, 1 = warn, 2 = error (you passed '"always"').
+
+    at ConfigValidator.validateRuleOptions (/Users/tayte/Documents/development/otherness/frontend/node_modules/@eslint/eslintrc/dist/eslintrc.cjs:2048:23)
+    at /Users/tayte/Documents/development/otherness/frontend/node_modules/@eslint/eslintrc/dist/eslintrc.cjs:2103:18
+    at Array.forEach (<anonymous>)
+    at ConfigValidator.validateRules (/Users/tayte/Documents/development/otherness/frontend/node_modules/@eslint/eslintrc/dist/eslintrc.cjs:2100:34)
+    at ConfigValidator.validateConfigArray (/Users/tayte/Documents/development/otherness/frontend/node_modules/@eslint/eslintrc/dist/eslintrc.cjs:2226:18)
+    at CascadingConfigArrayFactory._finalizeConfigArray (/Users/tayte/Documents/development/otherness/frontend/node_modules/@eslint/eslintrc/dist/eslintrc.cjs:3985:23)
+    at CascadingConfigArrayFactory.getConfigArrayForFile (/Users/tayte/Documents/development/otherness/frontend/node_modules/@eslint/eslintrc/dist/eslintrc.cjs:3791:21)
+    at FileEnumerator._iterateFilesRecursive (/Users/tayte/Documents/development/otherness/frontend/node_modules/eslint/lib/cli-engine/file-enumerator.js:450:49)
+    at _iterateFilesRecursive.next (<anonymous>)
+    at FileEnumerator.iterateFiles (/Users/tayte/Documents/development/otherness/frontend/node_modules/eslint/lib/cli-engine/file-enumerator.js:299:49)

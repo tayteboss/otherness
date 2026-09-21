@@ -1,0 +1,142 @@
+  ▲ Next.js 14.2.31
+  - Environments: .env.local
+
+   Skipping validation of types
+   Skipping linting
+   Creating an optimized production build ...
+   Disabled SWC as replacement for Babel because of custom Babel configuration ".babelrc" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Using external babel configuration from /Users/tayte/Documents/development/otherness/frontend/.babelrc
+ ⚠ It looks like there is a custom Babel configuration that can be removed:
+ ⚠ Next.js supports the following features natively: 
+ ⚠ 	- 'styled-components' can be enabled via 'compiler.styledComponents' in 'next.config.js'
+ ⚠ For more details configuration options, please refer https://nextjs.org/docs/architecture/nextjs-compiler#supported-features
+   Disabled SWC as replacement for Babel because of custom Babel configuration ".babelrc" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Disabled SWC as replacement for Babel because of custom Babel configuration ".babelrc" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Using external babel configuration from /Users/tayte/Documents/development/otherness/frontend/.babelrc
+ ⚠ It looks like there is a custom Babel configuration that can be removed:
+ ⚠ Next.js supports the following features natively: 
+ ⚠ 	- 'styled-components' can be enabled via 'compiler.styledComponents' in 'next.config.js'
+ ⚠ For more details configuration options, please refer https://nextjs.org/docs/architecture/nextjs-compiler#supported-features
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled successfully
+   Collecting page data ...
+   Generating static pages (0/33) ...
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href /
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://app.tezzera.co/meet/otherness-discovery
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://app.tezzera.co/form-submission/1779396909429x388005061970624500
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+   Generating static pages (8/33) 
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://app.tezzera.co/meet/otherness-discovery
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+   Generating static pages (16/33) 
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+   Generating static pages (24/33) 
+href mailto:collabs@otherness.design
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href mailto:collabs@otherness.design
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+ ✓ Generating static pages (33/33)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (pages)                                                                  Size     First Load JS
+┌ ● / (988 ms)                                                                 5.29 kB         193 kB
+├   /_app                                                                      0 B             162 kB
+├ ○ /404                                                                       3.53 kB         169 kB
+├ ƒ /api/exit-preview                                                          0 B             162 kB
+├ ƒ /api/preview                                                               0 B             162 kB
+├ ● /conversations (1391 ms)                                                   3.37 kB         206 kB
+├ ● /conversations/[...slug] (3512 ms)                                         3.68 kB         191 kB
+├   ├ /conversations/radical-incusion (1286 ms)
+├   ├ /conversations/what-do-they-mean-when-they-tell-you-simplicity (897 ms)
+├   ├ /conversations/i-think-i-owe-you-an-explanation-about-the-logo (727 ms)
+├   └ /conversations/who-what-why-is-otherness (536 ms)
+├ ● /privacy (452 ms)                                                          3.57 kB         191 kB
+├ ● /things-we-understand (588 ms)                                             629 kB          802 kB
+├ ● /work (1400 ms)                                                            5.36 kB         208 kB
+├ ● /work/[...slug] (11860 ms)                                                 5.59 kB         193 kB
+├   ├ /work/blair-chahley-klassen (896 ms)
+├   ├ /work/medable (839 ms)
+├   ├ /work/the-poetry-of-travel (794 ms)
+├   ├ /work/narro (787 ms)
+├   ├ /work/ian-bennett (767 ms)
+├   ├ /work/phenomenons (756 ms)
+├   ├ /work/ses-menswear (737 ms)
+├   └ [+12 more paths] (avg 517 ms)
+└ ● /working-together (564 ms)                                                 4.13 kB         192 kB
++ First Load JS shared by all                                                  163 kB
+  ├ chunks/framework-49c6cecf1f6d5795.js                                       44.9 kB
+  ├ chunks/main-da1d63439deab56d.js                                            40.4 kB
+  ├ chunks/pages/_app-89a94086e7bc0613.js                                      75.1 kB
+  └ other shared chunks (total)                                                2.14 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+

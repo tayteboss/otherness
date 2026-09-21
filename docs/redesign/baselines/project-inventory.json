@@ -1,0 +1,116 @@
+[
+  {
+    "archiveProject": null,
+    "heroLayoutType": "fullWidth",
+    "slug": "ses-menswear",
+    "title": "SES Menswear"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "fullWidth",
+    "slug": "the-poetry-of-travel",
+    "title": "Confidential"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "twoColumn",
+    "slug": "artem",
+    "title": "Artem Watch Straps"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "twoColumn",
+    "slug": "blair-chahley-klassen",
+    "title": "Blair \u2014 Chahley \u2014 Klassen"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "fullWidth",
+    "slug": "ian-bennett",
+    "title": "Ian Bennett"
+  },
+  {
+    "archiveProject": true,
+    "heroLayoutType": "twoColumn",
+    "slug": "black-and-free",
+    "title": "Black And Free"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "fullWidth",
+    "slug": "flydog",
+    "title": "Flydog"
+  },
+  {
+    "archiveProject": true,
+    "heroLayoutType": "fullWidth",
+    "slug": "interior-architecture",
+    "title": "Self-initiated"
+  },
+  {
+    "archiveProject": true,
+    "heroLayoutType": "fullWidth",
+    "slug": "phenomenons",
+    "title": "Phenomenons"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "fullWidth",
+    "slug": "harper",
+    "title": "Harper"
+  },
+  {
+    "archiveProject": false,
+    "heroLayoutType": "fullWidth",
+    "slug": "medable",
+    "title": "Medable"
+  },
+  {
+    "archiveProject": false,
+    "heroLayoutType": "fullWidth",
+    "slug": "the-gorgeous-spice-company",
+    "title": "The Gorgeous Spice Company"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "fullWidth",
+    "slug": "famille-elastique",
+    "title": "Famille Elastique"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "fullWidth",
+    "slug": "ethiopian-forest-coffee-atlas",
+    "title": "Technoserve"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "fullWidth",
+    "slug": "narro",
+    "title": "Narro"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "fullWidth",
+    "slug": "havens-living",
+    "title": "Havens Living"
+  },
+  {
+    "archiveProject": null,
+    "heroLayoutType": "fullWidth",
+    "slug": "suite437-coffee-branding",
+    "title": "Suite 437"
+  },
+  {
+    "archiveProject": false,
+    "heroLayoutType": "fullWidth",
+    "slug": "aero",
+    "title": "Aero"
+  },
+  {
+    "archiveProject": false,
+    "heroLayoutType": "fullWidth",
+    "slug": "saima-zaidi-the-oxford-university-press",
+    "title": "Saima Zaidi & The Oxford University Press"
+  }
+]
