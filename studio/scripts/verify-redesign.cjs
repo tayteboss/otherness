@@ -20,3 +20,26 @@ assert.equal(schema.get('redesignImage').options.hotspot, true);
 assert.ok(schema.get('redesignImage').fields.some((f) => f.name === 'alt'));
 assert.ok(!redesignSingletons.some((s) => s.name === 'homePage' || s.name === 'contactPage'));
 console.log('PASS: all seven redesign types compile; singleton groups resolve; image alt and hotspot; legacy Home and deferred Contact excluded.');
+
+// Exercise the actual GROQ projections against drafts, duplicate types and a
+// missing reference, without mutating the dataset to manufacture test content.
+(async () => {
+  const {parse, evaluate} = require('groq-js');
+  const {redesignQuery} = require('../../frontend/lib/redesign/queries');
+  const dataset = [
+    {_id:'homePage', _type:'homePage', heroTitle:'Legacy'},
+    {_id:'duplicate-home', _type:'homePageV2', landing:{statement:'Wrong document'}},
+    {_id:'drafts.homePageV2', _type:'homePageV2', landing:{statement:'Draft'}},
+    {_id:'homePageV2', _type:'homePageV2', landing:{statement:'Published'}, editorialNotes:'Internal', services:[{_key:'branding', title:'Branding', projects:[{_key:'missing', project:{_type:'reference', _ref:'missing-project'}}]}]},
+  ];
+  const result = await (await evaluate(parse(redesignQuery), {dataset})).get();
+  assert.equal(result.home.landing.statement, 'Published');
+  assert.equal(result.home.editorialNotes, undefined);
+  assert.equal(result.home.landing.desktopImage, null);
+  assert.equal(result.home.services[0]._key, 'branding');
+  assert.equal(result.home.services[0].projects[0].project, null);
+  assert.equal(result.home.services[0].projects[0].projectId, 'missing-project');
+  assert.equal(result.settings, null);
+  assert.equal(result.ourWay, null);
+  console.log('PASS: GROQ selects fixed published ID despite duplicate types/drafts; excludes internal notes; preserves keys and unresolved reference IDs; missing assets and documents return null.');
+})().catch((e) => {console.error(e); process.exitCode=1;});

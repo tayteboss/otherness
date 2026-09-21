@@ -1,0 +1,236 @@
+Running build in Washington, D.C., USA (East) – iad1
+Build machine configuration: 4 cores, 8 GB
+Cloning github.com/tayteboss/otherness (Branch: codex/site-redesign, Commit: e7f70af)
+Cloning completed: 979.000ms
+Restored build cache from previous deployment (Dmpamnr8fYdYdPY6Usi7THAzA5yX)
+Running "vercel build"
+Vercel CLI 59.23.2
+Running "install" command: `npm ci --legacy-peer-deps --no-audit --no-fund`...
+npm warn deprecated crypto@1.0.1: This package is no longer supported. It's now a built-in Node module. If you've depended on crypto, you should switch to the one that's built-in.
+
+added 681 packages in 16s
+npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn allow-scripts   sharp@0.32.6 (install: (node install/libvips && node install/dll-copy && prebuild-install) || (node install/can-compile && node-gyp rebuild && node install/dll-copy))
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+Detected Next.js version: 14.2.31
+Running "npm run build:redesign"
+
+> build:redesign
+> node scripts/redesign/build.cjs
+
+Published redesign documents: 3/3. Content issues: 76.
+siteSettingsV2.footer.trademark: add and publish content in Website Redesign.
+homePageV2.landing.desktopImage.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.landing.desktopImage.alt: add and publish content in Website Redesign.
+homePageV2.landing.mobileImage.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.landing.mobileImage.alt: add and publish content in Website Redesign.
+homePageV2.introduction.statement: add and publish content in Website Redesign.
+homePageV2.services.branding.description: add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.alt: add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.alt: add and publish content in Website Redesign.
+homePageV2.services.strategy.description: add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.alt: add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.alt: add and publish content in Website Redesign.
+homePageV2.services.art-direction.description: add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.alt: add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.alt: add and publish content in Website Redesign.
+homePageV2.services.packaging.description: add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.alt: add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.alt: add and publish content in Website Redesign.
+homePageV2.services.digital.description: add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.alt: add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-8fac73fc-5f95-4f6b-ae87-db2359677026.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-8fac73fc-5f95-4f6b-ae87-db2359677026.image.alt: add and publish content in Website Redesign.
+homePageV2.results.medable.background.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.results.medable.background.alt: add and publish content in Website Redesign.
+homePageV2.results.medable.logo.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.results.medable.logo.alt: add and publish content in Website Redesign.
+homePageV2.noticed.17f65b752f51.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.17f65b752f51.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.614bbd1aa77e.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.614bbd1aa77e.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.3293acf3d685.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.3293acf3d685.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.337d039a8ddf.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.337d039a8ddf.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.24ba10613c9f.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.24ba10613c9f.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.7b408a9ecab9.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.7b408a9ecab9.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.7ad0f946e4b3.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.7ad0f946e4b3.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.8f5d4f6cc388.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.8f5d4f6cc388.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.16bdde8fe9b4.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.16bdde8fe9b4.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.1140c4bb22d5.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.1140c4bb22d5.image.alt: add and publish content in Website Redesign.
+ourWayPage.hero.statement: add and publish content in Website Redesign.
+ourWayPage.hero.image.asset (supplied artwork required): add and publish content in Website Redesign.
+ourWayPage.hero.image.alt: add and publish content in Website Redesign.
+ourWayPage.introduction.text: add and publish content in Website Redesign.
+ourWayPage.partnership.heading: add and publish content in Website Redesign.
+ourWayPage.partnership.founderNote: add and publish content in Website Redesign.
+ourWayPage.partnership.principles: review and supply four principles.
+ourWayPage.consultation.text: add and publish content in Website Redesign.
+ourWayPage.consultation.artwork.asset (supplied artwork required): add and publish content in Website Redesign.
+ourWayPage.consultation.artwork.alt: add and publish content in Website Redesign.
+ourWayPage.credentials.clients: add and publish content in Website Redesign.
+ourWayPage.credentials.recognition: add and publish content in Website Redesign.
+ourWayPage.credentials.logos: add and publish content in Website Redesign.
+  ▲ Next.js 14.2.31
+
+   Skipping validation of types
+   Skipping linting
+   Creating an optimized production build ...
+   Disabled SWC as replacement for Babel because of custom Babel configuration ".babelrc" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Disabled SWC as replacement for Babel because of custom Babel configuration ".babelrc" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Disabled SWC as replacement for Babel because of custom Babel configuration ".babelrc" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+ ✓ Compiled successfully
+   Collecting page data ...
+   Generating static pages (0/33) ...
+href /
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://app.tezzera.co/form-submission/1779396909429x388005061970624500
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://app.tezzera.co/meet/otherness-discovery
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://app.tezzera.co/meet/otherness-discovery
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+   Generating static pages (8/33) 
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+   Generating static pages (16/33) 
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href mailto:collabs@otherness.design
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+   Generating static pages (24/33) 
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href mailto:collabs@otherness.design
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+href https://studio-otherness.bloom.io/consult
+ ✓ Generating static pages (33/33)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (pages)                                                                  Size     First Load JS
+┌ ● / (368 ms)                                                                 5.29 kB         193 kB
+├   /_app                                                                      0 B             162 kB
+├ ○ /404                                                                       3.53 kB         169 kB
+├ ƒ /api/exit-preview                                                          0 B             162 kB
+├ ƒ /api/preview                                                               0 B             162 kB
+├ ● /conversations (513 ms)                                                    3.37 kB         206 kB
+├ ● /conversations/[...slug] (971 ms)                                          3.68 kB         191 kB
+├   ├ /conversations/what-do-they-mean-when-they-tell-you-simplicity (319 ms)
+├   ├ /conversations/radical-incusion
+├   ├ /conversations/who-what-why-is-otherness
+├   └ /conversations/i-think-i-owe-you-an-explanation-about-the-logo
+├ ● /privacy (301 ms)                                                          3.57 kB         191 kB
+├ ● /things-we-understand (681 ms)                                             629 kB          802 kB
+├ ● /work (444 ms)                                                             5.36 kB         208 kB
+├ ● /work/[...slug] (5524 ms)                                                  5.59 kB         193 kB
+├   ├ /work/aero (520 ms)
+├   ├ /work/flydog (463 ms)
+├   ├ /work/narro (409 ms)
+├   ├ /work/the-gorgeous-spice-company (352 ms)
+├   ├ /work/famille-elastique (352 ms)
+├   ├ /work/black-and-free (351 ms)
+├   ├ /work/ses-menswear (302 ms)
+├   └ [+12 more paths]
+└ ● /working-together                                                          4.13 kB         192 kB
++ First Load JS shared by all                                                  163 kB
+  ├ chunks/framework-49c6cecf1f6d5795.js                                       44.9 kB
+  ├ chunks/main-da1d63439deab56d.js                                            40.4 kB
+  ├ chunks/pages/_app-89a94086e7bc0613.js                                      75.1 kB
+  └ other shared chunks (total)                                                2.14 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+
+Traced Next.js server files in: 31.178ms
+Created all serverless functions in: 665.193ms
+Collected static files (public/, static/, .next/static): 7.686ms
+Build Completed in /vercel/output [44s]
+Deploying outputs...
+Deployment completed
+Creating build cache...
+Created build cache: 18s
+Uploading build cache [218.00 MB]
+Build cache uploaded: 4.499s

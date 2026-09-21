@@ -41,3 +41,9 @@ The installed Studio CLI predates `sanity schema extract`; no dependency upgrade
 The legacy ESLint config cannot load. `.eslintrc.redesign.cjs` provides isolated recommended JavaScript/TypeScript lint checks for the new modules; it does not repair or silence the legacy baseline.
 
 Singleton restrictions follow [Sanity's singleton guide](https://www.sanity.io/guides/singleton-document). Deploy hooks are branch-specific as described in [Vercel's deploy-hook documentation](https://vercel.com/docs/deploy-hooks); hook URLs are credentials and are never committed.
+
+## Hosted rebuild operation
+
+In the Studio Vercel tool choose **Website Redesign** to rebuild only `codex/site-redesign`. The existing **Staging** and **Production** entries are retained. Publishing CMS changes alone does not trigger a deployment; this keeps the existing manual publication workflow. The redesign hook was tested through a successful READY build. Stable preview: https://otherness-git-codex-site-redesign-tayteco-36dd2d0b.vercel.app.
+
+The clean hosted install required explicit `@react-spring/three@9.7.3` and `react-is@18.2.0` dependencies already present in the locks. Their versions were not changed. The original global type/lint failures still require separate work; use the recorded baseline when assessing regressions.

@@ -1,5 +1,5 @@
 studio/objects/index.ts(292,18): error TS7006: Parameter 'Rule' implicitly has an 'any' type.
-studio/sanity.config.ts(83,13): error TS2322: Type 'ListItem' is not assignable to type 'ListItemBuilder_2 | ListItem_2 | Divider_2'.
+studio/sanity.config.ts(93,13): error TS2322: Type 'ListItem' is not assignable to type 'ListItemBuilder_2 | ListItem_2 | Divider_2'.
   Type 'ListItem' is not assignable to type 'ListItem_2'.
     Types of property 'child' are incompatible.
       Type 'ListItemChild' is not assignable to type 'ListItemChild_2'.
@@ -10,7 +10,7 @@ studio/sanity.config.ts(83,13): error TS2322: Type 'ListItem' is not assignable 
                 Type '(ListItem | Divider)[]' is not assignable to type '(ListItem_2 | Divider_2)[]'.
                   Type 'ListItem | Divider' is not assignable to type 'ListItem_2 | Divider_2'.
                     Type 'ListItem' is not assignable to type 'ListItem_2 | Divider_2'.
-studio/sanity.config.ts(83,61): error TS2322: Type 'StructureBuilder_2' is not assignable to type 'StructureBuilder'.
+studio/sanity.config.ts(93,61): error TS2322: Type 'StructureBuilder_2' is not assignable to type 'StructureBuilder'.
   Types of property 'component' are incompatible.
     Type '(spec?: ComponentInput_2 | UserComponent_2 | undefined) => ComponentBuilder_2' is not assignable to type '(spec?: ComponentInput | UserComponent | undefined) => ComponentBuilder'.
       Types of parameters 'spec' and 'spec' are incompatible.
@@ -29,5 +29,5 @@ studio/sanity.config.ts(83,61): error TS2322: Type 'StructureBuilder_2' is not a
                                 Type 'Validator<ComponentBuilder | null | undefined>' is not assignable to type 'Validator<ComponentBuilder_2 | null | undefined>'.
                                   Type 'ComponentBuilder | null | undefined' is not assignable to type 'ComponentBuilder_2 | null | undefined'.
                                     Type 'ComponentBuilder' is not assignable to type 'ComponentBuilder_2'.
-studio/sanity.config.ts(84,13): error TS2322: Type 'ListItem' is not assignable to type 'ListItemBuilder_2 | ListItem_2 | Divider_2'.
-studio/sanity.config.ts(84,61): error TS2322: Type 'StructureBuilder_2' is not assignable to type 'StructureBuilder'.
+studio/sanity.config.ts(94,13): error TS2322: Type 'ListItem' is not assignable to type 'ListItemBuilder_2 | ListItem_2 | Divider_2'.
+studio/sanity.config.ts(94,61): error TS2322: Type 'StructureBuilder_2' is not assignable to type 'StructureBuilder'.

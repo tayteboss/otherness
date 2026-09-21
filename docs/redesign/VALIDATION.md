@@ -53,9 +53,29 @@ Neue Montreal, new clean artwork and Contact designs remain pending. See ASSETS.
 - Seed dry-run read fresh published settings revision `9sbb9mCKcoDYNnVJUsvUcN`. First `--apply --cli-auth` created 3 documents; second created 0. All 642 pre-existing non-draft documents retained identical IDs/revisions after both runs.
 - Studio build and deployment: PASS; additive schema/config deployed to https://otherness.sanity.studio/.
 - `npm run build:redesign`: PASS; 33 routes generated; legacy buildJson skipped; fresh redesign snapshot isolated under ignored `.redesign/`.
-- Frontend full typecheck: same 13 inherited errors; no redesign errors. Studio full typecheck: 5 inherited errors (Rule and orderable-list type mismatches); prior JSX-namespace error is no longer reproduced in this installed environment. No added errors.
+- Frontend full typecheck: same 13 inherited errors; no redesign errors. Studio full typecheck: same 5 inherited errors (Rule and orderable-list type mismatches). Phase 1 prose mentioned JSX namespace, but the saved baseline log contains only these five errors. No added errors.
 - Targeted ESLint on new frontend modules/scripts and Studio schema/verification script: PASS using `--no-eslintrc --config frontend/.eslintrc.redesign.cjs`. The legacy ESLint configuration remains invalid.
 - Release content check: intentionally FAIL, exit 1, 76 actionable missing copy/artwork/alt fields. Preview builds remain usable. This is not visual acceptance; supplied artwork/font dependencies remain.
 - Installed Studio CLI does not support `sanity schema extract`; explicit nullable frontend types plus query/schema checks are used without upgrading dependencies.
 - Local Studio origin 3334 was rejected by existing CORS; switched to the already allowed 3333. Browser then reached Sanity sign-in. No CORS or access policy changes were made; authenticated UI editing remains unverified.
 - Exact build/type/data outputs are under `validation/phase2-*`. Hosting completion is recorded below after deployment verification.
+
+## Phase 2 hosted setup and clean-install findings
+
+Actual authenticated Vercel and Sanity APIs were inspected before changes. Existing Sanity Vercel tool entries were Staging and Production; automatic Sanity hooks were empty. The Vercel project uses root `frontend`, Node 24, `master` for production, with existing hooks for `master` and `staging`.
+
+Added one Website Redesign deploy hook for `codex/site-redesign`, plus a private Studio Vercel-tool entry reusing its existing credential. Manual hook POST returned HTTP 201 and created a build for the correct branch/commit. No automatic content publication hook was installed, matching the existing manual rebuild workflow. Existing hooks and all 642 pre-existing CMS revisions remained unchanged after setup.
+
+First hosted build failed because `@react-spring/three` was only a peer dependency; second reached a missing `react-is` peer. Both were already present locally and locked at 9.7.3 / 18.2.0. Added exact direct dependency declarations and minimal matching lockfile changes. No dependency versions or frameworks were upgraded. Failures are saved as `phase2-hosted-build-first.txt` and `phase2-hosted-build-second.txt`.
+
+Local `/work` was inspected in the in-app browser: legacy navigation, filter controls, project list and baseline footer remain. HTTP 200 with `X-Robots-Tag: noindex, nofollow, noarchive`. This is a smoke check; full Work interaction regression remains phase 3/final QA.
+
+Staging and public aliases were inspected through Vercel: they still resolve to their original deployment IDs, `dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N` and `dpl_2hW8KVM2WdqKzcff48GcNwxsi41B` respectively. No alias was assigned or repointed by this task.
+
+## Phase 2 final hosted result
+
+PASS: commit `e7f70af5351d14f82e3350290846db8b898f0e80` built successfully from a clean Vercel install. A subsequent **Website Redesign hook rebuild** completed READY as `dpl_8oWbJh7GSjY6pgf4avQKSR2GYm96`, proving the dedicated CMS rebuild destination works. Build logs show all 3 published redesign documents fetched and 33 legacy routes generated. No content writes were needed to test the hook.
+
+The stable preview `https://otherness-git-codex-site-redesign-tayteco-36dd2d0b.vercel.app/work` was inspected in the in-app browser. `/work`, `/robots.txt` and `/sitemap.xml` all return HTTP 200 with `noindex, nofollow, noarchive`; robots disallows `/`, and sitemap entries use the preview origin rather than staging. See `phase2-hosting.json` and `phase2-hosted-build-success.txt`.
+
+Phase 2 is complete. Website Redesign content is editable in the deployed Studio, though authenticated browser editing remains untested because that browser session is logged out. Phase 3 is next; no chrome/page rendering was changed in this phase.

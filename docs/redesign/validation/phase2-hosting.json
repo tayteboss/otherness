@@ -1,0 +1,27 @@
+{
+  "branch": "codex/site-redesign",
+  "commit": "e7f70af5351d14f82e3350290846db8b898f0e80",
+  "build": "dpl_8oWbJh7GSjY6pgf4avQKSR2GYm96",
+  "state": "READY",
+  "hook": "Website Redesign",
+  "preview": "https://otherness-git-codex-site-redesign-tayteco-36dd2d0b.vercel.app",
+  "checks": [
+    {
+      "path": "/work",
+      "status": 200,
+      "robots": "noindex, nofollow, noarchive"
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "robots": "noindex, nofollow, noarchive"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "robots": "noindex, nofollow, noarchive"
+    }
+  ],
+  "originalStagingDeployment": "dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N",
+  "originalProductionDeployment": "dpl_2hW8KVM2WdqKzcff48GcNwxsi41B"
+}
