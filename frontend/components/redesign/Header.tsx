@@ -73,6 +73,15 @@ const HeaderWrapper = styled.header`
 	@media (max-width: 550px) {
 		height: calc(70vw * 112 / 1160 + 42px);
 	}
+	&[data-way-hero='true'] nav a {
+		background: transparent;
+		color: white;
+	}
+	&[data-way-hero='true'] nav a[aria-current='page'],
+	&[data-way-hero='true'] nav a:hover {
+		background: white;
+		color: var(--redesign-ink);
+	}
 	.landing-icon {
 		display: none;
 	}
@@ -158,6 +167,7 @@ export default function Header({
 	const headerRef = useRef<HTMLElement>(null);
 	const router = useRouter();
 	const home = router.pathname === '/';
+	const ourWay = router.pathname === '/our-way';
 	useEffect(() => {
 		let frame = 0;
 		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -165,6 +175,14 @@ export default function Header({
 			frame = 0;
 			if (!home) {
 				setCompact(window.scrollY > 100);
+				const hero = document.querySelector<HTMLElement>(
+					'[data-our-way-hero]'
+				);
+				setOverLanding(
+					ourWay &&
+						window.scrollY <
+							(hero?.offsetHeight || window.innerHeight) - 100
+				);
 				return;
 			}
 			const header = headerRef.current;
@@ -219,12 +237,13 @@ export default function Header({
 			reduced.removeEventListener('change', schedule);
 			observer.disconnect();
 		};
-	}, [router.asPath, home]);
+	}, [router.asPath, home, ourWay]);
 	return (
 		<HeaderWrapper
 			className="header"
 			ref={headerRef}
 			data-home={home}
+			data-way-hero={ourWay && overLanding}
 			data-redesign-chrome
 			data-compact={compact}
 		>
@@ -243,7 +262,7 @@ export default function Header({
 					<Link href="/" aria-label="Otherness home">
 						<img
 							src={
-								home && overLanding
+								(home || ourWay) && overLanding
 									? '/redesign/brand/logo-word.svg'
 									: '/redesign/brand/logo-word-dark.svg'
 							}

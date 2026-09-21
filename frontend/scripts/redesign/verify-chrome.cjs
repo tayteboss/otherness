@@ -38,7 +38,8 @@ for (const file of files(pages).filter((p) => p.endsWith('.html'))) {
 	assert.ok(html.includes(pageProps.redesignSettings.consultationUrl), file);
 	const override =
 		pageProps.data?.openGraphImage?.asset?.url ||
-		pageProps.data?.openGraphImage?.image?.asset?.url;
+		pageProps.data?.openGraphImage?.image?.asset?.url ||
+		pageProps.ourWay?.seo?.image?.asset?.url;
 	if (override && !pageProps.data?.archiveProject) {
 		assert.equal(images[0], override, file);
 		overrides++;
