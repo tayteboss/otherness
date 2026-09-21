@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "robots": "noindex, nofollow, noarchive",
+  "landing": true,
+  "legacyMux": false,
+  "statement": true,
+  "ogImages": [
+    "https://otherness-git-codex-site-redesign-tayteco-36dd2d0b.vercel.app/redesign/brand/og.jpg"
+  ],
+  "fixtureRoute": false
+}

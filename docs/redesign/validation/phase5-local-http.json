@@ -1,0 +1,31 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive",
+    "landing": true,
+    "legacyMux": false,
+    "mainRenderedVisible": true,
+    "fixtureRoute": false
+  },
+  {
+    "path": "/work",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/working-together",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/our-way",
+    "status": 404,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/phase5-fixture",
+    "status": 404,
+    "robots": "noindex, nofollow, noarchive"
+  }
+]

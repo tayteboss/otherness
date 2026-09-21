@@ -106,6 +106,10 @@ Final application commit `9a5d4ef` is deployed READY as `dpl_7t8MJmVxcFmNPPDCn5H
 - Validation: builds, isolated lint, preservation and metadata checks pass. Same 11 frontend / 5 Studio inherited type errors and 76 release-content issues. Six responsive widths, timing, Escape, refresh, return, reduced-motion/storage/null/failed-image fixtures and menu restoration checked using only the in-app browser. See VALIDATION.md for exact boundaries.
 - No CMS/schema/hooks/dependencies/font originals/global-style changes. Our Way and Contact were not implemented.
 
+## Phase 5 preview
+
+Application commit `3b62e34` is READY as `dpl_FuWWrzzYDbqeiKktQyCZFfVYLV5N` at the stable redesign preview. Hosted in-app verification confirms the intro has no visible skip control, automatically completes, does not replay on refresh, and renders the mobile landing without overflow. HTTP 200/noindex and one absolute preview-origin OG image pass. Staging and production retain their original deployment IDs. Documentation/capture follow-up commits contain no application changes. Browser viewport overrides were reset; preview remains open. Local server/keep-awake session were stopped. Supplied font originals and the inherited untracked phase 4 capture remain untouched.
+
 ## Next conversation: phase 6 only
 
 Suggested prompt:

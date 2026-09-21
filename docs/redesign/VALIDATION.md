@@ -188,3 +188,12 @@ Browser viewport override was reset and the stable preview left open at the intr
 ## Boundaries
 
 Our Way is phase 6 and still 404. Legacy Working Together remains available without redirect. Contact stays on the current published consultation destination. Approved missing copy, clean landing/other artwork, logos, principles/recognition, trademark and Contact designs remain dependencies. No next phase was started.
+
+## Final production and hosted verification
+
+- Final no-button intro tested in a separate production-build browser tab: native dialog receives focus, has zero buttons, Escape closes it, overflow clears and focus returns to `landing-statement`. Main wrapper computed opacity is 1. A 402×874 capture verifies vertically stacked words; desktop words spread horizontally.
+- Mobile menu restores a scrolled homepage exactly **854px → 854px**; route selection closes it, restores body styles and reaches Work with its existing 69.16px header footprint at 402px. Return Home does not replay the intro.
+- Local HTTP: Home, Work and Working Together 200; Our Way and removed fixture route 404; all carry preview noindex. Home HTML contains landing/statement and visible main content, no legacy Mux player or fixture route.
+- Application commit `3b62e349a68967d13554f6db298c58c1969ed615` deployed READY as `dpl_FuWWrzzYDbqeiKktQyCZFfVYLV5N`. Hosted browser confirms first-visit words, **zero intro buttons**, automatic completion, refresh bypass, 402px document width, and mobile Menu geometry. Hosted desktop/mobile captures saved; viewport reset afterward.
+- Hosted HTTP 200 with `X-Robots-Tag: noindex, nofollow, noarchive`; exactly one absolute preview-origin OG image. `phase5-hosting.json` confirms staging still `dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N` and public www still `dpl_2hW8KVM2WdqKzcff48GcNwxsi41B`. No aliases/hooks/CMS writes.
+- Final documentation/capture commit contains no application changes. Commits used a one-command signing override; persistent Git configuration is unchanged. Local server and this task’s keep-awake session stopped; hosted preview left open.
