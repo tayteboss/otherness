@@ -415,7 +415,7 @@ export const HomeSectionsWrapper = styled.div`
 		.noticed-row[data-expanded='true'] .noticed-link {
 			width: 50%;
 			padding-right: 12px;
-			min-height: 160px;
+			min-height: max(180px, calc(74px + (100vw - 72px) / 3));
 		}
 		.noticed-image {
 			display: none !important;

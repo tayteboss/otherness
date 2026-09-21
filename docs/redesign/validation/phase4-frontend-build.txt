@@ -110,38 +110,38 @@ href https://app.tezzera.co/meet/otherness-discovery
 href https://app.tezzera.co/form-submission/1779396909429x388005061970624500
 href https://app.tezzera.co/meet/otherness-discovery
    Generating static pages (16/33) 
-href mailto:collabs@otherness.design
    Generating static pages (24/33) 
+href mailto:collabs@otherness.design
 href mailto:collabs@otherness.design
  ✓ Generating static pages (33/33)
    Finalizing page optimization ...
    Collecting build traces ...
 
 Route (pages)                                                                   Size     First Load JS
-┌ ● / (1589 ms)                                                                 8.91 kB         175 kB
+┌ ● / (1790 ms)                                                                 8.93 kB         175 kB
 ├   /_app                                                                       0 B             126 kB
-├ ○ /404 (534 ms)                                                               5.43 kB         166 kB
+├ ○ /404 (530 ms)                                                               5.43 kB         166 kB
 ├ ƒ /api/exit-preview                                                           0 B             126 kB
 ├ ƒ /api/preview                                                                0 B             126 kB
-├ ● /conversations (2002 ms)                                                    6.78 kB         202 kB
-├ ● /conversations/[...slug] (4037 ms)                                          3.67 kB         190 kB
-├   ├ /conversations/what-do-they-mean-when-they-tell-you-simplicity (1226 ms)
-├   ├ /conversations/i-think-i-owe-you-an-explanation-about-the-logo (1165 ms)
-├   ├ /conversations/who-what-why-is-otherness (812 ms)
-├   └ /conversations/radical-incusion (777 ms)
-├ ● /privacy (903 ms)                                                           3.57 kB         190 kB
-├ ● /things-we-understand (1115 ms)                                             629 kB          798 kB
-├ ● /work (1768 ms)                                                             5.15 kB         205 kB
-├ ● /work/[...slug] (17573 ms)                                                  5.59 kB         192 kB
-├   ├ /work/famille-elastique (1169 ms)
-├   ├ /work/blair-chahley-klassen (1127 ms)
-├   ├ /work/ian-bennett (1115 ms)
-├   ├ /work/saima-zaidi-the-oxford-university-press (1091 ms)
-├   ├ /work/the-gorgeous-spice-company (943 ms)
-├   ├ /work/aero (914 ms)
-├   ├ /work/ses-menswear (910 ms)
-├   └ [+12 more paths] (avg 854 ms)
-└ ● /working-together (886 ms)                                                  4.13 kB         190 kB
+├ ● /conversations (1576 ms)                                                    6.78 kB         202 kB
+├ ● /conversations/[...slug] (3833 ms)                                          3.67 kB         190 kB
+├   ├ /conversations/what-do-they-mean-when-they-tell-you-simplicity (1133 ms)
+├   ├ /conversations/radical-incusion (916 ms)
+├   ├ /conversations/i-think-i-owe-you-an-explanation-about-the-logo (916 ms)
+├   └ /conversations/who-what-why-is-otherness (811 ms)
+├ ● /privacy (982 ms)                                                           3.57 kB         190 kB
+├ ● /things-we-understand (1187 ms)                                             629 kB          798 kB
+├ ● /work (1883 ms)                                                             5.15 kB         205 kB
+├ ● /work/[...slug] (20151 ms)                                                  5.59 kB         192 kB
+├   ├ /work/medable (1328 ms)
+├   ├ /work/aero (1262 ms)
+├   ├ /work/phenomenons (1193 ms)
+├   ├ /work/flydog (1153 ms)
+├   ├ /work/black-and-free (1144 ms)
+├   ├ /work/the-poetry-of-travel (1138 ms)
+├   ├ /work/blair-chahley-klassen (1138 ms)
+├   └ [+12 more paths] (avg 978 ms)
+└ ● /working-together (1011 ms)                                                 4.13 kB         190 kB
 + First Load JS shared by all                                                   126 kB
   ├ chunks/framework-49c6cecf1f6d5795.js                                        44.9 kB
   ├ chunks/main-da1d63439deab56d.js                                             40.4 kB
