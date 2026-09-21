@@ -160,3 +160,31 @@ PASS: final application commit `9a5d4ef8d7eaa74be30a1eaf349b26cb00c3c702` is REA
 Vercel API confirms staging still resolves to `dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N` and public www to `dpl_2hW8KVM2WdqKzcff48GcNwxsi41B`. No aliases/hooks were changed. `phase4-hosting.json` records final identities; `phase4-hosted-http.json` records Home New payload/section/noindex checks (initial phase 4 deployment; final spacing fix confirmed separately in the hosted browser).
 
 Browser viewport override was reset and the stable preview left open at the introduction. Local preview processes were stopped. Untracked supplied font originals remain untouched. Commits used a command-scoped signing override, preserving persistent Git signing settings.
+
+# Phase 5 validation — 21 September 2026
+
+## Implementation and automated checks
+
+- `npm run build:redesign`: PASS, 33 static-generation entries; three published redesign documents fetched. Temporary fixture route removed before build. Home no longer fetches legacy Home or loads HomeHero/Mux; phase 4 sections remain unchanged.
+- `SANITY_STUDIO_TELEMETRY_DISABLED=1 yarn build` and `node studio/scripts/verify-redesign.cjs`: PASS. No Studio changes or CMS writes.
+- `npm run verify:redesign`: PASS, all 181 preserved legacy source hashes (Work additive shell props normalized). No Work body/font/global-style changes.
+- `npm run verify:redesign:chrome`: PASS, 30 concrete routes with shell props, 18 page OG overrides preserved, exactly one absolute OG image/manifest per HTML.
+- Targeted ESLint with isolated config, Hooks and image-alt rules: PASS. Global inherited ESLint config remains invalid.
+- Explicit frontend typecheck: same **11 inherited errors**; Studio: same **5 inherited errors**. No new errors. `npm run check:redesign:release`: expected FAIL with the same **76 missing fields**. Frontend build suppresses type/lint errors, so these were checked separately.
+- `git diff --check`: PASS. No package/dependency, font, schema, CMS, hook or phase 4 section changes. Homepage now uses `initial={false}` so server-rendered content stays visible independently of the intro/JS animation.
+
+## In-app browser checks
+
+- Only Codex in-app browser used; hidden panel for 1512px desktop captures. **375, 402, 768, 1024, 1512 and 1920** all have document width equal to viewport width. Landing height is 874px at the smaller reference viewports and 982px on desktop. At 402px, wordmark is 174px wide at y=766; Menu is 354×44 at x=24, y≈814. Desktop 1512px wordmark is 226px wide at y=850, navigation ends at 953px.
+- Intro timing fixture with failed artwork recorded Poetry/Power at 12ms, Strategy/Design at 1515ms, Endurance/Distinction at 3016ms, closure at 4817ms. This includes the three 1.5s pairs and final 0.3s landing fade. Image failure renders a labelled placeholder; intro finishes without waiting for media. See `phase5-intro-timing.json` (recorded before visible button removal).
+- First visit opens the intro; refresh and real Home → Work → Home navigation do not replay. Separate tab plays independently. Native modal prevents background interaction; completion restores overflow and focuses the landing statement.
+- **User-directed change:** visible Skip intro button was initially tested, then removed at Tayte’s request. Final production build has no button in the intro; Escape still dismisses immediately. SPEC.md was updated to match. Older fixture logs mention Skip intro only as historical evidence, not final UI.
+- Reduced-motion, unavailable storage and null Home fixtures bypass the intro without a scroll lock or crash. OS motion emulation is unavailable in the browser capability; the local fixture overrides only the motion media query, exercising the runtime admission branch. Dynamic OS preference switching is source-checked, not claimed as an OS-level interaction test.
+- Broken artwork URL was requested and returned 404, then replaced with the labelled placeholder. `phase5-fixture-results.json` records the initial in-flight image state; `phase5-intro-timing.json` records the eventual placeholder and automatic close. Fixture source is retained as `.tsx.txt` only and is absent from routes/build.
+- Desktop scroll: at 802px the wordmark is 1134px wide with top −77.77px, intentionally cropped; after 90% of landing height compact navigation stays at y=16px. Responsive resize recalculates positions. Motion preference uses discrete positions instead of continuous header travel.
+- Landing mobile Menu opens with focus on Close; Escape returns focus to Menu, restores body position/scroll and closes the native modal. Work route navigation was exercised and all source-preservation hashes pass. Comprehensive Work/media QA remains phase 8.
+- Clean artwork is still missing; these captures verify geometry/typography/interactions, not final artwork/crop acceptance. No legacy image or screenshot crop was substituted. The old homepage Mux hydration warning is gone with its removal; inherited project hydration issues remain outside phase 5.
+
+## Boundaries
+
+Our Way is phase 6 and still 404. Legacy Working Together remains available without redirect. Contact stays on the current published consultation destination. Approved missing copy, clean landing/other artwork, logos, principles/recognition, trademark and Contact designs remain dependencies. No next phase was started.

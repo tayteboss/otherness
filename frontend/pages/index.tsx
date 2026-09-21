@@ -1,18 +1,11 @@
 import { getRedesignShellProps } from '../lib/redesign/shell';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
-import {
-	HomePageType,
-	SiteSettingsType,
-	TransitionsType
-} from '../shared/types/types';
+import { SiteSettingsType, TransitionsType } from '../shared/types/types';
 import { motion } from 'framer-motion';
 import client from '../client';
-import {
-	homePageQueryString,
-	siteSettingsQueryString
-} from '../lib/sanityQueries';
-import HomeHero from '../components/blocks/HomeHero';
+import { siteSettingsQueryString } from '../lib/sanityQueries';
+import HomeLanding from '../components/redesign/HomeLanding';
 import HomeSections from '../components/redesign/HomeSections';
 import { getRedesignData } from '../lib/redesign/server';
 import type { HomePageV2, RedesignSettings } from '../lib/redesign/types';
@@ -20,7 +13,6 @@ import type { HomePageV2, RedesignSettings } from '../lib/redesign/types';
 const PageWrapper = styled(motion.div)``;
 
 type Props = {
-	data: HomePageType;
 	home: HomePageV2 | null;
 	redesignSettings: RedesignSettings | null;
 	siteSettings: SiteSettingsType;
@@ -28,12 +20,12 @@ type Props = {
 };
 
 const Page = (props: Props) => {
-	const { data, home, redesignSettings, pageTransitionVariants } = props;
+	const { home, redesignSettings, pageTransitionVariants } = props;
 
 	return (
 		<PageWrapper
 			variants={pageTransitionVariants}
-			initial="hidden"
+			initial={false}
 			animate="visible"
 			exit="hidden"
 		>
@@ -41,14 +33,7 @@ const Page = (props: Props) => {
 				title={home?.seo?.title || 'Otherness'}
 				description={home?.seo?.description || ''}
 			/>
-			<HomeHero
-				title={data?.heroTitle}
-				mobileTitle={data?.mobileHeroTitle}
-				description={data?.heroDescription}
-				mobileDescription={data?.mobileHeroDescription}
-				media={data?.heroMedia}
-				link={data?.heroLink}
-			/>
+			<HomeLanding home={home} />
 			<HomeSections home={home} settings={redesignSettings} />
 		</PageWrapper>
 	);
@@ -57,15 +42,11 @@ const Page = (props: Props) => {
 export async function getStaticProps() {
 	const redesign = await getRedesignData();
 	const siteSettings = await client.fetch(siteSettingsQueryString);
-	let data = await client.fetch(homePageQueryString);
-
-	data = data[0];
 
 	return {
 		props: {
 			...(await getRedesignShellProps()),
 			home: redesign.home,
-			data,
 			siteSettings
 		}
 	};

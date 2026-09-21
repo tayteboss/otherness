@@ -1,0 +1,29 @@
+{
+  "reduced": {
+    "dialog": false,
+    "heading": "Everything in between is otherness.",
+    "images": 0,
+    "overflow": "",
+    "placeholder": "Development placeholder — clean landing artwork pending"
+  },
+  "storage": {
+    "dialog": false,
+    "heading": "Everything in between is otherness.",
+    "images": 0,
+    "overflow": "",
+    "placeholder": "Development placeholder — clean landing artwork pending"
+  },
+  "null": {
+    "dialog": false,
+    "heading": "Development placeholder — landing statement pending",
+    "images": 0,
+    "overflow": "",
+    "placeholder": "Development placeholder — clean landing artwork pending"
+  },
+  "failed": {
+    "dialog": false,
+    "heading": "Everything in between is otherness.",
+    "images": 1,
+    "overflow": ""
+  }
+}

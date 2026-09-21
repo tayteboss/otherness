@@ -1,0 +1,37 @@
+// Temporary local-only validation harness; removed before build.
+import { useEffect, useState } from 'react';
+import HomeLanding from '../components/redesign/HomeLanding';
+import { getRedesignData } from '../lib/redesign/server';
+import { getRedesignShellProps } from '../lib/redesign/shell';
+export default function Fixture({home}: any) {
+ const [mode,setMode]=useState('');
+ const [events,setEvents]=useState<string[]>([]);
+ useEffect(()=>{
+  if (!mode) return;
+  const start=performance.now();
+  const observer=new MutationObserver(()=>{
+   const panel=document.querySelector('[data-home-intro]');
+   const value=panel?.textContent || 'closed';
+   setEvents(previous=>previous[previous.length-1]?.endsWith(value) ? previous : [...previous,`${Math.round(performance.now()-start)}ms: ${value}`]);
+  });
+  observer.observe(document.body,{childList:true,subtree:true});
+  return ()=>observer.disconnect();
+ },[mode]);
+ function run(value:string){
+  sessionStorage.removeItem('otherness:intro:v1');
+  if(value==='reduced'){
+   const original=window.matchMedia.bind(window);
+   window.matchMedia=(query:string)=>query==='(prefers-reduced-motion: reduce)' ? {...original(query), matches:true, addEventListener:()=>{}, removeEventListener:()=>{}} as MediaQueryList : original(query);
+  }
+  if(value==='storage') Storage.prototype.getItem=()=>{throw new Error('Fixture storage unavailable');};
+  setMode(value);
+ }
+ const fixture=mode==='null'?null:mode==='failed'?{...home,landing:{...home.landing,desktopImage:{alt:'Intentionally missing fixture image',asset:{url:'http://localhost:3010/missing-phase5-artwork.jpg'}}}}:home;
+ return <div style={{minHeight:'100vh'}}><div style={{position:'fixed',zIndex:2000,top:150,left:24,background:'white',padding:16}}>
+ {!mode && <>{['normal','reduced','failed','null','storage'].map(value=><button key={value} style={{padding:12}} onClick={()=>run(value)}>{value}</button>)}</>}
+ <button onClick={()=>{sessionStorage.removeItem('otherness:intro:v1');location.href='/';}}>Reset and open Home</button>
+ <button onClick={()=>setMode('')}>Unmount landing</button>
+ <pre>{events.join('\n')}</pre>
+ </div>{mode&&<HomeLanding key={mode} home={fixture}/>}</div>;
+}
+export async function getStaticProps(){const data=await getRedesignData();return{props:{home:data.home,...await getRedesignShellProps()}};}

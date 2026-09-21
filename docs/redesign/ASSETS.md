@@ -1,6 +1,6 @@
 # Asset register
 
-Updated: 21 September 2026, phase 4.
+Updated: 21 September 2026, phase 5.
 
 ## Available and staged
 
@@ -58,3 +58,7 @@ Inspected the actual OS/2 weights and style names of all 18 supplied fonts. Conv
 No new production artwork was supplied or added. Service cards, Results backgrounds/client logo and Noticed thumbnails use explicitly labelled development placeholders. Published project names, Medable quote/attribution and ten real Noticed entries are rendered without copying legacy photography. Introduction statement and service descriptions still await publication; optional card captions are omitted while empty. Scoped Neue Montreal and Baryton are used in the new sections. The legacy HomeHero remains an unchanged temporary phase 5 dependency, including its existing media.
 
 `Artwork.tsx` supports responsive CDN widths, editorial crop, hotspot positioning and failure placeholders; optional results mobile art can override desktop art. Final crop/art-direction acceptance requires the pending originals. The local two-result test used clearly named fixture content and existing brand files only; that fixture was removed from frontend routes before building.
+
+## Phase 5 landing and intro
+
+Clean desktop/mobile landing artwork is still pending. The legacy video/photography is no longer rendered on the homepage; a labelled neutral development placeholder fills the landing. Published Home New statement/loading pairs, supplied SVG icon/wordmark and scoped Neue Montreal/Baryton are integrated. The responsive picture supports separate mobile art, CDN widths, editorial crop/hotspot, and image-error fallback. Final artwork/crop/readability acceptance awaits originals. No new artwork, font source, CMS asset or screenshot crop was added.

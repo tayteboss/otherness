@@ -61,7 +61,7 @@ Use section references for desktop detail and full-page/mobile references for re
 - Three word pairs: Poetry / Power → Strategy / Design → Endurance / Distinction.
 - Each pair lasts ~1.5s including soft blur/fade in, readable hold and blur/fade out. Total ~4.5s then fade into landing.
 - Desktop words spread horizontally; mobile words stack in the centre (Loading Mobile.png).
-- Use Framer Motion, clear timers, expose skip, honour reduced motion by bypassing timed intro, and never wait indefinitely for media.
+- Use Framer Motion, clear timers, support Escape to bypass (no visible skip button, per Tayte’s phase 5 instruction), honour reduced motion by bypassing timed intro, and never wait indefinitely for media.
 - Main content must render independently of animation; an intro error cannot trap the visitor.
 - Landing is full-viewport **static supplied artwork**, with desktop/mobile crops, live serif statement “Everything in between is otherness.” and icon/wordmark/nav near bottom.
 - Mobile includes the landing and loader; the later supplied Loading Mobile.png and Landing Mobile.png resolve their omission from Home Mobile.png.

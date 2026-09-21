@@ -1,0 +1,5 @@
+
+> verify:redesign:chrome
+> node scripts/redesign/verify-chrome.cjs
+
+PASS: 30 built routes use published redesign shell props; 18 page image overrides preserved; all HTML has one absolute OG image and the new manifest.

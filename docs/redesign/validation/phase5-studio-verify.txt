@@ -1,0 +1,2 @@
+PASS: all seven redesign types compile; singleton groups resolve; image alt and hotspot; legacy Home and deferred Contact excluded.
+PASS: GROQ selects fixed published ID despite duplicate types/drafts; excludes internal notes; preserves keys and unresolved reference IDs; missing assets and documents return null.

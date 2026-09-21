@@ -7,13 +7,13 @@
 ## Current state
 
 - Branch: `codex/site-redesign`, based on `origin/staging` commit `2707efad642d6be8a6c5461351851b10e7bd96f3`.
-- Phases 1–4 implementation is complete. Phases 5–8 are not started.
+- Phases 1–5 implementation is complete. Phases 6–8 are not started.
 - This branch is now pushed to the same-named remote branch for its dedicated preview. No upstream is configured. Always use an explicit redesign branch push; never push to staging/master.
 - Three additive **published** singletons are seeded in `vdwu088q/production`: `homePageV2`, `ourWayPage`, `siteSettingsV2`. Existing drafts/publications are preserved by idempotent seed tooling. All 642 pre-existing non-draft CMS documents retain their original revisions.
 - Additive Studio schemas, Website Redesign group, fixed-ID editors and singleton action/creation restrictions are deployed at https://otherness.sanity.studio/.
 - Seven new schema types, separate nullable frontend contracts, fixed-ID queries and a fresh published settings loader are in place. See DATA.md for usage and seed provenance.
 - Work bodies, fonts, global styles, legacy schemas/queries/types and checked-in settings JSON are preserved. Verification covers 181 baseline hashes, normalizing only additive shell props in the two Work pages; shared Layout is intentionally replaced.
-- Shared header/footer/menu, scoped Neue Montreal web fonts, favicon/manifest and supplied OG default are integrated. Home introduction/services/results/Noticed now render published Home New content. Landing and Our Way implementation remain future phases.
+- Shared header/footer/menu, scoped Neue Montreal web fonts, favicon/manifest and supplied OG default are integrated. Home introduction/services/results/Noticed now render published Home New content. Landing/session intro is implemented; Our Way remains phase 6.
 
 ## Local commands
 
@@ -96,11 +96,21 @@ Final application commit `9a5d4ef` is deployed READY as `dpl_7t8MJmVxcFmNPPDCn5H
 - Phase 4 validation passes: builds, targeted lint, metadata, nullable fixtures, six widths, accordion/Noticed keyboard and click behavior, horizontal card scrolling, results keyboard/click switching, real Aero project navigation. Same 11 frontend / 5 Studio type errors and 76 release content issues remain. See VALIDATION.md for limits.
 - Legacy HomeHero still includes its old booking URL and a Mux hydration warning; phase 5 replaces that entire hero. No loader/session logic or Our Way route was introduced.
 
-## Next conversation: phase 5 only
+## Phase 5 implementation notes
+
+- `HomeLanding.tsx` replaces legacy HomeHero on `/`; the homepage no longer fetches the legacy Home document or renders its Mux player/old booking link. Published loading pairs/landing statement use the existing Home New contract. Phase 4 sections and all Work bodies/fonts/interactions are unchanged.
+- Landing is one static responsive picture with crop/hotspot handling and eager loading. Clean artwork is still absent: an explicit development placeholder is rendered. No screenshot crops or legacy photography were used. Baryton statement, icon and smaller wordmark match the reference positioning.
+- `HomeIntro.tsx` uses Framer Motion for three 1.5s blur/fade pairs and a final 0.3s fade. Session storage is marked at admission, so refresh and return navigation do not replay it. Missing pairs, unavailable storage, restored deep scroll and reduced motion bypass it. A timer ends it independently of media/animation callbacks; effect cleanup restores scrolling/focus and cancels timers.
+- **Tayte requested removal of the visible Skip intro button during this phase.** It is removed; Escape and reduced-motion bypass remain. SPEC.md records this change. The intro uses a native modal dialog focused on the panel while playing. Main content is server-rendered with initial opacity 1, independently of the intro.
+- One shared header/navigation moves from the landing’s bottom position to the oversized top-cropped wordmark, then compact sticky navigation. Home-only CSS/scroll handling leaves the existing interior/Work footprint intact. Scroll listeners are passive and use a single animation frame; resize and motion preference changes are handled and cleaned up.
+- Validation: builds, isolated lint, preservation and metadata checks pass. Same 11 frontend / 5 Studio inherited type errors and 76 release-content issues. Six responsive widths, timing, Escape, refresh, return, reduced-motion/storage/null/failed-image fixtures and menu restoration checked using only the in-app browser. See VALIDATION.md for exact boundaries.
+- No CMS/schema/hooks/dependencies/font originals/global-style changes. Our Way and Contact were not implemented.
+
+## Next conversation: phase 6 only
 
 Suggested prompt:
 
-> Continue Otherness redesign Phase 5 only on codex/site-redesign. Read docs/redesign/HANDOFF.md, SPEC.md, ASSETS.md, VALIDATION.md and DATA.md. Replace the temporary legacy HomeHero with the new landing and implement the session-based intro and scroll header choreography. Use published Home New loading pairs/landing fields and scoped Neue Montreal/Baryton. Use supplied clean desktop/mobile artwork if available; otherwise labelled development placeholders, never screenshot crops or legacy photography. Verify first visit, refresh, return navigation, skip, reduced motion, failed media, scroll/header behavior and responsive widths in the in-app browser. Preserve phase 4 sections and all Work bodies/fonts/interactions. Keep the dedicated noindex preview isolated, update the phase 6 handoff, and stop. Do not implement Our Way or Contact.
+> Continue Otherness redesign Phase 6 only on codex/site-redesign. Read docs/redesign/HANDOFF.md, SPEC.md, ASSETS.md, VALIDATION.md and DATA.md. Implement /our-way with the approved section order, published Our Way fields, responsive process track, recognition logo loop with pause/reduced-motion handling, and shared shell props. Use supplied clean artwork if available; otherwise labelled development placeholders. Use scoped Neue Montreal/Baryton and the Sanity best-practices skill for schema/query/Studio work. Preserve Home phases 4–5, all Work bodies/fonts/interactions, legacy /working-together and the isolated noindex preview. Do not redirect or implement Contact. Validate the six responsive widths, nullable content, keyboard/touch behavior and reduced motion in the in-app browser; update the phase 7 handoff and stop.
 
 ## Future phase boundaries
 

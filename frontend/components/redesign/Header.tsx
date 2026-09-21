@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { RefObject, useEffect, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { redesignScope } from '../../styles/redesign';
@@ -73,6 +73,68 @@ const HeaderWrapper = styled.header`
 	@media (max-width: 550px) {
 		height: calc(70vw * 112 / 1160 + 42px);
 	}
+	.landing-icon {
+		display: none;
+	}
+	&[data-home='true'] {
+		.header-inner {
+			position: absolute;
+			top: var(--home-top, calc(100svh - 132px));
+			width: 100%;
+			transition: none;
+		}
+		.logo-row {
+			width: var(--home-width, 226px);
+			max-width: none;
+			margin-top: var(--home-crop, 0px);
+		}
+		.landing-icon {
+			display: block;
+			position: absolute;
+			width: 48px;
+			height: 28px;
+			left: calc(50% - 24px);
+			top: -58px;
+			opacity: var(--home-icon, 1);
+		}
+		nav {
+			margin-top: 28px;
+		}
+		&[data-compact='true'] .header-inner {
+			top: 16px;
+			transform: none;
+		}
+		&[data-compact='true'] .logo-row,
+		&[data-compact='true'] .landing-icon {
+			display: none;
+		}
+		&[data-compact='true'] nav {
+			margin-top: 0;
+		}
+	}
+	@media (max-width: 768px) {
+		&[data-home='true'] {
+			.header-inner {
+				top: var(--home-top, calc(100svh - 108px));
+			}
+			.logo-row {
+				width: var(--home-width, 174px);
+			}
+			.landing-icon {
+				width: 40px;
+				height: 24px;
+				left: calc(50% - 20px);
+				top: -46px;
+			}
+			.menu-trigger {
+				margin-top: 24px;
+			}
+			&[data-compact='true'] .menu-trigger {
+				margin-top: 0;
+			}
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.header-inner {
 			transition: none;
@@ -92,25 +154,96 @@ export default function Header({
 	triggerRef: RefObject<HTMLButtonElement>;
 }) {
 	const [compact, setCompact] = useState(false);
+	const [overLanding, setOverLanding] = useState(true);
+	const headerRef = useRef<HTMLElement>(null);
 	const router = useRouter();
+	const home = router.pathname === '/';
 	useEffect(() => {
-		const update = () => setCompact(window.scrollY > 100);
+		let frame = 0;
+		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const update = () => {
+			frame = 0;
+			if (!home) {
+				setCompact(window.scrollY > 100);
+				return;
+			}
+			const header = headerRef.current;
+			const landing = document.querySelector<HTMLElement>(
+				'[data-home-landing]'
+			);
+			const height = landing?.offsetHeight || window.innerHeight;
+			const mobile = window.innerWidth <= 768;
+			const scroll = Math.max(0, window.scrollY);
+			const progress = reduced.matches
+				? scroll > 40
+					? 1
+					: 0
+				: Math.min(1, scroll / (height * 0.7));
+			const startWidth = mobile ? 174 : 226;
+			const endWidth = mobile
+				? Math.min(window.innerWidth - 48, 400)
+				: window.innerWidth * 0.75;
+			header?.style.setProperty(
+				'--home-width',
+				`${startWidth + (endWidth - startWidth) * progress}px`
+			);
+			header?.style.setProperty(
+				'--home-top',
+				`${(height - (mobile ? 108 : 132)) * (1 - progress)}px`
+			);
+			header?.style.setProperty(
+				'--home-crop',
+				`${(mobile ? -10 : (-endWidth * 31) / 226 / 2) * progress}px`
+			);
+			header?.style.setProperty(
+				'--home-icon',
+				String(Math.max(0, 1 - progress * 4))
+			);
+			setCompact(scroll > height * 0.9);
+			setOverLanding(scroll < height - 100);
+		};
+		const schedule = () => {
+			if (!frame) frame = window.requestAnimationFrame(update);
+		};
 		update();
-		window.addEventListener('scroll', update, { passive: true });
-		return () => window.removeEventListener('scroll', update);
-	}, [router.asPath]);
+		window.addEventListener('scroll', schedule, { passive: true });
+		window.addEventListener('resize', schedule);
+		reduced.addEventListener('change', schedule);
+		const observer = new ResizeObserver(schedule);
+		const landing = document.querySelector('[data-home-landing]');
+		if (landing) observer.observe(landing);
+		return () => {
+			window.cancelAnimationFrame(frame);
+			window.removeEventListener('scroll', schedule);
+			window.removeEventListener('resize', schedule);
+			reduced.removeEventListener('change', schedule);
+			observer.disconnect();
+		};
+	}, [router.asPath, home]);
 	return (
 		<HeaderWrapper
 			className="header"
+			ref={headerRef}
+			data-home={home}
 			data-redesign-chrome
 			data-compact={compact}
 		>
 			<div className="header-inner">
+				{home && (
+					<img
+						className="landing-icon"
+						src="/redesign/brand/logo-icon.svg"
+						width="48"
+						height="28"
+						alt=""
+						aria-hidden="true"
+					/>
+				)}
 				<div className="logo-row">
 					<Link href="/" aria-label="Otherness home">
 						<img
 							src={
-								router.pathname === '/'
+								home && overLanding
 									? '/redesign/brand/logo-word.svg'
 									: '/redesign/brand/logo-word-dark.svg'
 							}
