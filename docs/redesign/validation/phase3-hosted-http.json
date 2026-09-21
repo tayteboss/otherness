@@ -1,0 +1,51 @@
+[
+  {
+    "path": "/work",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive",
+    "og": [
+      "https://otherness-git-codex-site-redesign-tayteco-36dd2d0b.vercel.app/redesign/brand/og.jpg"
+    ]
+  },
+  {
+    "path": "/work/medable",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive",
+    "og": [
+      "https://cdn.sanity.io/images/vdwu088q/production/2182e688e46ae5e0ed6216c25575b0e0206b0bd1-1200x630.jpg"
+    ]
+  },
+  {
+    "path": "/conversations/radical-incusion",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive",
+    "og": [
+      "https://cdn.sanity.io/images/vdwu088q/production/942d870a68b180a75bc67deffb18ec340dbbb238-1200x630.jpg"
+    ]
+  },
+  {
+    "path": "/redesign/fonts/NeueMontreal-Bold.woff2",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/redesign/favicon/site.webmanifest",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/redesign/brand/og.jpg",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/robots.txt",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/sitemap.xml",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  }
+]

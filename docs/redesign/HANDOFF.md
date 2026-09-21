@@ -57,6 +57,10 @@ Port 3333 is an existing allowed CORS origin. The authenticated browser UI could
 - Hosted final validation is recorded in VALIDATION.md.
 - Verified staging alias remains on `dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N`; public `www.otherness.design` remains on `dpl_2hW8KVM2WdqKzcff48GcNwxsi41B`.
 
+## Phase 3 preview
+
+Implementation commit `6c7605c` is deployed READY as `dpl_DNhdLzJjwpgkmZTt8g6nf7ouiqZE` at the existing stable preview. Hosted chrome/menu/metadata/assets/noindex checks pass. Staging and production retain their original deployment IDs. Documentation/capture follow-up commits contain no application changes.
+
 ## Phase 3 implementation notes
 
 - Every concrete static page loads fresh published settings through `getRedesignShellProps()` in `frontend/lib/redesign/shell.ts`. No App.getInitialProps or client settings fetch was added. Keep this additive shell prop on new phase 4/6 pages.

@@ -114,4 +114,10 @@ Our Way is a phase 6 routing dependency; Contact remains the current booking des
 
 ## Hosted phase 3 result
 
-Pending the final phase 3 implementation push and dedicated preview verification. Existing staging/production aliases were checked before deployment and still match the phase 2 recorded IDs. No staging or production changes are authorized in this phase.
+PASS: implementation commit `6c7605c7568f45d752c57aaa61021b4594bcaf00` built READY as `dpl_DNhdLzJjwpgkmZTt8g6nf7ouiqZE`. The stable preview serves the new chrome; in-app browser verified its mobile menu/Escape/focus return and absolute preview-origin OG image. Hosted Work, Medable, article, font, manifest, OG, robots and sitemap requests all pass with noindex. Project/article image overrides remain single tags. See `phase3-hosting.json` and `phase3-hosted-http.json`.
+
+Staging still resolves to `dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N`; public www still resolves to `dpl_2hW8KVM2WdqKzcff48GcNwxsi41B`. No aliases, hooks, production branches or CMS documents were changed by deployment. Git pushes use the explicit redesign branch only.
+
+Additional representative check: Medable's mobile Product navigation scrolls to its section heading at 100px below the viewport top. Full controls/all sections remain phase 8. Final Work screenshots were recaptured after the existing page animation settled (opacity 1); desktop header footprint is 202px, matching baseline body positioning.
+
+Unattended commit creation used a one-command signing override because 1Password signing required interaction. Persistent Git signing configuration was not changed.
