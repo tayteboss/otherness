@@ -79,3 +79,5 @@ PASS: commit `e7f70af5351d14f82e3350290846db8b898f0e80` built successfully from 
 The stable preview `https://otherness-git-codex-site-redesign-tayteco-36dd2d0b.vercel.app/work` was inspected in the in-app browser. `/work`, `/robots.txt` and `/sitemap.xml` all return HTTP 200 with `noindex, nofollow, noarchive`; robots disallows `/`, and sitemap entries use the preview origin rather than staging. See `phase2-hosting.json` and `phase2-hosted-build-success.txt`.
 
 Phase 2 is complete. Website Redesign content is editable in the deployed Studio, though authenticated browser editing remains untested because that browser session is logged out. Phase 3 is next; no chrome/page rendering was changed in this phase.
+
+Final workspace note: 18 independently supplied Neue Montreal OTF/TTF files appeared after the implementation push. `file` validated their font containers. They remain untracked and untouched for phase 3; this task did not add them to its commits or deploy them. Asset register and handoff updated accordingly.

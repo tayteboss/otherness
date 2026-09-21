@@ -60,7 +60,7 @@ Port 3333 is an existing allowed CORS origin. The authenticated browser UI could
 
 Studio and local frontend builds pass. Targeted lint, schema/GROQ fixture checks, published-data checks, idempotent seeding and legacy preservation pass. Full frontend typecheck still has 13 inherited errors; Studio has the same 5. Global frontend ESLint still cannot load its invalid legacy rule. Existing Medable/Artem development hydration errors remain out of scope.
 
-Seeded service project selections are starting points based on current CMS tags/order; review them before final acceptance. Approved new copy, trademark, principles, recognition, new clean imagery, Neue Montreal files and Contact designs remain pending. See ASSETS.md, DATA.md and exact `validation/phase2-*` outputs.
+Seeded service project selections are starting points based on current CMS tags/order; review them before final acceptance. Approved new copy, trademark, principles, recognition, new clean imagery and Contact designs remain pending. Neue Montreal OTF/TTF originals arrived locally during the final check; the 18 untracked files are untouched and not yet pushed. See ASSETS.md before phase 3 font integration. See ASSETS.md, DATA.md and exact `validation/phase2-*` outputs.
 
 ## Next conversation: phase 3 only
 
@@ -76,7 +76,7 @@ Phase 3 scope:
 4. Accessible mobile menu: close, Escape, focus trap/return, route close and scroll restoration.
 5. Dark shared footer with actual social destinations and Privacy; desktop bottom wordmark/nav strip.
 6. Wire supplied favicon/manifest/OG defaults, preserving overrides; no conflicting default tags.
-7. Keep fallback sans-serif explicitly temporary until Neue Montreal arrives; do not alter Work global font variables.
+7. Inspect the newly supplied local Neue Montreal OTF/TTF files, select/prepare and commit needed web assets, and scope font integration to redesign styles. Do not alter Work global font variables.
 8. Verify responsive chrome/menu behaviour and Work regression, update handoff, stop.
 
 ## Future phase boundaries

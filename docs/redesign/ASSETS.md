@@ -14,7 +14,7 @@ Updated: 21 September 2026, phase 2.
 
 ## Awaiting supply
 
-- Neue Montreal font files and available/licensed weights, preferably WOFF2. Apply to redesign sans-serif styles only. Do not invent file names or synthetic missing weights.
+- Web-ready Neue Montreal variants/weight mapping: OTF/TTF originals arrived locally at phase 2 completion (see below); WOFF2 files are not present. Apply only to redesign styles.
 - Clean desktop/mobile landing artwork (including the sliced treatment, without UI/text).
 - Our Way hero and Results background originals, including appropriate mobile crops.
 - Service-card imagery for each service/project selection.
@@ -40,3 +40,7 @@ The exact supplied filenames are preserved in `references/` for easy comparison 
 ## Phase 2 CMS readiness
 
 All required image slots now exist in the redesign schemas with alt text and crop/hotspot support. No image assets were uploaded or copied from legacy content. Published Medable testimonial copy, ten real Noticed entries and existing project references are seeded; their new artwork remains pending. Seeded service selections, founder/process copy, trademark and recognition need editorial review.
+
+## Neue Montreal arrived at phase 2 completion
+
+18 valid font files appeared in `frontend/public/fonts/PPNeueMontreal-*` during the final check. They were supplied independently of this task and remain **untracked, untouched local files**; not yet in the remote preview. Available names: Bold (OTF/TTF), BoldItalic (TTF), Book (OTF/TTF), Italic (OTF/TTF), Light (OTF/TTF), Medium (OTF/TTF), Regular (OTF/TTF), SemiBolditalic (OTF), Thin (OTF/TTF), ThinItalic (OTF/TTF). `file` identifies valid OpenType/TrueType font data. Phase 3 should inspect actual weight/style metadata, choose needed web assets, commit the chosen assets and wire them only into redesign typography. No fonts were integrated in phase 2.
