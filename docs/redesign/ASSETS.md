@@ -1,6 +1,6 @@
 # Asset register
 
-Updated: 21 September 2026, phase 1.
+Updated: 21 September 2026, phase 2.
 
 ## Available and staged
 
@@ -36,3 +36,7 @@ All photographic/artwork originals will be newly supplied; using existing CMS ph
 - Social links must use current CMS destinations, not a fabricated Twitter profile.
 
 The exact supplied filenames are preserved in `references/` for easy comparison with the specification. Do not serve these screenshot files as site sections.
+
+## Phase 2 CMS readiness
+
+All required image slots now exist in the redesign schemas with alt text and crop/hotspot support. No image assets were uploaded or copied from legacy content. Published Medable testimonial copy, ten real Noticed entries and existing project references are seeded; their new artwork remains pending. Seeded service selections, founder/process copy, trademark and recognition need editorial review.

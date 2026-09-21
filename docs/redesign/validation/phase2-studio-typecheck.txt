@@ -1,0 +1,33 @@
+studio/objects/index.ts(292,18): error TS7006: Parameter 'Rule' implicitly has an 'any' type.
+studio/sanity.config.ts(83,13): error TS2322: Type 'ListItem' is not assignable to type 'ListItemBuilder_2 | ListItem_2 | Divider_2'.
+  Type 'ListItem' is not assignable to type 'ListItem_2'.
+    Types of property 'child' are incompatible.
+      Type 'ListItemChild' is not assignable to type 'ListItemChild_2'.
+        Type 'List' is not assignable to type 'ListItemChild_2'.
+          Type 'List' is not assignable to type 'List_2 | EditorNode_2 | DocumentNode_2 | Component_2'.
+            Type 'List' is not assignable to type 'List_2'.
+              Types of property 'items' are incompatible.
+                Type '(ListItem | Divider)[]' is not assignable to type '(ListItem_2 | Divider_2)[]'.
+                  Type 'ListItem | Divider' is not assignable to type 'ListItem_2 | Divider_2'.
+                    Type 'ListItem' is not assignable to type 'ListItem_2 | Divider_2'.
+studio/sanity.config.ts(83,61): error TS2322: Type 'StructureBuilder_2' is not assignable to type 'StructureBuilder'.
+  Types of property 'component' are incompatible.
+    Type '(spec?: ComponentInput_2 | UserComponent_2 | undefined) => ComponentBuilder_2' is not assignable to type '(spec?: ComponentInput | UserComponent | undefined) => ComponentBuilder'.
+      Types of parameters 'spec' and 'spec' are incompatible.
+        Type 'ComponentInput | UserComponent | undefined' is not assignable to type 'ComponentInput_2 | UserComponent_2 | undefined'.
+          Type 'ComponentInput' is not assignable to type 'ComponentInput_2 | UserComponent_2 | undefined'.
+            Type 'ComponentInput' is not assignable to type 'ComponentInput_2'.
+              Types of property 'component' are incompatible.
+                Type 'UserComponent' is not assignable to type 'UserComponent_2'.
+                  Type 'ComponentClass<{ child?: ComponentBuilder | undefined; childItemId?: string | undefined; id: string; isActive?: boolean | undefined; isSelected?: boolean | undefined; itemId: string; options?: Record<...> | undefined; paneKey: string; urlParams: Record<...> | undefined; }, any>' is not assignable to type 'UserComponent_2'.
+                    Type 'ComponentClass<{ child?: ComponentBuilder | undefined; childItemId?: string | undefined; id: string; isActive?: boolean | undefined; isSelected?: boolean | undefined; itemId: string; options?: Record<...> | undefined; paneKey: string; urlParams: Record<...> | undefined; }, any>' is not assignable to type 'ComponentClass<{ child?: ComponentBuilder_2 | undefined; childItemId?: string | undefined; id: string; isActive?: boolean | undefined; isSelected?: boolean | undefined; itemId: string; options?: Record<...> | undefined; paneKey: string; urlParams: Record<...> | undefined; }, any>'.
+                      Types of property 'propTypes' are incompatible.
+                        Type 'WeakValidationMap<{ child?: ComponentBuilder | undefined; childItemId?: string | undefined; id: string; isActive?: boolean | undefined; isSelected?: boolean | undefined; itemId: string; options?: Record<...> | undefined; paneKey: string; urlParams: Record<...> | undefined; }> | undefined' is not assignable to type 'WeakValidationMap<{ child?: ComponentBuilder_2 | undefined; childItemId?: string | undefined; id: string; isActive?: boolean | undefined; isSelected?: boolean | undefined; itemId: string; options?: Record<...> | undefined; paneKey: string; urlParams: Record<...> | undefined; }> | undefined'.
+                          Type 'WeakValidationMap<{ child?: ComponentBuilder | undefined; childItemId?: string | undefined; id: string; isActive?: boolean | undefined; isSelected?: boolean | undefined; itemId: string; options?: Record<...> | undefined; paneKey: string; urlParams: Record<...> | undefined; }>' is not assignable to type 'WeakValidationMap<{ child?: ComponentBuilder_2 | undefined; childItemId?: string | undefined; id: string; isActive?: boolean | undefined; isSelected?: boolean | undefined; itemId: string; options?: Record<...> | undefined; paneKey: string; urlParams: Record<...> | undefined; }>'.
+                            Types of property 'child' are incompatible.
+                              Type 'Validator<ComponentBuilder | null | undefined> | undefined' is not assignable to type 'Validator<ComponentBuilder_2 | null | undefined> | undefined'.
+                                Type 'Validator<ComponentBuilder | null | undefined>' is not assignable to type 'Validator<ComponentBuilder_2 | null | undefined>'.
+                                  Type 'ComponentBuilder | null | undefined' is not assignable to type 'ComponentBuilder_2 | null | undefined'.
+                                    Type 'ComponentBuilder' is not assignable to type 'ComponentBuilder_2'.
+studio/sanity.config.ts(84,13): error TS2322: Type 'ListItem' is not assignable to type 'ListItemBuilder_2 | ListItem_2 | Divider_2'.
+studio/sanity.config.ts(84,61): error TS2322: Type 'StructureBuilder_2' is not assignable to type 'StructureBuilder'.

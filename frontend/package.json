@@ -10,7 +10,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "dev:redesign": "REDESIGN_PREVIEW=1 next dev -p 3010",
-    "build:redesign": "REDESIGN_PREVIEW=1 npm run build"
+    "build:redesign": "node scripts/redesign/build.cjs",
+    "seed:redesign": "node scripts/redesign/seed.cjs",
+    "check:redesign": "node scripts/redesign/check.cjs",
+    "check:redesign:release": "node scripts/redesign/check.cjs --release",
+    "verify:redesign": "node scripts/redesign/verify.cjs"
   },
   "dependencies": {
     "@mux/mux-player-react": "^2.3.3",

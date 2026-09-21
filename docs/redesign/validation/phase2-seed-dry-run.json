@@ -1,0 +1,540 @@
+{
+  "mode": "dry-run",
+  "sourceSettingsRevision": "9sbb9mCKcoDYNnVJUsvUcN",
+  "consultationUrl": "https://app.tezzera.co/meet/otherness-discovery",
+  "existing": [],
+  "documents": [
+    {
+      "_id": "siteSettingsV2",
+      "_type": "siteSettingsV2",
+      "consultationUrl": "https://app.tezzera.co/meet/otherness-discovery",
+      "consultationLabel": "Book a consultation",
+      "navigation": [
+        {
+          "_type": "redesignLink",
+          "label": "Our Work",
+          "href": "/work",
+          "_key": "work"
+        },
+        {
+          "_type": "redesignLink",
+          "label": "Our Way",
+          "href": "/our-way",
+          "_key": "our-way"
+        },
+        {
+          "_type": "redesignLink",
+          "label": "Contact",
+          "href": "https://app.tezzera.co/meet/otherness-discovery",
+          "_key": "contact"
+        }
+      ],
+      "footer": {
+        "heading": "Let’s work together.",
+        "tagline": "Otherness is an Amsterdam based creative studio operating worldwide.",
+        "copyright": "Otherness",
+        "privacyLink": {
+          "_type": "redesignLink",
+          "label": "Privacy",
+          "href": "/privacy"
+        },
+        "socials": [
+          {
+            "_type": "redesignLink",
+            "label": "Instagram",
+            "href": "https://www.instagram.com/otherness.design/",
+            "_key": "social-0"
+          },
+          {
+            "_type": "redesignLink",
+            "label": "LinkedIn",
+            "href": "https://www.linkedin.com/company/otherness-design",
+            "_key": "social-1"
+          },
+          {
+            "_type": "redesignLink",
+            "label": "Email",
+            "href": "mailto:collabs@otherness.design",
+            "_key": "social-2"
+          }
+        ]
+      },
+      "seo": {
+        "title": "Embrace your brand’s Otherness.",
+        "description": "Otherness is a creative and design studio for visionary leaders who are ready to shape conversations, color outside the lines, and design their future."
+      },
+      "editorialNotes": "Seeded from fresh published siteSettings revision 9sbb9mCKcoDYNnVJUsvUcN. Confirm trademark copy; supplied OG default is wired in phase 3."
+    },
+    {
+      "_id": "homePageV2",
+      "_type": "homePageV2",
+      "loadingPairs": [
+        {
+          "_key": "pair-0",
+          "_type": "wordPair",
+          "first": "Poetry",
+          "second": "Power"
+        },
+        {
+          "_key": "pair-1",
+          "_type": "wordPair",
+          "first": "Strategy",
+          "second": "Design"
+        },
+        {
+          "_key": "pair-2",
+          "_type": "wordPair",
+          "first": "Endurance",
+          "second": "Distinction"
+        }
+      ],
+      "landing": {
+        "statement": "Everything in between is otherness."
+      },
+      "introduction": {
+        "heading": "Own your intersections",
+        "link": {
+          "_type": "redesignLink",
+          "label": "What to expect",
+          "href": "/our-way"
+        }
+      },
+      "services": [
+        {
+          "_key": "branding",
+          "_type": "service",
+          "title": "Branding",
+          "contactLabel": "Get in touch",
+          "projects": [
+            {
+              "_key": "project-eedb8938-3e54-4b4b-9df8-830abaea8491",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "eedb8938-3e54-4b4b-9df8-830abaea8491"
+              }
+            },
+            {
+              "_key": "project-0a9dc124-8299-4578-9488-f91f848f716a",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "0a9dc124-8299-4578-9488-f91f848f716a"
+              }
+            },
+            {
+              "_key": "project-971af1fc-3baf-42b0-858e-4f2e14afc185",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "971af1fc-3baf-42b0-858e-4f2e14afc185"
+              }
+            }
+          ]
+        },
+        {
+          "_key": "strategy",
+          "_type": "service",
+          "title": "Strategy",
+          "contactLabel": "Get in touch",
+          "projects": [
+            {
+              "_key": "project-eedb8938-3e54-4b4b-9df8-830abaea8491",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "eedb8938-3e54-4b4b-9df8-830abaea8491"
+              }
+            },
+            {
+              "_key": "project-971af1fc-3baf-42b0-858e-4f2e14afc185",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "971af1fc-3baf-42b0-858e-4f2e14afc185"
+              }
+            },
+            {
+              "_key": "project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "7d764437-8ae7-4c7d-b0fa-0a806d3a7372"
+              }
+            }
+          ]
+        },
+        {
+          "_key": "art-direction",
+          "_type": "service",
+          "title": "Art direction",
+          "contactLabel": "Get in touch",
+          "projects": [
+            {
+              "_key": "project-eedb8938-3e54-4b4b-9df8-830abaea8491",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "eedb8938-3e54-4b4b-9df8-830abaea8491"
+              }
+            },
+            {
+              "_key": "project-0a9dc124-8299-4578-9488-f91f848f716a",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "0a9dc124-8299-4578-9488-f91f848f716a"
+              }
+            },
+            {
+              "_key": "project-971af1fc-3baf-42b0-858e-4f2e14afc185",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "971af1fc-3baf-42b0-858e-4f2e14afc185"
+              }
+            }
+          ]
+        },
+        {
+          "_key": "packaging",
+          "_type": "service",
+          "title": "Packaging",
+          "contactLabel": "Get in touch",
+          "projects": [
+            {
+              "_key": "project-eedb8938-3e54-4b4b-9df8-830abaea8491",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "eedb8938-3e54-4b4b-9df8-830abaea8491"
+              }
+            },
+            {
+              "_key": "project-0a9dc124-8299-4578-9488-f91f848f716a",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "0a9dc124-8299-4578-9488-f91f848f716a"
+              }
+            },
+            {
+              "_key": "project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "7d764437-8ae7-4c7d-b0fa-0a806d3a7372"
+              }
+            }
+          ]
+        },
+        {
+          "_key": "digital",
+          "_type": "service",
+          "title": "Digital",
+          "contactLabel": "Get in touch",
+          "projects": [
+            {
+              "_key": "project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "7d764437-8ae7-4c7d-b0fa-0a806d3a7372"
+              }
+            },
+            {
+              "_key": "project-8fac73fc-5f95-4f6b-ae87-db2359677026",
+              "_type": "projectCard",
+              "project": {
+                "_type": "reference",
+                "_ref": "8fac73fc-5f95-4f6b-ae87-db2359677026"
+              }
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "_key": "medable",
+          "_type": "result",
+          "client": "Medable",
+          "quote": "“The new brand design is really impressive — seeing something that has been missing for a while. There have been some attempts — but none of them really captured Medable right.”",
+          "attribution": "NORA VOLGER,\nSVP OF MARKETING, MEDABLE"
+        }
+      ],
+      "noticed": [
+        {
+          "_key": "17f65b752f51",
+          "_type": "noticedEntry",
+          "title": "41 Pet Packages With Serious Bite",
+          "source": "The Dieline",
+          "year": "2025",
+          "link": {
+            "_type": "redesignLink",
+            "label": "41 Pet Packages With Serious Bite",
+            "href": "/work/flydog"
+          }
+        },
+        {
+          "_key": "614bbd1aa77e",
+          "_type": "noticedEntry",
+          "title": "Flydog",
+          "source": "World Brand Design ",
+          "year": "2025",
+          "link": {
+            "_type": "redesignLink",
+            "label": "Flydog",
+            "href": "https://worldbranddesign.com/from-ruff-to-radiant-flydog-otherness-elevate-pet-grooming-with-design-that-wags/"
+          }
+        },
+        {
+          "_key": "3293acf3d685",
+          "_type": "noticedEntry",
+          "title": "What successful creatives wish they'd known",
+          "source": "CreativeBoom",
+          "year": "2024",
+          "link": {
+            "_type": "redesignLink",
+            "label": "What successful creatives wish they'd known",
+            "href": "https://www.creativeboom.com/tips/what-successful-creatives-wish-theyd-known-when-they-were-fresh-grads/"
+          }
+        },
+        {
+          "_key": "337d039a8ddf",
+          "_type": "noticedEntry",
+          "title": "Medable",
+          "source": "Creativepool",
+          "year": "2024",
+          "link": {
+            "_type": "redesignLink",
+            "label": "Medable",
+            "href": "/work/medable"
+          }
+        },
+        {
+          "_key": "24ba10613c9f",
+          "_type": "noticedEntry",
+          "title": "Suite 437",
+          "source": "Pentawards Shortlist",
+          "year": "2024",
+          "link": {
+            "_type": "redesignLink",
+            "label": "Suite 437",
+            "href": "/work/suite437-coffee-branding"
+          }
+        },
+        {
+          "_key": "7b408a9ecab9",
+          "_type": "noticedEntry",
+          "title": "Aero",
+          "source": "The Brand Identity",
+          "year": "2024",
+          "link": {
+            "_type": "redesignLink",
+            "label": "Aero",
+            "href": "/work/aero"
+          }
+        },
+        {
+          "_key": "7ad0f946e4b3",
+          "_type": "noticedEntry",
+          "title": "Aero",
+          "source": "Underconsideration",
+          "year": "2024",
+          "link": {
+            "_type": "redesignLink",
+            "label": "Aero",
+            "href": "/work/aero"
+          }
+        },
+        {
+          "_key": "8f5d4f6cc388",
+          "_type": "noticedEntry",
+          "title": "Medable",
+          "source": "The Drum Awards",
+          "year": "2024",
+          "link": {
+            "_type": "redesignLink",
+            "label": "Medable",
+            "href": "/work/medable"
+          }
+        },
+        {
+          "_key": "16bdde8fe9b4",
+          "_type": "noticedEntry",
+          "title": "Medable",
+          "source": "World Brand Society Awards",
+          "year": "2024",
+          "link": {
+            "_type": "redesignLink",
+            "label": "Medable",
+            "href": "/work/medable"
+          }
+        },
+        {
+          "_key": "1140c4bb22d5",
+          "_type": "noticedEntry",
+          "title": "The Gorgeous Spice Company",
+          "source": "World Brand Society",
+          "year": "2024",
+          "link": {
+            "_type": "redesignLink",
+            "label": "The Gorgeous Spice Company",
+            "href": "/work/the-gorgeous-spice-company"
+          }
+        }
+      ],
+      "seo": {
+        "title": "Embrace your brand’s Otherness.",
+        "description": "Otherness is a creative and design studio for visionary leaders who are ready to shape conversations, color outside the lines, and design their future."
+      },
+      "editorialNotes": "Project selections are editorial starting points from current project service tags and orderRank; review per service. Medable quote/attribution copied together from published Home, no Nike logo. Introduction statement and service descriptions need approved copy. All image fields deliberately empty pending new originals. Noticed text/destinations are real published entries; thumbnails await supply."
+    },
+    {
+      "_id": "ourWayPage",
+      "_type": "ourWayPage",
+      "hero": {
+        "scrollLabel": "Scroll down"
+      },
+      "process": {
+        "heading": "Our process together",
+        "description": "Origins & destinations, based around 4 questions",
+        "stages": [
+          {
+            "_key": "c541bd51ad92",
+            "_type": "processStage",
+            "title": "What came before us?",
+            "services": [
+              {
+                "_key": "entry-0",
+                "_type": "redesignListEntry",
+                "title": "Landscape and trend analysis"
+              },
+              {
+                "_key": "entry-1",
+                "_type": "redesignListEntry",
+                "title": "Design thinking & consulting"
+              }
+            ]
+          },
+          {
+            "_key": "937b921c7277",
+            "_type": "processStage",
+            "title": "What matters about us?",
+            "services": [
+              {
+                "_key": "entry-0",
+                "_type": "redesignListEntry",
+                "title": "Brand positioning"
+              },
+              {
+                "_key": "entry-1",
+                "_type": "redesignListEntry",
+                "title": "Brand strategy"
+              }
+            ]
+          },
+          {
+            "_key": "6c082adf1039",
+            "_type": "processStage",
+            "title": "How do we express our brand today?",
+            "services": [
+              {
+                "_key": "entry-0",
+                "_type": "redesignListEntry",
+                "title": "Naming"
+              },
+              {
+                "_key": "entry-1",
+                "_type": "redesignListEntry",
+                "title": "Art and creative direction"
+              },
+              {
+                "_key": "entry-2",
+                "_type": "redesignListEntry",
+                "title": "Voice, tone and copywriting"
+              },
+              {
+                "_key": "entry-3",
+                "_type": "redesignListEntry",
+                "title": "Branding, visual identity and standards"
+              }
+            ]
+          },
+          {
+            "_key": "e94aaf56bbc5",
+            "_type": "processStage",
+            "title": "How do we adapt, evolve, and make it last?",
+            "services": [
+              {
+                "_key": "entry-0",
+                "_type": "redesignListEntry",
+                "title": "Brand execution"
+              },
+              {
+                "_key": "entry-1",
+                "_type": "redesignListEntry",
+                "title": "Packaging and print design"
+              },
+              {
+                "_key": "entry-2",
+                "_type": "redesignListEntry",
+                "title": "Website design"
+              },
+              {
+                "_key": "entry-3",
+                "_type": "redesignListEntry",
+                "title": "Implementation planning"
+              },
+              {
+                "_key": "entry-4",
+                "_type": "redesignListEntry",
+                "title": "Brand training"
+              }
+            ]
+          }
+        ]
+      },
+      "consultation": {
+        "heading": "Become incomparable.",
+        "buttonLabel": "Book a consultation"
+      },
+      "credentials": {
+        "founderHeading": "Otherness is run by Joel Derksen",
+        "biography": "Joel completed his formal studies and launched his design career in Canada, working with boutique clients and agencies across the country. He then left for Europe, working for premium brands like Acura, Salomon and Bacardi, while nurturing his own smaller clients.\n\nHe settled in Rotterdam in 2022 and founded Otherness to offer his systematic “no stones unturned” approach to problem solving to start-ups, scale-ups and brands that aren’t like everyone else. He is involved in every project from pre-conception through to launch.\n\nHis passion for design keeps him learning, taking summer classes and residences around the world in the topics of fashion, art direction, and concept development. He has had solo and group shows of his artistic work in London, Rotterdam and Seoul.\n\nVisually restless, Joel believes that strategy and artful execution are not opposites, and is always interested in creating new and surprising connections instead of revisiting familiar territory.\n\nJoel is co-founder of Nor, a digital co-operative commons dedicated to the discussion and critique of the material culture of Canada.",
+        "services": [
+          {
+            "_key": "entry-0",
+            "_type": "redesignListEntry",
+            "title": "Strategy"
+          },
+          {
+            "_key": "entry-1",
+            "_type": "redesignListEntry",
+            "title": "Branding"
+          },
+          {
+            "_key": "entry-2",
+            "_type": "redesignListEntry",
+            "title": "Art Direction"
+          },
+          {
+            "_key": "entry-3",
+            "_type": "redesignListEntry",
+            "title": "Packaging"
+          },
+          {
+            "_key": "entry-4",
+            "_type": "redesignListEntry",
+            "title": "Digital"
+          }
+        ]
+      },
+      "seo": {
+        "title": "Otherness — Our Way",
+        "description": "Our process and approach to design projects"
+      },
+      "editorialNotes": "Process and founder biography copied from published Working Together. Hero, introduction, four principles, founder note, consultation supporting text, clients and recognition await approved copy. Do not reuse the duplicated/truncated screenshot principles. All images and logos await new supplied originals."
+    }
+  ]
+}

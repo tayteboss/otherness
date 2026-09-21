@@ -1,3 +1,4 @@
+import {redesignSingletons, isRedesignSingleton} from './schemas/redesign'
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
@@ -20,6 +21,22 @@ export default defineConfig({
         return S.list()
           .title('Content')
           .items([
+            S.listItem()
+              .title('Website Redesign')
+              .icon(DocumentIcon)
+              .child(
+                S.list()
+                  .title('Website Redesign')
+                  .items(
+                    redesignSingletons.map(({name, title}) =>
+                      S.listItem()
+                        .title(title)
+                        .icon(DocumentIcon)
+                        .child(S.editor().schemaType(name).documentId(name)),
+                    ),
+                  ),
+              ),
+            S.divider(),
             S.listItem()
               .title('Site Settings')
               .icon(EarthGlobeIcon)
@@ -85,6 +102,15 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
+    templates: (templates) => templates.filter((t) => !isRedesignSingleton(t.schemaType)),
+  },
+
+  document: {
+    newDocumentOptions: (options) => options.filter((o) => !isRedesignSingleton(o.templateId)),
+    actions: (actions, context) =>
+      isRedesignSingleton(context.schemaType)
+        ? actions.filter((a) => ['publish', 'discardChanges', 'restore'].includes(a.action || ''))
+        : actions,
   },
 
   parts: [

@@ -1,3 +1,4 @@
+import {redesignSchemaTypes} from './redesign'
 import article from './article'
 import conversationsPage from './conversationsPage'
 import homePage from './homePage'
@@ -23,6 +24,7 @@ import whatToExpectPage from './whatToExpectPage'
 import workPage from './workPage'
 
 export const schemaTypes = [
+  ...redesignSchemaTypes,
   // Site Settings
   siteSettings,
 

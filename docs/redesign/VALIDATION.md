@@ -45,3 +45,17 @@ Local preview isolation/noindex is verified. No hosted preview has been created;
 New tokens are opt-in exports in `frontend/styles/redesign.ts`, not imported into legacy global styles. Brand files are under `/redesign/` and are not wired into document metadata until phase 3. All 22 design screenshots are in `references/`.
 
 Neue Montreal, new clean artwork and Contact designs remain pending. See ASSETS.md.
+
+# Phase 2 validation — 21 September 2026
+
+- `node studio/scripts/verify-redesign.cjs`: PASS; seven schema types compile, groups resolve, image alt/hotspot configured, Contact excluded.
+- `npm run verify:redesign`: PASS; fixed IDs, fresh settings/normalized email, service order, resolved project cards and stable keys, real Noticed links, null assets/documents and unresolved-reference diagnostic; all 182 legacy source hashes match.
+- Seed dry-run read fresh published settings revision `9sbb9mCKcoDYNnVJUsvUcN`. First `--apply --cli-auth` created 3 documents; second created 0. All 642 pre-existing non-draft documents retained identical IDs/revisions after both runs.
+- Studio build and deployment: PASS; additive schema/config deployed to https://otherness.sanity.studio/.
+- `npm run build:redesign`: PASS; 33 routes generated; legacy buildJson skipped; fresh redesign snapshot isolated under ignored `.redesign/`.
+- Frontend full typecheck: same 13 inherited errors; no redesign errors. Studio full typecheck: 5 inherited errors (Rule and orderable-list type mismatches); prior JSX-namespace error is no longer reproduced in this installed environment. No added errors.
+- Targeted ESLint on new frontend modules/scripts and Studio schema/verification script: PASS using `--no-eslintrc --config frontend/.eslintrc.redesign.cjs`. The legacy ESLint configuration remains invalid.
+- Release content check: intentionally FAIL, exit 1, 76 actionable missing copy/artwork/alt fields. Preview builds remain usable. This is not visual acceptance; supplied artwork/font dependencies remain.
+- Installed Studio CLI does not support `sanity schema extract`; explicit nullable frontend types plus query/schema checks are used without upgrading dependencies.
+- Local Studio origin 3334 was rejected by existing CORS; switched to the already allowed 3333. Browser then reached Sanity sign-in. No CORS or access policy changes were made; authenticated UI editing remains unverified.
+- Exact build/type/data outputs are under `validation/phase2-*`. Hosting completion is recorded below after deployment verification.

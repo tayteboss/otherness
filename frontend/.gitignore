@@ -41,3 +41,5 @@ yarn-error.log*
 # IDE setups
 /.vscode
 /.idea
+# Fresh redesign build snapshot (never the legacy settings JSON)
+/.redesign/

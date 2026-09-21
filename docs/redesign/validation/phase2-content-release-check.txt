@@ -1,0 +1,77 @@
+Published redesign documents: 3/3. Content issues: 76.
+siteSettingsV2.footer.trademark: add and publish content in Website Redesign.
+homePageV2.landing.desktopImage.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.landing.desktopImage.alt: add and publish content in Website Redesign.
+homePageV2.landing.mobileImage.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.landing.mobileImage.alt: add and publish content in Website Redesign.
+homePageV2.introduction.statement: add and publish content in Website Redesign.
+homePageV2.services.branding.description: add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.alt: add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.alt: add and publish content in Website Redesign.
+homePageV2.services.strategy.description: add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.alt: add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.alt: add and publish content in Website Redesign.
+homePageV2.services.art-direction.description: add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.alt: add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.alt: add and publish content in Website Redesign.
+homePageV2.services.packaging.description: add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.alt: add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.alt: add and publish content in Website Redesign.
+homePageV2.services.digital.description: add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.alt: add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-8fac73fc-5f95-4f6b-ae87-db2359677026.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-8fac73fc-5f95-4f6b-ae87-db2359677026.image.alt: add and publish content in Website Redesign.
+homePageV2.results.medable.background.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.results.medable.background.alt: add and publish content in Website Redesign.
+homePageV2.results.medable.logo.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.results.medable.logo.alt: add and publish content in Website Redesign.
+homePageV2.noticed.17f65b752f51.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.17f65b752f51.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.614bbd1aa77e.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.614bbd1aa77e.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.3293acf3d685.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.3293acf3d685.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.337d039a8ddf.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.337d039a8ddf.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.24ba10613c9f.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.24ba10613c9f.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.7b408a9ecab9.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.7b408a9ecab9.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.7ad0f946e4b3.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.7ad0f946e4b3.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.8f5d4f6cc388.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.8f5d4f6cc388.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.16bdde8fe9b4.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.16bdde8fe9b4.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.1140c4bb22d5.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.1140c4bb22d5.image.alt: add and publish content in Website Redesign.
+ourWayPage.hero.statement: add and publish content in Website Redesign.
+ourWayPage.hero.image.asset (supplied artwork required): add and publish content in Website Redesign.
+ourWayPage.hero.image.alt: add and publish content in Website Redesign.
+ourWayPage.introduction.text: add and publish content in Website Redesign.
+ourWayPage.partnership.heading: add and publish content in Website Redesign.
+ourWayPage.partnership.founderNote: add and publish content in Website Redesign.
+ourWayPage.partnership.principles: review and supply four principles.
+ourWayPage.consultation.text: add and publish content in Website Redesign.
+ourWayPage.consultation.artwork.asset (supplied artwork required): add and publish content in Website Redesign.
+ourWayPage.consultation.artwork.alt: add and publish content in Website Redesign.
+ourWayPage.credentials.clients: add and publish content in Website Redesign.
+ourWayPage.credentials.recognition: add and publish content in Website Redesign.
+ourWayPage.credentials.logos: add and publish content in Website Redesign.
