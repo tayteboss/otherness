@@ -1,0 +1,11 @@
+yarn run v1.22.22
+$ sanity build
+
+Including the following environment variables as part of the JavaScript bundle:
+- SANITY_STUDIO_TELEMETRY_DISABLED
+
+- Clean output folder
+✔ Clean output folder (10ms)
+- Build Sanity Studio
+✔ Build Sanity Studio (9884ms)
+Done in 12.72s.

@@ -1,6 +1,6 @@
 # Asset register
 
-Updated: 21 September 2026, phase 5.
+Updated: 21 September 2026, phase 6.
 
 ## Available and staged
 
@@ -62,3 +62,7 @@ No new production artwork was supplied or added. Service cards, Results backgrou
 ## Phase 5 landing and intro
 
 Clean desktop/mobile landing artwork is still pending. The legacy video/photography is no longer rendered on the homepage; a labelled neutral development placeholder fills the landing. Published Home New statement/loading pairs, supplied SVG icon/wordmark and scoped Neue Montreal/Baryton are integrated. The responsive picture supports separate mobile art, CDN widths, editorial crop/hotspot, and image-error fallback. Final artwork/crop/readability acceptance awaits originals. No new artwork, font source, CMS asset or screenshot crop was added.
+
+## Phase 6 Our Way
+
+No new originals were supplied. Hero and consultation artwork use labelled development placeholders; no reference screenshots or legacy photography were used. Our Way hero supports separate desktop/mobile images, responsive widths and editorial crop/hotspot; consultation uses the existing responsive Artwork component. Recognition logos remain pending, so the published page shows a labelled placeholder. Motion validation used supplied Otherness SVGs only in a removed local fixture, not as claimed recognition. Hero statement, sector introduction, partnership heading/founder note/four principles, consultation text and client/recognition lists remain editorial dependencies. The complete published founder biography and four-stage process are rendered; their length/copy differs from the draft screenshots and should be reviewed in Studio. Neue Montreal/Baryton remain scoped to redesigned content. Contact desktop/mobile designs are the next phase's prerequisite.

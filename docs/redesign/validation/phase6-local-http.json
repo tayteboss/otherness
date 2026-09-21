@@ -1,0 +1,57 @@
+[
+  {
+    "path": "/our-way",
+    "status": 200,
+    "noindex": "noindex, nofollow, noarchive",
+    "redirect": null,
+    "og": [
+      "http://localhost:3010/redesign/brand/og.jpg"
+    ],
+    "ourWayPayload": true,
+    "fixture": false
+  },
+  {
+    "path": "/working-together",
+    "status": 200,
+    "noindex": "noindex, nofollow, noarchive",
+    "redirect": null,
+    "og": [
+      "http://localhost:3010/redesign/brand/og.jpg"
+    ],
+    "ourWayPayload": false,
+    "fixture": false
+  },
+  {
+    "path": "/work",
+    "status": 200,
+    "noindex": "noindex, nofollow, noarchive",
+    "redirect": null,
+    "og": [
+      "http://localhost:3010/redesign/brand/og.jpg"
+    ],
+    "ourWayPayload": false,
+    "fixture": false
+  },
+  {
+    "path": "/",
+    "status": 200,
+    "noindex": "noindex, nofollow, noarchive",
+    "redirect": null,
+    "og": [
+      "http://localhost:3010/redesign/brand/og.jpg"
+    ],
+    "ourWayPayload": false,
+    "fixture": false
+  },
+  {
+    "path": "/phase6-fixture",
+    "status": 404,
+    "noindex": "noindex, nofollow, noarchive",
+    "redirect": null,
+    "og": [
+      "http://localhost:3010/redesign/brand/og.jpg"
+    ],
+    "ourWayPayload": false,
+    "fixture": false
+  }
+]

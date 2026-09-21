@@ -7,13 +7,13 @@
 ## Current state
 
 - Branch: `codex/site-redesign`, based on `origin/staging` commit `2707efad642d6be8a6c5461351851b10e7bd96f3`.
-- Phases 1–5 implementation is complete. Phases 6–8 are not started.
+- Phases 1–6 implementation is complete. Phases 7–8 are not started. Final artwork/copy acceptance remains pending.
 - This branch is now pushed to the same-named remote branch for its dedicated preview. No upstream is configured. Always use an explicit redesign branch push; never push to staging/master.
 - Three additive **published** singletons are seeded in `vdwu088q/production`: `homePageV2`, `ourWayPage`, `siteSettingsV2`. Existing drafts/publications are preserved by idempotent seed tooling. All 642 pre-existing non-draft CMS documents retain their original revisions.
 - Additive Studio schemas, Website Redesign group, fixed-ID editors and singleton action/creation restrictions are deployed at https://otherness.sanity.studio/.
 - Seven new schema types, separate nullable frontend contracts, fixed-ID queries and a fresh published settings loader are in place. See DATA.md for usage and seed provenance.
 - Work bodies, fonts, global styles, legacy schemas/queries/types and checked-in settings JSON are preserved. Verification covers 181 baseline hashes, normalizing only additive shell props in the two Work pages; shared Layout is intentionally replaced.
-- Shared header/footer/menu, scoped Neue Montreal web fonts, favicon/manifest and supplied OG default are integrated. Home introduction/services/results/Noticed now render published Home New content. Landing/session intro is implemented; Our Way remains phase 6.
+- Shared header/footer/menu, scoped Neue Montreal web fonts, favicon/manifest and supplied OG default are integrated. Home introduction/services/results/Noticed now render published Home New content. Landing/session intro and the Our Way page are implemented.
 
 ## Local commands
 
@@ -110,11 +110,25 @@ Final application commit `9a5d4ef` is deployed READY as `dpl_7t8MJmVxcFmNPPDCn5H
 
 Application commit `3b62e34` is READY as `dpl_FuWWrzzYDbqeiKktQyCZFfVYLV5N` at the stable redesign preview. Hosted in-app verification confirms the intro has no visible skip control, automatically completes, does not replay on refresh, and renders the mobile landing without overflow. HTTP 200/noindex and one absolute preview-origin OG image pass. Staging and production retain their original deployment IDs. Documentation/capture follow-up commits contain no application changes. Browser viewport overrides were reset; preview remains open. Local server/keep-awake session were stopped. Supplied font originals and the inherited untracked phase 4 capture remain untouched.
 
-## Next conversation: phase 6 only
+## Phase 6 implementation notes
+
+- `/our-way` now renders all seven page sections, then the shared footer. It uses fresh published `ourWayPage` data through `getRedesignData()` and additive shared shell props. No schema, query, Studio or CMS content changes were required.
+- `OurWay.tsx` and `OurWay.styles.ts` contain the scoped page. Hero supports eager responsive imagery, separate mobile art, crop/hotspot and failure fallback. The shared header adds white wordmark/nav treatment only while over the Our Way hero; Home phases 4–5 and Work bodies/fonts remain unchanged.
+- Partnership has ruled principles on the right and founder note at bottom left; mobile puts principles before the founder note. Four explicitly labelled principle placeholders preserve the layout while editorial content is absent. No screenshot copy was silently approved or published.
+- Published four-stage process becomes a native horizontal snap track on mobile, with the next stage visible, keyboard scrolling and Lenis prevention for native track input. Consultation is desktop split/mobile stacked and uses the current published booking URL. Credentials retain the **entire** seeded founder biography, so this section is longer than the screenshot's single-paragraph draft. All biography, services, clients and recognition remain editable in the existing singleton.
+- Recognition supports a gentle CSS loop, hover/focus pause, persistent Pause/Resume control, and static wrapping under reduced motion. Decorative duplicate logos have no links or focus stops and are hidden from accessibility. Published logos are currently absent; behavior was checked with clearly labelled local brand-file fixtures, removed before building.
+- Validation passes: frontend/Studio builds, targeted lint, 181 legacy-source hashes, fixed-ID/null query/schema checks, 31 route shell checks and 18 existing image overrides. Same 11 frontend / 5 Studio inherited type errors; release gate still lists 76 content issues. Six responsive widths, scroll anchor/focus, mobile track, menu restoration, nullable content, failed hero image and recognition controls were checked in the in-app browser. See VALIDATION.md for precise limits.
+- `/working-together` remains 200 without redirect. Contact remains the published consultation URL; phase 7 was not started. Supplied font originals and inherited phase 4 screenshot remain untouched/untracked. No dependency/global-style/font/hook changes.
+
+## Phase 6 preview
+
+Application commit `e204f364ff487fbf3943cba45b6f487962348c98` is READY as `dpl_28UpPgEPpKn48qGc5AUjjvz39rfk` at the existing stable preview. `/our-way` is 200/noindex with one absolute preview-origin OG image. Hosted desktop/mobile checks confirm all sections, four process stages, active Our Way nav, white hero header, menu/Escape and real Our Way → Work → Our Way navigation. `/working-together` remains 200 without redirect; removed fixture is 404. Vercel confirms staging remains `dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N` and public www remains `dpl_2hW8KVM2WdqKzcff48GcNwxsi41B`. No aliases/hooks were changed. Documentation/capture follow-up contains no application changes. Viewport overrides reset; hosted preview left open. Local server and this task's keep-awake session stopped. Commits use only a command-scoped signing override.
+
+## Next conversation: phase 7 only (design dependency)
 
 Suggested prompt:
 
-> Continue Otherness redesign Phase 6 only on codex/site-redesign. Read docs/redesign/HANDOFF.md, SPEC.md, ASSETS.md, VALIDATION.md and DATA.md. Implement /our-way with the approved section order, published Our Way fields, responsive process track, recognition logo loop with pause/reduced-motion handling, and shared shell props. Use supplied clean artwork if available; otherwise labelled development placeholders. Use scoped Neue Montreal/Baryton and the Sanity best-practices skill for schema/query/Studio work. Preserve Home phases 4–5, all Work bodies/fonts/interactions, legacy /working-together and the isolated noindex preview. Do not redirect or implement Contact. Validate the six responsive widths, nullable content, keyboard/touch behavior and reduced motion in the in-app browser; update the phase 7 handoff and stop.
+> Continue Otherness redesign Phase 7 only on codex/site-redesign. Read docs/redesign/HANDOFF.md, SPEC.md, ASSETS.md, VALIDATION.md and DATA.md. Review the supplied Contact desktop/mobile designs and agree its content/functionality and acceptance criteria before implementation. If those designs are still absent, request them and stop at that dependency; do not invent a contact form or backend. Once supplied, implement the agreed Contact page and CMS fields using the Sanity best-practices skill, then switch navigation. Preserve Home, Our Way, all Work bodies/fonts/interactions, legacy /working-together and the isolated noindex preview. Validate, update the phase 8 handoff and stop.
 
 ## Future phase boundaries
 

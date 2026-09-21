@@ -197,3 +197,35 @@ Our Way is phase 6 and still 404. Legacy Working Together remains available with
 - Application commit `3b62e349a68967d13554f6db298c58c1969ed615` deployed READY as `dpl_FuWWrzzYDbqeiKktQyCZFfVYLV5N`. Hosted browser confirms first-visit words, **zero intro buttons**, automatic completion, refresh bypass, 402px document width, and mobile Menu geometry. Hosted desktop/mobile captures saved; viewport reset afterward.
 - Hosted HTTP 200 with `X-Robots-Tag: noindex, nofollow, noarchive`; exactly one absolute preview-origin OG image. `phase5-hosting.json` confirms staging still `dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N` and public www still `dpl_2hW8KVM2WdqKzcff48GcNwxsi41B`. No aliases/hooks/CMS writes.
 - Final documentation/capture commit contains no application changes. Commits used a one-command signing override; persistent Git configuration is unchanged. Local server and this task’s keep-awake session stopped; hosted preview left open.
+
+# Phase 6 validation — 21 September 2026
+
+## Implementation and automated checks
+
+- `npm run build:redesign`: PASS, 34 static-generation entries including `/our-way`; three published redesign documents fetched. Temporary fixture removed before build and returns 404. New page main content is server-rendered without an admission animation.
+- `SANITY_STUDIO_TELEMETRY_DISABLED=1 yarn build` and `node scripts/verify-redesign.cjs`: PASS. Seven existing types, fixed-ID/null/unresolved-reference contracts compile. No CMS writes, schema changes or Studio deployment were needed; authenticated Studio editing remains untested as previously recorded.
+- `npm run verify:redesign`: PASS, same 181 legacy-source hashes. Home components/page, Work bodies/fonts, global styles, legacy documents and queries unchanged. Shared Header adds only Our Way hero state.
+- `npm run verify:redesign:chrome`: PASS, 31 concrete routes have shared settings; 18 existing image overrides preserved; exactly one absolute OG image and manifest per HTML. Checker now also understands the new Our Way optional SEO image.
+- Targeted ESLint (`--no-eslintrc -c .eslintrc.redesign.cjs`, React Hooks and image-alt rules): PASS. Explicit frontend `tsc --noEmit --incremental false`: same **11 inherited errors**; Studio: same **5 inherited errors**. Legacy global lint config remains invalid.
+- `npm run check:redesign:release`: expected FAIL with **76 content issues**. No copy/artwork was invented to satisfy the release gate. `git diff --check`: PASS. Exact logs are in `validation/phase6-*`.
+- Production-server HTTP: `/our-way`, `/`, `/work`, `/working-together` return 200 with no redirect and preview noindex; removed `/phase6-fixture` is 404. Each has one absolute OG image.
+
+## In-app browser checks
+
+- Only Codex in-app browser used. Six widths **375, 402, 768, 1024, 1512, 1920** have document width equal to viewport width. Hero is 874px at the mobile test height and 982px on desktop. Desktop partnership/credentials use two/three columns; mobile stacks in approved order. Neue Montreal computed on service lists/headings; Baryton on introduction/biography.
+- Scroll down moves to introduction at **90px** below the viewport top and focuses `way-introduction`. Header uses white wordmark/transparent white links over hero and existing compact navigation afterward; Our Way has the active state.
+- All four published process stages retain CMS order. At 402px the track is 402px wide with 1281px content; the next stage is visible. ArrowRight moves to the following stage (314.5px); native horizontal scroll reaches the final stage at **879px**, its maximum. Physical touch-device gestures were not tested; the control uses native overflow/snap rather than a custom drag handler.
+- Mobile Menu opens/focuses Close, Escape restores focus to Menu and clears body lock. Observed scroll restoration was **2200.5 → 2201px**, browser subpixel rounding under 1px. Earlier Home/Work menu behavior is retained.
+- Local fixture verifies null page/settings, absent stages/credentials/imagery and omitted booking destination render without crashes or fabricated URLs. Broken hero asset returns 404 and changes to its labelled placeholder.
+- Six fixture recognition entries use only supplied Otherness SVGs with explicit fixture labels. Focus pauses animation; persistent Pause remains paused after leaving the strip; Resume becomes running after hover/focus leaves. Duplicate group has zero links and `aria-hidden`.
+- Reduced-motion fixture activates the actual generated `prefers-reduced-motion` CSS rules: animation becomes `none`, duplicate group/control hidden, originals wrap statically, document stays 402px. OS-level media emulation is unavailable in this in-app capability; this is stylesheet branch validation, not an OS preference test. Hover pause is implemented with CSS; mouse-hover-only behavior was source checked.
+- Local production `/our-way` browser logs contain no errors or warnings. Legacy Work hydration/media issues remain inherited and were not broadened into phase 6.
+- Desktop/mobile viewport captures include hero, partnership, process, consultation and desktop credentials. Desktop panel was hidden; screenshots use the browser screenshot API to avoid the native snapshot's clipping.
+
+## Boundaries
+
+This completes phase 6 implementation, not final visual/content acceptance. Clean hero/consultation imagery, four principles, introduction/hero copy, founder note, consultation text, clients/recognition/logos are missing. Final crops/readability and populated editorial lengths need acceptance once supplied. Full published founder biography is deliberately retained, so it is longer than the screenshot draft. Contact designs remain pending for phase 7. `/working-together` redirect stays deferred until launch.
+
+## Hosted phase 6 result
+
+Application commit `e204f364ff487fbf3943cba45b6f487962348c98` deployed READY as `dpl_28UpPgEPpKn48qGc5AUjjvz39rfk`. In-app browser confirms desktop 1512px document width, four process stages, active Our Way navigation, white hero header and one preview-origin OG image. Mobile menu opens, Escape restores focus, and real Our Way → Work → Our Way navigation closes the dialog and clears scroll locks. Hosted `/our-way`, `/work`, `/working-together` return 200/noindex without redirects; removed fixture returns 404. See `phase6-hosting.json`, `phase6-hosted-http.json` and hosted captures. Staging/public production retain the original deployment IDs. No hooks/aliases/CMS mutations. Viewport overrides reset and hosted Our Way left open. Local server and conversation keep-awake session stopped. Documentation commit does not alter application code.

@@ -1,0 +1,29 @@
+[
+  {
+    "alias": "otherness-staging.vercel.app",
+    "status": 200,
+    "id": "dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N",
+    "state": "READY",
+    "sha": "2707efad642d6be8a6c5461351851b10e7bd96f3",
+    "branch": "staging",
+    "url": "otherness-4wsez6ru2-tayteco-36dd2d0b.vercel.app"
+  },
+  {
+    "alias": "www.otherness.design",
+    "status": 200,
+    "id": "dpl_2hW8KVM2WdqKzcff48GcNwxsi41B",
+    "state": "READY",
+    "sha": "2707efad642d6be8a6c5461351851b10e7bd96f3",
+    "branch": "master",
+    "url": "otherness-ps5v4fkfr-tayteco-36dd2d0b.vercel.app"
+  },
+  {
+    "alias": "otherness-git-codex-site-redesign-tayteco-36dd2d0b.vercel.app",
+    "status": 200,
+    "id": "dpl_28UpPgEPpKn48qGc5AUjjvz39rfk",
+    "state": "READY",
+    "sha": "e204f364ff487fbf3943cba45b6f487962348c98",
+    "branch": "codex/site-redesign",
+    "url": "otherness-3aikvuna1-tayteco-36dd2d0b.vercel.app"
+  }
+]

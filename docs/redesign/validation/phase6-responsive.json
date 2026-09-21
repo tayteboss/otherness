@@ -1,0 +1,74 @@
+[
+  {
+    "columns": "327px",
+    "document": 375,
+    "hero": 874,
+    "partnership": "flex",
+    "track": {
+      "scrollWidth": 1193,
+      "stages": 4,
+      "width": 375
+    },
+    "width": 375
+  },
+  {
+    "columns": "354px",
+    "document": 402,
+    "hero": 874,
+    "partnership": "flex",
+    "track": {
+      "scrollWidth": 1281,
+      "stages": 4,
+      "width": 402
+    },
+    "width": 402
+  },
+  {
+    "columns": "720px",
+    "document": 768,
+    "hero": 874,
+    "partnership": "flex",
+    "track": {
+      "scrollWidth": 2482,
+      "stages": 4,
+      "width": 768
+    },
+    "width": 768
+  },
+  {
+    "columns": "266.664px 266.664px 266.664px",
+    "document": 1024,
+    "hero": 982,
+    "partnership": "grid",
+    "track": {
+      "scrollWidth": 896,
+      "stages": 4,
+      "width": 896
+    },
+    "width": 1024
+  },
+  {
+    "columns": "429.328px 429.336px 429.336px",
+    "document": 1512,
+    "hero": 982,
+    "partnership": "grid",
+    "track": {
+      "scrollWidth": 1384,
+      "stages": 4,
+      "width": 1384
+    },
+    "width": 1512
+  },
+  {
+    "columns": "565.328px 565.336px 565.328px",
+    "document": 1920,
+    "hero": 982,
+    "partnership": "grid",
+    "track": {
+      "scrollWidth": 1792,
+      "stages": 4,
+      "width": 1792
+    },
+    "width": 1920
+  }
+]

@@ -1,0 +1,11 @@
+import { useState } from 'react';
+import OurWay from '../components/redesign/OurWay';
+import { getRedesignData } from '../lib/redesign/server';
+import { getRedesignShellProps } from '../lib/redesign/shell';
+import type { OurWayPage, RedesignSettings, Image } from '../lib/redesign/types';
+const asset: Image = { alt: 'Fixture Otherness logo', crop: null, hotspot: null, asset: { _id: 'fixture', url: 'http://localhost:3010/redesign/brand/logo-word-dark.svg', metadata: null } };
+export default function Fixture({ourWay, redesignSettings}: {ourWay: OurWayPage; redesignSettings: RedesignSettings}) {
+ const [empty,setEmpty] = useState(false);
+ return <><button style={{position:"fixed",bottom:70,right:0,zIndex:2000,background:"white",padding:20}} onClick={()=>{Array.from(document.styleSheets).forEach(sheet=>{try {Array.from(sheet.cssRules).forEach(rule=>{if(rule instanceof CSSMediaRule && rule.conditionText.includes("prefers-reduced-motion")) rule.media.mediaText="all";});} catch { /* Cross-origin sheets are irrelevant. */ }});}}>Exercise reduced motion CSS</button><button style={{position:'fixed',bottom:0,right:0,zIndex:2000,background:'white',padding:20}} onClick={()=>setEmpty(!empty)}>Toggle empty fixture</button><OurWay key={String(empty)} settings={empty ? null : redesignSettings} page={empty ? null : {...ourWay, hero:{...ourWay.hero!, image:{...asset,asset:{...asset.asset!,url:'http://localhost:3010/phase6-missing.jpg'}}}, credentials:{...ourWay.credentials!, logos:Array.from({length:6},(_,i)=>({_key:`logo-${i}`,title:`Fixture logo ${i+1}`,image:asset,link:{label:`Fixture recognition ${i+1}`,href:'#way-introduction'}}))}}}/></>;
+}
+export async function getStaticProps(){const d=await getRedesignData(); return {props:{...await getRedesignShellProps(),ourWay:d.ourWay}};}

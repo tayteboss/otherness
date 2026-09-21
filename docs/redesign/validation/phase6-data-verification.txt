@@ -1,0 +1,5 @@
+
+> verify:redesign
+> node scripts/redesign/verify.cjs
+
+PASS: fixed IDs; fresh published settings; email normalization; service order; resolved cards and stable keys; real Noticed destinations; missing assets; missing documents; unresolved-reference release diagnostic; deterministic seeds; 181 preserved legacy source hashes (Work shell props normalized; shared Layout excluded).

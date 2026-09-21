@@ -1,0 +1,30 @@
+{
+  "focus": {
+    "failedImage": true,
+    "placeholder": "Development placeholder — Our Way hero artwork pending",
+    "state": "paused"
+  },
+  "pause": {
+    "paused": "true",
+    "state": "paused"
+  },
+  "resume": {
+    "paused": "false",
+    "state": "paused"
+  },
+  "reduced": {
+    "animation": "none",
+    "duplicate": "none",
+    "viewport": 402,
+    "width": 402,
+    "wrap": "wrap"
+  },
+  "empty": {
+    "booking": null,
+    "heading": "Development placeholder — Our Way positioning statement pending",
+    "process": 0,
+    "width": 402
+  },
+  "persistentPause": "paused",
+  "resumeOutsideInteraction": "running"
+}
