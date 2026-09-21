@@ -1,0 +1,47 @@
+[
+  {
+    "path": "/work",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/privacy",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/working-together",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/our-way",
+    "status": 404,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/redesign/favicon/site.webmanifest",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/redesign/brand/og.jpg",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/redesign/fonts/NeueMontreal-Regular.woff2",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/robots.txt",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  },
+  {
+    "path": "/sitemap.xml",
+    "status": 200,
+    "robots": "noindex, nofollow, noarchive"
+  }
+]

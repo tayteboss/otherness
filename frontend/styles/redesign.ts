@@ -10,7 +10,7 @@ export const redesignTokens = {
 	},
 	fonts: {
 		serif: "'Baryton Regular', Georgia, serif",
-		// Neue Montreal @font-face declarations wait for the supplied files.
+		// Supplied Neue Montreal web fonts are declared in redesign-fonts.css.
 		sans: "'Neue Montreal', 'Classic Grotesque Pro Regular', Arial, sans-serif"
 	},
 	spacing: {
@@ -20,7 +20,11 @@ export const redesignTokens = {
 		sectionMobile: '64px'
 	},
 	breakpoints: { mobile: '768px' },
-	motion: { short: '250ms', reveal: '600ms', ease: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+	motion: {
+		short: '250ms',
+		reveal: '600ms',
+		ease: 'cubic-bezier(0.22, 1, 0.36, 1)'
+	}
 } as const;
 
 // Apply to redesign page/chrome wrappers, never to the Work content wrapper.
@@ -37,6 +41,16 @@ export const redesignScope = css`
 
 	@media (max-width: ${redesignTokens.breakpoints.mobile}) {
 		--redesign-gutter: ${redesignTokens.spacing.gutterMobile};
+	}
+
+	&,
+	p,
+	a,
+	button,
+	div,
+	span,
+	small {
+		font-family: var(--redesign-sans);
 	}
 
 	:focus-visible {

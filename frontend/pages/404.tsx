@@ -1,3 +1,4 @@
+import { getRedesignShellProps } from '../lib/redesign/shell';
 import { NextSeo } from 'next-seo';
 import styled from 'styled-components';
 import PageHeader from '../components/blocks/PageHeader';
@@ -31,3 +32,7 @@ const Page = () => {
 };
 
 export default Page;
+
+export async function getStaticProps() {
+	return { props: await getRedesignShellProps() };
+}

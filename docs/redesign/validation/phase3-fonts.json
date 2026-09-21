@@ -1,0 +1,23 @@
+[
+  {
+    "source": "frontend/public/fonts/PPNeueMontreal-Regular.otf",
+    "sourceSha256": "4ee3781a9c48922d765a61c8e2a9fac8cce209514e162c6832bc4c795efece25",
+    "output": "frontend/public/redesign/fonts/NeueMontreal-Regular.woff2",
+    "weight": 400,
+    "bytes": 49360
+  },
+  {
+    "source": "frontend/public/fonts/PPNeueMontreal-Medium.otf",
+    "sourceSha256": "64ed9ff8e0e9c033878d52e5a241d4c5969985a7bb9b9095e03c074c35743836",
+    "output": "frontend/public/redesign/fonts/NeueMontreal-Medium.woff2",
+    "weight": 500,
+    "bytes": 53196
+  },
+  {
+    "source": "frontend/public/fonts/PPNeueMontreal-Bold.otf",
+    "sourceSha256": "1e137439b10340bed9c4dc7e891a503dc72c64d00bc2cc347ee84e439a3a63ef",
+    "output": "frontend/public/redesign/fonts/NeueMontreal-Bold.woff2",
+    "weight": 700,
+    "bytes": 53200
+  }
+]

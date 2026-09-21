@@ -1,3 +1,4 @@
+import { getRedesignShellProps } from '../../lib/redesign/shell';
 import styled from 'styled-components';
 import client from '../../client';
 import { ArticleType, TransitionsType } from '../../shared/types/types';
@@ -44,10 +45,10 @@ const Page = (props: Props) => {
 				title={`Otherness — ${data?.title}` || 'Otherness'}
 				description={data?.excerpt || ''}
 				openGraph={{
-					...(data?.openGraphImage?.image?.asset?.url && {
+					...(data?.openGraphImage?.asset?.url && {
 						images: [
 							{
-								url: data.openGraphImage.image.asset.url,
+								url: data.openGraphImage.asset.url,
 								width: 1200,
 								height: 630
 							}
@@ -186,6 +187,7 @@ export async function getStaticProps({ params }: any) {
 
 	return {
 		props: {
+			...(await getRedesignShellProps()),
 			data
 		}
 	};

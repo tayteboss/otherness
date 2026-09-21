@@ -1,3 +1,4 @@
+import { getRedesignShellProps } from '../lib/redesign/shell';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 import { TransitionsType } from '../shared/types/types';
@@ -49,6 +50,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
+			...(await getRedesignShellProps()),
 			data
 		}
 	};

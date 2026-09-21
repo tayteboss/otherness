@@ -14,7 +14,8 @@
     "seed:redesign": "node scripts/redesign/seed.cjs",
     "check:redesign": "node scripts/redesign/check.cjs",
     "check:redesign:release": "node scripts/redesign/check.cjs --release",
-    "verify:redesign": "node scripts/redesign/verify.cjs"
+    "verify:redesign": "node scripts/redesign/verify.cjs",
+    "verify:redesign:chrome": "node scripts/redesign/verify-chrome.cjs"
   },
   "dependencies": {
     "@mux/mux-player-react": "^2.3.3",

@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import '../styles/fonts.css';
+import '../styles/redesign-fonts.css';
+import { DefaultSeo } from 'next-seo';
+import type { RedesignSettings } from '../lib/redesign/types';
 import { ThemeProvider } from 'styled-components';
 import { useRouter } from 'next/router';
 import { AnimatePresence } from 'framer-motion';
@@ -19,7 +22,7 @@ const pageTransitionVariants: TransitionsType = {
 
 type Props = {
 	Component: any;
-	pageProps: {};
+	pageProps: { redesignSettings?: RedesignSettings | null; redesignOrigin?: string };
 };
 
 const App = (props: Props) => {
@@ -58,12 +61,20 @@ const App = (props: Props) => {
 			<Head>
 				<meta
 					name="viewport"
-					content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"
+					content="width=device-width, initial-scale=1.0"
 				/>
 			</Head>
+			<DefaultSeo
+				title={pageProps.redesignSettings?.seo?.title || 'Otherness'}
+				description={pageProps.redesignSettings?.seo?.description || undefined}
+				openGraph={{
+					site_name: 'Otherness',
+					images: [{ url: `${pageProps.redesignOrigin || process.env.NEXT_PUBLIC_REDESIGN_ORIGIN}/redesign/brand/og.jpg`, width: 1200, height: 630, alt: 'Otherness' }]
+				}}
+			/>
 			<GlobalStyles />
 			<ThemeProvider theme={theme}>
-				<Layout>
+				<Layout settings={pageProps.redesignSettings || null}>
 					<AnimatePresence
 						mode="wait"
 						onExitComplete={() => handleExitComplete()}

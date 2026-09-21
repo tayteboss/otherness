@@ -1,3 +1,4 @@
+import { getRedesignShellProps } from '../../lib/redesign/shell';
 import styled from 'styled-components';
 import client from '../../client';
 import { ProjectType, TransitionsType } from '../../shared/types/types';
@@ -532,6 +533,7 @@ export async function getStaticProps({ params }: any) {
 
 	return {
 		props: {
+			...(await getRedesignShellProps()),
 			data
 		}
 	};

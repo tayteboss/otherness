@@ -1,0 +1,14 @@
+[
+  {
+    "origin": "http://localhost:3010",
+    "status": 200,
+    "allowOrigin": "http://localhost:3010",
+    "allowCredentials": null
+  },
+  {
+    "origin": "https://otherness-git-codex-site-redesign-tayteco-36dd2d0b.vercel.app",
+    "status": 200,
+    "allowOrigin": "https://otherness-git-codex-site-redesign-tayteco-36dd2d0b.vercel.app",
+    "allowCredentials": null
+  }
+]

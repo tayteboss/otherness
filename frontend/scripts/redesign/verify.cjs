@@ -59,19 +59,29 @@ const { buildSeed } = require('./seed.cjs');
 			`${root}/docs/redesign/baselines/legacy-source-sha256.json`
 		)
 	);
-	for (const [p, hash] of Object.entries(hashes))
+	for (const [p, hash] of Object.entries(hashes)) {
+		// Phase 3 replaces shared Layout only. Work page changes must consist
+		// solely of additive build-time shell props; verify their original bodies.
+		if (p === 'frontend/components/layout/Layout.tsx') continue;
+		let source = fs.readFileSync(`${root}/${p}`, 'utf8');
+		if (p.startsWith('frontend/pages/work/')) {
+			source = source
+				.replace(
+					/^import \{ getRedesignShellProps \} from '[^']+';\n/,
+					''
+				)
+				.replace('\t\t\t...(await getRedesignShellProps()),\n', '');
+		}
 		assert.equal(
-			crypto
-				.createHash('sha256')
-				.update(fs.readFileSync(`${root}/${p}`))
-				.digest('hex'),
+			crypto.createHash('sha256').update(source).digest('hex'),
 			hash,
 			p
 		);
+	}
 	console.log(
 		`PASS: fixed IDs; fresh published settings; email normalization; service order; resolved cards and stable keys; real Noticed destinations; missing assets; missing documents; unresolved-reference release diagnostic; deterministic seeds; ${
-			Object.keys(hashes).length
-		} unchanged legacy source hashes.`
+			Object.keys(hashes).length - 1
+		} preserved legacy source hashes (Work shell props normalized; shared Layout excluded).`
 	);
 })().catch((e) => {
 	console.error(e);

@@ -1,14 +1,11 @@
 import styled from 'styled-components';
-import Header from './Header';
-import Footer from './Footer';
-import { ReactNode, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import MobileMenu from '../blocks/MobileMenu';
-import { ReactLenis, useLenis } from '@studio-freight/react-lenis';
-import { SiteSettingsType } from '../../shared/types/types';
+import { ReactNode, useCallback, useRef, useState } from 'react';
+import { ReactLenis } from '@studio-freight/react-lenis';
 import { GoogleTagManager } from '@next/third-parties/google';
-
-const siteSettings: SiteSettingsType = require('../../json/siteSettings.json');
+import type { RedesignSettings } from '../../lib/redesign/types';
+import Header from '../redesign/Header';
+import Footer from '../redesign/Footer';
+import MobileMenu from '../redesign/MobileMenu';
 
 const Main = styled.main`
 	position: relative;
@@ -16,88 +13,35 @@ const Main = styled.main`
 	background: var(--colour-white);
 `;
 
-type Props = {
+export default function Layout({
+	children,
+	settings
+}: {
 	children: ReactNode;
-};
-
-const Layout = (props: Props) => {
-	const { children } = props;
-
-	const {
-		footerConsultationCta,
-		socialLink1,
-		socialLink2,
-		socialLink3,
-		tagline,
-		footerConsultationButtonTitle,
-		footerConsultationButtonUrl,
-		mobileMenuConsultationCta,
-		mobileMenuConsultationButtonTitle
-	} = siteSettings;
-
-	const [hideLayoutHeader, setHideLayoutHeader] = useState(true);
-	const [mobileMenuIsActive, setMobileMenuIsActive] = useState(false);
-
-	const router = useRouter();
-
-	const lenis = useLenis(({ scroll }) => {});
-
-	useEffect(() => {
-		if (router.asPath === '/') {
-			setHideLayoutHeader(true);
-		} else {
-			setHideLayoutHeader(false);
-		}
-	}, [router]);
-
-	useEffect(() => {
-		if (!lenis) return;
-
-		if (mobileMenuIsActive) {
-			const timer = setTimeout(() => {
-				lenis.stop();
-				clearTimeout(timer);
-			}, 500);
-		} else {
-			lenis.start();
-		}
-	}, [mobileMenuIsActive]);
-
+	settings: RedesignSettings | null;
+}) {
+	const [menuOpen, setMenuOpen] = useState(false);
+	const triggerRef = useRef<HTMLButtonElement>(null);
+	const closeMenu = useCallback(() => setMenuOpen(false), []);
 	return (
 		<>
 			<GoogleTagManager gtmId="G-5TXD8TLXKY" />
 			<Header
-				isActive={!hideLayoutHeader}
-				mobileMenuIsActive={mobileMenuIsActive}
-				setMobileMenuIsActive={setMobileMenuIsActive}
-			/>
-			<MobileMenu
-				isActive={mobileMenuIsActive}
-				setMobileMenuIsActive={setMobileMenuIsActive}
-				cta={mobileMenuConsultationCta}
-				buttonTitle={mobileMenuConsultationButtonTitle}
-				buttonUrl={footerConsultationButtonUrl}
+				settings={settings}
+				open={menuOpen}
+				onOpen={() => setMenuOpen(true)}
+				triggerRef={triggerRef}
 			/>
 			<ReactLenis root>
+				<MobileMenu
+					settings={settings}
+					open={menuOpen}
+					onClose={closeMenu}
+					triggerRef={triggerRef}
+				/>
 				<Main>{children}</Main>
 			</ReactLenis>
-			<Footer
-				footerConsultationCta={footerConsultationCta}
-				socialLink1={socialLink1}
-				socialLink2={socialLink2}
-				socialLink3={socialLink3}
-				tagline={tagline}
-				footerConsultationButtonTitle={footerConsultationButtonTitle}
-				footerConsultationButtonUrl={footerConsultationButtonUrl}
-			/>
-			<Header
-				isActive
-				mobileMenuIsActive={mobileMenuIsActive}
-				setMobileMenuIsActive={setMobileMenuIsActive}
-				isFooterVersion
-			/>
+			<Footer settings={settings} />
 		</>
 	);
-};
-
-export default Layout;
+}

@@ -5,6 +5,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const isPreview = require('./config/isPreview');
 
 const nextConfig = {
+	env: {
+		NEXT_PUBLIC_REDESIGN_ORIGIN: process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL
+			? `https://${process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL}`
+			: process.env.SITE_URL || 'http://localhost:3010',
+	},
 	async headers() {
 		return isPreview()
 			? [{ source: '/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }] }]

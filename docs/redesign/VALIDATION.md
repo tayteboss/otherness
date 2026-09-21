@@ -81,3 +81,37 @@ The stable preview `https://otherness-git-codex-site-redesign-tayteco-36dd2d0b.v
 Phase 2 is complete. Website Redesign content is editable in the deployed Studio, though authenticated browser editing remains untested because that browser session is logged out. Phase 3 is next; no chrome/page rendering was changed in this phase.
 
 Final workspace note: 18 independently supplied Neue Montreal OTF/TTF files appeared after the implementation push. `file` validated their font containers. They remain untracked and untouched for phase 3; this task did not add them to its commits or deploy them. Asset register and handoff updated accordingly.
+
+# Phase 3 validation — 21 September 2026
+
+## Implementation and automated checks
+
+- Shared header/footer and a native modal mobile menu now read `siteSettingsV2` through additive `getRedesignShellProps()` in each page's `getStaticProps`, including 404. Legacy page data contracts remain intact. No CMS content or schema writes were made.
+- `npm run build:redesign`: PASS, 33 static-generation entries. Preview build still bypasses legacy buildJson. `SANITY_STUDIO_TELEMETRY_DISABLED=1 yarn build`: PASS.
+- `npm run verify:redesign`: PASS, 181 preserved legacy hashes: 179 byte-identical files plus both Work pages matching after removal of the two additive shell-plumbing lines. Only shared Layout is excluded from the original 182-file baseline. Baseline hashes were not rewritten.
+- `npm run verify:redesign:chrome`: PASS, 30 concrete built routes have published settings, and 18 project/article OG overrides are preserved. Every HTML file (including the built-in 500 and dynamic fallback templates) has exactly one absolute OG image and the new manifest. Emergency/fallback templates have no page props by Next design; their default image uses the build origin.
+- Metadata verification caught an inherited article path mismatch (`openGraphImage.image.asset` versus the actual `openGraphImage.asset` contract). Fixed only the metadata access. Full frontend typecheck now has **11 inherited errors**, reduced from 13 by those two metadata corrections; no new errors. Studio retains the same **5 errors**.
+- Targeted ESLint PASS for new chrome, shell loader, Layout, scoped styles and verification scripts, including React Hooks rules and image/anchor accessibility rules. Global legacy ESLint remains invalid; it was not repaired or called green.
+- Release content check intentionally FAILS with the same 76 missing content/artwork/alt fields. Fonts are ready, but this is not final visual/content acceptance.
+- HTTP checks PASS for Work, Privacy, Working Together, icons/manifest, OG asset, font, robots and sitemap. All carry `noindex, nofollow, noarchive`. `/our-way` returns the expected temporary 404 until phase 6; no redirect was added to Working Together.
+
+Exact logs and captures: `validation/phase3-*`.
+
+## Browser checks (Codex in-app browser only)
+
+- Desktop 1512×982 and mobile 402×874 captures of Work, Medable and Artem; menu and desktop/mobile footer captures saved. Header is intentionally top-cropped; compact navigation remains fixed after scrolling. Full-width mobile Menu bar, 44px controls, active Work state and desktop-only footer wordmark strip verified.
+- Responsive checks at **375, 402, 768, 1024, 1512 and 1920**: document width equals viewport width in every case. Tablet wordmark is capped to preserve Work's existing content clearance. Footer heading stays on two lines; social/legal rows wrap without overflow.
+- Menu: open focuses Close; Shift+Tab wraps to Email; Tab wraps back to Close; Escape and Close return focus to Menu. Native modal makes the background inert. Scrolling while open does not move the underlying page. Close restores **1748px → 1748px** exactly. A discovered Lenis cached-height issue was fixed by resizing Lenis after releasing the body lock.
+- Menu closes on real Medable → Work navigation, same-route Work selection, Our Way → 404 navigation, and mobile → desktop resize. Body styles are restored; native scrolling resumes. New chrome transitions have explicit reduced-motion CSS; OS reduced-motion emulation was not available through the in-app capability, so that branch was source-checked rather than interactively emulated.
+- Work retains Classic Grotesque/Baryton; chrome resolves to Neue Montreal. Listing body alignment and card widths match the phase 1 reference. **Baseline limitation found:** the phase 1 Medable/Artem desktop PNGs captured an effectively blank transition state, so they cannot prove a pixel-level project-body match. The preserved source checks plus new rendered desktop/mobile captures verify those layouts; comprehensive visual regression remains phase 8.
+- Existing Medable/Artem development hydration failures (including nested paragraphs) remain. Development captures retain their error indicator; production-build browser checks also render both project layouts. No new chrome hydration error was observed.
+- Work filters initially failed because both preview origins were absent from Sanity CORS. Added exactly `http://localhost:3010` and the stable redesign preview origin with **credentials disabled**, preserving all seven existing origins. Both now return HTTP 200 with their exact allowed origin and no allow-credentials header. No wildcard or authenticated browser access was added. See `phase3-cors.json`.
+- After CORS correction: Artsy returns Famille Elastique, Harper, Confidential and Saima Zaidi; All restores 16 visible project links; Digital returns Harper and The Gorgeous Spice Company. `/work/black-and-free` retains its client redirect to `/work`. Privacy navigation passes. Contact/social hrefs match published settings; no booking, email or social message was sent.
+
+## Remaining boundaries
+
+Our Way is a phase 6 routing dependency; Contact remains the current booking destination until its phase 7 design. The legacy homepage content now has one shared header/menu; its final landing position and scroll choreography belong to phase 5. Trademark is absent until approved CMS copy exists. Full video-control, every subproject, load-more edge cases and full accessibility/performance acceptance remain part of phase 8; do not infer those from the representative checks above.
+
+## Hosted phase 3 result
+
+Pending the final phase 3 implementation push and dedicated preview verification. Existing staging/production aliases were checked before deployment and still match the phase 2 recorded IDs. No staging or production changes are authorized in this phase.

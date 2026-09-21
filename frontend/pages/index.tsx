@@ -1,3 +1,4 @@
+import { getRedesignShellProps } from '../lib/redesign/shell';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 import {
@@ -12,12 +13,7 @@ import {
 	siteSettingsQueryString
 } from '../lib/sanityQueries';
 import HomeHero from '../components/blocks/HomeHero';
-import Header from '../components/layout/Header';
 import HomeWhatToExpect from '../components/blocks/HomeWhatToExpect';
-import MobileMenu from '../components/blocks/MobileMenu';
-import { useEffect, useState } from 'react';
-import { useLenis } from '@studio-freight/react-lenis';
-import { useRouter } from 'next/router';
 import OurServicesBanner from '../components/blocks/OurServicesBanner';
 import OthernessPageBuilder from '../components/common/OthernessPageBuilder';
 import FeaturedConversations from '../components/blocks/FeaturedConversations';
@@ -41,54 +37,7 @@ type Props = {
 };
 
 const Page = (props: Props) => {
-	const { data, siteSettings, pageTransitionVariants } = props;
-
-	const [mobileMenuIsActive, setMobileMenuIsActive] = useState(false);
-
-	const lenis = useLenis(({ scroll }) => {});
-	const router = useRouter();
-
-	const handleMobileMenuTrigger = () => {
-		const windowHeight = window.innerHeight;
-		const scrollPosition = window.scrollY;
-
-		const header = document.querySelector('.header');
-		const headerHeight = header?.clientHeight;
-
-		if (!headerHeight) return;
-
-		if (scrollPosition < windowHeight) {
-			if (mobileMenuIsActive === false) {
-				if (!lenis) return;
-				lenis.scrollTo(windowHeight - headerHeight);
-				const timeout = setTimeout(() => {
-					setMobileMenuIsActive(true);
-					clearTimeout(timeout);
-				}, 500);
-			} else {
-				setMobileMenuIsActive(false);
-			}
-		} else {
-			setMobileMenuIsActive(!mobileMenuIsActive);
-		}
-	};
-
-	useEffect(() => {
-		if (!lenis) return;
-
-		if (mobileMenuIsActive) {
-			const timer = setTimeout(() => {
-				lenis.stop();
-				clearTimeout(timer);
-			}, 1000);
-		} else {
-			lenis.start();
-		}
-	}, [mobileMenuIsActive]);
-
-	useEffect(() => {
-		setMobileMenuIsActive(false);
-	}, [router]);
+	const { data, pageTransitionVariants } = props;
 
 	return (
 		<PageWrapper
@@ -108,18 +57,6 @@ const Page = (props: Props) => {
 				mobileDescription={data?.mobileHeroDescription}
 				media={data?.heroMedia}
 				link={data?.heroLink}
-			/>
-			<Header
-				isHomeVersion
-				mobileMenuIsActive={mobileMenuIsActive}
-				setMobileMenuIsActive={() => handleMobileMenuTrigger()}
-			/>
-			<MobileMenu
-				isActive={mobileMenuIsActive}
-				setMobileMenuIsActive={setMobileMenuIsActive}
-				cta={siteSettings?.mobileMenuConsultationCta}
-				buttonTitle={siteSettings?.mobileMenuConsultationButtonTitle}
-				buttonUrl={siteSettings?.footerConsultationButtonUrl}
 			/>
 			<HomeWhatToExpect
 				title={data?.whatToExpectTitle}
@@ -142,6 +79,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
+			...(await getRedesignShellProps()),
 			data,
 			siteSettings
 		}

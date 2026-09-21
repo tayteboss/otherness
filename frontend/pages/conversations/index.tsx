@@ -1,3 +1,4 @@
+import { getRedesignShellProps } from '../../lib/redesign/shell';
 import styled from 'styled-components';
 import client from '../../client';
 import { motion } from 'framer-motion';
@@ -119,6 +120,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
+			...(await getRedesignShellProps()),
 			data,
 			conversations,
 			hasMoreArticles
