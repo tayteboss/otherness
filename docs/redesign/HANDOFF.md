@@ -7,13 +7,13 @@
 ## Current state
 
 - Branch: `codex/site-redesign`, based on `origin/staging` commit `2707efad642d6be8a6c5461351851b10e7bd96f3`.
-- Phases 1–3 implementation is complete. Phases 4–8 are not started.
+- Phases 1–4 implementation is complete. Phases 5–8 are not started.
 - This branch is now pushed to the same-named remote branch for its dedicated preview. No upstream is configured. Always use an explicit redesign branch push; never push to staging/master.
 - Three additive **published** singletons are seeded in `vdwu088q/production`: `homePageV2`, `ourWayPage`, `siteSettingsV2`. Existing drafts/publications are preserved by idempotent seed tooling. All 642 pre-existing non-draft CMS documents retain their original revisions.
 - Additive Studio schemas, Website Redesign group, fixed-ID editors and singleton action/creation restrictions are deployed at https://otherness.sanity.studio/.
 - Seven new schema types, separate nullable frontend contracts, fixed-ID queries and a fresh published settings loader are in place. See DATA.md for usage and seed provenance.
 - Work bodies, fonts, global styles, legacy schemas/queries/types and checked-in settings JSON are preserved. Verification covers 181 baseline hashes, normalizing only additive shell props in the two Work pages; shared Layout is intentionally replaced.
-- Shared header/footer/menu, scoped Neue Montreal web fonts, favicon/manifest and supplied OG default are integrated. Home body sections/landing and Our Way implementation remain future phases.
+- Shared header/footer/menu, scoped Neue Montreal web fonts, favicon/manifest and supplied OG default are integrated. Home introduction/services/results/Noticed now render published Home New content. Landing and Our Way implementation remain future phases.
 
 ## Local commands
 
@@ -81,11 +81,22 @@ Responsive checks passed at 375/402/768/1024/1512/1920. Menu keyboard/focus/scro
 
 Approved new copy, trademark, principles, recognition, clean artwork and Contact designs remain pending. Neue Montreal core web weights are ready. Seeded service selections still need review.
 
-## Next conversation: phase 4 only
+## Phase 4 implementation notes
+
+- `frontend/components/redesign/HomeSections.tsx` and its scoped styles render introduction, services/project tracks, results tabs and Noticed. Homepage loads `homePageV2` through `getRedesignData()` and retains `getRedesignShellProps()` for chrome.
+- Branding starts open; one service can open or all can close. CMS ordering is identical on desktop/mobile. Every referenced project remains in the native mobile scroll track; unresolved/archived references render without a link.
+- Results switch background, client logo, quote and attribution as one keyed panel. Arrow keys wrap; Home/End select edges; click/tap works; no autoplay. Only one Medable testimonial is currently published. Two-result and null-document behavior was verified with a temporary local fixture (saved as `.tsx.txt` under validation, removed from routes before build).
+- Noticed uses all ten real published entries. Desktop hover/focus reveals artwork; mobile starts with the first entry open and keeps expansion separate from navigation. Services/Noticed controls are at least 44px.
+- `Artwork.tsx` requests responsive Sanity image widths, applies editorial crop and positions the hotspot. Absent assets/alt or failed images render labelled development placeholders. No legacy artwork was imported into the four new sections; the untouched legacy HomeHero remains only until phase 5.
+- Introduction statement, service descriptions/artwork/captions, results artwork/logo and Noticed thumbnails remain editorial dependencies. Optional captions are omitted. No CMS documents, schema, hooks, shared chrome, Work code, font source files or global styles were changed.
+- Phase 4 validation passes: builds, targeted lint, metadata, nullable fixtures, six widths, accordion/Noticed keyboard and click behavior, horizontal card scrolling, results keyboard/click switching, real Aero project navigation. Same 11 frontend / 5 Studio type errors and 76 release content issues remain. See VALIDATION.md for limits.
+- Legacy HomeHero still includes its old booking URL and a Mux hydration warning; phase 5 replaces that entire hero. No loader/session logic or Our Way route was introduced.
+
+## Next conversation: phase 5 only
 
 Suggested prompt:
 
-> Continue Otherness redesign Phase 4 only on codex/site-redesign. Read docs/redesign/HANDOFF.md, SPEC.md, ASSETS.md, VALIDATION.md and DATA.md. Build the Home introduction, services accordion/project tracks, results switcher and Noticed rows using published homePageV2 data and the existing shared chrome. Preserve Work bodies/fonts/interactions and the isolated noindex preview. Use Neue Montreal only in scoped redesign styles. Use supplied clean assets where available; otherwise clearly labelled development placeholders, never legacy photography or cropped reference screenshots. Implement responsive keyboard/touch behavior, verify nullable content and responsive widths in the in-app browser, update the phase 5 handoff, and stop. Do not implement the phase 5 loader/landing animation or phase 6 Our Way page.
+> Continue Otherness redesign Phase 5 only on codex/site-redesign. Read docs/redesign/HANDOFF.md, SPEC.md, ASSETS.md, VALIDATION.md and DATA.md. Replace the temporary legacy HomeHero with the new landing and implement the session-based intro and scroll header choreography. Use published Home New loading pairs/landing fields and scoped Neue Montreal/Baryton. Use supplied clean desktop/mobile artwork if available; otherwise labelled development placeholders, never screenshot crops or legacy photography. Verify first visit, refresh, return navigation, skip, reduced motion, failed media, scroll/header behavior and responsive widths in the in-app browser. Preserve phase 4 sections and all Work bodies/fonts/interactions. Keep the dedicated noindex preview isolated, update the phase 6 handoff, and stop. Do not implement Our Way or Contact.
 
 ## Future phase boundaries
 

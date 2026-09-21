@@ -13,31 +13,22 @@ import {
 	siteSettingsQueryString
 } from '../lib/sanityQueries';
 import HomeHero from '../components/blocks/HomeHero';
-import HomeWhatToExpect from '../components/blocks/HomeWhatToExpect';
-import OurServicesBanner from '../components/blocks/OurServicesBanner';
-import OthernessPageBuilder from '../components/common/OthernessPageBuilder';
-import FeaturedConversations from '../components/blocks/FeaturedConversations';
-import NoticedList from '../components/blocks/NoticedList';
-import pxToRem from '../utils/pxToRem';
+import HomeSections from '../components/redesign/HomeSections';
+import { getRedesignData } from '../lib/redesign/server';
+import type { HomePageV2, RedesignSettings } from '../lib/redesign/types';
 
-const PageWrapper = styled(motion.div)`
-	.page-builder {
-		margin-bottom: ${pxToRem(40)};
-
-		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-			margin-bottom: ${pxToRem(48)};
-		}
-	}
-`;
+const PageWrapper = styled(motion.div)``;
 
 type Props = {
 	data: HomePageType;
+	home: HomePageV2 | null;
+	redesignSettings: RedesignSettings | null;
 	siteSettings: SiteSettingsType;
 	pageTransitionVariants: TransitionsType;
 };
 
 const Page = (props: Props) => {
-	const { data, pageTransitionVariants } = props;
+	const { data, home, redesignSettings, pageTransitionVariants } = props;
 
 	return (
 		<PageWrapper
@@ -47,8 +38,8 @@ const Page = (props: Props) => {
 			exit="hidden"
 		>
 			<NextSeo
-				title={data?.seoTitle || 'Otherness'}
-				description={data?.seoDescription || ''}
+				title={home?.seo?.title || 'Otherness'}
+				description={home?.seo?.description || ''}
 			/>
 			<HomeHero
 				title={data?.heroTitle}
@@ -58,20 +49,13 @@ const Page = (props: Props) => {
 				media={data?.heroMedia}
 				link={data?.heroLink}
 			/>
-			<HomeWhatToExpect
-				title={data?.whatToExpectTitle}
-				content={data?.whatToExpectContent}
-				button={data?.whatToExpectButton}
-			/>
-			<OurServicesBanner services={data?.servicesList} />
-			<OthernessPageBuilder data={data?.homeBlocks} useComponent />
-			<FeaturedConversations data={data?.featuredConversations} />
-			<NoticedList data={data?.noticedList} />
+			<HomeSections home={home} settings={redesignSettings} />
 		</PageWrapper>
 	);
 };
 
 export async function getStaticProps() {
+	const redesign = await getRedesignData();
 	const siteSettings = await client.fetch(siteSettingsQueryString);
 	let data = await client.fetch(homePageQueryString);
 
@@ -80,6 +64,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			...(await getRedesignShellProps()),
+			home: redesign.home,
 			data,
 			siteSettings
 		}

@@ -1,0 +1,8 @@
+// Temporary local-only verification fixture. Removed before the production build.
+import { useState } from 'react';
+import HomeSections from '../components/redesign/HomeSections';
+import type { HomePageV2, Image } from '../lib/redesign/types';
+const artwork = (name: string, path: string): Image => ({alt:name, asset:{_id:name,url:`http://localhost:3010${path}`,metadata:null},crop:null,hotspot:null});
+const result = (key: string, path: string) => ({_key:key,client:`Fixture ${key}`,quote:`Fixture quote ${key}`,attribution:`Fixture attribution ${key}`,background:artwork(`Background ${key}`,path),mobileBackground:null,logo:artwork(`Logo ${key}`,path)});
+const home = {_id:'fixture',_rev:'fixture',seo:null,loadingPairs:null,landing:null,introduction:null,services:[{_key:'missing',title:'Unresolved service',description:null,contactLabel:null,projects:[{_key:'unresolved',project:null,projectId:'missing',caption:null,image:null}]}],results:[result('A','/redesign/brand/og.jpg'),result('B','/redesign/brand/logo-word-dark.svg')],noticed:null} as HomePageV2;
+export default function Fixture() { const [empty,setEmpty] = useState(false); return <><button style={{marginTop:200,padding:30}} onClick={()=>setEmpty(!empty)}>Toggle null document</button><HomeSections key={String(empty)} home={empty?null:home} settings={null}/></>; }

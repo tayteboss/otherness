@@ -1,6 +1,6 @@
 # Asset register
 
-Updated: 21 September 2026, phase 3.
+Updated: 21 September 2026, phase 4.
 
 ## Available and staged
 
@@ -52,3 +52,9 @@ Inspected the actual OS/2 weights and style names of all 18 supplied fonts. Conv
 `redesign-fonts.css` declares the opt-in family. `redesignScope` explicitly applies it to chrome descendants because legacy global rules assign fonts to individual elements. Work's font files, global variables, theme and body styles are unchanged. Baryton remains the footer serif.
 
 `logo-word-dark.svg` and `logo-icon-dark.svg` are colour-only derivatives of the supplied white originals; paths/viewBoxes are identical. The header uses the white wordmark over the temporary legacy homepage hero and dark on interior pages; phase 5 owns the final landing treatment. Trademark remains omitted while its CMS field is empty. Clean artwork and Contact design dependencies are unchanged.
+
+## Phase 4 Home sections
+
+No new production artwork was supplied or added. Service cards, Results backgrounds/client logo and Noticed thumbnails use explicitly labelled development placeholders. Published project names, Medable quote/attribution and ten real Noticed entries are rendered without copying legacy photography. Introduction statement and service descriptions still await publication; optional card captions are omitted while empty. Scoped Neue Montreal and Baryton are used in the new sections. The legacy HomeHero remains an unchanged temporary phase 5 dependency, including its existing media.
+
+`Artwork.tsx` supports responsive CDN widths, editorial crop, hotspot positioning and failure placeholders; optional results mobile art can override desktop art. Final crop/art-direction acceptance requires the pending originals. The local two-result test used clearly named fixture content and existing brand files only; that fixture was removed from frontend routes before building.

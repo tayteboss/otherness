@@ -1,0 +1,17 @@
+components/blocks/ArticleMedia/ArticleMedia.tsx(46,43): error TS2339: Property 'dimensions' does not exist on type '{ lqip: string; }'.
+components/blocks/ArticleMedia/ArticleMedia.tsx(48,43): error TS2339: Property 'dimensions' does not exist on type '{ lqip: string; }'.
+components/blocks/OneVideo/OneVideo.tsx(182,10): error TS2322: Type '{ streamType: "on-demand"; playbackId: any; loop: true; thumbnailTime: number; loading: "page"; preload: string; playsInline: true; ref: MutableRefObject<null>; paused: boolean; muted: false; showControls: boolean; accentColor: string; minResolution: "1080p"; }' is not assignable to type 'IntrinsicAttributes & MuxPlayerLazyProps & RefAttributes<MuxPlayerElement>'.
+  Property 'showControls' does not exist on type 'IntrinsicAttributes & MuxPlayerLazyProps & RefAttributes<MuxPlayerElement>'.
+components/blocks/PageHeader/PageHeader.tsx(141,50): error TS2802: Type 'string' can only be iterated through when using the '--downlevelIteration' flag or with a '--target' of 'es2015' or higher.
+components/blocks/StatisticCard/StatisticCard.tsx(86,3): error TS2741: Property 'alt' is missing in type '{ asset: { url: string; }; }' but required in type '{ asset: { url: string; metadata: { lqip: string; }; }; alt: string; }'.
+components/blocks/UnderstandStatements/UnderstandStatements.tsx(298,10): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: { slot?: string | undefined; style?: CSSProperties | undefined; title?: string | undefined; color?: string | undefined; ref?: ((instance: HTMLDivElement | null) => void) | RefObject<...> | null | undefined; ... 265 more ...; $height?: number | undefined; } & { ...; } & { ...; }): ReactElement<...>', gave the following error.
+    Type 'string' is not assignable to type 'number'.
+  Overload 2 of 2, '(props: StyledComponentPropsWithAs<"div", any, StyledProps, never, "div", "div">): ReactElement<StyledComponentPropsWithAs<"div", any, StyledProps, never, "div", "div">, string | JSXElementConstructor<...>>', gave the following error.
+    Type 'string' is not assignable to type 'number'.
+components/common/MediaStack/ImageComponent.tsx(102,41): error TS2339: Property 'metadata' does not exist on type '{ url: string; }'.
+components/common/MediaStack/ImageComponent.tsx(103,29): error TS2339: Property 'metadata' does not exist on type '{ url: string; }'.
+pages/things-we-understand.tsx(66,26): error TS2322: Type '{ statement: string; author: string; }[]' is not assignable to type 'StatementProps[]'.
+  Property 'index' is missing in type '{ statement: string; author: string; }' but required in type 'StatementProps'.
+pages/work/[...slug].tsx(123,5): error TS2322: Type 'string' is not assignable to type '[]'.
+shared/context/context.tsx(1,1): error TS1208: 'context.tsx' cannot be compiled under '--isolatedModules' because it is considered a global script file. Add an import, export, or an empty 'export {}' statement to make it a module.

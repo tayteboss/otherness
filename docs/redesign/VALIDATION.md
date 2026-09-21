@@ -121,3 +121,33 @@ Staging still resolves to `dpl_EzsX8AUMtSntpbBQNUrH9Q9WDg6N`; public www still r
 Additional representative check: Medable's mobile Product navigation scrolls to its section heading at 100px below the viewport top. Full controls/all sections remain phase 8. Final Work screenshots were recaptured after the existing page animation settled (opacity 1); desktop header footprint is 202px, matching baseline body positioning.
 
 Unattended commit creation used a one-command signing override because 1Password signing required interaction. Persistent Git signing configuration was not changed.
+
+# Phase 4 validation — 21 September 2026
+
+## Implementation and checks
+
+- `npm run build:redesign`: PASS, 33 static-generation entries; all 3 published redesign documents fetched. Home now renders the four new sections. Temporary fixture route is absent from the production build. Legacy HomeHero remains for phase 5.
+- `SANITY_STUDIO_TELEMETRY_DISABLED=1 yarn build`: PASS. `node studio/scripts/verify-redesign.cjs`: PASS; seven types and fixed-ID/null/unresolved-reference query fixtures. No Studio source or CMS writes.
+- `npm run verify:redesign`: PASS; same 181 preserved source hashes, with Work shell props normalized. All legacy Home blocks remain untouched on disk.
+- `npm run verify:redesign:chrome`: PASS; 30 built routes have published shell props, 18 page image overrides remain, one absolute default image/manifest per HTML.
+- Targeted ESLint with `.eslintrc.redesign.cjs`, React Hooks rules, image alt and anchor-content rules: PASS for HomeSections, scoped styles, Artwork and homepage. Global inherited ESLint configuration remains invalid.
+- Frontend `tsc --noEmit --incremental false`: same **11 inherited errors**, no new errors. Studio: same **5 inherited errors**. Exact logs saved under `validation/phase4-*`.
+- `npm run check:redesign:release`: expected FAIL, exit 1, same **76 missing content/artwork/alt fields**. Preview is functional, not final content/artwork acceptance.
+- `git diff --check`: PASS. No dependency, font, global-style, Work, shared-chrome, schema, content or hook changes.
+
+## In-app browser checks
+
+Only the Codex in-app browser was used; desktop panel hidden for captures. Local dev and production builds checked. Viewport captures are under `validation/phase4-*`; a defective full-page stitching capture was discarded in favour of viewport captures.
+
+- At **375, 402, 768, 1024, 1512 and 1920**, document width equals viewport width. Baryton headings and Neue Montreal section text are scoped correctly. Desktop shows three varied card image proportions; mobile retains every card with the next card visible. At 402px the Branding track is 384px wide with 869px content; horizontal scrolling moved from 0 to 485px. At 375px it is 357px/808px.
+- Branding is initially open. Enter closes it; Space opens Strategy; reopening Branding closes Strategy. Hidden panels are excluded from focus/accessibility. Published order is Branding, Strategy, Art direction, Packaging, Digital at all widths.
+- Mobile Noticed begins with the first row expanded. Clicking Flydog closes the first and expands Flydog without navigating; Enter closes Flydog. Destination links are separate. Desktop keyboard focus activates its row and thumbnail. CSS/React hover handlers support pointer entry/exit; explicit mouse-hover emulation was not available in the locator API.
+- Production-build service card navigation reaches `/work/aero` and its existing body/subproject controls. This is representative navigation plus source preservation, not a repeat of comprehensive Work media/filter QA from phase 3/8.
+- Local fixture verifies results A→B by ArrowRight, Home→A, End→B, and click→A, with matching background, logo, quote and selected attribution. Current published content contains only one result, so no additional live testimonial was invented. Native horizontal scrolling and real buttons support touch; a physical touch-device test was not performed.
+- Fixture verifies a null Home/settings document, null services/results/Noticed and unresolved project reference render placeholders without fabricated destinations or crashes. Fixture source is saved as `validation/phase4-fixture.tsx.txt`; it was removed from `pages/` before build.
+- Current missing artwork/alt fields render labelled placeholders. Required image failure fallback is implemented; final supplied-artwork crops and the optional mobile-background override need visual acceptance when originals arrive.
+- The legacy homepage Mux player reports a style hydration warning. Its source was unchanged; it remains a phase 5 replacement dependency. It also retains its legacy hero booking destination; the new section CTAs use the fresh published consultation URL.
+
+## Boundaries and dependencies
+
+The loader/session handling, replacement landing, header scroll choreography and `/our-way` remain phases 5/6. Introduction statement, service descriptions and curation/captions, new artwork, client logos and Noticed thumbnails are still pending. No supplied screenshot became production artwork. No animation, autoplay or reduced-motion-dependent behavior was added to phase 4 sections.
