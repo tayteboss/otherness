@@ -15,5 +15,10 @@
 	check(document.documentElement.scrollWidth === innerWidth, 'No page overflow');
 	check(!document.activeElement.closest('[aria-hidden="true"]'), 'Focus must not remain in an inactive panel');
 	check([...section.querySelectorAll('.result-quote')].every(item => Math.abs(item.getBoundingClientRect().bottom - quote.getBoundingClientRect().bottom) < 1), 'All quote bottoms must share the same stable position');
+	check([...section.querySelectorAll('.result-panel')].every(panel => {
+		const logo = panel.querySelector('.result-logo, .result-client');
+		const text = panel.querySelector('.result-quote');
+		return Math.abs(text.getBoundingClientRect().top - logo.getBoundingClientRect().bottom - 40) < 1;
+	}), 'Every logo must stay 40px above its quote');
 	return { pass: true, active: active.textContent, width: innerWidth };
 })();

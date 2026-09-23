@@ -22,6 +22,7 @@ const Panel = styled.dialog`
 	color: #000;
 	overflow-y: auto;
 	overscroll-behavior: contain;
+	touch-action: pinch-zoom;
 	&::backdrop {
 		background: transparent;
 	}
@@ -178,14 +179,8 @@ export default function MobileMenu({
 		const panel = panelRef.current;
 		if (!open || !panel) return;
 		const trigger = triggerRef.current;
-		const body = document.body;
-		const previous = {
-			position: body.style.position,
-			top: body.style.top,
-			left: body.style.left,
-			width: body.style.width,
-			overflow: body.style.overflow
-		};
+		const root = document.documentElement;
+		const previousOverflow = root.style.overflow;
 		let scrollX = window.scrollX;
 		let scrollY = window.scrollY;
 		let frame = 0;
@@ -207,14 +202,9 @@ export default function MobileMenu({
 			scrollX = window.scrollX;
 			scrollY = window.scrollY;
 			lenis?.stop();
+			// Avoid switching the whole page into/out of a fixed layer on iOS.
+			root.style.overflow = 'hidden';
 			panel.showModal(); // Keep the visible page inert beneath the controls.
-			Object.assign(body.style, {
-				position: 'fixed',
-				top: `-${scrollY}px`,
-				left: `-${scrollX}px`,
-				width: '100%',
-				overflow: 'hidden'
-			});
 			closeRef.current?.focus({ preventScroll: true });
 		};
 		const landing = document.querySelector<HTMLElement>(
@@ -279,13 +269,12 @@ export default function MobileMenu({
 				});
 				return;
 			}
+			panel.close();
 			exitAnimation.current?.cancel();
 			exitAnimation.current = null;
-			panel.close();
-			Object.assign(body.style, previous);
+			root.style.overflow = previousOverflow;
 			lenis?.resize();
 			lenis?.start();
-			window.scrollTo(scrollX, scrollY);
 			lenis?.scrollTo(scrollY, { immediate: true, force: true });
 			trigger?.focus({ preventScroll: true });
 		};

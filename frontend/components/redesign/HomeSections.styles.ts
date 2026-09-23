@@ -571,11 +571,14 @@ export const HomeSectionsWrapper = styled.div`
 		.result-stage {
 			overflow: hidden;
 		}
+		.result-panel {
+			/* Keep each logo with its quote, anchored above the shared tab rule. */
+			justify-content: flex-end;
+		}
 		.result-quote {
 			font-size: 32px;
 			line-height: 1.17;
-			/* All slides size the shared grid; pin quote ends above the tab rule. */
-			margin-top: auto;
+			margin-top: 0;
 			margin-bottom: 0;
 		}
 		.result-tabs {
