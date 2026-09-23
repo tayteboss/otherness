@@ -30,7 +30,7 @@ The separate build writes `.redesign/content.json` (ignored) as a content/diagno
 - Settings, booking URL, socials and default SEO: current published settings/Home. Bare email normalized to `mailto:`.
 - Loading pairs, landing statement, introduction heading, service order and Our Way destination: approved redesign specification.
 - Up to three cards per service: existing published non-archived projects, current service tags and CMS order. These are editable starting selections, not approved final curation. No project documents or images are changed.
-- Result: published Medable quote and matching attribution, without the mismatched Nike logo.
+- Result: published Medable quote and client name, without the mismatched Nike logo. Attribution is not part of the contract.
 - Noticed: ten existing real titles/sources/years/destinations, with no old thumbnails.
 - Our Way: published four-stage process and founder biography. Principles, new introductory/service copy, recognition, trademark and supplied artwork remain editorial dependencies.
 
@@ -47,3 +47,7 @@ Singleton restrictions follow [Sanity's singleton guide](https://www.sanity.io/g
 In the Studio Vercel tool choose **Website Redesign** to rebuild only `codex/site-redesign`. The existing **Staging** and **Production** entries are retained. Publishing CMS changes alone does not trigger a deployment; this keeps the existing manual publication workflow. The redesign hook was tested through a successful READY build. Stable preview: https://otherness-git-codex-site-redesign-tayteco-36dd2d0b.vercel.app.
 
 The clean hosted install required explicit `@react-spring/three@9.7.3` and `react-is@18.2.0` dependencies already present in the locks. Their versions were not changed. The original global type/lint failures still require separate work; use the recorded baseline when assessing regressions.
+
+## Contact booking override — 23 September 2026
+
+The frontend hardcodes Cal.com `otherness/discovery` via `ConsultationLink.tsx` at Tayte’s request. Shared booking CTAs and Home service links no longer use `siteSettingsV2.consultationUrl`; the existing field/documents remain intact for rollback. Primary Contact navigation now targets `/contact`. Contact copy is local; footer socials still use fresh published settings. No `contactPage` schema/document was created.

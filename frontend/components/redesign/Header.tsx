@@ -5,12 +5,14 @@ import styled from 'styled-components';
 import { redesignScope } from '../../styles/redesign';
 import type { RedesignSettings } from '../../lib/redesign/types';
 import { Navigation } from './Navigation';
+import { HeaderGlassFilter, headerGlass } from './HeaderGlass';
 
 const HeaderWrapper = styled.header`
 	${redesignScope}
 	position: fixed;
 	inset: 0 0 auto;
 	z-index: 1000;
+	opacity: var(--footer-header-opacity, 1);
 	pointer-events: none;
 	/* Retain the legacy header footprint consumed by Work's --header-h. */
 	height: calc(85vw * 112 / 1160 + 78px);
@@ -21,23 +23,27 @@ const HeaderWrapper = styled.header`
 	}
 	.logo-row a {
 		display: block;
+		position: relative;
 	}
 	.logo-row img {
 		width: 100%;
 		height: auto;
+		transition: opacity 300ms ease;
 	}
-	.header-inner {
-		transition: transform 250ms ease;
+	.logo-row .wordmark-light {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+	}
+	&[data-light-wordmark='true'] .wordmark-light {
+		opacity: 1;
+	}
+	&[data-light-wordmark='true'] .wordmark-dark {
+		opacity: 0;
 	}
 	nav {
 		margin-top: 28px;
 		pointer-events: auto;
-	}
-	&[data-compact='true'] .header-inner {
-		transform: translateY(calc(-75vw * 31 / 226 / 2 - 16px));
-	}
-	&[data-compact='true'] .logo-row {
-		visibility: hidden;
 	}
 	.menu-trigger {
 		display: none;
@@ -47,7 +53,7 @@ const HeaderWrapper = styled.header`
 		.logo-row {
 			width: calc(100% - 48px);
 			max-width: 400px;
-			margin-top: -10px;
+			margin-top: calc(min(100vw - 48px, 400px) * -31 / 226 / 2);
 		}
 		nav {
 			display: none;
@@ -64,23 +70,50 @@ const HeaderWrapper = styled.header`
 			text-transform: uppercase;
 			background: #efedeb;
 		}
-		&[data-compact='true'] .header-inner {
-			transform: translateY(
-				calc(-1 * min(100vw - 48px, 400px) * 31 / 226 + 10px)
-			);
-		}
 	}
 	@media (max-width: 550px) {
 		height: calc(70vw * 112 / 1160 + 42px);
 	}
-	&[data-way-hero='true'] nav a {
-		background: transparent;
-		color: white;
+	nav a,
+	.menu-trigger {
+		${headerGlass}
+		transition: background-color 300ms ease, color 300ms ease;
 	}
-	&[data-way-hero='true'] nav a[aria-current='page'],
-	&[data-way-hero='true'] nav a:hover {
-		background: white;
-		color: var(--redesign-ink);
+	--header-active-background: var(--redesign-ink);
+	--header-active-color: #fff;
+	&[data-light-navigation='true'] {
+		--header-active-background: #fff;
+		--header-active-color: var(--redesign-ink);
+		nav a,
+		.menu-trigger {
+			color: #fff;
+
+			@media (prefers-reduced-transparency: reduce) {
+				--header-glass-idle: #242424;
+				--header-glass-hover: #333;
+				--header-glass-active: #444;
+			}
+			@media (forced-colors: active) {
+				--header-glass-idle: ButtonFace;
+				--header-glass-hover: ButtonFace;
+				--header-glass-active: ButtonFace;
+				color: ButtonText;
+			}
+		}
+	}
+	nav a[aria-current='page'] {
+		background: var(--header-active-background);
+		color: var(--header-active-color);
+		text-decoration: none;
+		box-shadow: none;
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+	}
+	@media (forced-colors: active) {
+		nav a[aria-current='page'] {
+			background: Highlight;
+			color: HighlightText;
+		}
 	}
 	.landing-icon {
 		display: none;
@@ -109,17 +142,6 @@ const HeaderWrapper = styled.header`
 		nav {
 			margin-top: 28px;
 		}
-		&[data-compact='true'] .header-inner {
-			top: 16px;
-			transform: none;
-		}
-		&[data-compact='true'] .logo-row,
-		&[data-compact='true'] .landing-icon {
-			display: none;
-		}
-		&[data-compact='true'] nav {
-			margin-top: 0;
-		}
 	}
 	@media (max-width: 768px) {
 		&[data-home='true'] {
@@ -136,16 +158,16 @@ const HeaderWrapper = styled.header`
 				top: -46px;
 			}
 			.menu-trigger {
-				margin-top: 24px;
-			}
-			&[data-compact='true'] .menu-trigger {
-				margin-top: 0;
+				margin-top: 12px;
 			}
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.header-inner {
+		.header-inner,
+		.logo-row img,
+		nav a,
+		.menu-trigger {
 			transition: none;
 		}
 	}
@@ -162,8 +184,8 @@ export default function Header({
 	onOpen: () => void;
 	triggerRef: RefObject<HTMLButtonElement>;
 }) {
-	const [compact, setCompact] = useState(false);
-	const [overLanding, setOverLanding] = useState(true);
+	const [lightWordmark, setLightWordmark] = useState(true);
+	const [lightNavigation, setLightNavigation] = useState(true);
 	const headerRef = useRef<HTMLElement>(null);
 	const router = useRouter();
 	const home = router.pathname === '/';
@@ -173,19 +195,63 @@ export default function Header({
 		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const update = () => {
 			frame = 0;
+			// Body locking must not reset the visible header to its landing position.
+			if (document.querySelector<HTMLDialogElement>('#site-menu')?.open)
+				return;
+			const header = headerRef.current;
+			const footer = document.querySelector('footer .footer-main:not(.contact-meta)');
+			const footerTop = footer?.getBoundingClientRect().top ?? Infinity;
+			const fade = Math.min(
+				1,
+				Math.max(
+					0,
+					(window.innerHeight * 0.7 - footerTop) /
+						(window.innerHeight * 0.45)
+				)
+			);
+			const opacity = reduced.matches
+				? fade >= 1
+					? 0
+					: 1
+				: 1 - fade * fade * (3 - 2 * fade);
+			header?.style.setProperty(
+				'--footer-header-opacity',
+				String(opacity)
+			);
+			header?.toggleAttribute('inert', opacity === 0);
 			if (!home) {
-				setCompact(window.scrollY > 100);
-				const hero = document.querySelector<HTMLElement>(
-					'[data-our-way-hero]'
-				);
-				setOverLanding(
-					ourWay &&
-						window.scrollY <
-							(hero?.offsetHeight || window.innerHeight) - 100
+				// Later sections cover the parallax hero. Sample each header row
+				// separately so the menu can cross a boundary before the wordmark.
+				const sections = Array.from(
+					document.querySelectorAll<HTMLElement>(
+						'[data-header-theme], footer .footer-main'
+					)
+				).reverse();
+				const overDarkSection = (selector: string) => {
+					const row = header
+						?.querySelector(selector)
+						?.getBoundingClientRect();
+					if (!ourWay || !row) return false;
+					const midpoint = (Math.max(0, row.top) + row.bottom) / 2;
+					const section = sections.find((element) => {
+						const bounds = element.getBoundingClientRect();
+						return (
+							bounds.top <= midpoint && bounds.bottom > midpoint
+						);
+					});
+					return (
+						section?.dataset.headerTheme === 'dark' ||
+						section?.classList.contains('footer-main') === true
+					);
+				};
+				setLightWordmark(overDarkSection('.logo-row'));
+				setLightNavigation(
+					overDarkSection(
+						window.innerWidth <= 768 ? '.menu-trigger' : 'nav'
+					)
 				);
 				return;
 			}
-			const header = headerRef.current;
 			const landing = document.querySelector<HTMLElement>(
 				'[data-home-landing]'
 			);
@@ -211,14 +277,25 @@ export default function Header({
 			);
 			header?.style.setProperty(
 				'--home-crop',
-				`${(mobile ? -10 : (-endWidth * 31) / 226 / 2) * progress}px`
+				`${((-endWidth * 31) / 226 / 2) * progress}px`
 			);
 			header?.style.setProperty(
 				'--home-icon',
 				String(Math.max(0, 1 - progress * 4))
 			);
-			setCompact(scroll > height * 0.9);
-			setOverLanding(scroll < height - 100);
+			const logoMidpoint = (endWidth * 31) / 226 / 4;
+			const overDarkSection = Array.from(
+				document.querySelectorAll(
+					'#services, #results, footer .footer-main'
+				)
+			).some((section) => {
+				const bounds = section.getBoundingClientRect();
+				return (
+					bounds.top <= logoMidpoint && bounds.bottom > logoMidpoint
+				);
+			});
+			setLightWordmark(scroll < height - 100 || overDarkSection);
+			setLightNavigation(scroll < height - 100 || overDarkSection);
 		};
 		const schedule = () => {
 			if (!frame) frame = window.requestAnimationFrame(update);
@@ -228,8 +305,11 @@ export default function Header({
 		window.addEventListener('resize', schedule);
 		reduced.addEventListener('change', schedule);
 		const observer = new ResizeObserver(schedule);
-		const landing = document.querySelector('[data-home-landing]');
+		const landing = document.querySelector(
+			'[data-home-landing], [data-our-way-hero]'
+		);
 		if (landing) observer.observe(landing);
+		observer.observe(document.body);
 		return () => {
 			window.cancelAnimationFrame(frame);
 			window.removeEventListener('scroll', schedule);
@@ -243,10 +323,12 @@ export default function Header({
 			className="header"
 			ref={headerRef}
 			data-home={home}
-			data-way-hero={ourWay && overLanding}
+			data-way-hero={ourWay && lightWordmark}
+			data-light-wordmark={(home || ourWay) && lightWordmark}
+			data-light-navigation={(home || ourWay) && lightNavigation}
 			data-redesign-chrome
-			data-compact={compact}
 		>
+			<HeaderGlassFilter />
 			<div className="header-inner">
 				{home && (
 					<img
@@ -261,14 +343,19 @@ export default function Header({
 				<div className="logo-row">
 					<Link href="/" aria-label="Otherness home">
 						<img
-							src={
-								(home || ourWay) && overLanding
-									? '/redesign/brand/logo-word.svg'
-									: '/redesign/brand/logo-word-dark.svg'
-							}
+							className="wordmark-dark"
+							src="/redesign/brand/logo-word-dark.svg"
 							width="226"
 							height="31"
 							alt="Otherness"
+						/>
+						<img
+							className="wordmark-light"
+							src="/redesign/brand/logo-word.svg"
+							width="226"
+							height="31"
+							alt=""
+							aria-hidden="true"
 						/>
 					</Link>
 				</div>

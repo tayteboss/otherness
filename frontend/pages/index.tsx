@@ -8,19 +8,24 @@ import { siteSettingsQueryString } from '../lib/sanityQueries';
 import HomeLanding from '../components/redesign/HomeLanding';
 import HomeSections from '../components/redesign/HomeSections';
 import { getRedesignData } from '../lib/redesign/server';
-import type { HomePageV2, RedesignSettings } from '../lib/redesign/types';
+import type {
+	HomePageV2,
+	LegacyNoticedEntry,
+	RedesignSettings
+} from '../lib/redesign/types';
 
 const PageWrapper = styled(motion.div)``;
 
 type Props = {
 	home: HomePageV2 | null;
 	redesignSettings: RedesignSettings | null;
+	noticed: LegacyNoticedEntry[];
 	siteSettings: SiteSettingsType;
 	pageTransitionVariants: TransitionsType;
 };
 
 const Page = (props: Props) => {
-	const { home, redesignSettings, pageTransitionVariants } = props;
+	const { home, redesignSettings, noticed, pageTransitionVariants } = props;
 
 	return (
 		<PageWrapper
@@ -34,7 +39,11 @@ const Page = (props: Props) => {
 				description={home?.seo?.description || ''}
 			/>
 			<HomeLanding home={home} />
-			<HomeSections home={home} settings={redesignSettings} />
+			<HomeSections
+				home={home}
+				settings={redesignSettings}
+				noticed={noticed}
+			/>
 		</PageWrapper>
 	);
 };
@@ -47,6 +56,7 @@ export async function getStaticProps() {
 		props: {
 			...(await getRedesignShellProps()),
 			home: redesign.home,
+			noticed: redesign.legacyNoticed || [],
 			siteSettings
 		}
 	};

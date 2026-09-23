@@ -78,9 +78,7 @@ function contentIssues(data) {
 		need(h.results, 'homePageV2.results');
 		h.results?.forEach((r) => {
 			const p = `homePageV2.results.${r._key}`;
-			['client', 'quote', 'attribution'].forEach((k) =>
-				need(r[k], `${p}.${k}`)
-			);
+			['client', 'quote'].forEach((k) => need(r[k], `${p}.${k}`));
 			image(r.background, `${p}.background`);
 			image(r.logo, `${p}.logo`);
 		});

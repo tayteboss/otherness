@@ -121,12 +121,11 @@ const homePageV2 = defineType({
           fields: [
             text('client', 'Client'),
             text('quote', 'Quote', true),
-            text('attribution', 'Attribution', true),
             image('background', 'Background'),
             image('mobileBackground', 'Mobile background (optional)'),
             image('logo', 'Client logo'),
           ],
-          preview: {select: {title: 'client', subtitle: 'attribution', media: 'logo'}},
+          preview: {select: {title: 'client', subtitle: 'quote', media: 'logo'}},
         }),
       ],
     }),

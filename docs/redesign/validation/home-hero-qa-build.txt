@@ -1,0 +1,149 @@
+
+> build:redesign
+> node scripts/redesign/build.cjs
+
+Published redesign documents: 3/3. Content issues: 72.
+siteSettingsV2.footer.trademark: add and publish content in Website Redesign.
+homePageV2.introduction.statement: add and publish content in Website Redesign.
+homePageV2.services.branding.description: add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.alt: add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.branding.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.alt: add and publish content in Website Redesign.
+homePageV2.services.strategy.description: add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.alt: add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.strategy.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.alt: add and publish content in Website Redesign.
+homePageV2.services.art-direction.description: add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.alt: add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.art-direction.projects.project-971af1fc-3baf-42b0-858e-4f2e14afc185.image.alt: add and publish content in Website Redesign.
+homePageV2.services.packaging.description: add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-eedb8938-3e54-4b4b-9df8-830abaea8491.image.alt: add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-0a9dc124-8299-4578-9488-f91f848f716a.image.alt: add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.packaging.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.alt: add and publish content in Website Redesign.
+homePageV2.services.digital.description: add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-7d764437-8ae7-4c7d-b0fa-0a806d3a7372.image.alt: add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-8fac73fc-5f95-4f6b-ae87-db2359677026.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.services.digital.projects.project-8fac73fc-5f95-4f6b-ae87-db2359677026.image.alt: add and publish content in Website Redesign.
+homePageV2.results.medable.background.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.results.medable.background.alt: add and publish content in Website Redesign.
+homePageV2.results.medable.logo.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.results.medable.logo.alt: add and publish content in Website Redesign.
+homePageV2.noticed.17f65b752f51.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.17f65b752f51.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.614bbd1aa77e.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.614bbd1aa77e.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.3293acf3d685.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.3293acf3d685.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.337d039a8ddf.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.337d039a8ddf.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.24ba10613c9f.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.24ba10613c9f.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.7b408a9ecab9.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.7b408a9ecab9.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.7ad0f946e4b3.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.7ad0f946e4b3.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.8f5d4f6cc388.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.8f5d4f6cc388.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.16bdde8fe9b4.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.16bdde8fe9b4.image.alt: add and publish content in Website Redesign.
+homePageV2.noticed.1140c4bb22d5.image.asset (supplied artwork required): add and publish content in Website Redesign.
+homePageV2.noticed.1140c4bb22d5.image.alt: add and publish content in Website Redesign.
+ourWayPage.hero.statement: add and publish content in Website Redesign.
+ourWayPage.hero.image.asset (supplied artwork required): add and publish content in Website Redesign.
+ourWayPage.hero.image.alt: add and publish content in Website Redesign.
+ourWayPage.introduction.text: add and publish content in Website Redesign.
+ourWayPage.partnership.heading: add and publish content in Website Redesign.
+ourWayPage.partnership.founderNote: add and publish content in Website Redesign.
+ourWayPage.partnership.principles: review and supply four principles.
+ourWayPage.consultation.text: add and publish content in Website Redesign.
+ourWayPage.consultation.artwork.asset (supplied artwork required): add and publish content in Website Redesign.
+ourWayPage.consultation.artwork.alt: add and publish content in Website Redesign.
+ourWayPage.credentials.clients: add and publish content in Website Redesign.
+ourWayPage.credentials.recognition: add and publish content in Website Redesign.
+ourWayPage.credentials.logos: add and publish content in Website Redesign.
+  ▲ Next.js 14.2.31
+  - Environments: .env.local
+
+   Skipping validation of types
+   Skipping linting
+   Creating an optimized production build ...
+   Disabled SWC as replacement for Babel because of custom Babel configuration ".babelrc" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Using external babel configuration from /private/tmp/otherness-home-qa.7VPHSy/.babelrc
+ ⚠ It looks like there is a custom Babel configuration that can be removed:
+ ⚠ Next.js supports the following features natively:
+ ⚠ 	- 'styled-components' can be enabled via 'compiler.styledComponents' in 'next.config.js'
+ ⚠ For more details configuration options, please refer https://nextjs.org/docs/architecture/nextjs-compiler#supported-features
+   Disabled SWC as replacement for Babel because of custom Babel configuration ".babelrc" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Disabled SWC as replacement for Babel because of custom Babel configuration ".babelrc" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Using external babel configuration from /private/tmp/otherness-home-qa.7VPHSy/.babelrc
+ ⚠ It looks like there is a custom Babel configuration that can be removed:
+ ⚠ Next.js supports the following features natively:
+ ⚠ 	- 'styled-components' can be enabled via 'compiler.styledComponents' in 'next.config.js'
+ ⚠ For more details configuration options, please refer https://nextjs.org/docs/architecture/nextjs-compiler#supported-features
+ ✓ Compiled successfully
+   Collecting page data ...
+   Generating static pages (0/34) ...
+href /
+href https://app.tezzera.co/meet/otherness-discovery
+   Generating static pages (8/34)
+href https://app.tezzera.co/meet/otherness-discovery
+   Generating static pages (16/34)
+href mailto:collabs@otherness.design
+   Generating static pages (25/34)
+href mailto:collabs@otherness.design
+ ✓ Generating static pages (34/34)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (pages)                                                                   Size     First Load JS
+┌ ● / (1368 ms)                                                                 6.91 kB         168 kB
+├   /_app                                                                       0 B             126 kB
+├ ○ /404 (395 ms)                                                               6.25 kB         167 kB
+├ ƒ /api/exit-preview                                                           0 B             126 kB
+├ ƒ /api/preview                                                                0 B             126 kB
+├ ● /conversations (1707 ms)                                                    6.78 kB         203 kB
+├ ● /conversations/[...slug] (3277 ms)                                          3.67 kB         191 kB
+├   ├ /conversations/what-do-they-mean-when-they-tell-you-simplicity (1051 ms)
+├   ├ /conversations/radical-incusion (756 ms)
+├   ├ /conversations/i-think-i-owe-you-an-explanation-about-the-logo (752 ms)
+├   └ /conversations/who-what-why-is-otherness (711 ms)
+├ ● /our-way (559 ms)                                                           4.84 kB         131 kB
+├ ● /privacy (929 ms)                                                           3.57 kB         191 kB
+├ ● /things-we-understand (985 ms)                                              630 kB          799 kB
+├ ● /work (1739 ms)                                                             5.15 kB         206 kB
+├ ● /work/[...slug] (17947 ms)                                                  5.59 kB         193 kB
+├   ├ /work/blair-chahley-klassen (1210 ms)
+├   ├ /work/the-gorgeous-spice-company (1175 ms)
+├   ├ /work/artem (1156 ms)
+├   ├ /work/narro (1101 ms)
+├   ├ /work/ses-menswear (1089 ms)
+├   ├ /work/harper (1072 ms)
+├   ├ /work/ethiopian-forest-coffee-atlas (1014 ms)
+├   └ [+12 more paths] (avg 839 ms)
+└ ● /working-together (955 ms)                                                  4.13 kB         191 kB
++ First Load JS shared by all                                                   127 kB
+  ├ chunks/framework-e9d92599b8ac833a.js                                        44.9 kB
+  ├ chunks/main-aa5a5cad8e029d6d.js                                             40.4 kB
+  ├ chunks/pages/_app-17e25f21fdda3d3b.js                                       39.1 kB
+  └ other shared chunks (total)                                                 2.21 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand

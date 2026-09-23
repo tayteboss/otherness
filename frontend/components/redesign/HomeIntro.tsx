@@ -5,7 +5,11 @@ import styled from 'styled-components';
 import type { HomePageV2 } from '../../lib/redesign/types';
 import { redesignScope } from '../../styles/redesign';
 
-const SESSION_KEY = 'otherness:intro:v1';
+const LANDING_START = 4800;
+const IMAGE_DURATION = 1500;
+const REVEAL_START = IMAGE_DURATION - 500;
+const REVEAL_DURATION = 700;
+
 const Panel = styled(motion.dialog)`
 	${redesignScope}
 	position: fixed;
@@ -71,20 +75,14 @@ export default function HomeIntro({
 		// Keep admission stable through React Strict Mode's effect rehearsal.
 		if (admitted.current) return;
 		admitted.current = true;
-		try {
-			const seen = sessionStorage.getItem(SESSION_KEY);
-			sessionStorage.setItem(SESSION_KEY, 'seen');
-			if (
-				seen ||
-				usable.length !== 3 ||
-				window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-				window.scrollY > 20
-			)
-				return;
-			setPlaying(true);
-		} catch {
-			// Disabled storage must never block content or cause repeated intros.
-		}
+		// QA mode requested by Tayte: replay on every home mount/refresh.
+		// Restore the session gate after intro/hero acceptance.
+		if (
+			usable.length !== 3 ||
+			window.matchMedia('(prefers-reduced-motion: reduce)').matches
+		)
+			return;
+		setPlaying(true);
 	}, [usable.length]);
 	useEffect(() => {
 		const panel = panelRef.current;
@@ -104,15 +102,70 @@ export default function HomeIntro({
 			if (reduced.matches) finish();
 		};
 		reduced.addEventListener('change', onPreference);
+		// Separate entrance layers leave the existing scroll transforms/blur intact.
+		// Fill backwards holds the phrase/header out of view until their turn.
+		const entrances: Animation[] = [];
+		const reveal = (
+			selector: string,
+			keyframes: Keyframe[],
+			duration: number,
+			delay: number,
+			easing = 'cubic-bezier(0.22, 1, 0.36, 1)'
+		) => {
+			const element = document.querySelector(selector);
+			if (!element) return;
+			const animation = element.animate(keyframes, {
+				duration,
+				delay: LANDING_START + delay,
+				easing,
+				fill: 'both'
+			});
+			entrances.push(animation);
+		};
+		try {
+			reveal(
+				'[data-home-landing] .landing-reveal',
+				[
+					{ transform: 'scale(1.04)', filter: 'blur(6px)' },
+					{ transform: 'scale(1)', filter: 'blur(0px)' }
+				],
+				IMAGE_DURATION,
+				-200, // Start settling before the loader has fully faded away.
+				'cubic-bezier(0.4, 0, 0.2, 1)'
+			);
+			const fadeIn = [
+				{ opacity: 0, filter: 'blur(8px)' },
+				{ opacity: 1, filter: 'blur(0px)' }
+			];
+			reveal(
+				'.landing-statement-reveal',
+				fadeIn,
+				REVEAL_DURATION,
+				REVEAL_START
+			);
+			reveal(
+				'header[data-home="true"] .header-inner',
+				fadeIn,
+				REVEAL_DURATION,
+				REVEAL_START + REVEAL_DURATION
+			);
+		} catch {
+			// An unsupported/failed animation must never hide the page permanently.
+			entrances.forEach((animation) => animation.cancel());
+		}
 		// Completion is timer-driven, independent of images and animation callbacks.
 		const timers = [
 			window.setTimeout(() => setIndex(1), 1500),
 			window.setTimeout(() => setIndex(2), 3000),
 			window.setTimeout(() => setFading(true), 4500),
-			window.setTimeout(finish, 4800)
+			window.setTimeout(
+				finish,
+				LANDING_START + REVEAL_START + REVEAL_DURATION * 2
+			)
 		];
 		return () => {
 			timers.forEach(window.clearTimeout);
+			entrances.forEach((animation) => animation.cancel());
 			reduced.removeEventListener('change', onPreference);
 			panel.close();
 			document.documentElement.style.overflow = previousOverflow;

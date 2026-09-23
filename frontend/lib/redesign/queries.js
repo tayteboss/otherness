@@ -13,8 +13,16 @@ const homeQuery = `*[_id == "homePageV2" && _type == "homePageV2"][0]{
   services[]{_key, title, description, contactLabel, projects[]{_key, caption,
     "projectId": project._ref,
     project->{_id, title, "slug": slug.current, archiveProject}, image${imageProjection}}},
-  results[]{_key, client, quote, attribution, background${imageProjection}, mobileBackground${imageProjection}, logo${imageProjection}},
+  results[]{_key, client, quote, background${imageProjection}, mobileBackground${imageProjection}, logo${imageProjection}},
   noticed[]{_key, title, source, year, link{label, href}, image${imageProjection}}, seo${seoProjection}
+}`;
+// Legacy Noticed list lives on the original `homePage` document. The redesign
+// Noticed section reuses this published content instead of homePageV2.noticed.
+const legacyNoticedQuery = `*[_type == "homePage"][0].noticedList[]{
+  _key, title, source, year,
+  "thumbnailImage": thumbnailImage.asset->url,
+  url,
+  pageReference->{_type, "slug": slug.current}
 }`;
 const ourWayQuery = `*[_id == "ourWayPage" && _type == "ourWayPage"][0]{
   _id, _rev, hero{statement, scrollLabel, image${imageProjection}, mobileImage${imageProjection}},
@@ -25,5 +33,5 @@ const ourWayQuery = `*[_id == "ourWayPage" && _type == "ourWayPage"][0]{
     clients[]{_key, title, detail, link{label, href}}, recognition[]{_key, title, detail, link{label, href}},
     logos[]{_key, title, image${imageProjection}, link{label, href}}}, seo${seoProjection}
 }`;
-const redesignQuery = `{"settings": ${settingsQuery}, "home": ${homeQuery}, "ourWay": ${ourWayQuery}}`;
-module.exports = { settingsQuery, homeQuery, ourWayQuery, redesignQuery };
+const redesignQuery = `{"settings": ${settingsQuery}, "home": ${homeQuery}, "ourWay": ${ourWayQuery}, "legacyNoticed": ${legacyNoticedQuery}}`;
+module.exports = { settingsQuery, homeQuery, ourWayQuery, legacyNoticedQuery, redesignQuery };

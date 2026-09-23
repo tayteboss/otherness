@@ -90,7 +90,6 @@ export interface HomePageV2 extends Document {
 		(Keyed & {
 			client: Maybe<string>;
 			quote: Maybe<string>;
-			attribution: Maybe<string>;
 			background: Maybe<Image>;
 			mobileBackground: Maybe<Image>;
 			logo: Maybe<Image>;
@@ -153,8 +152,20 @@ export interface OurWayPage extends Document {
 		>;
 	}>;
 }
+// Legacy Noticed entries sourced from the original `homePage` document. The
+// thumbnail is a resolved asset URL and the destination is either an external
+// URL or an internal page reference.
+export interface LegacyNoticedEntry extends Keyed {
+	title: Maybe<string>;
+	source: Maybe<string>;
+	year: Maybe<string>;
+	thumbnailImage: Maybe<string>;
+	url: Maybe<string>;
+	pageReference: Maybe<{ _type: string; slug: Maybe<string> }>;
+}
 export interface RedesignData {
 	settings: Maybe<RedesignSettings>;
 	home: Maybe<HomePageV2>;
 	ourWay: Maybe<OurWayPage>;
+	legacyNoticed: Maybe<LegacyNoticedEntry[]>;
 }

@@ -104,8 +104,7 @@ function buildSeed({ settings, home, ourWay, projects }) {
 				? [
 						keyed('medable', 'result', {
 							client: 'Medable',
-							quote: testimonial.testimonial,
-							attribution: testimonial.credit
+							quote: testimonial.testimonial
 						})
 				  ]
 				: [],
@@ -124,7 +123,7 @@ function buildSeed({ settings, home, ourWay, projects }) {
 			}),
 			seo: { title: home?.seoTitle, description: home?.seoDescription },
 			editorialNotes:
-				'Project selections are editorial starting points from current project service tags and orderRank; review per service. Medable quote/attribution copied together from published Home, no Nike logo. Introduction statement and service descriptions need approved copy. All image fields deliberately empty pending new originals. Noticed text/destinations are real published entries; thumbnails await supply.'
+				'Project selections are editorial starting points from current project service tags and orderRank; review per service. Medable quote and client name copied from published Home, no Nike logo. Introduction statement and service descriptions need approved copy. All image fields deliberately empty pending new originals. Noticed text/destinations are real published entries; thumbnails await supply.'
 		},
 		{
 			_id: 'ourWayPage',

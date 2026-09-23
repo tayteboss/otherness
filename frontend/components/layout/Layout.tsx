@@ -6,6 +6,8 @@ import type { RedesignSettings } from '../../lib/redesign/types';
 import Header from '../redesign/Header';
 import Footer from '../redesign/Footer';
 import MobileMenu from '../redesign/MobileMenu';
+import { ConsultationEmbed } from '../redesign/ConsultationLink';
+import { useRouter } from 'next/router';
 
 const Main = styled.main`
 	position: relative;
@@ -21,6 +23,7 @@ export default function Layout({
 	settings: RedesignSettings | null;
 }) {
 	const [menuOpen, setMenuOpen] = useState(false);
+	const compactFooter = useRouter().pathname === '/contact';
 	const triggerRef = useRef<HTMLButtonElement>(null);
 	const closeMenu = useCallback(() => setMenuOpen(false), []);
 	return (
@@ -41,7 +44,8 @@ export default function Layout({
 				/>
 				<Main>{children}</Main>
 			</ReactLenis>
-			<Footer settings={settings} />
+			<Footer settings={settings} compact={compactFooter} />
+			<ConsultationEmbed />
 		</>
 	);
 }

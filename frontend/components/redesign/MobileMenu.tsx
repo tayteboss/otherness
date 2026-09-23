@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from 'react';
+import { MouseEvent, RefObject, useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useLenis } from '@studio-freight/react-lenis';
 import styled from 'styled-components';
@@ -15,60 +15,77 @@ const Panel = styled.dialog`
 	height: 100%;
 	height: 100dvh;
 	max-height: none;
-	padding: 24px;
-	background: var(--redesign-paper);
-	color: var(--redesign-ink);
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: #000;
 	overflow-y: auto;
 	overscroll-behavior: contain;
 	&::backdrop {
-		background: var(--redesign-ink);
+		background: transparent;
 	}
-	.menu-top {
+	.menu-controls {
+		position: absolute;
+		top: var(--menu-top);
+		left: 24px;
+		right: 24px;
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 24px;
+		flex-direction: column;
+		gap: 8px;
 	}
-	.menu-top img {
-		width: min(55vw, 226px);
-		height: auto;
+	&[data-upward='true'] .menu-controls {
+		top: auto;
+		bottom: var(--menu-bottom);
+		flex-direction: column-reverse;
 	}
-	button {
-		min-width: 72px;
+	button,
+	nav a {
+		width: 100%;
 		min-height: 44px;
+		padding: 12px;
+		font-size: 14px;
+		line-height: 20px;
 		font-weight: 700;
 		text-transform: uppercase;
-		background: #e7e2dc;
 	}
-	nav {
-		margin: 72px 0;
+	button {
+		background: #000;
+		color: #fff;
 	}
 	nav > div {
 		flex-direction: column;
-		gap: 0;
+		gap: 8px;
 	}
 	nav a {
-		justify-content: flex-start;
-		padding: 24px 0;
-		background: none;
-		border-top: 1px solid #b9b2ab;
-		font-size: clamp(28px, 8vw, 48px);
-		line-height: 1.2;
+		background: rgba(235, 232, 229, 0.8);
+		color: #000;
 	}
-	nav a:last-child {
-		border-bottom: 1px solid #b9b2ab;
+	&[open] nav {
+		animation: menu-enter 250ms ease-out;
 	}
-	.menu-socials {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 16px;
+	&[data-upward='true'] {
+		--menu-enter-y: 8px;
 	}
-	.menu-socials a {
-		min-height: 44px;
-		display: inline-flex;
-		align-items: center;
-		color: inherit;
-		text-decoration: underline;
+	@keyframes menu-enter {
+		from {
+			opacity: 0;
+			transform: translateY(var(--menu-enter-y, -8px));
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	@media (prefers-reduced-transparency: reduce) {
+		nav a {
+			background: #ebe8e5;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		&[open] nav {
+			animation: none;
+		}
 	}
 `;
 
@@ -87,6 +104,59 @@ export default function MobileMenu({
 	const closeRef = useRef<HTMLButtonElement>(null);
 	const router = useRouter();
 	const lenis = useLenis(() => undefined);
+	const exitRef = useRef<Promise<boolean> | null>(null);
+	const exitAnimation = useRef<Animation | null>(null);
+	const closeMenu = useCallback(() => {
+		if (exitRef.current) return exitRef.current;
+		const panel = panelRef.current;
+		const nav = panel?.querySelector('nav');
+		if (
+			!panel?.open ||
+			!nav ||
+			window.matchMedia('(prefers-reduced-motion: reduce)').matches
+		) {
+			onClose();
+			return Promise.resolve(true);
+		}
+		const direction = panel.dataset.upward === 'true' ? 8 : -8;
+		exitAnimation.current = nav.animate(
+			[
+				{
+					opacity: getComputedStyle(nav).opacity,
+					transform: getComputedStyle(nav).transform
+				},
+				{ opacity: 0, transform: `translateY(${direction}px)` }
+			],
+			{ duration: 200, easing: 'ease-in', fill: 'forwards' }
+		);
+		exitRef.current = exitAnimation.current.finished
+			.then(() => {
+				if (!panel.open) return false;
+				onClose();
+				return true;
+			})
+			.catch(() => false)
+			.finally(() => {
+				exitRef.current = null;
+			});
+		return exitRef.current;
+	}, [onClose]);
+	const navigate = (event: MouseEvent<HTMLAnchorElement>) => {
+		if (
+			event.metaKey ||
+			event.ctrlKey ||
+			event.shiftKey ||
+			event.altKey ||
+			event.button !== 0
+		)
+			return;
+		event.preventDefault();
+		if (exitRef.current) return;
+		const href = event.currentTarget.getAttribute('href');
+		void closeMenu().then((finished) => {
+			if (finished && href) void router.push(href);
+		});
+	};
 	useEffect(() => {
 		router.events.on('routeChangeStart', onClose);
 		router.events.on('hashChangeStart', onClose);
@@ -104,7 +174,6 @@ export default function MobileMenu({
 	useEffect(() => {
 		const panel = panelRef.current;
 		if (!open || !panel) return;
-		const { scrollX, scrollY } = window;
 		const trigger = triggerRef.current;
 		const body = document.body;
 		const previous = {
@@ -114,16 +183,68 @@ export default function MobileMenu({
 			width: body.style.width,
 			overflow: body.style.overflow
 		};
-		lenis?.stop();
-		Object.assign(body.style, {
-			position: 'fixed',
-			top: `-${scrollY}px`,
-			left: `-${scrollX}px`,
-			width: '100%',
-			overflow: 'hidden'
-		});
-		panel.showModal(); // Native modal makes the rest of the page inert.
-		closeRef.current?.focus({ preventScroll: true });
+		let scrollX = window.scrollX;
+		let scrollY = window.scrollY;
+		let frame = 0;
+		let cancelled = false;
+		const upward = router.pathname === '/' && scrollY <= 1;
+		panel.dataset.upward = String(upward);
+		const position = () => {
+			const bounds = trigger?.getBoundingClientRect();
+			if (!bounds) return;
+			panel.style.setProperty('--menu-top', `${bounds.top}px`);
+			panel.style.setProperty(
+				'--menu-bottom',
+				`${window.innerHeight - bounds.bottom}px`
+			);
+		};
+		const show = () => {
+			if (cancelled) return;
+			position();
+			scrollX = window.scrollX;
+			scrollY = window.scrollY;
+			lenis?.stop();
+			panel.showModal(); // Keep the visible page inert beneath the controls.
+			Object.assign(body.style, {
+				position: 'fixed',
+				top: `-${scrollY}px`,
+				left: `-${scrollX}px`,
+				width: '100%',
+				overflow: 'hidden'
+			});
+			closeRef.current?.focus({ preventScroll: true });
+		};
+		const landing = document.querySelector<HTMLElement>(
+			'[data-home-landing]'
+		);
+		const target = Math.max(landing?.offsetHeight || 0, window.innerHeight);
+		if (router.pathname === '/' && !upward && scrollY < target) {
+			// Let the header's scroll frame finish before measuring the Close bar.
+			const afterScroll = () => {
+				if (!cancelled) frame = window.requestAnimationFrame(show);
+			};
+			if (lenis) {
+				lenis.scrollTo(target, {
+					duration: 0.45,
+					immediate: window.matchMedia(
+						'(prefers-reduced-motion: reduce)'
+					).matches,
+					force: true,
+					lock: true,
+					onComplete: afterScroll
+				});
+			} else {
+				window.scrollTo(scrollX, target);
+				afterScroll();
+			}
+		} else {
+			show();
+		}
+		const cancelPending = (event: KeyboardEvent) => {
+			if (event.key === 'Escape' && !panel.open) onClose();
+		};
+		window.addEventListener('keydown', cancelPending);
+		window.addEventListener('resize', position);
 		const trapFocus = (event: KeyboardEvent) => {
 			if (event.key !== 'Tab') return;
 			const items = Array.from(
@@ -143,7 +264,20 @@ export default function MobileMenu({
 		};
 		panel.addEventListener('keydown', trapFocus);
 		return () => {
+			cancelled = true;
+			window.cancelAnimationFrame(frame);
+			window.removeEventListener('keydown', cancelPending);
+			window.removeEventListener('resize', position);
 			panel.removeEventListener('keydown', trapFocus);
+			if (!panel.open) {
+				lenis?.scrollTo(window.scrollY, {
+					immediate: true,
+					force: true
+				});
+				return;
+			}
+			exitAnimation.current?.cancel();
+			exitAnimation.current = null;
 			panel.close();
 			Object.assign(body.style, previous);
 			lenis?.resize();
@@ -152,7 +286,7 @@ export default function MobileMenu({
 			lenis?.scrollTo(scrollY, { immediate: true, force: true });
 			trigger?.focus({ preventScroll: true });
 		};
-	}, [open, lenis, triggerRef]);
+	}, [open, lenis, triggerRef, router.pathname, onClose]);
 	return (
 		<Panel
 			ref={panelRef}
@@ -162,33 +296,18 @@ export default function MobileMenu({
 			data-lenis-prevent
 			onCancel={(event) => {
 				event.preventDefault();
-				onClose();
+				void closeMenu();
 			}}
 		>
-			<div className="menu-top">
-				<img
-					src="/redesign/brand/logo-word-dark.svg"
-					width="226"
-					height="31"
-					alt="Otherness"
-				/>
-				<button ref={closeRef} type="button" onClick={onClose}>
+			<div className="menu-controls">
+				<button ref={closeRef} type="button" onClick={closeMenu}>
 					Close
 				</button>
-			</div>
-			<Navigation
-				settings={settings}
-				label="Mobile"
-				onNavigate={onClose}
-			/>
-			<div className="menu-socials">
-				{(settings?.footer?.socials || []).map((link) =>
-					link.href && link.label ? (
-						<a key={link._key} href={link.href} onClick={onClose}>
-							{link.label}
-						</a>
-					) : null
-				)}
+				<Navigation
+					settings={settings}
+					label="Mobile"
+					onNavigate={navigate}
+				/>
 			</div>
 		</Panel>
 	);

@@ -34,11 +34,27 @@ const { buildSeed } = require('./seed.cjs');
 		service.projects.forEach((p) => {
 			assert.ok(p.project.slug);
 			assert.equal(p.project._id, p.projectId);
-			assert.equal(p.image, null);
 		});
 	}
 	assert.ok(data.home.noticed.every((n) => n.link?.href));
-	assert.equal(data.home.landing.desktopImage, null);
+	// Published artwork can arrive during QA; test the missing-artwork case
+	// with a fixture instead of requiring editors to leave live image slots empty.
+	const missingServiceArtwork = JSON.parse(JSON.stringify(data));
+	missingServiceArtwork.home.services[0].projects[0].image = null;
+	assert.ok(
+		contentIssues(missingServiceArtwork).some((issue) =>
+			issue.startsWith(
+				`homePageV2.services.${data.home.services[0]._key}.projects.${data.home.services[0].projects[0]._key}.image.asset`
+			)
+		)
+	);
+	const missingLanding = JSON.parse(JSON.stringify(data));
+	missingLanding.home.landing.desktopImage = null;
+	assert.ok(
+		contentIssues(missingLanding).some((issue) =>
+			issue.startsWith('homePageV2.landing.desktopImage.asset')
+		)
+	);
 	assert.equal(
 		contentIssues({ settings: null, home: null, ourWay: null }).length,
 		3
@@ -59,9 +75,17 @@ const { buildSeed } = require('./seed.cjs');
 			`${root}/docs/redesign/baselines/legacy-source-sha256.json`
 		)
 	);
+	// Tayte approved removing the Work listing CTA and joining its grids on
+	// 23 September 2026. Pin only these two reviewed changes; retain originals.
+	const workCtaRemovalHashes = {
+		'frontend/components/blocks/ProjectsList/ProjectsList.tsx':
+			'ba398c7b4d8195978206b00594a1d58133dcff969830f84ee927b4ca624fa286',
+		'frontend/pages/work/index.tsx':
+			'5d27d4da26a856f91f98f1e96c62df5943f9405a57cdf5a4ad4b00d1cb529828',
+	};
 	for (const [p, hash] of Object.entries(hashes)) {
 		// Phase 3 replaces shared Layout only. Work page changes must consist
-		// solely of additive build-time shell props; verify their original bodies.
+		// solely of shell props or the explicitly pinned CTA removal below.
 		if (p === 'frontend/components/layout/Layout.tsx') continue;
 		let source = fs.readFileSync(`${root}/${p}`, 'utf8');
 		if (p.startsWith('frontend/pages/work/')) {
@@ -74,14 +98,14 @@ const { buildSeed } = require('./seed.cjs');
 		}
 		assert.equal(
 			crypto.createHash('sha256').update(source).digest('hex'),
-			hash,
+			workCtaRemovalHashes[p] || hash,
 			p
 		);
 	}
 	console.log(
 		`PASS: fixed IDs; fresh published settings; email normalization; service order; resolved cards and stable keys; real Noticed destinations; missing assets; missing documents; unresolved-reference release diagnostic; deterministic seeds; ${
 			Object.keys(hashes).length - 1
-		} preserved legacy source hashes (Work shell props normalized; shared Layout excluded).`
+		} checked source hashes (179 preserved legacy files; 2 approved Work CTA-removal hashes; shell props normalized; shared Layout excluded).`
 	);
 })().catch((e) => {
 	console.error(e);

@@ -1,6 +1,8 @@
 # Asset register
 
-Updated: 21 September 2026, phase 6.
+Our Way mobile QA, 23 September 2026: `/Users/tayte/Desktop/Screenshot 2026-09-23 at 10.33.54 AM.png` is design evidence for the lower-half wordmark crop only. Existing wordmark SVGs reused; no screenshot pixels used as artwork or CMS/asset changes.
+
+Updated: 22 September 2026, Results fields follow-up.
 
 ## Available and staged
 
@@ -15,21 +17,21 @@ Updated: 21 September 2026, phase 6.
 ## Awaiting supply
 
 - Additional Neue Montreal styles only if needed by later designs; core web weights are now ready (see below).
-- Clean desktop/mobile landing artwork (including the sliced treatment, without UI/text).
+- Separate mobile art direction/crop acceptance if needed; the landing artwork is now published for both image slots (see Home hero QA below).
 - Our Way hero and Results background originals, including appropriate mobile crops.
 - Service-card imagery for each service/project selection.
 - Consultation collage/artwork original.
-- Testimonial client logos and approved matching quotes/attributions.
+- Testimonial client logos and approved matching quotes/client names.
 - Noticed thumbnails and final entries/destinations.
 - Recognition logos and final recognition list.
-- Contact desktop/mobile designs and content/functionality requirements.
+- Separate Contact mobile reference, only if a different composition is wanted; desktop design and booking requirements arrived 23 September (see below).
 
 All photographic/artwork originals will be newly supplied; using existing CMS photography is not the approved sourcing choice. Existing projects may be referenced without changing their bodies or thumbnails.
 
 ## Editorial review
 
 - Two partnership principles repeat the same text in the screenshots.
-- Results pairs a Nike logo with a Medable attribution.
+- Results screenshot pairs a Nike logo with a Medable client name.
 - Noticed repeats placeholder titles/source/year.
 - Recognition repeats CreativeBoom; confirm intentionality.
 - Fourth partnership title is truncated in the section image.
@@ -66,3 +68,51 @@ Clean desktop/mobile landing artwork is still pending. The legacy video/photogra
 ## Phase 6 Our Way
 
 No new originals were supplied. Hero and consultation artwork use labelled development placeholders; no reference screenshots or legacy photography were used. Our Way hero supports separate desktop/mobile images, responsive widths and editorial crop/hotspot; consultation uses the existing responsive Artwork component. Recognition logos remain pending, so the published page shows a labelled placeholder. Motion validation used supplied Otherness SVGs only in a removed local fixture, not as claimed recognition. Hero statement, sector introduction, partnership heading/founder note/four principles, consultation text and client/recognition lists remain editorial dependencies. The complete published founder biography and four-stage process are rendered; their length/copy differs from the draft screenshots and should be reviewed in Studio. Neue Montreal/Baryton remain scoped to redesigned content. Contact desktop/mobile designs are the next phase's prerequisite.
+
+## Home hero QA — 22 September 2026
+
+Published Home New now supplies `image-cc7a66c030f495015d130543124ff21f07a95e20-2500x1751-jpg` for both desktop and mobile landing slots, with alt text “Home page hero” and no editorial crop/hotspot. The clean sliced artwork is rendered through the existing responsive picture. This task read the existing published asset; it did not upload or mutate CMS content. Other missing artwork/copy remains pending; the current content checker lists 72 issues, down from 76 after the two landing image slots were populated.
+
+## Introduction QA references — 22 September 2026
+
+User supplied Desktop screenshots `Screenshot 2026-09-22 at 2.06.20 PM.png` and `Screenshot 2026-09-22 at 2.07.23 PM.png` as section/button spacing references (original filenames contain a narrow no-break space before PM). Used as design evidence only; no screenshot pixels became production assets. Existing Neue Montreal Bold WOFF2 supplies the requested 700 weight. The published agency statement remains empty; screenshot copy was not published or silently substituted. Other artwork and Contact dependencies remain unchanged.
+
+## Services QA references and publication — 22 September 2026
+
+Supplied Desktop screenshots `Screenshot 2026-09-22 at 2.31.28 PM.png`, `2.34.48 PM.png` and `2.35.40 PM.png` (original filenames use a narrow no-break space) are grid/layout references only. No screenshot pixels were used as production assets. The existing published Home New now contains introduction copy, service descriptions/captions and service artwork; Branding has four cards (Aero, Famille Elastique, Artem Watch Straps, SES Menswear). Existing published images are rendered through Artwork; no CMS writes/uploads occurred. Final artwork crops/curation remain subject to acceptance. Current build reports 38 remaining content issues, principally Results, Noticed, Our Way and trademark; Contact designs remain pending.
+
+## Footer refinement references — 22 September 2026
+
+Tayte supplied `/Users/tayte/Desktop/footer.jpg` and `/Users/tayte/Desktop/Screenshot 2026-09-22 at 4.53.06 PM.png` as footer copy/style and button-padding references. Used only as design evidence; no screenshot pixels are served. Existing Neue Montreal Medium WOFF2 supplies weight 500. Legal text now matches the explicit request in the local frontend; published CMS copyright/trademark values were not changed. Social destinations retain their configured values.
+
+## Mobile menu QA reference — 23 September 2026
+
+Tayte supplied `/Users/tayte/Desktop/Menu Open.jpg`, preserved as `references/Menu Open.jpg`. It is menu design evidence only; no screenshot pixels are served as artwork. Existing Neue Montreal fonts and navigation destinations are reused.
+
+## Mobile Results QA reference — 23 September 2026
+
+Tayte supplied `/Users/tayte/Desktop/results-mobile.jpg`, preserved as `references/results-mobile.jpg`. Used for quote/tab spacing and carousel composition only; not a background asset or approval to replace published copy. Existing CMS quotes, logos and backgrounds remain unchanged.
+
+## Mobile Noticed/footer references — 23 September 2026
+
+`references/noticed.jpg` and `references/footer-mobile-spacing.png` are Tayte’s design references only, copied from the supplied Desktop files. No screenshot pixels are served. Mobile thumbnails use existing legacy Noticed thumbnail URLs; real titles, sources, dates and destinations are preserved, including internal project references. No CMS writes or new artwork.
+
+## Our Way credentials reference — 23 September 2026
+
+`/Users/tayte/Desktop/Home About.jpg` supplied as copy/design reference only; no screenshot pixels used as artwork. Services, clients and recognition text are now seeded exactly in order (including repeated CreativeBoom), without links. Tayte’s five previously published recognition SVGs remain unchanged and load in the local preview. Their existing generic titles/alt labels were not edited. This supersedes earlier notes that recognition logos/lists were absent.
+
+## Our Way hero motion QA — 23 September 2026
+
+Uses the existing published Our Way hero artwork and crop configuration. No new assets, screenshot crops or CMS mutations. Desktop/mobile images were rendered in the in-app browser; final artwork/crop acceptance remains with Tayte.
+
+## Our Way process reference — 23 September 2026
+
+`/Users/tayte/Desktop/process-tgoetehr.jpg` supplied as copy/design reference only. Published the section heading, four stage titles and 17 service items without links. No screenshot pixels uploaded as artwork. Existing process introduction retained under the requested titles/items-only scope.
+
+## Our Way header active-state reference — 23 September 2026
+
+`/Users/tayte/Desktop/Screenshot 2026-09-23 at 10.25.59 AM.png` is active-menu design evidence only. The header now uses its solid contrasting rectangle without an underline. Existing Neue Montreal Regular WOFF2 supplies the requested Body Large 400 weight. No new artwork, font conversion or CMS changes.
+
+## Contact / Cal.com — 23 September 2026
+
+`/Users/tayte/Desktop/Contact.jpg` is preserved as `references/Contact.jpg`; design evidence only. Live page uses existing SVG brand assets, scoped Neue Montreal and Baryton, not screenshot pixels. `/Users/tayte/Downloads/Logistics Discussion.rtf` supplies HTML, React and Atoms alternatives for the same `otherness/discovery` Cal event. Implemented the HTML element-click alternative with no package additions. Hardcoded page/event is explicitly requested; no new Sanity content/schema. Separate mobile design not supplied; responsive adaptation uses established site conventions. Direct event is live (30 minute discovery call, available slots); embedded calendar loading remains an in-app validation blocker.

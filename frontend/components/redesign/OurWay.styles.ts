@@ -75,13 +75,23 @@ export const OurWayWrapper = styled.div`
 	}
 	.way-hero {
 		height: 100vh;
-		height: 100svh;
-		min-height: 480px;
+		overflow: hidden;
+		transform: translate3d(0, var(--hero-y, 0px), 0);
 		position: relative;
 		background: var(--redesign-taupe);
 		color: white;
 		isolation: isolate;
 	}
+	.way-hero[data-hero-phase='settled'] {
+		height: calc(100vh - 32px);
+	}
+	.hero-media {
+		position: absolute;
+		inset: -8px;
+		transform: scale(var(--hero-scale, 1));
+		filter: blur(var(--hero-blur, 0px));
+	}
+	.hero-reveal,
 	.way-hero picture,
 	.hero-image,
 	.hero-shade {
@@ -95,10 +105,11 @@ export const OurWayWrapper = styled.div`
 		object-position: var(--desktop-position, 50% 50%);
 	}
 	.hero-shade {
-		background: rgba(0, 0, 0, 0.22);
+		background: black;
+		opacity: var(--hero-shade, 0.22);
 		z-index: 1;
 	}
-	.way-hero > .development-note {
+	.way-hero .development-note {
 		position: absolute;
 		top: 180px;
 		left: 24px;
@@ -107,6 +118,8 @@ export const OurWayWrapper = styled.div`
 		z-index: 2;
 	}
 	.way-hero h1 {
+		opacity: var(--hero-title-opacity, 1);
+		filter: blur(var(--hero-title-blur, 0px));
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -117,15 +130,19 @@ export const OurWayWrapper = styled.div`
 		text-align: center;
 		z-index: 2;
 	}
-	.scroll-down {
-		position: absolute;
-		bottom: 24px;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 2;
-		background: rgba(0, 0, 0, 0.35);
-		color: white;
-		font-size: 11px;
+	.hero-statement-reveal {
+		display: block;
+		font: inherit;
+	}
+	> section:not(.way-hero) {
+		position: relative;
+		z-index: 1;
+	}
+	> .way-introduction,
+	> .partnership,
+	> .credentials,
+	> .recognition {
+		background: var(--redesign-paper);
 	}
 	.way-introduction {
 		padding: 64px var(--redesign-gutter) 128px;
@@ -174,7 +191,7 @@ export const OurWayWrapper = styled.div`
 	.founder-note p {
 		margin-top: 16px;
 	}
-	.process {
+	> .process {
 		padding: 128px var(--redesign-gutter);
 		background: var(--redesign-ink);
 		color: var(--redesign-paper);
@@ -204,10 +221,6 @@ export const OurWayWrapper = styled.div`
 		font-size: 18px;
 		line-height: 1.5;
 	}
-	.entry-list {
-		font-size: 18px;
-		line-height: 1.5;
-	}
 	.entry-list a {
 		text-decoration: underline;
 		text-underline-offset: 3px;
@@ -216,7 +229,7 @@ export const OurWayWrapper = styled.div`
 		display: block;
 		font-size: 0.85em;
 	}
-	.consultation {
+	> .consultation {
 		background: var(--redesign-taupe);
 		color: white;
 		display: grid;
@@ -260,9 +273,6 @@ export const OurWayWrapper = styled.div`
 	.credential-columns h3 {
 		margin-bottom: 28px;
 	}
-	.credential-columns .entry-list {
-		font-size: 14px;
-	}
 	.recognition {
 		overflow: hidden;
 		padding: 24px 0 64px;
@@ -270,17 +280,6 @@ export const OurWayWrapper = styled.div`
 	.recognition > .development-note {
 		text-align: center;
 		padding: 24px;
-	}
-	.logo-controls {
-		display: flex;
-		justify-content: flex-end;
-		padding: 0 var(--redesign-gutter) 24px;
-	}
-	.logo-controls button {
-		min-height: 44px;
-		padding: 12px;
-		border: 1px solid currentColor;
-		font-size: 12px;
 	}
 	.logo-belt {
 		display: flex;
@@ -309,8 +308,7 @@ export const OurWayWrapper = styled.div`
 		display: block;
 	}
 	.recognition:hover .logo-belt,
-	.recognition:focus-within .logo-belt,
-	.recognition[data-paused='true'] .logo-belt {
+	.recognition:focus-within .logo-belt {
 		animation-play-state: paused;
 	}
 	@keyframes recognition-drift {
@@ -322,7 +320,7 @@ export const OurWayWrapper = styled.div`
 		.hero-image {
 			object-position: var(--mobile-position, 50% 50%);
 		}
-		.way-hero > .development-note {
+		.way-hero .development-note {
 			top: 130px;
 		}
 		.way-hero h1 {
@@ -334,6 +332,12 @@ export const OurWayWrapper = styled.div`
 		.large-copy {
 			font-size: 30px;
 			line-height: 1.12;
+		}
+		.way-introduction .large-copy {
+			font-size: 24px;
+			font-weight: 400;
+			line-height: 32.4px;
+			letter-spacing: -0.24px;
 		}
 		.partnership {
 			display: flex;
@@ -368,19 +372,20 @@ export const OurWayWrapper = styled.div`
 			gap: 24px;
 			overflow-x: auto;
 			overscroll-behavior-x: contain;
+			scrollbar-width: none;
 			scroll-snap-type: x mandatory;
 			scroll-padding-left: var(--redesign-gutter);
 			padding: 0 var(--redesign-gutter) 24px;
 			margin-top: 112px;
+		}
+		.process-track::-webkit-scrollbar {
+			display: none;
 		}
 		.process-track > li {
 			flex: 0 0 82%;
 			scroll-snap-align: start;
 			border-top: 1px solid #77716a;
 			padding-top: 24px;
-		}
-		.process-track .entry-list {
-			font-size: 16px;
 		}
 		.consultation {
 			grid-template-columns: 1fr;
@@ -397,6 +402,15 @@ export const OurWayWrapper = styled.div`
 		.credentials {
 			padding: 48px var(--redesign-gutter) 96px;
 		}
+		.credentials > h2 {
+			display: none;
+		}
+		.credentials .large-copy {
+			font-size: 24px;
+			font-weight: 400;
+			line-height: 32.4px;
+			letter-spacing: -0.24px;
+		}
 		.credential-columns {
 			grid-template-columns: 1fr;
 			gap: 64px;
@@ -407,6 +421,21 @@ export const OurWayWrapper = styled.div`
 		}
 	}
 	@media (prefers-reduced-motion: reduce) {
+		.way-hero h1 {
+			opacity: 1;
+			filter: none;
+		}
+		.way-hero {
+			height: calc(100vh - 32px);
+			transform: none;
+		}
+		.hero-media {
+			transform: none;
+			filter: none;
+		}
+		.hero-shade {
+			opacity: 0.22;
+		}
 		.logo-belt {
 			animation: none;
 			width: 100%;
@@ -418,8 +447,7 @@ export const OurWayWrapper = styled.div`
 			flex-wrap: wrap;
 			gap: 32px 0;
 		}
-		.logo-group[aria-hidden='true'],
-		.logo-controls {
+		.logo-group[aria-hidden='true'] {
 			display: none;
 		}
 		.process-track {

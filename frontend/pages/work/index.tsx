@@ -230,15 +230,7 @@ const Page = (props: Props) => {
 				activeWork={activeWork}
 				activeMood={activeMood}
 			/>
-			<ProjectsList
-				data={fetchedProjects}
-				isLoading={isLoading}
-				ctaBannerTitle={data?.ctaBannerTitle}
-				ctaBannerMedia={data?.ctaBannerMedia}
-				ctaBannerLink={data?.ctaBannerLink}
-				handleNextProjects={handleNextProjects}
-				cantLoadMore={cantLoadMore}
-			/>
+			<ProjectsList data={fetchedProjects} />
 		</PageWrapper>
 	);
 };

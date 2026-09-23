@@ -1,16 +1,19 @@
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { redesignScope } from '../../styles/redesign';
 import type { RedesignSettings } from '../../lib/redesign/types';
 import { Navigation } from './Navigation';
+import ConsultationLink from './ConsultationLink';
 
 const FooterWrapper = styled.footer`
 	${redesignScope}
 	position: relative;
-	z-index: 3;
-	background: var(--redesign-ink);
 	color: var(--redesign-white);
 	.footer-main {
+		position: relative;
+		z-index: 3;
+		background: var(--redesign-ink);
 		padding: 64px var(--redesign-gutter) 24px;
 	}
 	.footer-icon {
@@ -58,11 +61,16 @@ const FooterWrapper = styled.footer`
 	}
 	.socials a {
 		background: #262320;
-		padding: 10px 16px;
-		min-height: 44px;
+		padding: 8px 16px;
 		display: flex;
 		align-items: center;
+		font-size: 12px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 120%;
+		letter-spacing: 0.96px;
 		text-transform: uppercase;
+		color: inherit;
 	}
 	.legal {
 		display: flex;
@@ -71,23 +79,36 @@ const FooterWrapper = styled.footer`
 		flex-wrap: wrap;
 	}
 	.legal p,
-	.legal a,
-	.socials a {
+	.legal a {
 		font-size: 12px;
-		line-height: 18px;
+		font-weight: 400;
+		line-height: 120%;
 		color: inherit;
 	}
 	.legal a {
 		display: inline-flex;
 		align-items: center;
-		min-height: 44px;
+		text-decoration: none;
+	}
+	.legal a:hover {
 		text-decoration: underline;
-		text-underline-offset: 4px;
+	}
+	.footer-reveal {
+		height: var(--footer-strip-height, calc(75vw * 31 / 226 + 148px));
 	}
 	.footer-strip {
+		position: fixed;
+		inset: auto 0 0;
+		z-index: 1;
+		max-height: 100svh;
+		overflow-y: auto;
+		visibility: hidden;
 		background: white;
 		color: var(--redesign-ink);
 		padding: 32px 0 24px;
+	}
+	.footer-strip[data-revealed='true'] {
+		visibility: visible;
 	}
 	.footer-strip > a {
 		display: block;
@@ -100,7 +121,7 @@ const FooterWrapper = styled.footer`
 	}
 	@media (max-width: 768px) {
 		.footer-main {
-			padding: 64px 24px 40px;
+			padding: 64px 24px 24px;
 		}
 		.footer-icon {
 			margin-bottom: 96px;
@@ -112,7 +133,7 @@ const FooterWrapper = styled.footer`
 			max-width: 7em;
 		}
 		.booking {
-			margin-bottom: 80px;
+			margin-bottom: 96px;
 			font-size: 12px;
 			padding: 16px 24px;
 		}
@@ -122,45 +143,95 @@ const FooterWrapper = styled.footer`
 			text-align: center;
 		}
 		.footer-meta {
-			gap: 72px;
+			gap: 64px;
 		}
 		.legal {
-			gap: 12px;
+			gap: 16px;
 		}
 		.socials {
 			justify-content: center;
 		}
-		.socials a {
-			padding: 10px 14px;
+	}
+	&[data-compact='true'] {
+		color: var(--redesign-ink);
+		.footer-main {
+			background: white;
+			padding: 30px var(--redesign-gutter);
 		}
-		.footer-strip {
-			display: none;
+		.socials a {
+			background: #f2f2f2;
+			min-height: 40px;
+		}
+		.legal a {
+			min-height: 40px;
+		}
+		@media (max-width: 768px) {
+			.footer-meta {
+				gap: 32px;
+			}
+			.footer-main {
+				padding: 24px;
+			}
 		}
 	}
 `;
 
 export default function Footer({
-	settings
+	settings,
+	compact = false
 }: {
 	settings: RedesignSettings | null;
+	compact?: boolean;
 }) {
 	const footer = settings?.footer;
+	const revealRef = useRef<HTMLDivElement>(null);
+	const stripRef = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const reveal = revealRef.current;
+		const strip = stripRef.current;
+		if (!reveal || !strip) return;
+		const resize = new ResizeObserver(() => {
+			reveal.style.setProperty(
+				'--footer-strip-height',
+				`${strip.getBoundingClientRect().height}px`
+			);
+		});
+		resize.observe(strip);
+		// Covered links must not receive focus before the strip is exposed.
+		const visibility = new IntersectionObserver(([entry]) => {
+			const visible =
+				entry.isIntersecting && entry.intersectionRect.height > 0;
+			strip.dataset.revealed = String(visible);
+			strip.toggleAttribute('inert', !visible);
+		});
+		strip.setAttribute('inert', '');
+		visibility.observe(reveal);
+		return () => {
+			resize.disconnect();
+			visibility.disconnect();
+		};
+	}, [compact]);
 	return (
-		<FooterWrapper data-redesign-chrome>
-			<div className="footer-main">
-				<img
-					className="footer-icon"
-					src="/redesign/brand/logo-icon.svg"
-					width="49"
-					height="27"
-					alt=""
-				/>
-				<h2>{footer?.heading || 'Let’s work together.'}</h2>
-				{settings?.consultationUrl && (
-					<a className="booking" href={settings.consultationUrl}>
-						{settings.consultationLabel || 'Book a consultation'}{' '}
-						<span aria-hidden="true">→</span>
-					</a>
+		<FooterWrapper data-redesign-chrome data-compact={compact}>
+			<div
+				className={compact ? 'footer-main contact-meta' : 'footer-main'}
+			>
+				{!compact && (
+					<>
+						<img
+							className="footer-icon"
+							src="/redesign/brand/logo-icon.svg"
+							width="49"
+							height="27"
+							alt=""
+						/>
+						<h2>{footer?.heading || 'Let’s work together.'}</h2>
+						<ConsultationLink className="booking">
+							{settings?.consultationLabel ||
+								'Book a consultation'}{' '}
+							<span aria-hidden="true">→</span>
+						</ConsultationLink>
+					</>
 				)}
 				<div className="footer-meta">
 					<div className="socials" aria-label="Social links">
@@ -173,8 +244,8 @@ export default function Footer({
 						)}
 					</div>
 					<div className="legal">
-						{footer?.copyright && <p>© {footer.copyright}</p>}
-						{footer?.trademark && <p>{footer.trademark}</p>}
+						<p>© Studio Otherness BV</p>
+						<p>Otherness™ is a trademark of Otherness Holding BV</p>
 						{footer?.privacyLink?.href && (
 							<Link href={footer.privacyLink.href}>
 								{footer.privacyLink.label || 'Privacy'}
@@ -183,17 +254,27 @@ export default function Footer({
 					</div>
 				</div>
 			</div>
-			<div className="footer-strip">
-				<Link href="/" aria-label="Otherness home">
-					<img
-						src="/redesign/brand/logo-word-dark.svg"
-						width="226"
-						height="31"
-						alt="Otherness"
-					/>
-				</Link>
-				<Navigation settings={settings} label="Footer" />
-			</div>
+			{!compact && (
+				<div className="footer-reveal" ref={revealRef}>
+					<div
+						className="footer-strip"
+						ref={stripRef}
+						onFocus={() =>
+							revealRef.current?.scrollIntoView({ block: 'end' })
+						}
+					>
+						<Link href="/" aria-label="Otherness home">
+							<img
+								src="/redesign/brand/logo-word-dark.svg"
+								width="226"
+								height="31"
+								alt="Otherness"
+							/>
+						</Link>
+						<Navigation settings={settings} label="Footer" />
+					</div>
+				</div>
+			)}
 		</FooterWrapper>
 	);
 }

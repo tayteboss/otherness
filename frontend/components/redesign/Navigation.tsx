@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { MouseEvent } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import type { RedesignSettings } from '../../lib/redesign/types';
@@ -42,17 +43,16 @@ export function Navigation({
 }: {
 	settings: RedesignSettings | null;
 	label: string;
-	onNavigate?: () => void;
+	onNavigate?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }) {
 	const router = useRouter();
 	return (
 		<nav aria-label={label}>
 			<NavigationLinks>
 				{(settings?.navigation || []).map((link) => {
-					// Contact follows the current published booking destination until phase 7.
 					const href =
 						link._key === 'contact'
-							? settings?.consultationUrl
+							? '/contact'
 							: link.href;
 					if (!href || !link.label) return null;
 					const active =
