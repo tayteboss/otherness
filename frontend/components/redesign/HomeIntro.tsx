@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import type { HomePageV2 } from '../../lib/redesign/types';
 import { redesignScope } from '../../styles/redesign';
 
+const SESSION_KEY = 'otherness:intro:v1';
 const LANDING_START = 4800;
 const IMAGE_DURATION = 1500;
 const REVEAL_START = IMAGE_DURATION - 500;
@@ -75,14 +76,20 @@ export default function HomeIntro({
 		// Keep admission stable through React Strict Mode's effect rehearsal.
 		if (admitted.current) return;
 		admitted.current = true;
-		// QA mode requested by Tayte: replay on every home mount/refresh.
-		// Restore the session gate after intro/hero acceptance.
-		if (
-			usable.length !== 3 ||
-			window.matchMedia('(prefers-reduced-motion: reduce)').matches
-		)
-			return;
-		setPlaying(true);
+		try {
+			const seen = sessionStorage.getItem(SESSION_KEY);
+			sessionStorage.setItem(SESSION_KEY, 'seen');
+			if (
+				seen ||
+				usable.length !== 3 ||
+				window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+				window.scrollY > 20
+			)
+				return;
+			setPlaying(true);
+		} catch {
+			// Disabled storage must never block content or cause repeated intros.
+		}
 	}, [usable.length]);
 	useEffect(() => {
 		const panel = panelRef.current;

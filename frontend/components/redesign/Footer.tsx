@@ -178,10 +178,12 @@ const FooterWrapper = styled.footer`
 
 export default function Footer({
 	settings,
-	compact = false
+	compact = false,
+	routePath
 }: {
 	settings: RedesignSettings | null;
 	compact?: boolean;
+	routePath?: string;
 }) {
 	const footer = settings?.footer;
 	const revealRef = useRef<HTMLDivElement>(null);
@@ -263,7 +265,11 @@ export default function Footer({
 							revealRef.current?.scrollIntoView({ block: 'end' })
 						}
 					>
-						<Link href="/" aria-label="Otherness home">
+						<Link
+							href="/"
+							scroll={routePath === '/'}
+							aria-label="Otherness home"
+						>
 							<img
 								src="/redesign/brand/logo-word-dark.svg"
 								width="226"
@@ -271,7 +277,11 @@ export default function Footer({
 								alt="Otherness"
 							/>
 						</Link>
-						<Navigation settings={settings} label="Footer" />
+						<Navigation
+							settings={settings}
+							label="Footer"
+							routePath={routePath}
+						/>
 					</div>
 				</div>
 			)}

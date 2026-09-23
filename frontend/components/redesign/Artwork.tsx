@@ -1,5 +1,16 @@
-import { useState } from 'react';
+import { useState, type SyntheticEvent } from 'react';
 import type { Image } from '../../lib/redesign/types';
+
+export function fadeInHero({
+	currentTarget
+}: SyntheticEvent<HTMLImageElement>) {
+	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	// Start when pixels arrive, including images that load after the page fade.
+	currentTarget.animate?.([{ opacity: 0 }, { opacity: 1 }], {
+		duration: 700,
+		easing: 'ease-out'
+	});
+}
 
 // Sanity's documented rect transform retains the editorial crop. CSS places the
 // hotspot within that cropped rectangle when the layout needs an extra crop.

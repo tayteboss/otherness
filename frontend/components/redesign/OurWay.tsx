@@ -6,7 +6,7 @@ import type {
 	OurWayPage,
 	RedesignSettings
 } from '../../lib/redesign/types';
-import Artwork, { imageSource } from './Artwork';
+import Artwork, { fadeInHero, imageSource } from './Artwork';
 import ConsultationLink from './ConsultationLink';
 import { OurWayWrapper } from './OurWay.styles';
 
@@ -246,6 +246,7 @@ function Hero({ hero }: { hero: OurWayPage['hero'] }) {
 								sizes="100vw"
 								alt={desktop?.alt || ''}
 								loading="eager"
+								onLoad={fadeInHero}
 								onError={() => setFailed(true)}
 							/>
 						</picture>

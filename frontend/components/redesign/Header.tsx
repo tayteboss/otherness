@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { RefObject, useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useIsPresent } from 'framer-motion';
 import styled from 'styled-components';
 import { redesignScope } from '../../styles/redesign';
 import type { RedesignSettings } from '../../lib/redesign/types';
@@ -177,20 +177,24 @@ export default function Header({
 	settings,
 	open,
 	onOpen,
-	triggerRef
+	triggerRef,
+	routePath
 }: {
 	settings: RedesignSettings | null;
 	open: boolean;
 	onOpen: () => void;
 	triggerRef: RefObject<HTMLButtonElement>;
+	routePath: string;
 }) {
-	const [lightWordmark, setLightWordmark] = useState(true);
-	const [lightNavigation, setLightNavigation] = useState(true);
+	const home = routePath === '/';
+	const ourWay = routePath === '/our-way';
+	const [lightWordmark, setLightWordmark] = useState(home || ourWay);
+	const [lightNavigation, setLightNavigation] = useState(home || ourWay);
 	const headerRef = useRef<HTMLElement>(null);
-	const router = useRouter();
-	const home = router.pathname === '/';
-	const ourWay = router.pathname === '/our-way';
+	const present = useIsPresent();
 	useEffect(() => {
+		// Keep the outgoing page's colour and geometry until its fade finishes.
+		if (!present) return;
 		let frame = 0;
 		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const update = () => {
@@ -199,7 +203,9 @@ export default function Header({
 			if (document.querySelector<HTMLDialogElement>('#site-menu')?.open)
 				return;
 			const header = headerRef.current;
-			const footer = document.querySelector('footer .footer-main:not(.contact-meta)');
+			const footer = document.querySelector(
+				'footer .footer-main:not(.contact-meta)'
+			);
 			const footerTop = footer?.getBoundingClientRect().top ?? Infinity;
 			const fade = Math.min(
 				1,
@@ -317,7 +323,7 @@ export default function Header({
 			reduced.removeEventListener('change', schedule);
 			observer.disconnect();
 		};
-	}, [router.asPath, home, ourWay]);
+	}, [present, home, ourWay]);
 	return (
 		<HeaderWrapper
 			className="header"
@@ -341,7 +347,7 @@ export default function Header({
 					/>
 				)}
 				<div className="logo-row">
-					<Link href="/" aria-label="Otherness home">
+					<Link href="/" scroll={home} aria-label="Otherness home">
 						<img
 							className="wordmark-dark"
 							src="/redesign/brand/logo-word-dark.svg"
@@ -359,7 +365,11 @@ export default function Header({
 						/>
 					</Link>
 				</div>
-				<Navigation settings={settings} label="Primary" />
+				<Navigation
+					settings={settings}
+					label="Primary"
+					routePath={routePath}
+				/>
 				<button
 					className="menu-trigger"
 					type="button"

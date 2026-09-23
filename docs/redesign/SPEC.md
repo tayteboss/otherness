@@ -58,11 +58,17 @@ Use section references for desktop detail and full-page/mobile references for re
 - Footer socials: Neue Montreal 12px/120%, normal/500, 0.96px tracking, uppercase, 8px vertical/16px horizontal padding. Right-side copy: “© Studio Otherness BV”, “Otherness™ is a trademark of Otherness Holding BV”, Privacy; 40px desktop gaps, 16px mobile gaps. User-approved footer follow-up, 22 September 2026.
 - Do not invent a Twitter account from the design; use actual configured social destinations.
 
+### Page transitions — 23 September 2026
+
+- Shared header, page and footer fade as one route: 300ms exit, 650ms entrance, with no added pause. Retain the outgoing route’s header colour/geometry/active link until hidden. Initial server-rendered content stays visible; reduced motion removes route/image fades.
+- Shared navigation defers scrolling to the top until exit completes. Path changes trigger transitions (including between projects); query/hash changes keep the current page mounted for filtering and anchors.
+- Home and Our Way hero images fade from transparent over 700ms when loaded, independently of the page fade; retain existing scale/blur, Home intro and Our Way height choreography.
+
 ## Home sections
 
 ### Loading and landing
 
-- Intended release behavior: play intro on first homepage visit **once per browser-tab session**. **Temporary QA override requested 22 September 2026:** replay on every homepage mount and refresh, including return navigation; session storage is no longer read or written. Restore the session gate after Tayte finishes testing. Reduced-motion and missing-pair bypasses remain.
+- Play intro on first homepage visit **once per browser-tab session**. Tayte ended the temporary replay testing mode on 23 September 2026. Mark `otherness:intro:v1` in session storage at admission; refresh and return navigation skip the sequence. Reduced motion, missing pairs, restored deep scroll and unavailable storage bypass the intro. Current entrance timings and Escape behavior remain unchanged.
 - Three word pairs: Poetry / Power → Strategy / Design → Endurance / Distinction.
 - Each pair lasts ~1.5s including soft blur/fade in, readable hold and blur/fade out. Total ~4.5s then fade into landing.
 - Start settling the artwork 200ms before the loader finishes fading, from 104% to 100% scale while clearing 6px blur over **1.5s**, so motion is underway at the reveal. Start the centred Baryton phrase at 5.8s (0.7s blur/fade), followed by the icon/wordmark/navigation at 6.5s (0.7s). Both start 0.5s earlier per the latest 23 September request; release intro focus/scroll at 7.2s when the header finishes. Entrance layers are separate from scroll motion. Escape cancels the whole sequence; reduced motion bypasses it. (23 September 2026 timing refinement.)

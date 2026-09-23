@@ -39,30 +39,31 @@ export const NavigationLinks = styled.div`
 export function Navigation({
 	settings,
 	label,
-	onNavigate
+	onNavigate,
+	routePath
 }: {
 	settings: RedesignSettings | null;
 	label: string;
 	onNavigate?: (event: MouseEvent<HTMLAnchorElement>) => void;
+	routePath?: string;
 }) {
 	const router = useRouter();
+	const path = routePath ?? router.asPath.split(/[?#]/)[0];
 	return (
 		<nav aria-label={label}>
 			<NavigationLinks>
 				{(settings?.navigation || []).map((link) => {
 					const href =
-						link._key === 'contact'
-							? '/contact'
-							: link.href;
+						link._key === 'contact' ? '/contact' : link.href;
 					if (!href || !link.label) return null;
 					const active =
 						href.startsWith('/') &&
-						(router.asPath.split('?')[0] === href ||
-							router.asPath.startsWith(`${href}/`));
+						(path === href || path.startsWith(`${href}/`));
 					return (
 						<Link
 							key={link._key}
 							href={href}
+							scroll={path === href}
 							prefetch={href === '/our-way' ? false : undefined}
 							aria-current={active ? 'page' : undefined}
 							onClick={onNavigate}

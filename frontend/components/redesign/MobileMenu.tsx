@@ -154,7 +154,10 @@ export default function MobileMenu({
 		if (exitRef.current) return;
 		const href = event.currentTarget.getAttribute('href');
 		void closeMenu().then((finished) => {
-			if (finished && href) void router.push(href);
+			if (finished && href)
+				void router.push(href, undefined, {
+					scroll: href === router.asPath.split(/[?#]/)[0]
+				});
 		});
 	};
 	useEffect(() => {

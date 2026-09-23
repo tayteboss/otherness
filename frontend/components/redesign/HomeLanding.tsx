@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import type { HomePageV2, Image } from '../../lib/redesign/types';
 import { redesignScope } from '../../styles/redesign';
-import { imageSource } from './Artwork';
+import { fadeInHero, imageSource } from './Artwork';
 import HomeIntro from './HomeIntro';
 
 const Landing = styled.section`
@@ -243,6 +243,7 @@ export default function HomeLanding({ home }: { home: HomePageV2 | null }) {
 									sizes="100vw"
 									alt={desktop?.alt || ''}
 									loading="eager"
+									onLoad={fadeInHero}
 									onError={() => setFailed(true)}
 								/>
 							</picture>
