@@ -261,6 +261,7 @@ export const HomeSectionsWrapper = styled.div`
 		transform: scaleX(1);
 	}
 	.results {
+		--result-duration: 5s;
 		position: relative;
 		isolation: isolate;
 		color: var(--redesign-paper);
@@ -285,16 +286,38 @@ export const HomeSectionsWrapper = styled.div`
 		pointer-events: none;
 		opacity: 0;
 		visibility: hidden;
-		filter: blur(8px);
+		overflow: hidden;
 		transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1),
-			filter 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 1s;
+			visibility 0s linear 1s;
 	}
 	.result-background[data-active='true'] {
 		z-index: 1;
 		opacity: 1;
 		visibility: visible;
-		filter: blur(0);
 		transition-delay: 0s;
+	}
+	.result-background[data-active='true'] .artwork img {
+		animation: result-image-scale var(--result-duration) linear both,
+			result-image-blur 1s ease-out both;
+	}
+	.results[data-inview='false'] .result-background .artwork img {
+		animation-play-state: paused;
+	}
+	@keyframes result-image-scale {
+		from {
+			transform: scale(1.05);
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+	@keyframes result-image-blur {
+		from {
+			filter: blur(4px);
+		}
+		to {
+			filter: blur(0);
+		}
 	}
 	.result-background .artwork,
 	.result-background .artwork img,
@@ -405,7 +428,7 @@ export const HomeSectionsWrapper = styled.div`
 		transform: scaleX(0);
 	}
 	.result-tab-play {
-		animation: result-progress 5s linear forwards;
+		animation: result-progress var(--result-duration) linear forwards;
 	}
 	.results[data-inview='false'] .result-tab-play {
 		animation-play-state: paused;
@@ -689,6 +712,11 @@ export const HomeSectionsWrapper = styled.div`
 		}
 		.result-tab-play {
 			animation: none;
+		}
+		.result-background[data-active='true'] .artwork img {
+			animation: none;
+			transform: none;
+			filter: none;
 		}
 		.result-tabs button[aria-selected='true'] .result-tab-progress {
 			transform: scaleX(1);

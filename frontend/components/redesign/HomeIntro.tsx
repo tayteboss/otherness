@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useLenis } from '@studio-freight/react-lenis';
 import styled from 'styled-components';
 import type { HomePageV2 } from '../../lib/redesign/types';
@@ -201,20 +201,23 @@ export default function HomeIntro({
 				finish();
 			}}
 		>
-			<motion.div
-				className="word-pair"
-				key={index}
-				aria-hidden="true"
-				initial={{ opacity: 0, filter: 'blur(8px)' }}
-				animate={{
-					opacity: [0, 1, 1, 0],
-					filter: ['blur(8px)', 'blur(0px)', 'blur(0px)', 'blur(8px)']
-				}}
-				transition={{ duration: 1.5, times: [0, 0.2, 0.8, 1] }}
-			>
-				<span>{pair?.first}</span>
-				<span>{pair?.second}</span>
-			</motion.div>
+			{/* The route presence disables initial animations; the word pairs must play. */}
+			<AnimatePresence initial>
+				<motion.div
+					className="word-pair"
+					key={index}
+					aria-hidden="true"
+					initial={{ opacity: 0, filter: 'blur(8px)' }}
+					animate={{
+						opacity: [0, 1, 1, 0],
+						filter: ['blur(8px)', 'blur(0px)', 'blur(0px)', 'blur(8px)']
+					}}
+					transition={{ duration: 1.5, times: [0, 0.2, 0.8, 1] }}
+				>
+					<span>{pair?.first}</span>
+					<span>{pair?.second}</span>
+				</motion.div>
+			</AnimatePresence>
 		</Panel>
 	);
 }

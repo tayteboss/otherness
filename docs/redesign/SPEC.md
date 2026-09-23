@@ -98,6 +98,8 @@ Off-white section with “Own your intersections”, uppercase agency statement 
 
 ### Results
 
+24 September motion refinement: each background image sharpens from 4px blur over 1s and scales from 1.05 to 1 across the 5s slide duration. Pause image motion offscreen alongside autoplay and disable it for reduced motion.
+
 - Full-bleed image and readability overlay, client logo, serif quote, client-name tabs.
 - Background/logo/quote/client name change together with a 1s fade/blur crossfade. Slides stay stacked so tab and copy layout does not shift.
 - Autoplay advances every 5 seconds. The selected tab’s top rule is a linear progress timeline; clicking a tab (or using the keyboard) stops autoplay and holds that slide. Reduced motion disables autoplay and the blur/fade.
@@ -133,10 +135,11 @@ Screenshot copy is an editable draft. Review the duplicated principle paragraph,
 
 - Reference: `references/Contact.jpg` (1512 × 982). Use the shared oversized cropped header, active Contact navigation, warm paper background, dark icon, centred two-line Baryton heading “Own your / intersections”, and dark “Book a consultation →” CTA.
 - Desktop content ends above a compact white social/legal footer; omit the large shared footer CTA and revealed wordmark on this route. Keep real configured social destinations (Instagram, LinkedIn, Email), not the reference’s unconfigured Twitter link. Reuse established legal wording and Privacy.
+- Contact footer social links invert to black with white text on hover and keyboard focus, using 300ms background/text colour transitions (immediate for reduced motion).
 - Mobile adapts the same content with the existing Menu, 24px gutters, smaller centred heading and stacked footer. No separate mobile Contact reference was supplied.
 - Hardcode `otherness/discovery`, namespace `discovery`, `month_view`, event details visible and `useSlotsViewOnSmallScreen: "true"` from the supplied `Logistics Discussion.rtf`. Use its HTML embed with existing Next Script; no new packages or CMS schema required. Preserve supplied query forwarding.
 - Contact CTA, Home service “Get in touch” links, Our Way consultation and all shared footer booking buttons open the same Cal.com modal. Contact navigation itself routes to `/contact`.
-- Provide keyboard opening, Escape/Close, inert background, Lenis pause/resume, focus restoration and a direct booking-page fallback. Preserve Work bodies, all previous content and staging.
+- Provide keyboard opening, Escape/Close, inert background, Lenis pause/resume, focus restoration and working direct CTA hrefs when the script is unavailable. **24 September override:** remove the injected “Open booking page” modal fallback button at Tayte’s request. Preserve Work bodies, all previous content and staging.
 - Acceptance: responsive composition/no overflow, correct navigation, modal opens from every requested location, calendar and available slots load, dismissal restores focus/scroll. **Calendar-in-modal acceptance remains pending**: local in-app browser keeps the remote frame at about:blank; direct Cal booking page shows the event and available times. Do not call this a completed booking test.
 
 ## Assets and metadata

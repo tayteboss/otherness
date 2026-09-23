@@ -57,21 +57,6 @@ export function ConsultationEmbed() {
 			// The vendor modal is outside React/Lenis and needs explicit focus/scroll handling.
 			modal.addEventListener('open', open);
 			modal.addEventListener('close', close);
-			const fallback = document.createElement('a');
-			fallback.href = 'https://cal.com/otherness/discovery';
-			fallback.textContent = 'Open booking page →';
-			fallback.setAttribute('aria-label', 'Open booking page');
-			Object.assign(fallback.style, {
-				position: 'fixed',
-				top: '16px',
-				left: '16px',
-				padding: '12px 16px',
-				background: '#fff',
-				color: '#1a1715',
-				zIndex: '10000000',
-				font: '500 14px/20px "Neue Montreal", sans-serif'
-			});
-			modal.shadowRoot?.appendChild(fallback);
 			open();
 		});
 		const rememberOverflow = (event: MouseEvent) => {

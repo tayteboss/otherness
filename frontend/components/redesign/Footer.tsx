@@ -161,6 +161,17 @@ const FooterWrapper = styled.footer`
 		.socials a {
 			background: #f2f2f2;
 			min-height: 40px;
+			transition: background-color 0.3s ease, color 0.3s ease;
+		}
+		.socials a:hover,
+		.socials a:focus-visible {
+			background: #000;
+			color: #fff;
+		}
+		@media (prefers-reduced-motion: reduce) {
+			.socials a {
+				transition: none;
+			}
 		}
 		.legal a {
 			min-height: 40px;
