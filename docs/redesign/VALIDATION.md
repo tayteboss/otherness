@@ -534,3 +534,51 @@ User supplied a clean rectangular translucent-button reference and requested rem
 - Read-only settled-route assertions PASS (one present route, opacity1, matching Home header state, no inert/intro/scroll lock, no horizontal overflow); reusable `validation/page-transitions-check.js` added. Initial production HTML for Home/Our Way/Contact/Work verifies shared wrapper opacity1.
 - Final isolated `npm run build:redesign`: PASS (`/tmp/otherness-transitions-final-build.log`). Targeted isolated ESLint with browser environment and both Hooks rules: 0 errors, one inherited `_app` explicit-any warning. Explicit `tsc --noEmit --incremental false`: same 11 inherited errors, none in changed files (`/tmp/otherness-transitions-types.log`). `npm run verify:redesign`: PASS, all 181 expected hashes/data assertions. `git diff --check`: PASS. Studio unchanged; inherited Studio/global-lint/project-hydration failures remain. Full phase-8 media/accessibility matrix not claimed.
 - Local only on `codex/site-redesign`; no CMS/asset/dependency/deployment/staging changes or phase advancement. Remaining dependencies: Contact embedded-calendar and final editorial/artwork acceptance. Next prompt: “Review page transitions at localhost:3010 and apply the next requested adjustment; keep Home intro once per tab.”
+
+# Transition/intro staging deployment — 23 September 2026
+
+- Explicitly authorized staging deployment. Normal fast-forward push `ff343ff` → `df526dac93729aac02998d8aa8fb3a3f0cb7562b`; fresh remote read verifies staging at that SHA and master unchanged at `2707efad642d6be8a6c5461351851b10e7bd96f3`. Supplied unused font originals/build cache remain untracked.
+- Vercel GitHub status: success, “Deployment has completed”, https://vercel.com/tayteco-36dd2d0b/otherness/7wcVoDoFxyWgJfpfiz4UTPkK7zP4. Live alias https://otherness-staging.vercel.app serves Home, Our Way, Contact and Work with HTTP200, noindex/nofollow/noarchive and new `data-page-route` wrappers initially opacity1.
+- Hosted in-app browser: first visit opens the welcome dialog; refresh bypasses it with page opacity1. Home → Our Way records outgoing page opacity1/.691/.409/.104, new Our Way at opacity0, then .275/.550/.820/.999; hero-image opacity0/.226/.547/.862. Correct light header retained. Staging tab left available for review.
+- Existing Contact calendar-loading and editorial/artwork acceptance remain open; no CMS/production/Studio deployment or phase advancement. Post-deployment verification notes are local handoff updates after the deployed application commit.
+
+
+# iOS header and consultation spacing — 23 September 2026
+
+- Removed `HeaderGlassFilter`, its displacement-map SVG and the URL-filter `@supports` path. Both standard and WebKit backdrop properties now use `blur(12px)`. Header control fill increases from 8% to 65%, with 75% hover and 85% press. White fill/dark text over light sections and dark fill/white text over dark sections preserve legibility; solid active-navigation and reduced-transparency/forced-colour rules remain. Mobile overlay links retain their existing plain fill.
+- Home logo used to change layout width, top and margin each scroll frame. It now lays out at its expanded width, scales from the original starting width and translates vertically; navigation translates separately without scaling. No added dependency or scroll timing/intro change. At 402×874: layout width stays 354px while visual widths are 174px at scroll0, 324.343px at scroll511 and 354px at scroll838.5; final top is -24.279px. Menu clearance stays 12px. At 1512×982: layout width stays 1134px while visual widths are 226px at scroll0, 745.121px at scroll393 and 1134px at scroll863; final top is -77.774px and navigation gap remains 28px. Reverse scroll restores the original Home geometry.
+- In-app menu checks: intermediate Home scroll finishes to the hero boundary before opening; settled menu remains aligned with the cropped wordmark. Landing menu opens upward, Close y801.867 versus trigger y801.864. Escape returns focus to Menu, restores scroll0 and clears body position lock. Menu → Our Way → Home navigation passes without replaying the intro. No physical iPhone or Safari performance capture was available; device retest remains required. Reduced-motion/reduced-transparency paths source-reviewed, not OS-emulated.
+- Our Way `.action` uses explicit `gap: 8px`, fixing the collapsed text-node whitespace beside the arrow. Mobile DOM range measurement confirms exactly 8px between label and arrow; visually reviewed at 402px. At 375/402/768/1024/1512/1920px: gap8px and no document horizontal overflow. No booking submitted. Desktop screenshots used the hidden in-app panel; viewport override reset afterward.
+- Isolated `npm run build:redesign` PASS (`/tmp/otherness-ios-build.log`); no dev build collision. Targeted isolated ESLint with browser environment and explicitly loaded React Hooks plugin/rules PASS (initial command omitted the plugin registration and was corrected). `npm run verify:redesign` PASS, all 181 expected hashes/data assertions. `tsc --noEmit --incremental false` reports the same 11 inherited errors, none in edited modules (`/tmp/otherness-ios-types.log`). `git diff --check` PASS. Existing Studio/global-lint/project-hydration issues remain inherited; Studio unchanged.
+- Local only on `codex/site-redesign`; no push, deployment, staging, CMS, asset or phase advancement. Existing handoff/deployment notes and supplied untracked font originals/build cache preserved. Remaining dependencies: physical iPhone scroll acceptance, Contact embedded-calendar loading and editorial/artwork acceptance. Next prompt: “Retest the header scroll and consultation spacing on iPhone; apply only the next requested QA adjustment.”
+
+
+# Menu tint refinement — 23 September 2026
+
+- Mobile Menu fill reduced from 65% to 35%, with 45% hover and 55% press, in both header themes. Standard/WebKit 12px blur retained. Desktop navigation stays 65%; solid reduced-transparency/forced-colour overrides retained.
+- In-app computed styles confirm Menu `rgba(26, 23, 21, 0.35)`, blur12px and desktop link `rgba(26, 23, 21, 0.65)`. Targeted isolated ESLint and `git diff --check` PASS. No full build repeated for this tint-only change; previous build passed.
+- Local only; no deployment or phase advancement. Prior physical iPhone, Contact calendar and editorial/artwork acceptance remain. Next: continue requested iPhone QA.
+
+- Further requested Menu reduction: idle20%, hover30%, press40%. In-app computed fill confirms `rgba(26, 23, 21, 0.2)` and blur12px. Targeted lint/diff checks pass; local only, same acceptance dependencies.
+
+- Further requested Menu opacity/blur reduction: idle12%, hover22%, press32%, blur6px. In-app computed styles confirm Menu `rgba(26, 23, 21, 0.12)`/blur6px and desktop navigation unchanged at 65%/blur12px. Targeted lint/diff checks pass. Solid accessibility overrides retained. Local only; prior device/Contact/editorial acceptance dependencies remain.
+
+- Fully transparent Menu trial requested: all three fill alphas0 and blur0px. In-app computed styles confirm transparent fill and zero blur. Targeted lint/diff checks pass. Desktop navigation and accessibility overrides retained. Local only; existing device/Contact/editorial acceptance dependencies remain.
+
+- Clarification: retain Menu blur with transparent fill. Restored 6px blur; all fill alphas remain0. In-app computed styles confirm `rgba(26, 23, 21, 0)` and `blur(6px)`. Targeted lint/diff checks pass. Local only; existing acceptance dependencies unchanged.
+
+
+# Mobile-only scope correction — 23 September 2026
+
+- Original request was iOS phone testing; initial edits incorrectly changed shared desktop styles. Restored the original SVG filter definition and desktop URL-filter, 8% idle / 16% hover / 20% pressed white tints. Mobile ≤768px overrides only the fill states (transparent) and blur (6px); solid accessibility overrides remain later in the cascade.
+- Original desktop Home width/top/margin scroll treatment restored. Transform-based scaling/translation now lives exclusively inside the mobile media query. Consultation arrow gap8px likewise scoped to mobile. Earlier desktop-change validation describes superseded implementation.
+- In-app 1512px computed styles: `rgba(255, 255, 255, 0.08)`, `url("#header-glass-refraction") blur(1px) saturate(1.05)`, SVG filter present, logo/header transforms `none`. At 402px: transparent fill, blur6px, layout width354px, visual width174px at scroll0, menu gap11.999px. Viewport reset. PASS.
+- Targeted isolated ESLint, `npm run verify:redesign` (181 expected hashes/data assertions), and `git diff --check` PASS. No full production rebuild for this scope correction; previous build passed, inherited type/Studio/global-lint issues remain. Physical iPhone performance still needs retest.
+- Local only; no staging/deployment/CMS/phase change. Contact calendar and editorial/artwork acceptance remain open. Next: continue mobile-only iPhone QA; preserve desktop.
+
+
+# Mobile QA staging promotion — 23 September 2026
+
+- Explicit staging push authorization from Tayte. Fresh remote staging matches `df526dac93729aac02998d8aa8fb3a3f0cb7562b`; normal fast-forward promotion planned. Master stays `2707efad642d6be8a6c5461351851b10e7bd96f3`.
+- Final isolated `npm run build:redesign` PASS (`/tmp/otherness-ios-staging-build.log`). Targeted ESLint with browser globals/React Hooks rules PASS; `npm run verify:redesign` PASS (181 expected hashes and data assertions). Diff whitespace check PASS. Prior explicit typecheck retains 11 inherited errors; build skips type/lint enforcement, so not reported as type-clean.
+- Deploy only the three mobile-scoped application files and handoff/validation notes. Supplied original font files and generated type cache remain untracked and untouched. No CMS, Studio, dependency, production or phase changes. Hosted verification follows this commit.

@@ -42,6 +42,11 @@ export const OurWayWrapper = styled.div`
 		text-transform: none;
 		letter-spacing: 0;
 	}
+	@media (max-width: 768px) {
+		.action {
+			gap: 8px;
+		}
+	}
 	.action {
 		display: inline-flex;
 		align-items: center;

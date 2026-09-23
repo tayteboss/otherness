@@ -71,6 +71,14 @@ export const headerGlass = css`
 			saturate(1.05);
 	}
 
+	@media (max-width: 768px) {
+		--header-glass-idle: transparent;
+		--header-glass-hover: transparent;
+		--header-glass-active: transparent;
+		-webkit-backdrop-filter: blur(6px);
+		backdrop-filter: blur(6px);
+	}
+
 	&[aria-current='page'],
 	&[aria-expanded='true'] {
 		background: var(--header-glass-hover);

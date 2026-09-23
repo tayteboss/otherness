@@ -146,10 +146,16 @@ const HeaderWrapper = styled.header`
 	@media (max-width: 768px) {
 		&[data-home='true'] {
 			.header-inner {
-				top: var(--home-top, calc(100svh - 108px));
+				top: 0;
+				transform: translate3d(0, var(--home-top, calc(100svh - 108px)), 0);
 			}
 			.logo-row {
-				width: var(--home-width, 174px);
+				width: var(--home-base-width, 174px);
+				margin-top: 0;
+				transform-origin: center top;
+				transform: translate3d(0, var(--home-crop, 0px), 0)
+					scale(var(--home-scale, 1));
+				will-change: transform;
 			}
 			.landing-icon {
 				width: 40px;
@@ -158,6 +164,7 @@ const HeaderWrapper = styled.header`
 				top: -46px;
 			}
 			.menu-trigger {
+				transform: translate3d(0, var(--home-nav-y, 0px), 0);
 				margin-top: 12px;
 			}
 		}
@@ -273,17 +280,24 @@ export default function Header({
 			const endWidth = mobile
 				? Math.min(window.innerWidth - 48, 400)
 				: window.innerWidth * 0.75;
-			header?.style.setProperty(
-				'--home-width',
-				`${startWidth + (endWidth - startWidth) * progress}px`
-			);
+			const width = startWidth + (endWidth - startWidth) * progress;
+			const endHeight = (endWidth * 31) / 226;
+			const crop = (-endHeight / 2) * progress;
+			// Mobile keeps expanded layout dimensions and transforms on scroll.
+			header?.style.setProperty('--home-width', `${width}px`);
+			header?.style.setProperty('--home-base-width', `${endWidth}px`);
+			header?.style.setProperty('--home-scale', String(width / endWidth));
 			header?.style.setProperty(
 				'--home-top',
 				`${(height - (mobile ? 108 : 132)) * (1 - progress)}px`
 			);
 			header?.style.setProperty(
 				'--home-crop',
-				`${((-endWidth * 31) / 226 / 2) * progress}px`
+				`${crop}px`
+			);
+			header?.style.setProperty(
+				'--home-nav-y',
+				`${(width * 31) / 226 + crop - endHeight}px`
 			);
 			header?.style.setProperty(
 				'--home-icon',
