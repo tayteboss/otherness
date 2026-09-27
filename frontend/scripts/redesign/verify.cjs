@@ -82,7 +82,7 @@ const { buildSeed } = require('./seed.cjs');
 		'frontend/components/blocks/WorkServicesList/WorkServicesList.tsx':
 			'8c0bdd1d5c9d0dd43828381bd93ddd496f865c6ece6c983d89c8bd10465235d8',
 		'frontend/components/blocks/WorkIntro/WorkIntro.tsx':
-			'2dd98cc9e3facd0b2598212bf6b8e40ea154710123188681d518fa6714bc3a02',
+			'bb916f084813d88bb1028a65af20b11ae9211de9fbe66f859e5a26668debfc29',
 		'frontend/components/blocks/ProjectsList/ProjectsList.tsx':
 			'ba398c7b4d8195978206b00594a1d58133dcff969830f84ee927b4ca624fa286',
 		'frontend/pages/work/index.tsx':

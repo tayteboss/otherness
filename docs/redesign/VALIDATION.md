@@ -666,3 +666,8 @@ User supplied a clean rectangular translucent-button reference and requested rem
 - Tayte explicitly authorized staging push. Fresh remote staging equals595e16b (local base); master remains2707efa. Scope: Work-only Montreal, original-case project excerpt, bold uppercase service items with removed visible heading, preservation pins and documentation.
 - Isolated production build PASS (`/tmp/otherness-work-staging-build.log`), using a temporary frontend copy with the unrelated Home Services width edit excluded. Targeted lint for Layout/WorkIntro/WorkServicesList PASS; all181 preservation/data checks PASS; diff check PASS. Known11 inherited type errors remain as previously recorded; Next's existing build config skips type/lint checks. Hosted verification follows.
 - Independent Home Services summary width, original supplied fonts and generated type cache stay local. No master/production or CMS mutation.
+
+# Production stylesheet correction — 28 September 2026
+
+- Initial staging deployment fe39088 succeeded as Vercel DzVom7tymb4gkGismpvkVAH2qK1Y. Hosted Aero confirmed Montreal and bold service items/title removal, but its excerpt still computed uppercase: production stylesheet ordering let the legacy class win the equal-specificity component rule.
+- Strengthened Excerpt's selector with its existing `.type-secondary-heading-medium` class. Rebuilt isolated production successfully, and verified Aero via in-app browser against `next start` on3011: excerpt now computes `text-transform:none` and renders original casing. Updated only the approved WorkIntro preservation hash. Targeted lint and181 preservation assertions PASS. Deploying this scoped correction as part of the same authorized staging promotion.

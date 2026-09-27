@@ -6,6 +6,8 @@
 
 ## Current state
 
+- **Hosted excerpt correction, 28 September 2026:** first typography deployment fe39088 succeeded, but hosted verification found the legacy uppercase class winning against Excerpt due to production CSS order. Strengthened Excerpt with its existing class selector; this preserves natural casing regardless of stylesheet order. Montreal/service-item styling verified on staging. Rebuilding/redeploying this scoped correction within the authorized staging request; final hosted verification pending.
+
 - **Work typography staging promotion authorized, 28 September 2026:** Tayte requested pushing these reviewed Work typography updates to staging. Fresh origin/staging equals local HEAD595e16b; normal fast-forward is available. Deploy scoped Montreal, original-case project excerpts and bold uppercase service items without the title. Preserve the independent Home Services width edit and supplied font/cache files locally. Master remains2707efa. Verify hosted deployment before completion.
 
 - **Services items replace heading, 28 September 2026:** latest request supersedes the prior bold-title treatment. Removed the visible Project Services title and its unused animation/styles; service items now use that same uppercase Neue Montreal700,14/21px,0.56px tracking style. Retained list animation, desktop gaps and mobile two-column layout, with an accessible list label. Aero browser computed styles, targeted lint,181 preservation checks and diff check pass. Local only; inherited issues/dependencies unchanged. Next prompt: “Review Work services typography and apply only the next requested adjustment.” No deployment or phase advancement.
