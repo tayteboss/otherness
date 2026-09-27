@@ -12,6 +12,10 @@ Approved 21 September 2026. Implement **one numbered phase per conversation**, t
 - Preserve Conversations, Privacy and other existing routes even when removed from primary navigation.
 - Contact uses `/contact` and the supplied 23 September design. Page copy and the Cal.com booking event are hardcoded per Tayte’s request; no contact form or submission backend.
 
+### Work typography exception — 28 September 2026
+
+Tayte requested Neue Montreal on the Work index and all project slug pages. This supersedes the earlier Work-font preservation restriction for sans-serif family only. Reuse the existing Montreal web fonts and scope legacy sans-variable overrides to Work main content. Follow-up: remove forced uppercase from the introductory excerpt beneath each project heading, retaining the original content casing. Latest follow-up removes the visible “Project Services” label and applies its uppercase Neue Montreal700,14/21px,0.56px tracking style to each service item; retain list animation and responsive arrangement. Retain Baryton, existing type sizes/weights/spacing, content and interactions; keep the global legacy theme unchanged.
+
 ## Sanity architecture
 
 Use the existing `vdwu088q` / `production` dataset with additive redesign singletons, not a cloned dataset. Create a **Website Redesign** Studio group:

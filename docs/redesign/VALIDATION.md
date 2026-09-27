@@ -630,3 +630,39 @@ User supplied a clean rectangular translucent-button reference and requested rem
 
 - Tayte explicitly authorized staging deployment. Fresh origin/staging matches local HEAD `c7dcc846564d7c08bbcf0203f1a965e0692803d3`; remote master remains `2707efad642d6be8a6c5461351851b10e7bd96f3`. Normal fast-forward promotion only.
 - Deploy the reviewed menu scroll-lock/dismissal and mobile Results logo-spacing changes plus their reusable checks and documentation. Prior isolated production build, targeted lint, responsive/menu checks and 181 preservation hashes passed; 11 inherited frontend type errors remain. Exclude the independent Services summary max-width edit and supplied original fonts/generated type cache. Hosted verification follows.
+
+# Menu/Results hosted verification — 24 September 2026
+
+- Normal fast-forward staging push `c7dcc84` → `595e16bbe24b562fb046ca0c7126da69cada54ba` succeeded. Remote master remains `2707efad642d6be8a6c5461351851b10e7bd96f3`. Vercel GitHub status SUCCESS: https://vercel.com/tayteco-36dd2d0b/otherness/26zD43zt5suZ9fPiPjaPf4FHB8hi.
+- Hosted https://otherness-staging.vercel.app Home/Our Way/Contact/Work all return HTTP200 with noindex/nofollow/noarchive.
+- In-app402×874: both Results panels have logo→quote40px, aligned quote bottoms, `justify-content:flex-end` and no horizontal document overflow. ArrowRight selects the second result and retains logo→quote40px and quote→tab40px. Menu has `touch-action:pinch-zoom`; open state locks root overflow with empty body positioning, scroll0. Close removes the dialog/lock and restores Menu focus at scroll0. Viewport override reset; staging tab retained.
+- Deployment verified; physical-iPhone white-flash/touch acceptance still requires device retest. Independent Services summary max-width448px, original font files and generated type cache remain local. Post-deployment notes remain local. No master/production, CMS, Studio, dependency or phase changes. Next: retest both fixes on iPhone and continue only requested QA.
+
+# Work typography follow-up — 28 September 2026
+
+- Explicit user exception to Work typography preservation: `Layout.tsx` maps all three legacy sans variables to the existing redesign Neue Montreal token only inside the main content on `/work` and `/work/*`. Sets the main font for inherited text too. Baryton and existing font sizes/weights/tracking/line heights remain; no page component, query, content, interaction, global theme or font-file edits.
+- In-app browser: `/work`, `/work/medable`, `/work/artem` at1512×982 and402×874 have matching document/viewport widths and only Neue Montreal/Baryton as the first computed font family on direct text elements. Verified filters/card titles, project excerpts/labels/body, subproject navigation and related-project text. Medable mobile appearance and index desktop appearance inspected visually. Artsy selection updates the query and settles from16 to4 cards. `/privacy` still uses Classic Grotesque in its body, verifying route isolation. Viewport reset; Work preview left open on localhost:3010.
+- Targeted ESLint (`--no-eslintrc --config .eslintrc.redesign.cjs components/layout/Layout.tsx`) PASS; `npm run verify:redesign` PASS with181 hashes/data assertions; `git diff --check` PASS. `tsc --noEmit --incremental false` retains the same11 inherited errors, none in Layout (`/tmp/otherness-work-font-types.log`). No production build rerun for this scoped font-family change.
+- Medable reproduces the documented legacy hydration mismatch; dismissed overlay for visual inspection. Inherited global-lint/Studio issues and device/editorial/artwork/Contact acceptance remain. No CMS, staging, production, dependency or phase changes. Existing Services width edit, prior documentation changes and original font/cache files preserved.
+
+# Project excerpt casing — 28 September 2026
+
+- WorkIntro's shared Excerpt adds `text-transform: none`, overriding its legacy uppercase class for every project slug. Content casing, Montreal, sizing and other labels remain unchanged.
+- Aero in-app preview renders “Fractional brand leadership…” in natural sentence case; computed style confirms `text-transform: none` and Neue Montreal. Targeted WorkIntro ESLint PASS; preservation verifier PASS (178 preserved legacy hashes, three pinned user-approved Work changes, shared Layout excluded). Original baseline retained. `git diff --check` PASS.
+- Local only; no deployment, CMS mutation or phase advancement. Existing type/hydration issues and prior acceptance dependencies remain; no broad build/type rerun for this single CSS declaration.
+
+# Project Services weight — 28 September 2026
+
+- Shared WorkServicesList title now sets font-weight700, matching Home's `.heading-small`; preserves existing size, spacing, uppercase treatment and serif service items. Aero in-app computed style confirms Neue Montreal/700/14px.
+- Targeted component ESLint and diff checks PASS. Preservation verifier PASS:177 preserved legacy hashes plus4 pinned approved Work changes; original baseline retained. No build/type rerun for the single weight declaration. Local only; inherited issues/acceptance dependencies unchanged, no deployment or phase advancement.
+
+# Services items replace heading — 28 September 2026
+
+- Removed visible Project Services title and unused title styles/animation. Each service item uses its former small-label class plus weight700; keeps list motion,32px desktop gaps and mobile two-column layout. List has an accessible Project services label.
+- Aero in-app DOM confirms zero Project Services headings; all four service items compute Neue Montreal700,14px/21px,0.56px tracking,uppercase. Targeted component lint,181 preservation assertions (177 legacy plus4 approved changes) and diff checks PASS. No broad build/type rerun. Original preservation baseline retained. Local only; prior inherited issues and acceptance dependencies remain; no CMS/deployment/phase change.
+
+# Work typography staging promotion — 28 September 2026
+
+- Tayte explicitly authorized staging push. Fresh remote staging equals595e16b (local base); master remains2707efa. Scope: Work-only Montreal, original-case project excerpt, bold uppercase service items with removed visible heading, preservation pins and documentation.
+- Isolated production build PASS (`/tmp/otherness-work-staging-build.log`), using a temporary frontend copy with the unrelated Home Services width edit excluded. Targeted lint for Layout/WorkIntro/WorkServicesList PASS; all181 preservation/data checks PASS; diff check PASS. Known11 inherited type errors remain as previously recorded; Next's existing build config skips type/lint checks. Hosted verification follows.
+- Independent Home Services summary width, original supplied fonts and generated type cache stay local. No master/production or CMS mutation.

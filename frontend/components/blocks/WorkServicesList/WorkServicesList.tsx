@@ -23,21 +23,6 @@ const Inner = styled.div`
 	}
 `;
 
-const Title = styled(motion.h3)`
-	position: relative;
-	top: ${pxToRem(4)};
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		top: 0;
-
-		&.type-secondary-heading-small {
-			font-size: ${pxToRem(14)};
-			line-height: ${pxToRem(21)};
-			letter-spacing: 0.56px;
-		}
-	}
-`;
-
 const ListWrapper = styled(motion.ul)`
 	display: flex;
 	gap: ${pxToRem(32)};
@@ -52,6 +37,7 @@ const ListWrapper = styled(motion.ul)`
 `;
 
 const ListItem = styled(motion.li)`
+	font-weight: 700;
 	white-space: pre;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
@@ -99,25 +85,6 @@ const childVariants = {
 	}
 };
 
-const titleVariants = {
-	hidden: {
-		opacity: 0,
-		x: -2,
-		transition: {
-			duration: 0.3,
-			ease: 'easeInOut'
-		}
-	},
-	visible: {
-		opacity: 1,
-		x: 0,
-		transition: {
-			duration: 0.3,
-			ease: 'easeInOut'
-		}
-	}
-};
-
 const WorkServicesList = (props: Props) => {
 	const { items, inView } = props;
 
@@ -132,15 +99,8 @@ const WorkServicesList = (props: Props) => {
 	return (
 		<WorkServicesListWrapper>
 			<Inner>
-				<Title
-					className="type-secondary-heading-small"
-					variants={titleVariants}
-					initial="hidden"
-					animate={inView ? 'visible' : 'hidden'}
-				>
-					Project Services
-				</Title>
 				<ListWrapper
+					aria-label="Project services"
 					variants={wrapperVariants}
 					initial="hidden"
 					animate={inView ? 'visible' : 'hidden'}
@@ -151,7 +111,7 @@ const WorkServicesList = (props: Props) => {
 								item && (
 									<ListItem
 										variants={childVariants}
-										className="type-h5"
+										className="type-secondary-heading-small"
 										key={i}
 									>
 										{format(item)}

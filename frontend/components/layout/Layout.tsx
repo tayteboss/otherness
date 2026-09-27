@@ -1,15 +1,26 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { motion, useIsPresent, useReducedMotion } from 'framer-motion';
 import type { RedesignSettings } from '../../lib/redesign/types';
 import Header from '../redesign/Header';
 import Footer from '../redesign/Footer';
 import MobileMenu from '../redesign/MobileMenu';
+import { redesignTokens } from '../../styles/redesign';
 
-const Main = styled.main`
+const Main = styled.main<{ $isWork: boolean }>`
 	position: relative;
 	z-index: 3;
 	background: var(--colour-white);
+
+	// Work opts into Montreal without inheriting redesigned sizes or spacing.
+	${({ $isWork }) =>
+		$isWork &&
+		css`
+			--font-classic-grotesque-regular: ${redesignTokens.fonts.sans};
+			--font-classic-grotesque-book: ${redesignTokens.fonts.sans};
+			--font-classic-grotesque-light: ${redesignTokens.fonts.sans};
+			font-family: ${redesignTokens.fonts.sans};
+		`}
 `;
 
 export default function Layout({
@@ -59,7 +70,9 @@ export default function Layout({
 				onClose={closeMenu}
 				triggerRef={triggerRef}
 			/>
-			<Main>{children}</Main>
+			<Main $isWork={routePath === '/work' || routePath.startsWith('/work/')}>
+				{children}
+			</Main>
 			<Footer
 				settings={settings}
 				compact={compactFooter}

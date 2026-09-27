@@ -76,8 +76,13 @@ const { buildSeed } = require('./seed.cjs');
 		)
 	);
 	// Tayte approved removing the Work listing CTA and joining its grids on
-	// 23 September 2026. Pin only these two reviewed changes; retain originals.
-	const workCtaRemovalHashes = {
+	// 23 September 2026, and sentence-case project excerpts / bold service items without a heading on 28 September.
+	// Pin these approved changes; retain the original baseline.
+	const approvedWorkHashes = {
+		'frontend/components/blocks/WorkServicesList/WorkServicesList.tsx':
+			'8c0bdd1d5c9d0dd43828381bd93ddd496f865c6ece6c983d89c8bd10465235d8',
+		'frontend/components/blocks/WorkIntro/WorkIntro.tsx':
+			'2dd98cc9e3facd0b2598212bf6b8e40ea154710123188681d518fa6714bc3a02',
 		'frontend/components/blocks/ProjectsList/ProjectsList.tsx':
 			'ba398c7b4d8195978206b00594a1d58133dcff969830f84ee927b4ca624fa286',
 		'frontend/pages/work/index.tsx':
@@ -85,7 +90,7 @@ const { buildSeed } = require('./seed.cjs');
 	};
 	for (const [p, hash] of Object.entries(hashes)) {
 		// Phase 3 replaces shared Layout only. Work page changes must consist
-		// solely of shell props or the explicitly pinned CTA removal below.
+		// solely of shell props or the explicitly approved changes below.
 		if (p === 'frontend/components/layout/Layout.tsx') continue;
 		let source = fs.readFileSync(`${root}/${p}`, 'utf8');
 		if (p.startsWith('frontend/pages/work/')) {
@@ -98,14 +103,14 @@ const { buildSeed } = require('./seed.cjs');
 		}
 		assert.equal(
 			crypto.createHash('sha256').update(source).digest('hex'),
-			workCtaRemovalHashes[p] || hash,
+			approvedWorkHashes[p] || hash,
 			p
 		);
 	}
 	console.log(
 		`PASS: fixed IDs; fresh published settings; email normalization; service order; resolved cards and stable keys; real Noticed destinations; missing assets; missing documents; unresolved-reference release diagnostic; deterministic seeds; ${
 			Object.keys(hashes).length - 1
-		} checked source hashes (179 preserved legacy files; 2 approved Work CTA-removal hashes; shell props normalized; shared Layout excluded).`
+		} checked source hashes (177 preserved legacy files; 4 approved Work-change hashes; shell props normalized; shared Layout excluded).`
 	);
 })().catch((e) => {
 	console.error(e);

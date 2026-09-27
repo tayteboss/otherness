@@ -38,6 +38,7 @@ const Tagline = styled.h3`
 
 const Excerpt = styled.h5`
 	margin-bottom: ${pxToRem(56)};
+	text-transform: none;
 `;
 
 const WorkIntro = (props: Props) => {
