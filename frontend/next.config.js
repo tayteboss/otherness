@@ -6,9 +6,16 @@ const isPreview = require('./config/isPreview');
 
 const nextConfig = {
 	env: {
-		NEXT_PUBLIC_REDESIGN_ORIGIN: process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL
+		NEXT_PUBLIC_REDESIGN_ORIGIN: process.env.VERCEL_ENV === 'production'
+			? process.env.SITE_URL || 'https://www.otherness.design'
+			: process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL
 			? `https://${process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL}`
 			: process.env.SITE_URL || 'http://localhost:3010',
+	},
+	async redirects() {
+		return process.env.VERCEL_ENV === 'production'
+			? [{ source: '/working-together', destination: '/our-way', permanent: true }]
+			: [];
 	},
 	async headers() {
 		return isPreview()
