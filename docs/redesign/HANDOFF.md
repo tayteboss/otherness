@@ -6,6 +6,8 @@
 
 ## Current state
 
+- **Work refinements staging verified, 29 September 2026:** origin/staging3d81fc08deb3bb69caeea9682250096e18fc94a6; Vercel DdDvunab5pDeEyPdA51R7sMiT2nx SUCCESS. Hosted Work has persistent eight moods and13px/700 labels/card titles; Artsy4 and All16, old type parameter removed. Aero confirms Client/Collabs, CTA, credits and Explore Further700; Impact16px desktop/14px mobile sentence case. Mobile402 no overflow; both routes200/noindex. Master remains2707efa. Unrelated Home width/font/cache files preserved. Hosted-verification notes local; next: review staging and apply only the next requested adjustment. Existing device/editorial/artwork/Contact acceptance remains.
+
 - **Work refinements staging promotion authorized, 29 September 2026:** Tayte requested pushing all reviewed Work filter/typography changes. Fresh origin/staging matches HEAD40ad05f, allowing a normal fast-forward. Scope includes mood-only persistent filters,13px bold filter/card titles, bold Client/Collabs/CTA/testimonial/Explore Further labels, sentence-case smaller Impact paragraphs and validation records. Preserve unrelated Home width edit and font/cache files locally. Final isolated build and hosted verification follow; master remains2707efa.
 
 - **Explore Further weight, 29 September 2026:** shared RelatedProject Explore Further label now uses Montreal700 at existing14px. Aero computed style confirms; targeted lint,181 preservation checks and diff check pass. Local only, inherited issues/dependencies unchanged. Next: review related-project CTA and apply only the next requested adjustment.

@@ -716,3 +716,10 @@ User supplied a clean rectangular translucent-button reference and requested rem
 - Explicit staging authorization for all reviewed Work changes in this conversation. Fresh origin/staging equals40ad05f; master2707efa. Normal fast-forward only. Deploy scoped source and validation records, excluding independent Home Services width edit and supplied font/type-cache files. Final isolated build excludes that Home edit; targeted lint passes with four inherited unused-variable warnings and181 preservation checks pass. Hosted verification follows.
 
 - Final isolated npm run build:redesign PASS (/tmp/otherness-work-final-build.log); targeted lint PASS with four inherited warnings,181 preservation assertions PASS, staged diff check PASS. Earlier explicit type check retains11 inherited errors; no changes to affected contracts. Ready to push.
+
+# Work refinements hosted verification — 29 September 2026
+
+- Normal fast-forward40ad05f→3d81fc08deb3bb69caeea9682250096e18fc94a6 pushed to staging. Vercel DdDvunab5pDeEyPdA51R7sMiT2nx SUCCESS. Remote master remains2707efad642d6be8a6c5461351851b10e7bd96f3.
+- Hosted Work shows eight persistent mood choices, no work-type control, all filter/card labels13px/700. Deep link mood=artsy&type=digital normalizes to mood=artsy and settles to4 cards; All restores16. Mobile402 reusable mood check PASS/no page overflow.
+- Hosted Aero: Client/Collabs700, CTA700, testimonial credit700 with serif quote200, Explore Further700. Impact sentence-case text computes16px desktop1512 and14px mobile402; mobile document width402. Both /work and /work/aero HTTP200 and X-Robots-Tag noindex,nofollow,noarchive. Viewport reset; staging Work left open.
+- All requested Work changes deployed and verified. Unrelated Home Services width and original font/type-cache files remain local. Post-deployment notes local. Existing inherited type/lint warnings and device/editorial/artwork/Contact acceptance remain; no production/CMS/phase advancement.

@@ -156,6 +156,7 @@ export const HomeSectionsWrapper = styled.div`
 	.service-summary-body {
 		position: relative;
 		padding: 32px 0 64px;
+		max-width: 448px;
 	}
 	.service-summary-body p {
 		margin-bottom: 32px;
