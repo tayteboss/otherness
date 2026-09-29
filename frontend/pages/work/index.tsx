@@ -44,7 +44,6 @@ const Page = (props: Props) => {
 	const router = useRouter();
 
 	const [activeMood, setActiveMood] = useState('all');
-	const [activeWork, setActiveWork] = useState('all');
 	const [isLoading, setIsLoading] = useState(false);
 	const [fetchedProjects, setfetchedProjects] =
 		useState<ProjectType[]>(projects);
@@ -52,22 +51,20 @@ const Page = (props: Props) => {
 	const [projectCount, setProjectCount] = useState(projectSkip);
 	const [cantLoadMore, setCantLoadMore] = useState(!hasMoreProject);
 
-	const handleFiltering = async (activeMood: string, activeWork: string) => {
+	const handleFiltering = async (activeMood: string) => {
 		setIsLoading(true);
 
 		const moodQuery =
-			activeMood === 'all' ? '' : ` && "${activeMood}" in mood[]`;
-		const workQuery =
-			activeWork === 'all' ? '' : ` && "${activeWork}" in type[]`;
+			activeMood === 'all' ? '' : ' && $mood in mood[]';
 
 		const query = `
-			*[_type == 'project' && archiveProject != true${moodQuery}${workQuery}] | order(orderRank) [0...${projectSkip}] {
+			*[_type == 'project' && archiveProject != true${moodQuery}] | order(orderRank) [0...${projectSkip}] {
 				${basicProjectsQueryDefault}
 			}
 		`;
 
 		const moreProjectsQuery = `
-			*[_type == 'project' && archiveProject != true${moodQuery}${workQuery}] | order(orderRank) [${projectSkip}...${
+			*[_type == 'project' && archiveProject != true${moodQuery}] | order(orderRank) [${projectSkip}...${
 			projectSkip + 1
 		}] {
 				${basicProjectsQueryDefault}
@@ -75,8 +72,10 @@ const Page = (props: Props) => {
 		`;
 
 		try {
-			const data = await client.fetch(query);
-			const moreData = await client.fetch(moreProjectsQuery);
+			const data = await client.fetch(query, { mood: activeMood });
+			const moreData = await client.fetch(moreProjectsQuery, {
+				mood: activeMood
+			});
 
 			console.log('data', data);
 
@@ -105,19 +104,17 @@ const Page = (props: Props) => {
 		setIsLoading(true);
 
 		const moodQuery =
-			activeMood === 'all' ? '' : ` && "${activeMood}" in mood[]`;
-		const workQuery =
-			activeWork === 'all' ? '' : ` && "${activeWork}" in type[]`;
+			activeMood === 'all' ? '' : ' && $mood in mood[]';
 
 		const query = `
-			*[_type == 'project' && archiveProject != true${moodQuery}${workQuery}] | order(orderRank) [${projectCount}...${
+			*[_type == 'project' && archiveProject != true${moodQuery}] | order(orderRank) [${projectCount}...${
 			projectCount + projectSkip
 		}] {
 				${basicProjectsQueryDefault}
 			}
 		`;
 		const moreProjectsQuery = `
-			*[_type == 'project' && archiveProject != true${moodQuery}${workQuery}] | order(orderRank) [${
+			*[_type == 'project' && archiveProject != true${moodQuery}] | order(orderRank) [${
 			projectCount + projectSkip
 		}...${projectCount + projectSkip + 1}] {
 				${basicProjectsQueryDefault}
@@ -125,8 +122,10 @@ const Page = (props: Props) => {
 		`;
 
 		try {
-			const data = await client.fetch(query);
-			const moreData = await client.fetch(moreProjectsQuery);
+			const data = await client.fetch(query, { mood: activeMood });
+			const moreData = await client.fetch(moreProjectsQuery, {
+				mood: activeMood
+			});
 
 			setfetchedProjects([...fetchedProjects, ...data]);
 			setProjectCount(projectCount + projectSkip);
@@ -153,15 +152,11 @@ const Page = (props: Props) => {
 	useEffect(() => {
 		if (!router.isReady) return;
 
-		const { mood, type } = router.query;
+		const { mood } = router.query;
 		const moodParam = typeof mood === 'string' ? mood : undefined;
-		const typeParam = typeof type === 'string' ? type : undefined;
 
 		if (moodParam && moodParam !== activeMood) {
 			setActiveMood(moodParam);
-		}
-		if (typeParam && typeParam !== activeWork) {
-			setActiveWork(typeParam);
 		}
 
 		setHasReadInitialQuery(true);
@@ -182,7 +177,6 @@ const Page = (props: Props) => {
 
 		const nextQuery: Record<string, string> = {};
 		if (activeMood !== 'all') nextQuery.mood = activeMood;
-		if (activeWork !== 'all') nextQuery.type = activeWork;
 
 		const currentQueryFiltered: Record<string, string> = {};
 		if (currentMood) currentQueryFiltered.mood = currentMood;
@@ -199,7 +193,7 @@ const Page = (props: Props) => {
 			);
 		}
 
-		const hasFilters = activeMood !== 'all' || activeWork !== 'all';
+		const hasFilters = activeMood !== 'all';
 		const hasQueryParams = Boolean(currentMood || currentType);
 
 		// Avoid redundant fetch on initial load when there are no filters
@@ -208,9 +202,9 @@ const Page = (props: Props) => {
 		}
 
 		setProjectCount(0);
-		handleFiltering(activeMood, activeWork);
+		handleFiltering(activeMood);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [activeMood, activeWork, hasReadInitialQuery]);
+	}, [activeMood, hasReadInitialQuery]);
 
 	return (
 		<PageWrapper
@@ -226,8 +220,6 @@ const Page = (props: Props) => {
 			<PageHeader data={data?.heroTitle} isLoading={isLoading} />
 			<FiltersBar
 				setActiveMood={setActiveMood}
-				setActiveWork={setActiveWork}
-				activeWork={activeWork}
 				activeMood={activeMood}
 			/>
 			<ProjectsList data={fetchedProjects} />

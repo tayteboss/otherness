@@ -39,15 +39,15 @@ const Title = styled.h4`
 const Description = styled.div`
 	* {
 		font-family: var(--font-classic-grotesque-regular);
-		font-size: ${pxToRem(18)};
-		line-height: ${pxToRem(25)};
-		letter-spacing: 0.9px;
-		text-transform: uppercase;
+		font-size: ${pxToRem(16)};
+		line-height: ${pxToRem(24)};
+		letter-spacing: 0.16px;
+		text-transform: none;
 
 		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-			font-size: ${pxToRem(16)};
-			line-height: ${pxToRem(22)};
-			letter-spacing: 0.64px;
+			font-size: ${pxToRem(14)};
+			line-height: ${pxToRem(21)};
+			letter-spacing: 0.14px;
 		}
 	}
 `;

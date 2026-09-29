@@ -40,6 +40,11 @@ const ContentWrapper = styled.div`
 `;
 
 const Title = styled.h4`
+	&.type-secondary-heading-small {
+		font-size: ${pxToRem(13)};
+		font-weight: 700;
+	}
+
 	width: 30%;
 	padding-right: ${pxToRem(8)};
 

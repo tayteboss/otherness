@@ -20,6 +20,10 @@ const WorkDetailsWrapper = styled.section`
 	background: var(--colour-white);
 	position: relative;
 	z-index: 1;
+
+	.type-secondary-heading-small {
+		font-weight: 700;
+	}
 `;
 
 const Inner = styled.div``;

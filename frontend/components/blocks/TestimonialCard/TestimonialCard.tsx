@@ -69,6 +69,7 @@ const HTML = styled.div`
 const Credit = styled.div<StyledProps>`
 	* {
 		font-family: var(--font-classic-grotesque-regular);
+		font-weight: 700;
 		font-size: ${pxToRem(14)};
 		line-height: ${pxToRem(21)};
 		letter-spacing: 0.56px;

@@ -671,3 +671,48 @@ User supplied a clean rectangular translucent-button reference and requested rem
 
 - Initial staging deployment fe39088 succeeded as Vercel DzVom7tymb4gkGismpvkVAH2qK1Y. Hosted Aero confirmed Montreal and bold service items/title removal, but its excerpt still computed uppercase: production stylesheet ordering let the legacy class win the equal-specificity component rule.
 - Strengthened Excerpt's selector with its existing `.type-secondary-heading-medium` class. Rebuilt isolated production successfully, and verified Aero via in-app browser against `next start` on3011: excerpt now computes `text-transform:none` and renders original casing. Updated only the approved WorkIntro preservation hash. Targeted lint and181 preservation assertions PASS. Deploying this scoped correction as part of the same authorized staging promotion.
+
+# Work typography hosted verification — 28 September 2026
+
+- Remote staging40ad05f3bba3d752e86a9d34fe1e2512129b0786; Vercel D9aW5RsQwDw9dmrGnMHkgY6etNJN status SUCCESS. Master unchanged2707efa.
+- Hosted Aero desktop/default viewport and402×874: excerpt computes Neue Montreal/text-transform none, zero Project Services headings, four uppercase Neue Montreal700/14px service items. Mobile document width402. Work mobile has16 cards, Montreal filter/card title typography and document width402. Both routes HTTP200/noindex,nofollow,noarchive. Viewport reset; staging Work tab retained.
+- Production build, lint, preservation checks and production-browser correction validation passed as recorded above. Unrelated Home width/fonts/cache remain local; no CMS or production changes. Hosted-verification notes remain local. Existing type/hydration/device/editorial/artwork/Contact acceptance issues remain.
+
+# Work mood filter and bold labels — 29 September 2026
+
+- Explicit scope exception: remove Type of work and activeWork/query restrictions; strip old type parameters while retaining mood. Replace hover/click-outside/animated disclosure with one persistent mood row. Keep existing option order, serif Type of mood label and filter type metrics; mobile scrolls horizontally without page overflow. Buttons expose aria-pressed and visible keyboard focus. Filter options and ProjectCard sans titles use Neue Montreal700; card class-qualified selector protects weight from production CSS ordering. Serif taglines unchanged. Mood values now use GROQ parameters; no CMS/schema/content mutation.
+- In-app development browser at1512×982 and402×874: All16 → Artsy4 → Vivacious3 → All16; eight options stay rendered after selection and outside click. Enter on final Vivacious button scrolls it fully into mobile view. Old /work?mood=artsy&type=digital normalizes to mood=artsy with4 cards. Widths375/402/768/1024/1512 have matching viewport/document widths. All mood buttons and card titles compute weight700, with Montreal/Baryton families preserved.
+- Isolated npm run build:redesign PASS, log /tmp/otherness-mood-build.log. Production browser verifies every filter/card weight700 and Artsy deep link4 cards, legacy type removal and mobile geometry; reusable validation/work-mood-check.js PASS. Screenshot validation/work-mood-mobile.png. Temporary production preview on3011 could not reach Sanity from that origin; same build on normal3010 successfully filtered. Restored dev server afterward; viewport reset. Existing Mux lazy-player hydration warning observed in development; no media code changed.
+- Targeted ESLint using .eslintrc.redesign.cjs and react-hooks plugin PASS with three inherited unused-pagination warnings in Work index (LoadMore, cantLoadMore, handleNextProjects). Explicit tsc --noEmit --incremental false retains the same11 inherited errors, none in changed files; /tmp/otherness-mood-types.log. npm run verify:redesign PASS:181 source hashes,174 legacy plus7 approved Work files. Original baseline retained. git diff --check PASS.
+- Local only; staging remains40ad05f. No dependency, asset integration, Studio, production or phase advancement. Existing unrelated Home Services width edit, font originals/type cache and earlier deployment notes preserved. Device/editorial/artwork/Contact acceptance remains. Next prompt: “Review the mood-only filter and bold Work labels at localhost:3010/work; apply only the next requested adjustment.”
+
+# Work label size refinement — 29 September 2026
+
+- Reduced only mood-option and ProjectCard title font sizes14px→13px; retained weight700, line heights, tracking, serif text and filtering behavior. In-app desktop confirms eight filters and16 card titles at13px; mobile402 confirms13px and no horizontal page overflow. Updated mobile screenshot, reset viewport. Targeted component lint,181 preservation assertions and diff check PASS. No build/type rerun for this two-declaration CSS adjustment; prior inherited issues remain. Local only, no deployment or phase advancement.
+
+# Project detail label weight — 29 September 2026
+
+- Shared WorkDetails scopes weight700 to the Client and Collabs label class. Aero in-app computed styles confirm both labels use Neue Montreal700/14px. Targeted ESLint PASS with inherited unused useState warning;181 preservation checks PASS (173 legacy,8 approved Work files), diff check PASS. No broad build/type rerun for this scoped weight declaration. Local only, no CMS/deployment/phase change; prior inherited issues and acceptance dependencies remain.
+
+# Impact paragraph refinement — 29 September 2026
+
+- Located Aero Impact text in shared EditorialCard (not StatisticCard). Removed forced uppercase on description descendants; reduced18/25px desktop to16/24px and16/22px mobile to14/21px, with0.01em body tracking. Source casing and wording retained; no CMS edits. Shared editorial card title/layout unchanged.
+- Aero in-app desktop1512×982 visual/computed check confirms sentence casing and16/24px; mobile402×874 confirms14/21px, text-transform none and no document overflow. Screenshot validation/work-impact-desktop.png; viewport reset. Targeted component lint,181 preservation hashes (172 legacy,9 approved Work files) and diff check PASS. No broad build/type rerun for scoped CSS. Existing inherited issues/acceptance dependencies unchanged; local only, no deployment or phase advancement.
+
+# Project CTA button weight — 29 September 2026
+
+- Scoped weight700 to CtaBanner primary-button text; retained size, spacing, destination and hover interaction. Aero “Let’s talk branding” computed style confirms Montreal700/14px. Split existing destructuring to keep unchanged pbCtaBanner const and satisfy prefer-const. Targeted component lint,181 preservation hashes (171 legacy,10 approved Work files) and diff check PASS. No broad build/type rerun for scoped CSS; inherited issues/dependencies remain. Local only, no deployment or phase advancement.
+
+# Testimonial attribution weight — 29 September 2026
+
+- Shared TestimonialCard Credit descendants now use weight700. Aero in-app confirms “Shem Jacobs, VP of Brand, Europe, Aero” in Montreal700/14px, with quotation retaining Baryton200/30px. Targeted component lint,181 preservation hashes (170 legacy,11 approved Work files) and diff check PASS. No broad build/type rerun for one CSS declaration. Local only, no CMS/deployment/phase change; inherited issues/dependencies remain.
+
+# Explore Further weight — 29 September 2026
+
+- Shared RelatedProject SubTitle adds weight700. Aero in-app confirms Explore Further in Montreal700/14px. Existing related-project title, link destination and hover animation retained. Targeted component lint,181 preservation hashes (169 legacy,12 approved Work files) and diff check PASS. No broad build/type rerun for one CSS declaration. Local only, no CMS/deployment/phase change; inherited issues/dependencies remain.
+
+# Work refinements staging promotion — 29 September 2026
+
+- Explicit staging authorization for all reviewed Work changes in this conversation. Fresh origin/staging equals40ad05f; master2707efa. Normal fast-forward only. Deploy scoped source and validation records, excluding independent Home Services width edit and supplied font/type-cache files. Final isolated build excludes that Home edit; targeted lint passes with four inherited unused-variable warnings and181 preservation checks pass. Hosted verification follows.
+
+- Final isolated npm run build:redesign PASS (/tmp/otherness-work-final-build.log); targeted lint PASS with four inherited warnings,181 preservation assertions PASS, staged diff check PASS. Earlier explicit type check retains11 inherited errors; no changes to affected contracts. Ready to push.

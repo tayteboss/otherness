@@ -41,6 +41,7 @@ const SubTitleWrapper = styled.div`
 `;
 
 const SubTitle = styled.span<{ $isActive?: boolean }>`
+	font-weight: 700;
 	font-size: ${pxToRem(14)};
 	line-height: ${pxToRem(17)};
 	letter-spacing: 1.12px;

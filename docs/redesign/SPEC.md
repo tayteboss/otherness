@@ -16,6 +16,20 @@ Approved 21 September 2026. Implement **one numbered phase per conversation**, t
 
 Tayte requested Neue Montreal on the Work index and all project slug pages. This supersedes the earlier Work-font preservation restriction for sans-serif family only. Reuse the existing Montreal web fonts and scope legacy sans-variable overrides to Work main content. Follow-up: remove forced uppercase from the introductory excerpt beneath each project heading, retaining the original content casing. Latest follow-up removes the visible “Project Services” label and applies its uppercase Neue Montreal700,14/21px,0.56px tracking style to each service item; retain list animation and responsive arrangement. Retain Baryton, existing type sizes/weights/spacing, content and interactions; keep the global legacy theme unchanged.
 
+### Work filter exception — 29 September 2026
+
+Tayte requested removal of Type of work and permanently expanded mood choices. Keep the eight existing moods, selection/All reset and mood deep links. Ignore and remove old `type` URL parameters so no invisible work-type restriction remains. Use a persistent horizontal row, scrollable on small screens, with keyboard-accessible buttons and selected-state semantics. Apply Neue Montreal700 to mood buttons and project-card sans titles, matching Home's bold labels; preserve serif labels/taglines and existing type metrics. Follow-up: reduce uppercase mood options and project-card titles from14px to13px, retaining weight700, line heights and tracking. Local QA only; no new staging promotion requested.
+
+Client and Collabs labels in shared project details also use Neue Montreal700 by explicit follow-up on29 September; retain their14px size and existing spacing.
+
+Impact/editorial card paragraphs retain original sentence casing instead of forced uppercase, using16/24px desktop and14/21px mobile with0.01em tracking, per29 September follow-up. Card titles/layout/content remain unchanged.
+
+Project CTA banner button labels use Neue Montreal700 at their existing14px size, per29 September follow-up.
+
+Testimonial card bottom attribution uses Neue Montreal700 at existing14px, retaining the serif quote style, per29 September follow-up.
+
+Related-project Explore Further label uses Neue Montreal700 at existing14px, per29 September follow-up.
+
 ## Sanity architecture
 
 Use the existing `vdwu088q` / `production` dataset with additive redesign singletons, not a cloned dataset. Create a **Website Redesign** Studio group:

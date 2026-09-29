@@ -20,6 +20,10 @@ type Props = {
 const CtaBannerWrapper = styled.section`
 	padding: ${pxToRem(64)} 0;
 
+	.primary-button > div {
+		font-weight: 700;
+	}
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(32)} 0;
 	}
@@ -93,7 +97,8 @@ const Title = styled.h4`
 `;
 
 const CtaBanner = (props: Props) => {
-	let { pbCtaBanner, link, media, title } = props;
+	const { pbCtaBanner } = props;
+	let { link, media, title } = props;
 
 	if (pbCtaBanner) {
 		link = pbCtaBanner.link;
