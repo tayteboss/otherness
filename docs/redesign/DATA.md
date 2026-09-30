@@ -1,8 +1,12 @@
 # Phase 2 data workflow
 
-The deployed Studio is https://otherness.sanity.studio/. Open **Website Redesign** → **Home New**, **Our Way**, or **Redesign Settings**. Fixed document IDs are `homePageV2`, `ourWayPage`, and `siteSettingsV2`. Generic creation, duplication, deletion and unpublish actions are excluded for these types. Existing document menus and schemas are retained.
+The deployed Studio is https://otherness.sanity.studio/. As of 30 September 2026, open **Home Page** (`homePageV2`), **Working Together Page** (`ourWayPage`) or **Site Settings** (`siteSettings`) directly. The Website Redesign folder is removed. Below the orderable project/article lists are **Archive Home Page**, **Archive Working Together Page**, and **Conversations Page**, pointing to their unchanged original documents.
 
-All content arrays are editorially ordered and carry `_key`. Service project cards reference existing projects; new image/caption fields belong to Home New. Image fields accept alt text, crop and hotspot. New artwork is intentionally absent; do not upload design screenshots or substitute old CMS images.
+Site Settings now contains the six current settings fields plus every original field in a **Legacy** tab. No previous values were removed or overwritten. The original `siteSettingsV2` remains intact for rollback but is no longer in the main navigation. Frontend queries prefer `siteSettings`, with the old settings document as a pre-migration fallback. Home Page's **Noticed** field is `noticedList`, copied verbatim (including keys, thumbnails and references) from the archived Home. The earlier unused `noticed` draft is retained and hidden. The frontend prefers the active list and respects an intentionally empty list.
+
+The additive migration is `node frontend/scripts/redesign/promote-cms.cjs --cli-auth` (dry run), with `--apply` to execute. It refuses affected unpublished drafts, uses revision guards and set-if-missing patches, and backs up affected documents plus the dataset revision inventory under ignored `frontend/.redesign/`. A second run produces no patches. This migration was applied and Studio deployed; the frontend query changes must be included in the pending website promotion. Older website deployments continue reading the retained original sources.
+
+All content arrays are editorially ordered and carry `_key`. Service project cards reference existing projects; homepage-only image fields belong to Home. Service-card captions now resolve the linked project’s `tagline` (30 September bug fix); legacy Home caption values are retained but hidden and no longer rendered. Image fields accept alt text, crop and hotspot. New artwork is intentionally absent; do not upload design screenshots or substitute old CMS images.
 
 ## Frontend consumption
 

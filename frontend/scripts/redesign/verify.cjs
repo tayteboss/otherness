@@ -10,17 +10,12 @@ const { buildSeed } = require('./seed.cjs');
 	const data = await client.fetch(redesignQuery);
 	assert.deepEqual(
 		[data.settings._id, data.home._id, data.ourWay._id],
-		['siteSettingsV2', 'homePageV2', 'ourWayPage']
+		['siteSettings', 'homePageV2', 'ourWayPage']
 	);
 	const fresh = await client.fetch('*[_id == "siteSettings"][0]');
-	assert.equal(
-		data.settings.consultationUrl,
-		fresh.footerConsultationButtonUrl
-	);
-	assert.equal(
-		data.settings.footer.socials.find((s) => s.label === 'Email').href,
-		`mailto:${fresh.socialLink3.url}`
-	);
+	assert.equal(data.settings.consultationUrl, fresh.consultationUrl);
+	assert.deepEqual(data.settings.footer.socials, fresh.footer.socials.map(({_key, label, href}) => ({_key, label, href})));
+	assert.ok(data.legacyNoticed.length > 0);
 	assert.deepEqual(
 		data.home.services.map((s) => s.title),
 		['Branding', 'Strategy', 'Art direction', 'Packaging', 'Digital']
@@ -115,6 +110,12 @@ const { buildSeed } = require('./seed.cjs');
 		// solely of shell props or the explicitly approved changes below.
 		if (p === 'frontend/components/layout/Layout.tsx') continue;
 		let source = fs.readFileSync(`${root}/${p}`, 'utf8');
+		// The CMS promotion adds current fields around the unchanged legacy schema.
+		if (p === 'studio/schemas/siteSettings.ts') {
+			source = source.split('\n// Keep every original field')[0].trimEnd() + '\n';
+			source = source.replace("import {siteSettingsV2} from './redesign'", "import {linkObject} from '../objects'").replace('const legacySettings = {', 'export default {');
+		}
+
 		if (p.startsWith('frontend/pages/work/')) {
 			source = source
 				.replace(

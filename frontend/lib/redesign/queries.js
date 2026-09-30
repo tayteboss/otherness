@@ -1,7 +1,7 @@
 // Shared by the build scripts and typed server loader. Keep legacy queries untouched.
 const imageProjection = `{alt, crop, hotspot, asset->{_id, url, metadata{dimensions, lqip}}}`;
 const seoProjection = `{title, description, image${imageProjection}}`;
-const settingsQuery = `*[_id == "siteSettingsV2" && _type == "siteSettingsV2"][0]{
+const settingsQuery = `coalesce(*[_id == "siteSettings" && _type == "siteSettings" && defined(navigation)][0], *[_id == "siteSettingsV2" && _type == "siteSettingsV2"][0]){
   _id, _rev, navigation[]{_key, label, href}, consultationUrl, consultationLabel,
   footer{heading, tagline, copyright, trademark, privacyLink{label, href}, socials[]{_key, label, href}},
   seo${seoProjection}
@@ -10,15 +10,14 @@ const homeQuery = `*[_id == "homePageV2" && _type == "homePageV2"][0]{
   _id, _rev, loadingPairs[]{_key, first, second},
   landing{statement, desktopImage${imageProjection}, mobileImage${imageProjection}},
   introduction{heading, statement, link{label, href}},
-  services[]{_key, title, description, contactLabel, projects[]{_key, caption,
+  services[]{_key, title, description, contactLabel, projects[]{_key, "caption": project->tagline,
     "projectId": project._ref,
     project->{_id, title, "slug": slug.current, archiveProject}, image${imageProjection}}},
   results[]{_key, client, quote, background${imageProjection}, mobileBackground${imageProjection}, logo${imageProjection}},
   noticed[]{_key, title, source, year, link{label, href}, image${imageProjection}}, seo${seoProjection}
 }`;
-// Legacy Noticed list lives on the original `homePage` document. The redesign
-// Noticed section reuses this published content instead of homePageV2.noticed.
-const legacyNoticedQuery = `*[_type == "homePage"][0].noticedList[]{
+// Prefer the active Home list; retain the original as a pre-migration fallback.
+const legacyNoticedQuery = `coalesce(*[_id == "homePageV2"][0].noticedList, *[_id == "homePage"][0].noticedList)[]{
   _key, title, source, year,
   "thumbnailImage": thumbnailImage.asset->url,
   url,

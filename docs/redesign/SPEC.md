@@ -47,7 +47,7 @@ Use the existing `vdwu088q` / `production` dataset with additive redesign single
 - Use `defineType`, `defineField`, `defineArrayMember`, meaningful grouped fields and stable array `_key`s.
 - Use structured sections rather than a general-purpose page builder. Model editorial meaning, not arbitrary styling settings.
 - Services, testimonials, Noticed entries, process stages, recognition lists and logos are ordered arrays.
-- Services reference existing projects. Redesign-only card image/caption overrides belong to Home New, not project documents.
+- Services reference existing projects. Homepage-only card images belong to Home. As of the 30 September subheading bug fix, card subheadings use the referenced project’s Tagline; old Home caption values remain stored but hidden and unused.
 - New photography/artwork is supplied separately and uploaded as Sanity images with alt text and crop/hotspot support.
 - Seed new settings from fresh **published** Sanity settings, never the checked-in JSON. At planning time the current consultation URL was `https://app.tezzera.co/meet/otherness-discovery`; re-read before seeding.
 - Keep redesign queries/types separate from legacy Work contracts; do not impose new fields on existing documents.

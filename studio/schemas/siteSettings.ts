@@ -1,6 +1,6 @@
-import {linkObject} from '../objects'
+import {siteSettingsV2} from './redesign'
 
-export default {
+const legacySettings = {
   title: 'Site Settings',
   name: 'siteSettings',
   type: 'document',
@@ -101,4 +101,15 @@ export default {
       ],
     },
   ],
+}
+
+// Keep every original field available for older routes and rollback.
+export default {
+  ...legacySettings,
+  groups: [...siteSettingsV2.groups!, {name: 'legacy', title: 'Legacy'}],
+  fields: [
+    ...siteSettingsV2.fields,
+    ...legacySettings.fields.map((field) => ({...field, group: 'legacy'})),
+  ],
+  preview: {prepare: () => ({title: 'Site Settings'})},
 }

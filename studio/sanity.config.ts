@@ -1,4 +1,4 @@
-import {redesignSingletons, isRedesignSingleton} from './schemas/redesign'
+import {isRedesignSingleton} from './schemas/redesign'
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
@@ -22,22 +22,6 @@ export default defineConfig({
           .title('Content')
           .items([
             S.listItem()
-              .title('Website Redesign')
-              .icon(DocumentIcon)
-              .child(
-                S.list()
-                  .title('Website Redesign')
-                  .items(
-                    redesignSingletons.map(({name, title}) =>
-                      S.listItem()
-                        .title(title)
-                        .icon(DocumentIcon)
-                        .child(S.editor().schemaType(name).documentId(name)),
-                    ),
-                  ),
-              ),
-            S.divider(),
-            S.listItem()
               .title('Site Settings')
               .icon(EarthGlobeIcon)
               .child(S.editor().schemaType('siteSettings').documentId('siteSettings')),
@@ -45,11 +29,11 @@ export default defineConfig({
             S.listItem()
               .title('Home Page')
               .icon(DocumentIcon)
-              .child(S.editor().schemaType('homePage').documentId('homePage')),
+              .child(S.editor().schemaType('homePageV2').documentId('homePageV2')),
             S.listItem()
               .title('Working Together Page')
               .icon(DocumentIcon)
-              .child(S.editor().schemaType('whatToExpectPage').documentId('whatToExpectPage')),
+              .child(S.editor().schemaType('ourWayPage').documentId('ourWayPage')),
             S.listItem()
               .title('Things We Understand Page')
               .icon(DocumentIcon)
@@ -62,10 +46,6 @@ export default defineConfig({
               .title('Work We Do Page')
               .icon(DocumentIcon)
               .child(S.editor().schemaType('workPage').documentId('workPage')),
-            S.listItem()
-              .title('Conversations Page')
-              .icon(DocumentIcon)
-              .child(S.editor().schemaType('conversationsPage').documentId('conversationsPage')),
             S.listItem()
               .title('Privacy Page')
               .icon(DocumentIcon)
@@ -92,6 +72,26 @@ export default defineConfig({
             S.divider(),
             orderableDocumentListDeskItem({type: 'project', S, context}),
             orderableDocumentListDeskItem({type: 'article', S, context}),
+            S.divider(),
+            S.listItem()
+              .title('Archive Home Page')
+              .icon(DocumentIcon)
+              .child(
+                S.editor().title('Archive Home Page').schemaType('homePage').documentId('homePage'),
+              ),
+            S.listItem()
+              .title('Archive Working Together Page')
+              .icon(DocumentIcon)
+              .child(
+                S.editor()
+                  .title('Archive Working Together Page')
+                  .schemaType('whatToExpectPage')
+                  .documentId('whatToExpectPage'),
+              ),
+            S.listItem()
+              .title('Conversations Page')
+              .icon(DocumentIcon)
+              .child(S.editor().schemaType('conversationsPage').documentId('conversationsPage')),
           ])
       },
     }),
@@ -102,13 +102,17 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
-    templates: (templates) => templates.filter((t) => !isRedesignSingleton(t.schemaType)),
+    templates: (templates) =>
+      templates.filter(
+        (t) => !isRedesignSingleton(t.schemaType) && t.schemaType !== 'siteSettings',
+      ),
   },
 
   document: {
-    newDocumentOptions: (options) => options.filter((o) => !isRedesignSingleton(o.templateId)),
+    newDocumentOptions: (options) =>
+      options.filter((o) => !isRedesignSingleton(o.templateId) && o.templateId !== 'siteSettings'),
     actions: (actions, context) =>
-      isRedesignSingleton(context.schemaType)
+      isRedesignSingleton(context.schemaType) || context.schemaType === 'siteSettings'
         ? actions.filter((a) => ['publish', 'discardChanges', 'restore'].includes(a.action || ''))
         : actions,
   },

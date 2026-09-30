@@ -8,7 +8,7 @@ function contentIssues(data) {
 			(Array.isArray(value) && !value.length)
 		)
 			issues.push(
-				`${path}: add and publish content in Website Redesign.`
+				`${path}: add and publish content in the CMS.`
 			);
 	};
 	const image = (value, path) => {
@@ -21,32 +21,32 @@ function contentIssues(data) {
 			issues.push(`${path}.href: provide a valid site path or URL.`);
 	};
 	for (const [key, id] of Object.entries({
-		settings: 'siteSettingsV2',
+		settings: 'siteSettings',
 		home: 'homePageV2',
 		ourWay: 'ourWayPage'
 	})) {
 		if (!data[key])
 			issues.push(
-				`${id}: missing published singleton. Run npm run seed:redesign -- --apply, then edit in Website Redesign.`
+				`${id}: missing published singleton. Run npm run seed:redesign -- --apply, then edit in the CMS.`
 			);
 	}
 	const { settings: s, home: h, ourWay: w } = data;
 	if (s) {
-		need(s.consultationUrl, 'siteSettingsV2.consultationUrl');
-		need(s.consultationLabel, 'siteSettingsV2.consultationLabel');
-		need(s.navigation, 'siteSettingsV2.navigation');
+		need(s.consultationUrl, 'siteSettings.consultationUrl');
+		need(s.consultationLabel, 'siteSettings.consultationLabel');
+		need(s.navigation, 'siteSettings.navigation');
 		s.navigation?.forEach((v) =>
-			link(v, `siteSettingsV2.navigation.${v._key}`)
+			link(v, `siteSettings.navigation.${v._key}`)
 		);
-		need(s.footer?.heading, 'siteSettingsV2.footer.heading');
-		need(s.footer?.copyright, 'siteSettingsV2.footer.copyright');
-		need(s.footer?.trademark, 'siteSettingsV2.footer.trademark');
-		link(s.footer?.privacyLink, 'siteSettingsV2.footer.privacyLink');
+		need(s.footer?.heading, 'siteSettings.footer.heading');
+		need(s.footer?.copyright, 'siteSettings.footer.copyright');
+		need(s.footer?.trademark, 'siteSettings.footer.trademark');
+		link(s.footer?.privacyLink, 'siteSettings.footer.privacyLink');
 		s.footer?.socials?.forEach((v) =>
-			link(v, `siteSettingsV2.footer.socials.${v._key}`)
+			link(v, `siteSettings.footer.socials.${v._key}`)
 		);
-		need(s.seo?.title, 'siteSettingsV2.seo.title');
-		need(s.seo?.description, 'siteSettingsV2.seo.description');
+		need(s.seo?.title, 'siteSettings.seo.title');
+		need(s.seo?.description, 'siteSettings.seo.description');
 	}
 	if (h) {
 		if (h.loadingPairs?.length !== 3)

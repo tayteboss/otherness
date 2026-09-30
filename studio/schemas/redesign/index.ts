@@ -3,8 +3,8 @@ import {defineType, defineField, defineArrayMember} from 'sanity'
 import {DocumentIcon, ImageIcon, LinkIcon, CogIcon} from '@sanity/icons'
 
 export const redesignSingletons = [
-  {name: 'homePageV2', title: 'Home New'},
-  {name: 'ourWayPage', title: 'Our Way'},
+  {name: 'homePageV2', title: 'Home Page'},
+  {name: 'ourWayPage', title: 'Working Together Page'},
   {name: 'siteSettingsV2', title: 'Redesign Settings'},
 ]
 export const isRedesignSingleton = (name: string) => redesignSingletons.some((s) => s.name === name)
@@ -38,7 +38,7 @@ const section = (name: string, title: string, fields: FieldDefinition[]) =>
 
 const homePageV2 = defineType({
   name: 'homePageV2',
-  title: 'Home New',
+  title: 'Home Page',
   type: 'document',
   icon: DocumentIcon,
   groups: groups(['loading', 'landing', 'introduction', 'services', 'results', 'noticed']),
@@ -93,14 +93,15 @@ const homePageV2 = defineType({
                     defineField({
                       name: 'project',
                       type: 'reference',
+                      description: 'The card uses this project’s Title and Tagline. Edit them in the project document.',
                       to: [{type: 'project'}],
                       options: {disableNew: true},
                       validation: (r) => r.required(),
                     }),
                     image('image', 'Homepage-only card image'),
-                    text('caption', 'Homepage-only caption'),
+                    {...text('caption', 'Legacy homepage-only caption'), hidden: true, readOnly: true},
                   ],
-                  preview: {select: {title: 'project.title', subtitle: 'caption', media: 'image'}},
+                  preview: {select: {title: 'project.title', subtitle: 'project.tagline', media: 'image'}},
                 }),
               ],
             }),
@@ -130,8 +131,48 @@ const homePageV2 = defineType({
       ],
     }),
     defineField({
-      name: 'noticed',
+      name: 'noticedList',
       title: 'Noticed',
+      group: 'noticed',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            text('title', 'Title'),
+            text('source', 'Source'),
+            text('year', 'Year'),
+            defineField({name: 'thumbnailImage', title: 'Thumbnail image', type: 'image'}),
+            defineField({
+              name: 'url',
+              title: 'External URL',
+              type: 'url',
+              validation: (r) => r.uri({allowRelative: true}),
+            }),
+            defineField({
+              name: 'pageReference',
+              title: 'Page reference',
+              type: 'reference',
+              to: [
+                'homePage',
+                'workPage',
+                'conversationsPage',
+                'whatToExpectPage',
+                'project',
+                'article',
+              ].map((type) => ({type})),
+              description: 'Use either a page reference or an external URL.',
+            }),
+          ],
+          preview: {select: {title: 'title', subtitle: 'source', media: 'thumbnailImage'}},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'noticed',
+      title: 'Previous redesign Noticed draft (retained)',
+      hidden: true,
+      readOnly: true,
       group: 'noticed',
       type: 'array' as const,
       of: [
@@ -152,12 +193,12 @@ const homePageV2 = defineType({
     seo,
     review,
   ],
-  preview: {prepare: () => ({title: 'Home New'})},
+  preview: {prepare: () => ({title: 'Home Page'})},
 })
 
 const ourWayPage = defineType({
   name: 'ourWayPage',
-  title: 'Our Way',
+  title: 'Working Together Page',
   type: 'document',
   icon: DocumentIcon,
   groups: groups(['hero', 'introduction', 'partnership', 'process', 'consultation', 'credentials']),
@@ -237,10 +278,10 @@ const ourWayPage = defineType({
     seo,
     review,
   ],
-  preview: {prepare: () => ({title: 'Our Way'})},
+  preview: {prepare: () => ({title: 'Working Together Page'})},
 })
 
-const siteSettingsV2 = defineType({
+export const siteSettingsV2 = defineType({
   name: 'siteSettingsV2',
   title: 'Redesign Settings',
   type: 'document',

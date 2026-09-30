@@ -34,7 +34,7 @@ for (const file of files(pages).filter((p) => p.endsWith('.html'))) {
 	assert.ok(html.includes('/redesign/favicon/site.webmanifest'));
 	assert.ok(!html.includes('content="/ogg.jpg"'));
 	if (file.endsWith('/500.html') || parsed.isFallback) continue; // Next emergency/fallback templates have no page props.
-	assert.equal(pageProps.redesignSettings._id, 'siteSettingsV2', file);
+	assert.equal(pageProps.redesignSettings._id, 'siteSettings', file);
 	assert.ok(html.includes(pageProps.redesignSettings.consultationUrl), file);
 	const override =
 		pageProps.data?.openGraphImage?.asset?.url ||

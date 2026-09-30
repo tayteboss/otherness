@@ -723,3 +723,32 @@ User supplied a clean rectangular translucent-button reference and requested rem
 - Hosted Work shows eight persistent mood choices, no work-type control, all filter/card labels13px/700. Deep link mood=artsy&type=digital normalizes to mood=artsy and settles to4 cards; All restores16. Mobile402 reusable mood check PASS/no page overflow.
 - Hosted Aero: Client/Collabs700, CTA700, testimonial credit700 with serif quote200, Explore Further700. Impact sentence-case text computes16px desktop1512 and14px mobile402; mobile document width402. Both /work and /work/aero HTTP200 and X-Robots-Tag noindex,nofollow,noarchive. Viewport reset; staging Work left open.
 - All requested Work changes deployed and verified. Unrelated Home Services width and original font/type-cache files remain local. Post-deployment notes local. Existing inherited type/lint warnings and device/editorial/artwork/Contact acceptance remain; no production/CMS/phase advancement.
+
+
+## CMS promotion — 30 September 2026
+
+- `node frontend/scripts/redesign/promote-cms.cjs --cli-auth`: dry run identified exactly two additive patches, six settings fields and Home `noticedList`; no affected drafts present.
+- `node frontend/scripts/redesign/promote-cms.cjs --apply --cli-auth`: PASS. Patched only `siteSettings` and `homePageV2`. Every pre-existing field in all four source/target documents is byte-equivalent as JSON; all 655 other document revisions unchanged; no document created/deleted. Replanning yields zero patches. Backup: ignored `frontend/.redesign/cms-promotion-1790719257837.json` (documents and complete revision inventory).
+- `node studio/scripts/verify-redesign.cjs`: PASS. Schema compilation, groups, fixed IDs, missing data, canonical settings precedence/fallback, active Noticed precedence and intentional empty list, migration draft guard/preservation/idempotency.
+- `node frontend/scripts/redesign/verify.cjs`: PASS. Live query/content checks and 181 preservation hashes. For Site Settings only, normalize the additive wrapper/import to verify the entire original schema field body still matches its baseline; no baseline hashes changed.
+- `cd studio && npm run build`: PASS. `npm run deploy -- --yes`: PASS, https://otherness.sanity.studio/. Independently fetched deployed JS bundle and verified both archive labels, Conversations Page and promoted Home schema.
+- `cd frontend && npm run build:redesign`: PASS, 35 generated pages. Build log: ignored `.redesign/cms-promotion-build.log`. Built Home/Our Way/Contact/Work JSON all use `siteSettings`; Home has the copied Noticed list.
+- Compared fresh projected Site Settings against original `siteSettingsV2` (excluding identity/revision): exact content parity. Compared all ten projected Noticed entries against archive, including thumbnail URLs and references: exact parity.
+- Targeted ESLint on modified frontend data/migration/verification files and redesign schema/verification: PASS. `git diff --check`: PASS.
+- Studio explicit typecheck: the same five inherited errors (implicit Rule and two orderable plugin type mismatches at each of two entries), no added schema errors.
+- In-app browser opened the hosted Studio but redirects to Google password sign-in. Authenticated editor visual verification remains untested; API migration, schema/build and deployed-bundle checks passed. No external browser used.
+- No frontend remote deploy, branch push/merge, alias/hook change, Work-body change or artwork change. Include local query updates in the website promotion before relying on edits in consolidated Site Settings or Home Noticed. Existing editorial/device acceptance remains outstanding.
+- Frontend explicit `tsc --noEmit --incremental false`: same 11 inherited errors in legacy media/header/statistics/context and Work types; no new data-query or schema errors. Log: ignored `.redesign/cms-promotion-types.log`.
+
+- Requested Studio redeploy, 30 September 2026: `npm run deploy -- --yes` PASS (build, local verification, hosted deployment). Authenticated in-app reload at `/structure/siteSettings` confirms promoted navigation, archive section ordering and Legacy settings tab; earlier sign-in blocker resolved for this UI check. No content writes or frontend deployment.
+
+
+## Home Services subheading bug — 30 September 2026
+
+- Published-data diagnosis: all four Branding cards had the same Home caption; the four other service cards had “Lorem ipsum”. Referenced project Tagline values were already correct. No CMS documents were changed.
+- Home query now projects `caption` from `project->tagline`. Existing rendering omits null/empty captions. Studio retains but hides the old caption field, uses project Tagline in card previews and identifies the correct editing source.
+- `node studio/scripts/verify-redesign.cjs` PASS: schema compilation and actual GROQ fixture evaluations, including project-tagline updates and missing taglines without stale Home-caption fallback.
+- `npm run verify:redesign` PASS: published data and 181 preservation hashes. Built Home JSON checked against fresh published project taglines: all eight service cards match.
+- `npm run build:redesign` PASS, 35 pages. `SANITY_STUDIO_TELEMETRY_DISABLED=1 npm run build` in Studio PASS. Targeted query ESLint using `.eslintrc.redesign.cjs` PASS; `git diff --check` PASS. Full type/lint validation is skipped by existing Next build configuration; not re-run for this query/schema-only change. Existing 21 editorial/artwork readiness warnings remain.
+- In-app browser at `http://localhost:3010/#services` shows distinct Aero, Famille Elastique, Artem and SES taglines and correct project destinations; visible screenshot confirms wrapping. No CSS/component/layout changes or viewport overrides. Local production preview remains on port 3010.
+- Changes remain local on `codex/site-redesign`; no Studio deployment, website deployment, CMS mutation or phase advancement. Earlier uncommitted CMS promotion changes retained. Pending publication and earlier device/editorial/artwork/Contact acceptance remain.
