@@ -5,7 +5,9 @@ export async function getRedesignShellProps() {
 	const origin = process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL;
 	return {
 		redesignSettings: await getRedesignSettings(),
-		redesignOrigin: origin
+		redesignOrigin: process.env.VERCEL_ENV === 'production'
+			? process.env.SITE_URL || 'https://www.otherness.design'
+			: origin
 			? `https://${origin}`
 			: process.env.SITE_URL || 'http://localhost:3010'
 	};
