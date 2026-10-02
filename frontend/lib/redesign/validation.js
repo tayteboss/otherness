@@ -7,9 +7,7 @@ function contentIssues(data) {
 			value === '' ||
 			(Array.isArray(value) && !value.length)
 		)
-			issues.push(
-				`${path}: add and publish content in the CMS.`
-			);
+			issues.push(`${path}: add and publish content in the CMS.`);
 	};
 	const image = (value, path) => {
 		need(value?.asset?.url, `${path}.asset (supplied artwork required)`);
@@ -72,7 +70,19 @@ function contentIssues(data) {
 					issues.push(
 						`${p}.projects.${c._key}: select a published, non-archived project with a slug.`
 					);
-				image(c.image, `${p}.projects.${c._key}.image`);
+				const media = c.thumbnailMedia;
+				if (media?.mediaType === 'video') {
+					need(
+						media.video?.asset?.playbackId,
+						`${p}.projects.${c._key}.thumbnailMedia.video`
+					);
+				} else {
+					// Legacy project thumbnails often have no alt; their adjacent title labels the link.
+					need(
+						media?.image?.asset?.url,
+						`${p}.projects.${c._key}.thumbnailMedia.image`
+					);
+				}
 			});
 		});
 		need(h.results, 'homePageV2.results');

@@ -35,11 +35,11 @@ const { buildSeed } = require('./seed.cjs');
 	// Published artwork can arrive during QA; test the missing-artwork case
 	// with a fixture instead of requiring editors to leave live image slots empty.
 	const missingServiceArtwork = JSON.parse(JSON.stringify(data));
-	missingServiceArtwork.home.services[0].projects[0].image = null;
+	missingServiceArtwork.home.services[0].projects[0].thumbnailMedia = null;
 	assert.ok(
 		contentIssues(missingServiceArtwork).some((issue) =>
 			issue.startsWith(
-				`homePageV2.services.${data.home.services[0]._key}.projects.${data.home.services[0].projects[0]._key}.image.asset`
+				`homePageV2.services.${data.home.services[0]._key}.projects.${data.home.services[0].projects[0]._key}.thumbnailMedia.image`
 			)
 		)
 	);

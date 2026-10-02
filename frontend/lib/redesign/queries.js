@@ -12,7 +12,8 @@ const homeQuery = `*[_id == "homePageV2" && _type == "homePageV2"][0]{
   introduction{heading, statement, link{label, href}},
   services[]{_key, title, description, contactLabel, projects[]{_key, "caption": project->tagline,
     "projectId": project._ref,
-    project->{_id, title, "slug": slug.current, archiveProject}, image${imageProjection}}},
+    project->{_id, title, "slug": slug.current, archiveProject},
+    "thumbnailMedia": project->thumbnailMedia{mediaType, image${imageProjection}, video{asset->{playbackId}}}}},
   results[]{_key, client, quote, background${imageProjection}, mobileBackground${imageProjection}, logo${imageProjection}},
   noticed[]{_key, title, source, year, link{label, href}, image${imageProjection}}, seo${seoProjection}
 }`;

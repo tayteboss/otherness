@@ -116,3 +116,7 @@ Uses the existing published Our Way hero artwork and crop configuration. No new 
 ## Contact / Cal.com — 23 September 2026
 
 `/Users/tayte/Desktop/Contact.jpg` is preserved as `references/Contact.jpg`; design evidence only. Live page uses existing SVG brand assets, scoped Neue Montreal and Baryton, not screenshot pixels. `/Users/tayte/Downloads/Logistics Discussion.rtf` supplies HTML, React and Atoms alternatives for the same `otherness/discovery` Cal event. Implemented the HTML element-click alternative with no package additions. Hardcoded page/event is explicitly requested; no new Sanity content/schema. Separate mobile design not supplied; responsive adaptation uses established site conventions. Direct event is live (30 minute discovery call, available slots); embedded calendar loading remains an in-app validation blocker.
+
+## Services project thumbnail source — 2 October 2026
+
+Tayte explicitly replaced Home-only service imagery with each referenced project's existing Thumbnail Media, including images and Mux videos. This supersedes the earlier requirement for separate service-card originals. Existing Home images are retained but hidden/read-only; they are no longer queried or displayed. No assets or CMS documents were modified.

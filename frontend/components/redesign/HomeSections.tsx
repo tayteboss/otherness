@@ -15,6 +15,7 @@ import type {
 	RedesignSettings
 } from '../../lib/redesign/types';
 import Artwork from './Artwork';
+import MediaStack from '../common/MediaStack';
 import NoticedCursorLayout from '../layout/NoticedCursorLayout';
 import { HomeSectionsWrapper } from './HomeSections.styles';
 
@@ -84,6 +85,71 @@ function animateHeight(el: HTMLElement, open: boolean, instant: boolean) {
 	// change it, otherwise the transition is skipped.
 	void el.offsetHeight;
 	el.style.height = open ? `${el.scrollHeight}px` : '0px';
+}
+
+function ServiceGallery({
+	children,
+	label
+}: {
+	children: React.ReactNode;
+	label: string;
+}) {
+	const drag = useRef<{
+		pointerId: number;
+		x: number;
+		scroll: number;
+	} | null>(null);
+	const moved = useRef(false);
+	const stop = (event: React.PointerEvent<HTMLUListElement>) => {
+		drag.current = null;
+		event.currentTarget.removeAttribute('data-dragging');
+		if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+			event.currentTarget.releasePointerCapture(event.pointerId);
+		}
+	};
+	return (
+		<ul
+			className="project-track"
+			tabIndex={0}
+			aria-label={label}
+			data-lenis-prevent-touch
+			onPointerDown={(event) => {
+				moved.current = false;
+				if (event.pointerType !== 'mouse' || event.button !== 0) return;
+				drag.current = {
+					pointerId: event.pointerId,
+					x: event.clientX,
+					scroll: event.currentTarget.scrollLeft
+				};
+				event.currentTarget.setAttribute('data-dragging', 'true');
+			}}
+			onPointerMove={(event) => {
+				const start = drag.current;
+				if (!start || event.pointerId !== start.pointerId) return;
+				const delta = event.clientX - start.x;
+				if (!moved.current && Math.abs(delta) < 5) return;
+				moved.current = true;
+				event.currentTarget.setPointerCapture(event.pointerId);
+				event.currentTarget.scrollLeft = start.scroll - delta;
+			}}
+			onPointerUp={stop}
+			onPointerCancel={stop}
+			onLostPointerCapture={stop}
+			onPointerLeave={(event) => {
+				if (!event.currentTarget.hasPointerCapture(event.pointerId))
+					stop(event);
+			}}
+			onDragStart={(event) => event.preventDefault()}
+			onClickCapture={(event) => {
+				if (moved.current && event.detail !== 0) {
+					event.preventDefault();
+					event.stopPropagation();
+				}
+			}}
+		>
+			{children}
+		</ul>
+	);
 }
 
 function ServicesSection({ services }: { services: Services }) {
@@ -211,25 +277,29 @@ function ServicesSection({ services }: { services: Services }) {
 								settleHeight(event, service._key)
 							}
 						>
-							<ul
-								className="project-track"
-								tabIndex={0}
-								aria-label={`${
-									service.title || 'Service'
-								} projects`}
-								data-lenis-prevent-touch
+							<ServiceGallery
+								label={`${service.title || 'Service'} projects`}
 							>
 								{(service.projects || []).map((card) => {
 									const content = (
 										<>
-											<Artwork
-												key={
-													card.image?.asset?._id ||
-													'pending'
-												}
-												image={card.image}
-												label="project artwork pending"
-											/>
+											<div className="artwork">
+												{card.thumbnailMedia ? (
+													<MediaStack
+														data={
+															card.thumbnailMedia
+														}
+														noTransition
+														lazyLoad
+														sizes="(max-width: 768px) 76vw, 33vw"
+													/>
+												) : (
+													<div className="artwork-placeholder development-note">
+														Project thumbnail
+														pending
+													</div>
+												)}
+											</div>
 											<p className="project-title heading-small">
 												{card.project?.title ||
 													'Development placeholder — project unavailable'}
@@ -259,7 +329,7 @@ function ServicesSection({ services }: { services: Services }) {
 										</li>
 									);
 								})}
-							</ul>
+							</ServiceGallery>
 						</div>
 					</div>
 				</div>

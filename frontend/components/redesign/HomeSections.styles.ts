@@ -201,18 +201,31 @@ export const HomeSectionsWrapper = styled.div`
 		gap: 24px;
 		overflow-x: auto;
 		padding: 0 var(--redesign-gutter) 64px;
-		scroll-snap-type: x mandatory;
-		/* Snap the first/each card to the gutter, not the bled viewport edge. */
-		scroll-padding-left: var(--redesign-gutter);
 		overscroll-behavior-x: contain;
 		scrollbar-width: none;
+	}
+	.project-track,
+	.project-track a {
+		cursor: grab;
+		user-select: none;
+	}
+	.project-track[data-dragging],
+	.project-track[data-dragging] a {
+		cursor: grabbing;
+	}
+	.project-card .artwork > div,
+	.project-card .image-component-wrapper,
+	.project-card .video-component-wrapper {
+		height: 100%;
+	}
+	.project-card mux-player {
+		pointer-events: none;
 	}
 	.project-track::-webkit-scrollbar {
 		display: none;
 	}
 	.project-card {
 		min-width: 0;
-		scroll-snap-align: start;
 	}
 	.project-card a:focus-visible {
 		outline-offset: -2px;

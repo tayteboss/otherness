@@ -20,10 +20,35 @@ assert.equal(schema.get('redesignImage').options.hotspot, true);
 assert.ok(schema.get('redesignImage').fields.some((f) => f.name === 'alt'));
 assert.ok(!redesignSingletons.some((s) => s.name === 'homePage' || s.name === 'contactPage'));
 console.log('PASS: all seven redesign types compile; singleton groups resolve; image alt and hotspot; legacy Home and deferred Contact excluded.');
+const homeSchema = redesignSchemaTypes.find((s) => s.name === 'homePageV2');
+const projectCard = homeSchema.fields.find((f) => f.name === 'services').of[0].fields.find((f) => f.name === 'projects').of[0];
+assert.equal(projectCard.fields.find((f) => f.name === 'image').hidden, true);
+assert.equal(projectCard.preview.select.media, 'project.thumbnailMedia.image');
+const waySchema = redesignSchemaTypes.find((s) => s.name === 'ourWayPage');
+const logoLink = waySchema.fields.find((f) => f.name === 'credentials').fields.find((f) => f.name === 'logos').of[0].fields.find((f) => f.name === 'link');
+const linkRules = {required() { throw new Error('Logo links must be optional'); }, uri(options) { assert.equal(options.allowRelative, true); return this; }};
+logoLink.fields.forEach((f) => f.validation?.(linkRules));
+console.log('PASS: custom Home image editor is hidden; project media preview used; logo label and URL optional with URL validation retained.');
+
 
 // Exercise the actual GROQ projections against drafts, duplicate types and a
 // missing reference, without mutating the dataset to manufacture test content.
 (async () => {
+  // Sanity 3.30's validation scheduler uses browser timer shims in Node.
+  global.window = {setTimeout, clearTimeout};
+  const {validateDocument} = require('sanity');
+  const validateLogoLink = (link) => validateDocument({
+    document: {_id:'ourWayPage', _type:'ourWayPage', credentials:{logos:[{_key:'logo', _type:'recognitionLogo', link}]}},
+    workspace: {schema},
+    environment: 'cli',
+    getDocumentExists: async () => true,
+  });
+  for (const link of [undefined, {}, {_type:'redesignLink'}, {label:'Logo'}, {href:''}, {href:'/work'}, {href:'https://example.com'}]) {
+    const errors = await validateLogoLink(link);
+    assert.deepEqual(errors.filter((e) => e.path.includes('link')), []);
+  }
+  assert.ok((await validateLogoLink({href:'javascript:alert(1)'})).some((e) => e.path.includes('href')));
+  console.log('PASS: actual Sanity document validation accepts missing/empty/label-only/existing-type links and valid paths/URLs, rejecting unsafe URLs.');
   const {parse, evaluate} = require('groq-js');
   const {redesignQuery} = require('../../frontend/lib/redesign/queries');
   const dataset = [
@@ -54,6 +79,21 @@ console.log('PASS: all seven redesign types compile; singleton groups resolve; i
   delete project.tagline;
   assert.equal((await query()).home.services[0].projects[0].caption, null);
   console.log('PASS: Home captions follow linked project tagline edits and omit missing taglines without stale caption fallback.');
+  const asset = {_id:'project-image', _type:'sanity.imageAsset', url:'https://cdn.sanity.io/project.jpg'};
+  dataset.push(asset, {_id:'project-video', _type:'mux.videoAsset', playbackId:'current-video'});
+  card.image = {asset:{_ref:'old-home-image'}};
+  project.thumbnailMedia = {mediaType:'image', image:{asset:{_ref:asset._id}}};
+  assert.equal((await query()).home.services[0].projects[0].thumbnailMedia.image.asset.url, asset.url);
+  asset.url = 'https://cdn.sanity.io/updated-project.jpg';
+  assert.equal((await query()).home.services[0].projects[0].thumbnailMedia.image.asset.url, asset.url);
+  project.thumbnailMedia = {mediaType:'video', video:{asset:{_ref:'project-video'}}};
+  assert.equal((await query()).home.services[0].projects[0].thumbnailMedia.video.asset.playbackId, 'current-video');
+  delete project.thumbnailMedia;
+  assert.equal((await query()).home.services[0].projects[0].thumbnailMedia, null);
+  dataset.push({_id:'ourWayPage', _type:'ourWayPage', credentials:{logos:[{_key:'none'}, {_key:'empty', link:{}}, {_key:'label', link:{label:'Logo'}}, {_key:'linked', link:{href:'/work'}}]}});
+  assert.deepEqual((await query()).ourWay.credentials.logos.map((logo) => logo.link?.href ?? null), [null, null, null, '/work']);
+  console.log('PASS: project image/video thumbnail updates resolve directly, missing media has no old Home fallback, and all optional logo link shapes project safely.');
+
   assert.equal((await query()).settings._id, 'siteSettingsV2');
   dataset.push({_id:'siteSettings', _type:'siteSettings', navigation:[], footer:{heading:'Active'}});
   dataset[0].noticedList = [{_key:'old', title:'Archived'}];

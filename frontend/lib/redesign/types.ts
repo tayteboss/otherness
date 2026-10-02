@@ -1,3 +1,5 @@
+import type { MediaType } from '../../shared/types/types';
+
 // Deliberately separate from the legacy Work contracts. Optional editorial fields
 // are nullable because an unpublished/incomplete Sanity document is normal in preview.
 export type Maybe<T> = T | null;
@@ -62,7 +64,7 @@ export interface ProjectCard extends Keyed {
 		slug: Maybe<string>;
 		archiveProject: Maybe<boolean>;
 	}>;
-	image: Maybe<Image>;
+	thumbnailMedia: Maybe<MediaType>;
 }
 export interface HomePageV2 extends Document {
 	loadingPairs: Maybe<
